@@ -1,16 +1,16 @@
 <template>
   <div class="dt-p16">
-    <dt-button>bonjour</dt-button>
+    <Button class="dt-button">bonjour</Button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import button from '../components/button/button.vue';
+import Button from '../components/Button/Button.vue';
 
 export default defineComponent({
   components: {
-    'dt-button': button,
+    Button,
   },
 });
 </script>
