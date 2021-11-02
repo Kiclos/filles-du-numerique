@@ -1,0 +1,21 @@
+.dt-textcontainer {
+
+  display: inline-block;
+  border-radius: 15px;
+
+  &--default {
+    background: linear-gradient(95.43deg, #FBDA61 -37.4%, #FF5ACD 172.16%);
+    color: #FFF;
+  }
+
+  &--neutral {
+    background: #E1E8EC;
+    color: #364B5F;
+  }
+
+  &--blue {
+    background: linear-gradient(118.32deg, #0093E9 -50.13%, #80D0C7 113.71%);
+    color: #FFFFFF;
+  }
+
+}
