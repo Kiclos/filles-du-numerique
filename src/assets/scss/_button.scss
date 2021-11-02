@@ -1,7 +1,52 @@
 .dt-button {
-  background: lightblue;
-  border: none;
   cursor: pointer;
   outline: none;
   transition: .3s;
+
+  padding: 14px 24px;
+  border-radius: 15px;
+  border: none;
+
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+
+  &--default {
+    background: linear-gradient(95.43deg, #FBDA61 -6.84%, #FF5ACD 124.14%);
+    color: #FFFFFF;
+    box-shadow: 4px 0 4px rgba(0, 0, 0, 0.05),
+    0 4px 4px rgba(0, 0, 0, 0.1),
+    inset 30px 30px 60px rgba(255, 255, 255, 0.25),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.25);
+  }
+
+  &--text {
+    background: linear-gradient(95.43deg, rgba(251,218,97,0.1) -6.84%, rgba(255, 90, 205, 0.1) 124.14%);
+    color: #FDAB9A;
+  }
+
+  &--reversed {
+    color: #FDAB9A;
+    background: #FFFFFF;
+  }
+
+  &--outlined {
+    color: #FDAB9A;
+    background: none;
+    border: solid #FDAB9A 2px;
+  }
+
+  &--reversed-outlined {
+    color: #FFFFFF;
+    background: none;
+    border: solid #FFFFFF 2px;
+  }
+
+  &--reversed-text {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
 }

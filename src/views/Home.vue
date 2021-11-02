@@ -1,6 +1,6 @@
 <template>
   <div class="dt-p16">
-    <Button class="dt-button">bonjour</Button>
+    <Button class="dt-button--default">Commencer le jeu</Button>
   </div>
 </template>
 
