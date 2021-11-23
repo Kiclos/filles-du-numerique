@@ -1,9 +1,12 @@
 .dt-flex {
-  &.-col {
+
+  display: flex;
+
+  &-col {
     flex-direction: column;
   }
 
-  &.-justify {
+  &-justify {
     &--start {
       justify-content: flex-start;
     }
@@ -29,7 +32,7 @@
     }
   }
 
-  &.-align {
+  &-align {
     &--start {
       align-items: flex-start;
     }
