@@ -1,0 +1,46 @@
+.dt-dialog {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  height: 100vh;
+  width: 100vw;
+  transition: .3s;
+
+  & .dt-textcontainer {
+    width: 100%;
+    margin: .5rem 0;
+    animation: .3s dialog-zoom;
+  }
+
+  & .dt-taptocontinue {
+    width: 100%;
+    text-align: right;
+    font-weight: bold;
+    font-size: .7rem;
+    animation: 2s clignote infinite;
+  }
+}
+
+@keyframes dialog-zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes clignote {
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
