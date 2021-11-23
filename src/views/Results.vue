@@ -49,7 +49,6 @@ import TextContainer from '@/components/TextContainer/TextContainer.vue';
 
 export default defineComponent({
   name: 'game-results',
-
   components: {
     TextContainer,
     Button,
