@@ -3,7 +3,8 @@
     <DialogView :dialogs="dialogs" @close="dialogIsOpened = false" v-if="dialogIsOpened"/>
   </transition>
   <Button class="dt-button--default" @click="dialogIsOpened = true">Open dialog</Button>
-  <Home/>
+  <Islands/>
+  <Home v-if="false"/>
 </template>
 
 <script lang="ts">
@@ -11,6 +12,7 @@ import { defineComponent, reactive, ref } from 'vue';
 import DialogView from '@/views/Dialog/Dialog.vue';
 import Home from '@/views/Home.vue';
 import Button from '@/components/Button/Button.vue';
+import Islands from '@/components/Islands/Islands.vue';
 import Dialog from '@/Model/Dialog';
 
 export default defineComponent({
@@ -19,6 +21,7 @@ export default defineComponent({
     DialogView,
     Home,
     Button,
+    Islands,
   },
   setup() {
     const dialogIsOpened = ref<boolean>(false);

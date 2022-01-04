@@ -1,1 +1,28 @@
+$black: #364B5F;
+$light-grey: #E1E8EC;
+$grey: #A6B8C1;
 $white: white;
+
+$blue: #4FCCF3;
+$dark-blue: #0093E9;
+$light-green: #80D0C7;
+$green: #16A04D;
+$orange: #FDAB9A;
+$pink: #FF5ACD;
+$dark-pink: #841C79;
+$light-purple: #A561FB;
+$dark-purple: #4A12C2;
+$purple: #7E52FC;
+$red: #FF2525;
+$dark-red: #C12050;
+$yellow: #FBDA61;
+$dark-yellow: #F8B34B;
+
+$blue-purple: linear-gradient(95.43deg, $blue -6.84%, $purple 124.14%);
+$blue-green: linear-gradient(95.43deg, $dark-blue -6.84%, $light-green 124.14%);
+$pink-yellow: linear-gradient(95.43deg, $yellow -6.84%, $pink 124.14%);
+$purple-purple: linear-gradient(95.43deg, $light-purple -6.84%, $dark-purple 124.14%);
+$red-pink: linear-gradient(95.43deg, $red -6.84%, $dark-pink 124.14%);
+$yellow-green: linear-gradient(95.43deg, $yellow -6.84%, $green 124.14%);
+$yellow-red: linear-gradient(95.43deg, $yellow -6.84%, $red 124.14%);
+$yellow-yellow: linear-gradient(95.43deg, $yellow -6.84%, $dark-yellow 124.14%);

@@ -1,0 +1,82 @@
+@mixin setTitleColor($text, $bg) {
+  background: $bg;
+  color: $text;
+}
+
+.dt-island {
+
+  &__title-container {
+    text-align: center;
+  }
+
+  &__title {
+    @include setTitleColor($black, $white);
+    color: $black;
+    padding: .25rem .75rem;
+    border: none;
+    border-radius: .75rem;
+    outline: none;
+    font-weight: bold;
+    transition: .3s;
+    box-shadow: 0 2px 2px rgba($black, .1), 2px 0 2px rgba($black, .05);
+  }
+
+}
+
+.dt-robotix {
+  position: relative;
+
+  &__icon ellipse {
+    fill: url("#paint4_linear_48_6618");
+
+    & ~ defs stop {
+      transition: .3s;
+    }
+  }
+
+  & .dt-island__title {
+    @include setTitleColor($dark-red, $white);
+  }
+
+  &:hover {
+    .dt-robotix__icon stop {
+
+      &:nth-child(1) {
+        stop-color: lighten($red, 10%);
+      }
+
+      &:nth-child(2) {
+        stop-color: lighten($dark-red, 10%);
+      }
+
+      &:nth-child(3) {
+        stop-color: lighten($dark-pink, 10%);
+      }
+    }
+
+    .dt-island__title {
+      @include setTitleColor($white, linear-gradient(95.43deg, lighten($red, 25%) -6.84%, lighten($dark-pink, 25%) 124.14%));
+    }
+  }
+
+  &:active {
+    .dt-robotix__icon stop {
+
+      &:nth-child(1) {
+        stop-color: darken($red, 10%);
+      }
+
+      &:nth-child(2) {
+        stop-color: darken($dark-red, 10%);
+      }
+
+      &:nth-child(3) {
+        stop-color: darken($dark-pink, 10%);
+      }
+    }
+
+    .dt-island__title {
+      @include setTitleColor($white, linear-gradient(95.43deg, desaturate($red, 50%) -6.84%, desaturate($dark-pink, 50%) 124.14%));
+    }
+  }
+}
