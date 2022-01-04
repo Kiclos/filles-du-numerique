@@ -3,7 +3,9 @@
 @import "reset";
 
 // utilities
+@import "colors";
 @import "utilities";
+@import 'transitions';
 
 // components
 @import "button";
