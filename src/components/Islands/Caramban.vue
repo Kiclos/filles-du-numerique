@@ -1,8 +1,8 @@
 <template>
-  <!-- eslint-disable -->
-  <g class="dt-robotix">
-    <foreignObject class="dt-island__container" x="-6" y="490" width="120px" height="40">
-      <island-title :checked="checked">Robotix</island-title>
+  <!-- eslint-disable-->
+  <g class="dt-caramban">
+    <foreignObject class="dt-island__container" x="50" y="672" width="120px" height="40">
+      <island-title :checked="checked">Caramban</island-title>
     </foreignObject>
   </g>
 </template>
@@ -11,7 +11,7 @@ import { defineComponent } from 'vue';
 import IslandTitle from '@/components/Islands/IslandTitle.vue';
 
 export default defineComponent({
-  name: 'Robotix',
+  name: 'Caramban',
   components: { IslandTitle },
   props: {
     checked: {

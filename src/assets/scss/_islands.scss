@@ -1,82 +1,149 @@
-@mixin setTitleColor($text, $bg) {
+@mixin setTitleColor($text, $bg, $iconText) {
   background: $bg;
   color: $text;
+
+  [class^="icon-"] {
+    background: $text;
+    color: $iconText;
+  }
 }
 
 .dt-island {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 500px;
 
-  &__title-container {
-    text-align: center;
+  &__container {
+    position: relative;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 3rem;
+    width: 3rem;
+    margin-bottom: .5rem;
+    padding: .25rem;
+    border-radius: 1.5rem;
+    background: $black;
+    box-shadow: 0 4px 8px rgba($black, .5);
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
   }
 
   &__title {
-    @include setTitleColor($black, $white);
-    color: $black;
+    @include setTitleColor($black, $white, $white);
     padding: .25rem .75rem;
+    color: $black;
+    font-weight: bold;
     border: none;
     border-radius: .75rem;
     outline: none;
-    font-weight: bold;
-    transition: .3s;
     box-shadow: 0 2px 2px rgba($black, .1), 2px 0 2px rgba($black, .05);
+    transition: .3s;
+
+    [class^="icon-"] {
+      position: absolute;
+      top: .3rem;
+      left: .95rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 1rem;
+      width: 1rem;
+      margin-right: .4rem;
+      background: $black;
+      border-radius: .5rem;
+      font-weight: bold;
+      font-size: .8rem;
+      color: $white;
+      transform: scale(0);
+      transition: .3s;
+
+      &:before {
+        transform: translateY(1px);
+      }
+    }
+
+    &.-checked {
+      padding-left: 1.8rem;
+
+      [class^="icon-"] {
+        transform: scale(1);
+      }
+    }
   }
 
 }
 
-.dt-robotix {
+@mixin setIslandStyle($bgUrl, $color1, $color2, $middleColor) {
   position: relative;
+  cursor: pointer;
 
-  &__icon ellipse {
-    fill: url("#paint4_linear_48_6618");
-
-    & ~ defs stop {
-      transition: .3s;
+  .dt-island {
+    &__icon {
+      background: linear-gradient(95.43deg, lighten($color1, 10%) -6.84%, lighten($color2, 10%));
+      box-shadow: 0 4px 8px rgba(darken($color1, 30%), .5);
     }
-  }
-
-  & .dt-island__title {
-    @include setTitleColor($dark-red, $white);
+    &__title {
+      @include setTitleColor($middleColor, $white, $white);
+      cursor: pointer;
+    }
   }
 
   &:hover {
-    .dt-robotix__icon stop {
-
-      &:nth-child(1) {
-        stop-color: lighten($red, 10%);
-      }
-
-      &:nth-child(2) {
-        stop-color: lighten($dark-red, 10%);
-      }
-
-      &:nth-child(3) {
-        stop-color: lighten($dark-pink, 10%);
-      }
-    }
 
     .dt-island__title {
-      @include setTitleColor($white, linear-gradient(95.43deg, lighten($red, 25%) -6.84%, lighten($dark-pink, 25%) 124.14%));
+      @include setTitleColor($white, linear-gradient(95.43deg, lighten($color1, 10%) -6.84%, lighten($color2, 10%) 124.14%), lighten($middleColor, 10%));
     }
   }
 
   &:active {
-    .dt-robotix__icon stop {
-
-      &:nth-child(1) {
-        stop-color: darken($red, 10%);
-      }
-
-      &:nth-child(2) {
-        stop-color: darken($dark-red, 10%);
-      }
-
-      &:nth-child(3) {
-        stop-color: darken($dark-pink, 10%);
-      }
-    }
 
     .dt-island__title {
-      @include setTitleColor($white, linear-gradient(95.43deg, desaturate($red, 50%) -6.84%, desaturate($dark-pink, 50%) 124.14%));
+      @include setTitleColor($white, linear-gradient(95.43deg, darken($color1, 10%) -6.84%, darken($color2, 10%) 124.14%), darken($middleColor, 10%));
     }
   }
+}
+
+.dt-robotix {
+  @include setIslandStyle("#paint17_linear_48_6618", $dark-red, $dark-pink, $dark-red);
+}
+
+.dt-logicas {
+  @include setIslandStyle("#paint17_linear_48_6618", $yellow, $green, $light-green);
+}
+
+.dt-nethosa {
+  @include setIslandStyle("#paint57_linear_48_6618", $light-purple, $dark-purple, $light-purple);
+}
+
+.dt-iaie {
+  @include setIslandStyle("#paint59_linear_48_6618", $blue, $purple, $blue2);
+}
+
+.dt-segura {
+  @include setIslandStyle("#paint47_linear_48_6618", $blue, $very-light-green, $blue);
+}
+
+.dt-caramban {
+  @include setIslandStyle("#paint28_linear_48_6618", $yellow, $dark-yellow, $dark-yellow);
 }
