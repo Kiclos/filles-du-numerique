@@ -1,22 +1,29 @@
 <template>
   <div class="dt-p16">
-    <h2>Félicitations !</h2>
-    <p>Score: 1980</p>
+    <header class="dt-p16-center">
+      <img class="dt-w100" src="@/assets/circle.png" alt="Bras de Rebecca">
+      <h2>Félicitations !</h2>
+      <p>Score: 1980</p>
+    </header>
     <TextContainer class="dt-textcontainer--neutral">
-      <h3>Qu'est-ce que le métier de ...</h3>
-      <p>OMG un text container... Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Soluta, explicabo. Beatae labore ducimus corporis autem atque itaque dolor in quidem
+      <h3>Qu'est-ce que le métier de dev ?</h3>
+      <p>Dev, c'est avant tout un état d'esprit... Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Soluta, explicabo. Beatae labore ducimus corporis autem atque itaque dolor in quidooem
         veniam, voluptatum libero unde saepe delectus fugiat enim consectetur expedita!</p>
     </TextContainer>
-    <TextContainer class="dt-textcontainer--blue"
-      style="display: flex; justify-content: space-between">
-      <div style="border-right: solid white 1px">
-        3500
+    <TextContainer class="dt-textcontainer--neutral dt-w100">
+      <h3>Le témoignage de Samantha :</h3>
+      <iframe src="https://www.youtube.com/embed/O8ouH41S2fs" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture" allowfullscreen></iframe>    </TextContainer>
+    <TextContainer class="dt-textcontainer--blue dt-results--statistics-container">
+      <div class="dt-results--statistics-content">
+        <strong>3500</strong>
         <br>
         €/mois
       </div>
-      <div>
-        BAC+5
+      <div class="dt-results--statistics-content" >
+        <strong>BAC+5</strong>
       </div>
     </TextContainer>
     <TextContainer class="dt-textcontainer--neutral">
@@ -30,7 +37,7 @@
         ipsum possimus dignissimos facilis asperiores amet vel quae.</p>
     </TextContainer>
     <Button class="dt-button--reversed-blue">Voir plus d'informations</Button>
-    <Button class="dt-button--blue">Retour à la carte</Button>
+    <Button class="dt-button--blue" @click="$emit('close')">Retour à la carte</Button>
 
   </div>
 </template>
@@ -42,12 +49,7 @@ import TextContainer from '@/components/TextContainer/TextContainer.vue';
 
 export default defineComponent({
   name: 'game-results',
-  props: {
-    resume: String,
-  },
-  setup(props, context) {
-    console.log(props.resume);
-  },
+
   components: {
     TextContainer,
     Button,

@@ -55,5 +55,19 @@
 .dt {
   &-p16 {
     padding: 16px;
+    &-center {
+      padding: 16px;
+      text-align: center;
+    }
   }
+  &-h100 {
+    height: 100vh;
+  }
+  &-w100 {
+    width: 100%;
+  }
+  &-w75 {
+    width: 100%;
+  }
+
 }
