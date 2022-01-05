@@ -1,5 +1,5 @@
 <template>
-  <div class="dt-p16">
+  <div style="background: linear-gradient(#0093E9, #80D0C7);" class="dt-p16">
     <button>back</button>
     <button>passer le mini jeu</button>
     <img class="dt-p12" src="@/assets/circle.png" alt="">
