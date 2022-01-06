@@ -1,8 +1,13 @@
 <template>
   <!-- eslint-disable-->
   <g class="dt-caramban">
-    <foreignObject class="dt-island__container" x="50" y="672" width="120px" height="40">
-      <island-title :checked="checked">Caramban</island-title>
+    <foreignObject class="dt-island__container" x="90" y="587" width="120px" height="100">
+      <div class="dt-island__content">
+        <div class="dt-island__icon" style="padding: .5rem">
+          <img src="@/assets/img/icon/software.png" alt="robot.png">
+        </div>
+        <island-title :checked="checked">Caramban</island-title>
+      </div>
     </foreignObject>
   </g>
 </template>

@@ -1,8 +1,13 @@
 <template>
   <!-- eslint-disable -->
   <g class="dt-robotix">
-    <foreignObject class="dt-island__container" x="-6" y="490" width="120px" height="40">
-      <island-title :checked="checked">Robotix</island-title>
+    <foreignObject class="dt-island__container" x="31" y="430" width="120px" height="100">
+      <div class="dt-island__content">
+        <div class="dt-island__icon">
+          <img src="@/assets/img/icon/robot.png" alt="robot.png">
+        </div>
+        <island-title :checked="checked">Robotix</island-title>
+      </div>
     </foreignObject>
   </g>
 </template>

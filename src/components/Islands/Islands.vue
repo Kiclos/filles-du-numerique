@@ -2,12 +2,12 @@
   <!-- eslint-disable -->
   <div class="dt-island">
     <svg viewBox="0 0 450 700" fill="none">
-      <svg viewBox="75 -40 900 1400">
+      <svg viewBox="0 0 900 1400">
         <foreignObject x="0" y="0" width="900" height="1400">
           <img src="@/assets/img/lines.png" alt="map">
         </foreignObject>
       </svg>
-      <svg viewBox="75 -40 900 1400">
+      <svg viewBox="0 0 900 1400">
         <foreignObject x="0" y="0" width="900" height="1400">
           <img src="@/assets/img/Robotix.png" alt="map">
         </foreignObject>
