@@ -1,0 +1,104 @@
+.dt-number-link {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: $white;
+  z-index: 2;
+
+  &__row {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__case {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: $white;
+    font-size: 2rem;
+    box-shadow: inset 0 0 0 1px $light-grey;
+    pointer-events: none;
+    transition: .3s;
+
+    &:after {
+      position: absolute;
+      content: "";
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+    }
+
+    &.-hoverable {
+      pointer-events: initial;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba($light-grey, .3);
+      }
+
+      &:active {
+        background-color: rgba($light-grey, .6);
+      }
+    }
+
+    &.-selected {
+      // background-color: $black;
+    }
+
+    &.-first {
+      background-color: $black;
+      border-radius: 1rem;
+    }
+
+    &.-left-right:after, &.-right-left:after, &.-right:after, &.-left:after  {
+      background-color: $black;
+      height: 20px;
+      top: calc(50% - 10px);
+      left: 0;
+    }
+
+    &.-top-bottom:after, &.-bottom-top:after, &.-top:after, &.-bottom:after  {
+      background-color: $black;
+      width: 20px;
+      top: 0;
+      left: calc(50% - 10px);
+    }
+
+    &.-left-top:after, &.-top-left:after  {
+      border: 20px solid $black;
+      border-radius: 50px;
+      top: calc(-50% - 30px);
+      left: calc(-50% - 30px);
+    }
+
+    &.-left-bottom:after, &.-bottom-left:after  {
+      border: 20px solid $black;
+      border-radius: 50px;
+      bottom: calc(-50% - 30px);
+      left: calc(-50% - 30px);
+    }
+
+    &.-right-top:after, &.-top-right:after  {
+      border: 20px solid $black;
+      border-radius: 50px;
+      top: calc(-50% - 30px);
+      right: calc(-50% - 30px);
+    }
+
+    &.-right-bottom:after, &.-bottom-right:after  {
+      border: 20px solid $black;
+      border-radius: 50px;
+      bottom: calc(-50% - 30px);
+      right: calc(-50% - 30px);
+    }
+  }
+}

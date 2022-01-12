@@ -1,4 +1,5 @@
 <template>
+  <NumberLink/>
   <transition name="zoom-fade">
     <DialogView :dialogs="dialogs" @close="handleDialogClose()" v-if="dialogIsOpened"/>
   </transition>
@@ -18,6 +19,7 @@ import Dialog from '@/Model/Dialog';
 import IslandsView from '@/views/IslandsView.vue';
 import useGameStore from './stores/game';
 import { Island } from '@/Model/Island';
+import NumberLink from '@/components/Games/NumberLink.vue';
 
 export default defineComponent({
   name: 'app',
@@ -26,6 +28,7 @@ export default defineComponent({
     WelcomeView,
     ResultsView,
     IslandsView,
+    NumberLink,
   },
   setup() {
     const gameStore = useGameStore();
