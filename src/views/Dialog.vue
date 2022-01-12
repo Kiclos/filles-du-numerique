@@ -12,9 +12,9 @@
 import {
   defineComponent, reactive, ref, onMounted, PropType,
 } from 'vue';
-import Dialog from '../../Model/Dialog';
-import TapToContinue from '../../components/TapToContinue/TapToContinue.vue';
-import TextContainer from '../../components/TextContainer/TextContainer.vue';
+import Dialog from '../Model/Dialog';
+import TapToContinue from '../components/TapToContinue/TapToContinue.vue';
+import TextContainer from '../components/TextContainer/TextContainer.vue';
 
 export default defineComponent({
   name: 'Dialog',
