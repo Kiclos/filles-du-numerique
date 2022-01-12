@@ -1,18 +1,27 @@
 <template>
   <IslandsUI/>
-  <Islands/>
+  <Islands @selectIsland="handleIslandSelection($event)"/>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Islands from '@/components/Islands/Islands.vue';
 import IslandsUI from '@/components/IslandsUI/IslandsUI.vue';
+import { Island } from '@/Model/Island';
 
 export default defineComponent({
   name: 'IslandsView',
   components: {
     Islands,
     IslandsUI,
+  },
+  events: { selectIsland: (island: Island) => island },
+  setup(_, { emit }) {
+    function handleIslandSelection(island: Island): void {
+      emit('selectIsland', island);
+    }
+
+    return { handleIslandSelection };
   },
 });
 </script>

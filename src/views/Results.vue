@@ -1,5 +1,5 @@
 <template>
-  <div class="dt-p16">
+  <div class="dt-results dt-p16">
     <header class="dt-p16-center">
       <div class="dt-p16" style="background-color: red;"></div>
       <h2>Félicitations !</h2>

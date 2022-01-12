@@ -1,4 +1,12 @@
 .dt-results {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: $white;
+  z-index: 2;
+
     &--statistics {
       &-container {
         width: 100%;
