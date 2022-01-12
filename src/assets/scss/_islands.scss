@@ -30,10 +30,27 @@
   &__content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100%;
     width: 100%;
+    padding-top: 5px;
+
+    &.-not-discovered {
+      filter: grayscale(100%);
+
+      .dt-island__icon {
+        background: linear-gradient(135deg, lighten($grey, 5%), darken($grey, 10%));
+      }
+    }
+
+    &.-complete {
+      filter: sepia(100%);
+
+      .dt-island__icon {
+        background: linear-gradient(135deg, lighten($grey, 5%), darken($grey, 10%));
+      }
+    }
   }
 
   &__icon {
@@ -47,6 +64,9 @@
     padding: .25rem;
     border-radius: 1.5rem;
     background: $black;
+    color: $white;
+    font-size: 1.25rem;
+    font-weight: bold;
     box-shadow: 0 4px 8px rgba($black, .5);
     transition: .3s;
 
@@ -166,7 +186,7 @@
   );
 }
 
-.dt-iaie {
+.dt-iaïe {
   @include setIslandStyle(
                   desaturate($blue, 10%),
                   desaturate(lighten($purple, 5%), 10%),

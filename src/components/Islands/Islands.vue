@@ -12,34 +12,29 @@
           <img src="@/assets/img/Robotix.png" alt="map">
         </foreignObject>
       </svg>
-      <Robotix/>
-      <Logicas checked/>
-      <Caramban/>
-      <Segura/>
-      <Nethosa/>
-      <IAie/>
+      <IslandsComponent v-for="island in islands" :key="island.id" :island="island"/>
   </svg>
 </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
-import Robotix from '@/components/Islands/Robotix.vue';
-import Logicas from '@/components/Islands/Logicas.vue';
-import Caramban from '@/components/Islands/Caramban.vue';
-import Segura from '@/components/Islands/Segura.vue';
-import Nethosa from '@/components/Islands/Nethosa.vue';
-import IAie from '@/components/Islands/IAie.vue';
+
+import useGameStore from '@/stores/game';
+import { Island } from '@/Model/Island';
+import IslandsComponent from '@/components/Islands/Island.vue';
 
 export default defineComponent({
   name: 'Islands',
   components: {
-    IAie,
-    Nethosa,
-    Segura,
-    Caramban,
-    Logicas,
-    Robotix,
+    IslandsComponent,
+  },
+  setup() {
+    const gameStore = useGameStore();
+    const islands: Island [] = gameStore.islands;
+    return {
+      islands,
+    };
   },
 });
 </script>
