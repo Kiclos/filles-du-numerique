@@ -12,7 +12,7 @@
           <img src="@/assets/img/Robotix.png" alt="map">
         </foreignObject>
       </svg>
-      <IslandsComponent v-for="island in islands" :key="island.id" :island="island"/>
+      <IslandsComponent v-for="island in islands" :key="island.id" :island="island" @click="handleIslandSelection(island)"/>
   </svg>
 </div>
 </template>
@@ -26,14 +26,19 @@ import IslandsComponent from '@/components/Islands/Island.vue';
 
 export default defineComponent({
   name: 'Islands',
-  components: {
-    IslandsComponent,
-  },
-  setup() {
+  components: { IslandsComponent },
+  events: { selectIsland: (island: Island) => island },
+  setup(_, { emit }) {
     const gameStore = useGameStore();
     const islands: Island [] = gameStore.islands;
+
+    function handleIslandSelection(island: Island): void {
+      emit('selectIsland', island);
+    }
+
     return {
       islands,
+      handleIslandSelection,
     };
   },
 });

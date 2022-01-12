@@ -2,7 +2,7 @@
   <transition name="zoom-fade">
     <DialogView :dialogs="dialogs" @close="dialogIsOpened = false" v-if="dialogIsOpened"/>
   </transition>
-  <IslandsView/>
+  <IslandsView @selectIsland="handleIslandSelection($event)"/>
 </template>
 
 <script lang="ts">
@@ -11,6 +11,7 @@ import DialogView from '@/views/Dialog.vue';
 import Dialog from '@/Model/Dialog';
 import IslandsView from '@/views/IslandsView.vue';
 import useGameStore from './stores/game';
+import { Island } from '@/Model/Island';
 
 export default defineComponent({
   name: 'app',
@@ -27,10 +28,15 @@ export default defineComponent({
       { id: 1, isRebecca: false, content: 'Bonjour à toi aussi' },
     ]);
 
+    function handleIslandSelection(island: Island): void {
+      console.log('selected island', island);
+    }
+
     return {
       dialogIsOpened,
       dialogs,
       gameStore,
+      handleIslandSelection,
     };
   },
 });
