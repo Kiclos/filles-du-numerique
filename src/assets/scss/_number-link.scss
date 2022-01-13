@@ -31,6 +31,9 @@
 
     &:after {
       position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       content: "";
       height: 100%;
       width: 100%;
@@ -50,55 +53,71 @@
       }
     }
 
-    &.-selected {
-      // background-color: $black;
+    @mixin caseColor($color) {
+
+      &.-first:after {
+        background-color: $color;
+        border-radius: 1rem;
+        content: "Start";
+      }
+
+      &.-last:after {
+        background-color: $color;
+        border-radius: 1rem;
+        content: "End";
+      }
+
+      &.-left-right:after, &.-right-left:after, &.-right:after, &.-left:after  {
+        background-color: $color;
+        height: 20px;
+        top: calc(50% - 10px);
+        left: 0;
+      }
+
+      &.-top-bottom:after, &.-bottom-top:after, &.-top:after, &.-bottom:after  {
+        background-color: $color;
+        width: 20px;
+        top: 0;
+        left: calc(50% - 10px);
+      }
+
+      &.-left-top:after, &.-top-left:after  {
+        border: 20px solid $color;
+        border-radius: 50px;
+        top: calc(-50% - 30px);
+        left: calc(-50% - 30px);
+      }
+
+      &.-left-bottom:after, &.-bottom-left:after  {
+        border: 20px solid $color;
+        border-radius: 50px;
+        bottom: calc(-50% - 30px);
+        left: calc(-50% - 30px);
+      }
+
+      &.-right-top:after, &.-top-right:after  {
+        border: 20px solid $color;
+        border-radius: 50px;
+        top: calc(-50% - 30px);
+        right: calc(-50% - 30px);
+      }
+
+      &.-right-bottom:after, &.-bottom-right:after  {
+        border: 20px solid $color;
+        border-radius: 50px;
+        bottom: calc(-50% - 30px);
+        right: calc(-50% - 30px);
+      }
     }
 
-    &.-first {
-      background-color: $black;
-      border-radius: 1rem;
+    &.-black {
+      @include caseColor($black);
     }
-
-    &.-left-right:after, &.-right-left:after, &.-right:after, &.-left:after  {
-      background-color: $black;
-      height: 20px;
-      top: calc(50% - 10px);
-      left: 0;
+    &.-blue {
+      @include caseColor($dark-blue);
     }
-
-    &.-top-bottom:after, &.-bottom-top:after, &.-top:after, &.-bottom:after  {
-      background-color: $black;
-      width: 20px;
-      top: 0;
-      left: calc(50% - 10px);
-    }
-
-    &.-left-top:after, &.-top-left:after  {
-      border: 20px solid $black;
-      border-radius: 50px;
-      top: calc(-50% - 30px);
-      left: calc(-50% - 30px);
-    }
-
-    &.-left-bottom:after, &.-bottom-left:after  {
-      border: 20px solid $black;
-      border-radius: 50px;
-      bottom: calc(-50% - 30px);
-      left: calc(-50% - 30px);
-    }
-
-    &.-right-top:after, &.-top-right:after  {
-      border: 20px solid $black;
-      border-radius: 50px;
-      top: calc(-50% - 30px);
-      right: calc(-50% - 30px);
-    }
-
-    &.-right-bottom:after, &.-bottom-right:after  {
-      border: 20px solid $black;
-      border-radius: 50px;
-      bottom: calc(-50% - 30px);
-      right: calc(-50% - 30px);
+    &.-red {
+      @include caseColor($dark-red);
     }
   }
 }

@@ -1,86 +1,153 @@
 <template>
   <div class="dt-number-link">
-    <div class="dt-number-link__row" v-for="i in 9" :key="i">
-      <div v-for="j in 9" :key="j"
-          class="dt-number-link__case"
-          :class="getClass(i, j)"
-          @click="handleSelect(i, j)">
-        {{ getLineOrientation(i, j) === '-first' ? '⭐️' : '' }}
+    <div class="dt-number-link__row" v-for="(row, i) in game.rows" :key="'row' + i">
+      <div v-for="(c, j) in row.cases" :key="'case' + j"
+          class="dt-number-link__case -hoverable"
+           :class="getClass(c)"
+          @click="handleSelect(c)">
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, onMounted, reactive } from 'vue';
 
 export default defineComponent({
   name: 'NumberLink',
   setup() {
-    const path = reactive< number [] []>([[1, 1]]);
-
-    function areNeighbor(case1: number [], case2: number []): boolean {
-      if (case1[0] === case2[0] - 1 || case1[0] === case2[0] + 1) {
-        return case1[1] === case2[1];
-      }
-      if (case1[1] === case2[1] - 1 || case1[1] === case2[1] + 1) {
-        return case1[0] === case2[0];
-      }
-      return false;
+    interface Case {
+      x: number,
+      y: number,
+    }
+    interface Row {
+      cases: Case []
+    }
+    interface Grid {
+      rows: Row []
+    }
+    interface Path {
+      color: string,
+      cases: Case [],
+      goal: Case,
     }
 
-    function handleSelect(i: number, j: number): void {
-      const index: number = path.findIndex((x) => x[0] === i && x[1] === j);
-      if (index === path.length - 1) {
-        path.splice(index, 1);
-      } else {
-        const isNeighbors: boolean = areNeighbor(path[path.length - 1], [i, j]);
-        if (isNeighbors) {
-          path.push([i, j]);
-        }
-      }
-    }
+    const game: Grid = reactive<Grid>({ rows: [] });
+    const paths: Path [] = reactive<Path []>([]);
 
-    function getPositionTo(anchor: number [], relative: number[]): string {
-      if (anchor[0] === relative[0]) {
-        return anchor[1] < relative[1] ? 'right' : 'left';
+    function getNeighbors(c: Case): Case [] {
+      const res: Case [] = [];
+      if (c.x > 0) {
+        res.push(game.rows[c.x - 1].cases[c.y]);
       }
-      return anchor[0] < relative[0] ? 'bottom' : 'top';
-    }
-
-    function getLineOrientation(i: number, j: number): string {
-      const index: number = path.findIndex((x) => x[0] === i && x[1] === j);
-      if (index === -1) {
-        return '';
+      if (c.x < 8) {
+        res.push(game.rows[c.x + 1].cases[c.y]);
       }
-      if (index === 0) {
-        return '-first';
+      if (c.y > 0) {
+        res.push(game.rows[c.x].cases[c.y - 1]);
       }
-      if (index === path.length - 1) {
-        return `-${getPositionTo(path[index], path[index - 1])}`;
+      if (c.y < 8) {
+        res.push(game.rows[c.x].cases[c.y + 1]);
       }
-      return `-${getPositionTo(path[index], path[index - 1])}-${getPositionTo(path[index], path[index + 1])}`;
-    }
-
-    function getClass(i: number, j: number): string [] {
-      const res: string [] = [];
-      const isNeighbors: boolean = areNeighbor(path[path.length - 1], [i, j]);
-      const index = path.findIndex((x) => x[0] === i && x[1] === j);
-      if ((isNeighbors && index === -1) || (index === path.length - 1 && index !== 0)) {
-        res.push('-hoverable');
-      }
-      if (index !== -1) {
-        res.push('-selected');
-      }
-      res.push(getLineOrientation(i, j));
       return res;
     }
 
+    function isNeighbors(target: Case, relative: Case): boolean {
+      return getNeighbors(target).some((n) => n === relative);
+    }
+
+    function isGameOver(): boolean {
+      return paths.every((p) => isNeighbors(p.goal, p.cases[p.cases.length - 1]));
+    }
+
+    function getCasePath(c: Case): Path | undefined {
+      return paths.find((p) => p.cases.indexOf(c) !== -1);
+    }
+
+    function handleSelect(c: Case): void {
+      const neighbors: Case [] = getNeighbors(c);
+      const casePath: Path | undefined = getCasePath(c);
+      if (casePath && casePath.cases[casePath.cases.length - 1] === c && casePath.cases[0] !== c) {
+        casePath.cases.splice(casePath.cases.length - 1, 1);
+      } else if (!casePath) {
+        const pathNeighbors: Case [] = neighbors.filter((n) => {
+          const path = getCasePath(n);
+          if (path) {
+            return path.cases[path.cases.length - 1] === n;
+          }
+          return false;
+        });
+        if (pathNeighbors.length > 0) {
+          const path: Path | undefined = getCasePath(pathNeighbors[0]);
+          if (path) {
+            path.cases.push(c);
+          }
+        }
+      }
+      console.log('is game over ?', isGameOver());
+    }
+
+    function getPositionTo(anchor: Case, relative: Case): string {
+      if (anchor.x === relative.x) {
+        return anchor.y < relative.y ? 'right' : 'left';
+      }
+      return anchor.x < relative.x ? 'bottom' : 'top';
+    }
+
+    function getLineOrientation(path: Path, c: Case): string {
+      const index = path.cases.indexOf(c);
+      if (path.cases[0] === c) {
+        return '-first';
+      }
+      if (path.cases[path.cases.length - 1] === c) {
+        if (isNeighbors(path.goal, c)) {
+          return `-${getPositionTo(c, path.cases[index - 1])}-${getPositionTo(c, path.goal)}`;
+        }
+        return `-${getPositionTo(c, path.cases[index - 1])}`;
+      }
+      return `-${getPositionTo(c, path.cases[index - 1])}-${getPositionTo(c, path.cases[index + 1])}`;
+    }
+
+    function getClass(c: Case): string [] {
+      const res: string [] = [];
+      const path: Path | undefined = getCasePath(c);
+      if (path) {
+        res.push(`-${path.color}`);
+        res.push(getLineOrientation(path, c));
+      }
+      const pathGoal: Path | undefined = paths.find((p) => p.goal === c);
+      if (pathGoal) {
+        res.push(`-${pathGoal.color}`);
+        res.push('-last');
+      }
+      return res;
+    }
+
+    onMounted(() => {
+      for (let i = 0; i < 9; i += 1) {
+        const row: Row = { cases: [] };
+
+        for (let j = 0; j < 9; j += 1) {
+          row.cases.push({ x: i, y: j });
+        }
+        game.rows.push(row);
+      }
+      paths.push({
+        color: 'blue',
+        cases: [game.rows[0].cases[0]],
+        goal: game.rows[5].cases[5],
+      });
+      paths.push({
+        color: 'red',
+        cases: [game.rows[8].cases[8]],
+        goal: game.rows[6].cases[4],
+      });
+    });
+
     return {
-      path,
+      game,
       handleSelect,
       getClass,
-      getLineOrientation,
     };
   },
 });
