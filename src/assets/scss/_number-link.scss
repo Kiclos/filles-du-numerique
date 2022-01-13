@@ -119,5 +119,14 @@
     &.-red {
       @include caseColor($dark-red);
     }
+    &.-green {
+      @include caseColor($green);
+    }
+    &.-yellow {
+      @include caseColor($dark-yellow);
+    }
+    &.-purple {
+      @include caseColor($purple);
+    }
   }
 }
