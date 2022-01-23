@@ -1,0 +1,16 @@
+{
+    "islandName": "Robotix",
+    "field": "Robotique",
+    "presentation": " Visiter Robotix, c'est plonger dans l'histoire ! Ce n'est pas pour rien que cette île regorge de monuments et de touristes ! Va faire un tour à l'Office de tourisme pour en savoir plus !",
+    "guideline": "L’Office de tourisme est un lieu exceptionnel pour commencer son exploration. En plus, ils ont mis en place un petit quizz ! On tente notre chance ?",
+    "results": {
+        "summary": "Il s'agit d'un terme facile à définir, mais dont la réelle portée est souvent difficile à appréhender. La robotique désigne l'ensemble des techniques mises au point et exécutées pour fabriquer des robots. Derrière cette signification se cachent des possibilités infinies et un grand, un très grand éventail de champs d'application.",
+        "teamWork": 0.8,
+        "shifts": 0.8,
+        "specificJob": {
+            "generalInfos": "Spécialiste des systèmes automatisés, le roboticien, toujours à la pointe du progrès, crée des robots qui effectueront différents types de tâches, en fonction des besoins des utilisateurs.",
+            "salary": 30000,
+            "studies" : "BAC + 5"   
+        }
+    }
+}
