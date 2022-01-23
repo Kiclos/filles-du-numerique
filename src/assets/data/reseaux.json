@@ -1,0 +1,16 @@
+{
+    "islandName": "Nethosa",
+    "field": "Reseaux et infrastructures",
+    "presentation": "Nethosa, c’est à la fois une île et l’entreprise qui s’y trouve. Une entreprise très importante pour l’archipel, puisqu’elle s’occupe de faire transiter les habitants entre chaque île.",
+    "guideline": "Ca alors, il semble que les réseaux et routes de l’archipel soient encombrés. Un énorme bouchon ! J’irai bien voir si on peut les aider. Tu m’accompagnes ?",
+    "results": {
+        "summary": "Il s'agit d'un terme facile à définir, mais dont la réelle portée est souvent difficile à appréhender. La robotique désigne l'ensemble des techniques mises au point et exécutées pour fabriquer des robots. Derrière cette signification se cachent des possibilités infinies et un grand, un très grand éventail de champs d'application.",
+        "teamWork": 0.8,
+        "shifts": 0.8,
+        "specificJob": {
+            "generalInfos": "Spécialiste des systèmes automatisés, le roboticien, toujours à la pointe du progrès, crée des robots qui effectueront différents types de tâches, en fonction des besoins des utilisateurs.",
+            "salary": 30000,
+            "studies" : "BAC + 5"   
+        }
+    }
+}
