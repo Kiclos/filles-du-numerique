@@ -1,13 +1,31 @@
 .dt-number-link {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vw;
   width: 100vw;
-  background: $white;
-  z-index: 2;
+
+  @media screen and (orientation:landscape) {
+    height: 100vh;
+    width: 100vh;
+  }
+
+
+   &__content {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 100vh;
+     width: 100vw;
+     background: $white;
+     z-index: 2;
+   }
 
   &__row {
     display: flex;
@@ -24,10 +42,25 @@
     height: 100%;
     width: 100%;
     color: $white;
-    font-size: 2rem;
-    box-shadow: inset 0 0 0 1px $light-grey;
+    font-size: 1rem;
+    box-shadow: inset 1px 1px $light-grey;
     pointer-events: none;
     transition: .3s;
+
+    &:last-child {
+      box-shadow: inset 1px 1px $light-grey,inset -1px 0 $light-grey, ;
+    }
+
+    &:before {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      content: "";
+      height: calc(100% - 20%);
+      width: calc(100% - 20%);
+      z-index: 2;
+    }
 
     &:after {
       position: absolute;
@@ -38,6 +71,10 @@
       height: 100%;
       width: 100%;
       z-index: 1;
+
+      @media screen and (orientation:landscape) {
+        font-size: 1rem;
+      }
     }
 
     &.-hoverable {
@@ -57,76 +94,144 @@
 
       &.-first:after {
         background-color: $color;
-        border-radius: 1rem;
-        content: "Start";
+        border-radius: .5rem;
       }
 
-      &.-last:after {
-        background-color: $color;
-        border-radius: 1rem;
-        content: "End";
+      &.-last {
+        &:after {
+          box-shadow: inset 0 0 0 4px $color;
+          color: $color;
+          border-radius: .5rem;
+          transition: .3s;
+        }
+
+        &.-complete:after {
+          background-color: $color;
+          color: $white;
+        }
       }
 
       &.-left-right:after, &.-right-left:after, &.-right:after, &.-left:after  {
         background-color: $color;
-        height: 20px;
-        top: calc(50% - 10px);
+        height: 20%;
+        top: calc(50% - 10%);
         left: 0;
       }
 
       &.-top-bottom:after, &.-bottom-top:after, &.-top:after, &.-bottom:after  {
         background-color: $color;
-        width: 20px;
+        width: 20%;
         top: 0;
-        left: calc(50% - 10px);
+        left: calc(50% - 10%);
       }
 
-      &.-left-top:after, &.-top-left:after  {
-        border: 20px solid $color;
-        border-radius: 50px;
-        top: calc(-50% - 30px);
-        left: calc(-50% - 30px);
+      &.-left-top, &.-top-left  {
+
+        &:before {
+          background-color: $white;
+          border-radius: 20%;
+          top: -40%;
+          left: -40%;
+        }
+
+        &:after {
+          background-color: $color;
+          border-radius: 30%;
+          top: -40%;
+          left: -40%;
+        }
       }
 
-      &.-left-bottom:after, &.-bottom-left:after  {
-        border: 20px solid $color;
-        border-radius: 50px;
-        bottom: calc(-50% - 30px);
-        left: calc(-50% - 30px);
+      &.-left-bottom, &.-bottom-left  {
+        &:before {
+          background-color: $white;
+          border-radius: 20%;
+          bottom: -40%;
+          left: -40%;
+        }
+
+        &:after {
+          background-color: $color;
+          border-radius: 30%;
+          bottom: -40%;
+          left: -40%;
+        }
       }
 
-      &.-right-top:after, &.-top-right:after  {
-        border: 20px solid $color;
-        border-radius: 50px;
-        top: calc(-50% - 30px);
-        right: calc(-50% - 30px);
+      &.-right-top, &.-top-right  {
+        &:before {
+          background-color: $white;
+          border-radius: 20%;
+          top: -40%;
+          right: -40%;
+        }
+
+        &:after {
+          background-color: $color;
+          border-radius: 30%;
+          top: -40%;
+          right: -40%;
+        }
       }
 
-      &.-right-bottom:after, &.-bottom-right:after  {
-        border: 20px solid $color;
-        border-radius: 50px;
-        bottom: calc(-50% - 30px);
-        right: calc(-50% - 30px);
+      &.-right-bottom, &.-bottom-right  {
+        &:before {
+          background-color: $white;
+          border-radius: 20%;
+          bottom: -40%;
+          right: -40%;
+        }
+
+        &:after {
+          background-color: $color;
+          border-radius: 30%;
+          bottom: -40%;
+          right: -40%;
+        }
       }
     }
 
     &.-black {
       @include caseColor($black);
+
+      &.-first:after, &.-last:after {
+        content: "N";
+      }
     }
     &.-blue {
       @include caseColor($dark-blue);
+
+      &.-first:after, &.-last:after {
+        content: "B";
+      }
     }
     &.-red {
       @include caseColor($dark-red);
+
+      &.-first:after, &.-last:after {
+        content: "R";
+      }
     }
     &.-green {
       @include caseColor($green);
+
+      &.-first:after, &.-last:after {
+        content: "Ve";
+      }
     }
     &.-yellow {
       @include caseColor($dark-yellow);
+
+      &.-first:after, &.-last:after {
+        content: "J";
+      }
     }
     &.-purple {
       @include caseColor($purple);
+
+      &.-first:after, &.-last:after {
+        content: "Vi";
+      }
     }
   }
 }
