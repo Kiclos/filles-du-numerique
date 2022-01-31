@@ -1,5 +1,6 @@
 <template>
   <div class="dt-number-link__content">
+    <PauseMenu/>
     <div class="dt-number-link">
       <div class="dt-number-link__row" v-for="(row, i) in game.rows" :key="'row' + i">
         <div v-for="(c, j) in row.cases" :key="'case' + j"
@@ -14,9 +15,11 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
+import PauseMenu from '@/components/GamesUI/PauseMenu/PauseMenu.vue';
 
 export default defineComponent({
   name: 'NumberLink',
+  components: { PauseMenu },
   events: { endGame: () => null },
   setup(_, { emit }) {
     // eslint-disable-next-line no-shadow
