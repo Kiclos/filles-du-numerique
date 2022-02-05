@@ -1,5 +1,6 @@
 <template>
-  <NumberLink/>
+  <NumberLink v-if="false"/>
+  <FindTheWayOut v-if="true"/>
   <transition name="zoom-fade">
     <DialogView :dialogs="dialogs" @close="handleDialogClose()" v-if="dialogIsOpened"/>
   </transition>
@@ -20,6 +21,7 @@ import IslandsView from '@/views/IslandsView.vue';
 import useGameStore from './stores/game';
 import { Island } from '@/Model/Island';
 import NumberLink from '@/components/Games/NumberLink.vue';
+import FindTheWayOut from '@/components/Games/FindTheWayOut.vue';
 
 export default defineComponent({
   name: 'app',
@@ -29,6 +31,7 @@ export default defineComponent({
     ResultsView,
     IslandsView,
     NumberLink,
+    FindTheWayOut,
   },
   setup() {
     const gameStore = useGameStore();

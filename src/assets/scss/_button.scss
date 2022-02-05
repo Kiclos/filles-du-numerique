@@ -96,4 +96,28 @@
     }
   }
 
+  &.-green {
+    @include setDefaultButtonColor($green, $yellow, $white);
+
+    &.-outlined {
+      @include setOutlineButtonColor($light-green);
+    }
+
+    &.-text {
+      @include setTextButtonColor($green, $yellow, $light-green)
+    }
+  }
+
+  &.-purple {
+    @include setDefaultButtonColor($light-purple, $dark-purple, $white);
+
+    &.-outlined {
+      @include setOutlineButtonColor($purple);
+    }
+
+    &.-text {
+      @include setTextButtonColor($light-purple, $dark-purple, $purple)
+    }
+  }
+
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="dt-number-link__content">
-    <PauseMenu/>
+    <PauseMenu color="purple"/>
     <div class="dt-number-link">
       <div class="dt-number-link__row" v-for="(row, i) in game.rows" :key="'row' + i">
         <div v-for="(c, j) in row.cases" :key="'case' + j"
