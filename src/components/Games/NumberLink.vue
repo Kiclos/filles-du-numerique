@@ -16,39 +16,13 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
 import PauseMenu from '@/components/GamesUI/PauseMenu/PauseMenu.vue';
+import { Grid, Case, PathColor, Path, Row } from '@/Model/NumberLink';
 
 export default defineComponent({
   name: 'NumberLink',
   components: { PauseMenu },
   events: { endGame: () => null },
   setup(_, { emit }) {
-    // eslint-disable-next-line no-shadow
-    enum PathColor {
-      black = 'black',
-      blue = 'blue',
-      green = 'green',
-      purple= 'purple',
-      red = 'red',
-      yellow = 'yellow'
-    }
-
-    interface Case {
-      x: number,
-      y: number,
-      classes: string [],
-    }
-    interface Row {
-      cases: Case []
-    }
-    interface Grid {
-      rows: Row []
-    }
-    interface Path {
-      color: PathColor,
-      cases: Case [],
-      goal: Case,
-    }
-
     const game: Grid = reactive<Grid>({ rows: [] });
     let paths: Path [] = reactive<Path []>([]);
 
@@ -70,15 +44,15 @@ export default defineComponent({
     }
 
     function isNeighbors(target: Case, relative: Case): boolean {
-      return getNeighbors(target).some((n) => n === relative);
+      return getNeighbors(target).some(n => n === relative);
     }
 
     function isGameOver(): boolean {
-      return paths.every((p) => isNeighbors(p.goal, p.cases[p.cases.length - 1]) && p.cases.length > 1);
+      return paths.every(p => isNeighbors(p.goal, p.cases[p.cases.length - 1]) && p.cases.length > 1);
     }
 
     function getCasePath(c: Case): Path | undefined {
-      return paths.find((p) => p.cases.indexOf(c) !== -1);
+      return paths.find(p => p.cases.indexOf(c) !== -1);
     }
 
     function getPositionTo(anchor: Case, relative: Case): string {
@@ -109,7 +83,7 @@ export default defineComponent({
         res.push(`-${path.color}`);
         res.push(getLineOrientation(path, c));
       }
-      const pathGoal: Path | undefined = paths.find((p) => p.goal === c);
+      const pathGoal: Path | undefined = paths.find(p => p.goal === c);
       if (pathGoal) {
         res.push(`-${pathGoal.color}`);
         res.push('-last');
@@ -129,7 +103,7 @@ export default defineComponent({
     }
 
     function updateNeighborsClass(c: Case) {
-      getNeighbors(c).forEach((item) => {
+      getNeighbors(c).forEach(item => {
         // eslint-disable-next-line no-param-reassign
         item.classes = getClass(item);
       });
@@ -144,7 +118,7 @@ export default defineComponent({
         c.classes = getClass(c);
         updateNeighborsClass(c);
       } else if (!casePath) {
-        const pathNeighbors: Case [] = neighbors.filter((n) => {
+        const pathNeighbors: Case [] = neighbors.filter(n => {
           const path = getCasePath(n);
           if (path) {
             return path.cases[path.cases.length - 1] === n;
@@ -167,58 +141,52 @@ export default defineComponent({
       }
     }
 
-    function getRandomCase(boardSize: number): Case {
-      const i = Math.floor(Math.random() * boardSize);
-      const j = Math.floor(Math.random() * boardSize);
-      return { x: i, y: j, classes: [] };
+    function getRandomCase(boardSize: number, forbiddenCases: Case []): Case {
+      let res: Case;
+      do {
+        const i = Math.floor(Math.random() * boardSize);
+        const j = Math.floor(Math.random() * boardSize);
+        res = { x: i, y: j, classes: [] };
+        // eslint-disable-next-line no-loop-func
+      } while (forbiddenCases.findIndex(c => c.x === res.x && c.y === res.y) !== -1);
+      return res;
     }
 
-    function generateRandomPath(gamePaths: Case [][], path: Case []): Case [] {
+    function generateRandomPath(usedCases: Case [], prev: Case | undefined, size: number): Case [] {
+      if (size === 0) {
+        return [];
+      }
       let c1: Case;
-      if (path.length === 0) {
-        c1 = getRandomCase(9);
-      } else {
-        c1 = path[path.length - 1];
-      }
-      let c2: Case | undefined = getNeighbors(c1).find((c) => gamePaths.findIndex((p) => p.includes(c)) === -1);
-      let it = 1;
-      // eslint-disable-next-line no-loop-func
-      while ((gamePaths.findIndex((p) => p.includes(c1)) !== -1 || c2 === undefined) && it < 81) {
-        c1 = getRandomCase(9);
-        c2 = getNeighbors(c1).find((c) => getCasePath(c) === undefined);
-        it += 1;
-      }
+      let c2: Case | undefined;
+      const exploredCases: Case [] = usedCases;
+      do {
+        c1 = prev || getRandomCase(9, exploredCases);
+        exploredCases.push(c1);
+        c2 = getNeighbors(c1).find(n => exploredCases.findIndex(c => c.x === n.x && c.y === n.y) === -1);
+      } while (c2 === undefined && !prev && exploredCases.length < 81);
       if (c2 === undefined) {
-        throw new Error('unable to generated game');
+        return [c1];
       }
-      if (path.length < 10) {
-        path.push(c1);
-        path.push(c2);
-        try {
-          generateRandomPath(gamePaths, path);
-        } catch {
-          return path;
-        }
-      }
-      return path;
+      return [c1].concat(generateRandomPath(exploredCases.concat([c1]), c2, size - 1));
     }
 
     function generateGame(nb: number): void {
-      const generatedPaths: Case [][] = [];
       const newPaths: Path [] = [];
+      const usedCases: Case [] = [];
       for (let i = 0; i < nb; i += 1) {
-        generatedPaths.push(generateRandomPath(generatedPaths, []));
+        const path: Case [] = generateRandomPath(usedCases, undefined, 10);
+        if (path.length > 1) {
+          usedCases.push(...path);
+          console.log(JSON.parse(JSON.stringify(usedCases)));
+          const first = path[0];
+          const last = path[path.length - 1];
+          newPaths.push({
+            color: Object.values(PathColor)[i % Object.keys(PathColor).length],
+            cases: [game.rows[first.x].cases[first.y]],
+            goal: game.rows[last.x].cases[last.y],
+          });
+        }
       }
-      console.log(generatedPaths);
-      generatedPaths.forEach((path, index) => {
-        const first = path[0];
-        const last = path[path.length - 1];
-        newPaths.push({
-          color: Object.values(PathColor)[index % Object.keys(PathColor).length],
-          cases: [game.rows[last.x].cases[last.y]],
-          goal: game.rows[first.x].cases[first.y],
-        });
-      });
       paths = newPaths;
     }
 
@@ -231,9 +199,9 @@ export default defineComponent({
         }
         game.rows.push(row);
       }
-      generateGame(6);
+      const nbPath: number = Math.random() * 3 + 5;
+      generateGame(nbPath);
       getAllClass();
-      console.log(paths, game);
     });
 
     return {

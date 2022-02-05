@@ -17,5 +17,6 @@ module.exports = {
     'max-len': ['error', { code: 200 }],
     'object-curly-newline': ['error', { multiline: true }],
     'prefer-destructuring': 'off',
+    'arrow-parens': ['error', 'as-needed']
   },
 };

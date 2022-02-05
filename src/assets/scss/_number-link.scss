@@ -77,6 +77,10 @@
       }
     }
 
+    &.-block {
+      background: $black;
+    }
+
     &.-hoverable {
       pointer-events: initial;
       cursor: pointer;
@@ -231,6 +235,20 @@
 
       &.-first:after, &.-last:after {
         content: "Vi";
+      }
+    }
+    &.-pink {
+      @include caseColor($pink);
+
+      &.-first:after, &.-last:after {
+        content: "Ro";
+      }
+    }
+    &.-orange {
+      @include caseColor($orange);
+
+      &.-first:after, &.-last:after {
+        content: "O";
       }
     }
   }
