@@ -1,0 +1,120 @@
+$square-size: 4rem;
+
+.dt-way-out{
+
+  &__container {
+    position: relative;
+    height: $square-size * 10;
+    width: $square-size * 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: rotateX(-60deg) rotateY(0deg) rotateZ(45deg);
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:last-child .dt-way-out__square {
+      border-bottom: 2px solid $white;
+    }
+  }
+
+  &__square {
+    position: relative;
+    display: inline-block;
+    height: $square-size;
+    width: $square-size;
+    background-color: $light-grey;
+    border-top: 2px solid $white;
+    border-left: 2px solid $white;
+
+    &:last-child {
+      border-right: 2px solid $white;
+    }
+
+    &.-flagged {
+
+      &:after {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        content: "⬤";
+        color: rgba($white, .8);
+        font-size: 2.5rem;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(95.43deg, lighten($light-green, 10%) -6.84%, lighten($yellow, 10%) 124.14%);
+        box-shadow: 3px 3px rgba($black, .25), 2px 2px rgba($black, .5), 1px 1px rgba($black, .75);
+        z-index: 1;
+      }
+    }
+  }
+
+  &__pawn {
+    position: absolute;
+    width: $square-size;
+    height: $square-size;
+    transition: .5s;
+    z-index: 2;
+
+    &:after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: "⬤";
+      font-size: 2.5rem;
+      color: lighten($light-green, 10%);
+      transform: translate(-50%, -50%);
+      text-shadow: 3px 3px rgba($black, .25), 2px 2px rgba($black, .25), 1px 1px rgba($black, .75);
+      z-index: 1;
+    }
+
+    &:before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: '➤';
+      font-size: 2rem;
+      color: $white;
+      transform: translate(-50%, -50%);
+      transition: .3s;
+      z-index: 2;
+    }
+
+    &.-top:before {
+      transform: translate(-50%, -50%) rotateZ(-90deg);
+    }
+
+    &.-right:before {
+      transform: translate(-45%, -45%) rotateZ(0deg);
+    }
+
+    &.-bottom:before {
+      transform: translate(-55%, -40%) rotateZ(90deg);
+    }
+
+    &.-left:before {
+      transform: translate(-60%, -45%) rotateZ(180deg);
+    }
+  }
+
+  &__commands {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .dt-button {
+      font-size: 2rem;
+      text-align: center;
+      margin: 0 1rem;
+      white-space: nowrap;
+    }
+  }
+}
