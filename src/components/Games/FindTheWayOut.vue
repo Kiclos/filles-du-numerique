@@ -10,18 +10,44 @@
         </div>
       </div>
     </div>
-    <div class="dt-way-out__commands">
-      <button class="dt-button -outlined -green" @click="rotateLeft()">⟲</button>
-      <button class="dt-button -green" @click="goForward()">↑</button>
-      <button class="dt-button -outlined -green" @click="rotateRight()">⟳</button>
-      <button class="dt-button -text -green" @click="reset()">✕</button>
-    </div>
-  </div>
+   <div class="dt-way-out__interface">
+     <div class="dt-way-out__instructions__container">
+       <div class="dt-way-out__instructions" :class="{ '-reduced': isReduced }">
+         <button class="dt-way-out__instructions__reduced" @click="isReduced = !isReduced" v-if="instructions.length > 0">
+           {{ isReduced ? 'Agrandir' : 'Réduire' }}
+         </button>
+         <div class="dt-way-out__instructions__none" v-if="instructions.length === 0">
+           Cliquez sur une instruction pour commencer
+         </div>
+         <div v-for="(instruction, index) in instructions"
+              :key="instruction"
+              class="dt-button -green"
+              :class="[ { '-text': index < executionIndex }, { '-outlined': index > executionIndex }]">
+           <template v-if="instruction === 0">↑</template>
+           <template v-if="instruction === 1">⟲</template>
+           <template v-if="instruction === 2">⟳</template>
+           <button class="dt-way-out__instructions__delete-button"
+                   aria-label="delete"
+                   @click.stop="instructions.splice(index, 1)" v-if="(index > executionIndex) && !executing">✕</button>
+         </div>
+       </div>
+       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.splice(0)">✕</button>
+       <button class="dt-button -green" :disabled="instructions.length === 0 || executing" @click="executeInstructions()">➥</button>
+     </div>
+     <div class="dt-way-out__commands">
+     </div>
+     <div class="dt-way-out__commands">
+       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(1)">⟲</button>
+       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(0)">↑</button>
+       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(2)">⟳</button>
+     </div>
+   </div>
+   </div>
 </template>
 
 <script lang="ts">
 /* eslint-disable object-curly-newline */
-import { computed, defineComponent, reactive } from 'vue';
+import { computed, defineComponent, reactive, ref } from 'vue';
 import PauseMenu from '@/components/GamesUI/PauseMenu/PauseMenu.vue';
 
 export default defineComponent({
@@ -43,7 +69,14 @@ export default defineComponent({
       orientation: PawnOrientation,
     }
 
+    // eslint-disable-next-line no-shadow
+    enum PawnInstruction { moveForward, rotateLeft, rotateRight }
+
     const pawn: Pawn = reactive<Pawn>({ x: 0, y: 0, orientation: PawnOrientation.right });
+    const instructions: PawnInstruction [] = reactive<PawnInstruction []>([]);
+    const executionIndex = ref<number>(-1);
+    const executing = ref<boolean>(false);
+    const isReduced = ref<boolean>(false);
 
     const getPawnStyle = computed(() => ({ top: `${pawn.y * 4}rem`, left: `${pawn.x * 4}rem` }));
 
@@ -107,13 +140,43 @@ export default defineComponent({
       pawn.orientation = PawnOrientation.right;
     }
 
+    function executeInstruction(instruction: PawnInstruction): void {
+      // eslint-disable-next-line default-case
+      switch (instruction) {
+        case PawnInstruction.moveForward:
+          goForward();
+          break;
+        case PawnInstruction.rotateRight:
+          rotateRight();
+          break;
+        case PawnInstruction.rotateLeft:
+          rotateLeft();
+          break;
+      }
+    }
+
+    function executeInstructions(): void {
+      reset();
+      executing.value = true;
+      const execution = setInterval(() => {
+        if (executionIndex.value === instructions.length - 1) {
+          executing.value = false;
+          clearInterval(execution);
+          executionIndex.value = -2;
+        }
+        executionIndex.value += 1;
+        executeInstruction(instructions[executionIndex.value]);
+      }, 500);
+    }
+
     return {
       pawn,
+      instructions,
+      executionIndex,
       getPawnStyle,
-      goForward,
-      rotateRight,
-      rotateLeft,
-      reset,
+      executeInstructions,
+      executing,
+      isReduced,
     };
   },
 });

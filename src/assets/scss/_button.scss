@@ -47,6 +47,14 @@
     background-color: rgba($black, .2);
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none !important;
+    filter: grayscale(1);
+    opacity: .5;
+  }
+
   @mixin setTextButtonColor($color1, $color2, $text-color) {
     background: linear-gradient(95.43deg, rgba($color1, 0.1) -6.84%, rgba($color2, 0.1) 124.14%);
     color: $text-color;
