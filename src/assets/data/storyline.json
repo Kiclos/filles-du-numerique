@@ -1,0 +1,68 @@
+{
+    "dialogs": {
+        "intro": [
+            {"who":"1", "dialogLine":"Je suis complètement perdue"},
+            {"who":"1", "dialogLine":"Plus que quelques mois pour se décider et je n’ai toujours aucune idée de ce que l’avenir me réserve."},
+            {"who":"1", "dialogLine":"Cette conférence sur le numérique était certes SUPER INTÉRESSANTE"},
+            {"who":"1", "dialogLine":"Mais était-ce suffisant pour que je veuille en faire mon métier ?"},
+            {"who":"1", "dialogLine":"Je ne suis pas sûre d’avoir eu assez d’informations sur le sujet"},
+            {"who":"1", "dialogLine":"Et si ça ne m’intéressait pas ?"},
+            {"who":"1", "dialogLine":"Et si je n’étais pas faite pour ça ?"},
+            {"who":"1", "dialogLine":"Et si c’était trop difficile et que je me plantais complètement ?"},
+            {"who":"1", "dialogLine":"Toutes ces questions me donnent le tournis."}
+        ],
+        "meeting": [
+            {"who":"0", "dialogLine":"-.-"},
+            {"who":"1", "dialogLine":"Ce petit robot semble complètement hors service"},
+            {"who":"1", "dialogLine":"Quoi qu’il est peut être juste éteint..."},
+            {"who":"1", "dialogLine":"Peut être qu’en le redémarrant ?"},
+            {"who":"0", "dialogLine":"Bonjour ! Je suis Rebecca !"},
+            {"who":"1", "dialogLine":"HAAA"},
+            {"who":"0", "dialogLine":"Bienvenue sur l’Archipel Otomatik !"},
+            {"who":"1", "dialogLine":"Woow, ok tout doux, je dois rêver..."},
+            {"who":"0", "dialogLine":"Merci ! Impressionnant n’est-ce pas ?"},
+            {"who":"1", "dialogLine":"Un peu flippant surtout. Y en a beaucoup des robots-têtes par ici ?"},
+            {"who":"0", "dialogLine":"…?"},
+            {"who":"0", "dialogLine":"ATTENDS, QUOI ?"},
+            {"who":"0", "dialogLine":"QU’EST-IL ADVENU DE MON CORPS ??"},
+            {"who":"1", "dialogLine":"Ok je rêve forcément, c’est trop bizarre cet endroit."},
+            {"who":"1", "dialogLine":"Allez cocotte, on se réveille !"},
+            {"who":"0", "dialogLine":"NON ! ATTENDS !"},
+            {"who":"1", "dialogLine":"???"},
+            {"who":"0", "dialogLine":"TU DOIS M’AIDER, J’AI PERDU MON CORPS !"},
+            {"who":"1", "dialogLine":"Comment ça, je “dois” t’aider ?"},
+            {"who":"0", "dialogLine":"Oui bon fin quand même j’ai perdu mon corps siteplé aide moi"},
+            {"who":"1", "dialogLine":"Bon, de toute façon j’arrive pas à me réveiller"},
+            {"who":"1", "dialogLine":"Où t’as perdu ton corps, déjà ?"},
+            {"who":"0", "dialogLine":"..."},
+            {"who":"1", "dialogLine":"Ah oui, c’est pas faux..."},
+            {"who":"0", "dialogLine":"Tu vois les îles derrière nous ? Je pense qu’on devrait se séparer et voir ce qu’on peut y trouver."},
+            {"who":"1", "dialogLine":"Ca marche !"}
+        ],
+        "separation": [
+            {"who":"0", "dialogLine":"Nom d'un boulon, j'y crois pas..."},
+            {"who":"0", "dialogLine":"TU M'AS RÉPARÉE !"},
+            {"who":"0", "dialogLine":"Je peux même ressentir mes capteurs s'éveiller au bout de mes antennes !"},
+            {"who":"0", "dialogLine":"Merci ! Merci mille fois !"},
+            {"who":"1", "dialogLine":"C'était pas grand chose..."},
+            {"who":"0", "dialogLine":"Ah non ! Pas un énième syndrome de l'imposteur ! Tu m'as sauvé la vie !"},
+            {"who":"0", "dialogLine":"Quant à toi, j'espère que ce voyage t'aura fait grandir et t'aura appris maintes et maintes choses."},
+            {"who":"0", "dialogLine":"Il est temps pour moi de te renvoyer auprès des tiens !"},
+            {"who":"0", "dialogLine":"Tiens, d'ailleurs ! Pour te remercier !"},
+            {"who":"2", "dialogLine":"VOUS AVEZ REÇU : COLLIER ÉCROU !"},
+            {"who":"0", "dialogLine":"De cette manière, tu te souviendras de moi !"},
+            {"who":"0", "dialogLine":"Allez, zoup ! Brlezzrloupvelspp..."}
+        ],
+        "ending": [
+            {"who":"0", "dialogLine":"Heho ! Tu vas bien ?"},
+            {"who":"1", "dialogLine":"Je suis au sol, de retour dans ma bonne vieille salle polyvalente. Une bonne vingtaine de personnes s'affolent autour de moi."},
+            {"who":"0", "dialogLine":"Elle se réveille !"},
+            {"who":"0", "dialogLine":"Vite, laissez passer !"},
+            {"who":"1", "dialogLine":"Tandis qu'ils s'agitent autour de moi, je me perds à nouveau dans mes pensées."},
+            {"who":"1", "dialogLine":"Tout ceci n'était donc qu'un rêve ?"},
+            {"who":"1", "dialogLine":"Ça semblait si réel..."},
+            {"who":"1", "dialogLine":"Pourtant, en entrouvrant la main,  j'y découvre un petit objet argenté."},
+            {"who":"1", "dialogLine":"Mes yeux s'écarquillent"}
+        ]            
+    }
+}
