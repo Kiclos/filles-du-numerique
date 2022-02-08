@@ -1,15 +1,49 @@
-$square-size: 4rem;
+$square-size: 10%;
 
-.dt-way-out{
+.dt-way-out {
 
   &__container {
-    position: relative;
-    height: $square-size * 10;
-    width: $square-size * 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $white;
+    z-index: 1;
+  }
+
+  &__content {
+    @media only screen and (max-width: 1024px) {
+      /* tablettes et ordinateurs */
+      height: 50rem;
+      width: 40rem;
+    }
+    @media only screen and (max-width: 767px) {
+      /* smartphone */
+      height: 50rem;
+      width: 30rem;
+    }
+    @media only screen and (max-width: 767px) and (orientation: portrait) {
+      /* smartphone en mode portait */
+      height: 20rem;
+      width: 20rem
+    }
+    @media only screen and (max-width: 600px) {
+      height: 15rem;
+      width: 15rem
+    }
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
+    height: 50rem;
+    width: 50rem;
     transform: rotateX(-60deg) rotateY(0deg) rotateZ(45deg);
     box-shadow: 12px 12px darken($light-grey, 10%), 11px 11px darken($light-grey, 10%), 10px 10px darken($light-grey, 1%),
     9px 9px darken($light-grey, 10%), 8px 8px darken($light-grey, 10%), 7px 7px darken($light-grey, 10%),
@@ -21,6 +55,8 @@ $square-size: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: $square-size;
+    width: 10 * $square-size;
 
     &:last-child .dt-way-out__square {
       border-bottom: 2px solid $white;
@@ -29,8 +65,8 @@ $square-size: 4rem;
 
   &__square {
     position: relative;
-    display: inline-block;
-    height: $square-size;
+    display: block;
+    height: 100%;
     width: $square-size;
     background-color: $light-grey;
     border-top: 2px solid $white;
@@ -43,6 +79,17 @@ $square-size: 4rem;
     &.-flagged {
 
       &:after {
+        @media only screen and (max-width: 767px) {
+          /* smartphone */
+          font-size: 2rem;
+        }
+        @media only screen and (max-width: 767px) and (orientation: portrait) {
+          /* smartphone en mode portait */
+          font-size: 1.5rem;
+        }
+        @media only screen and (max-width: 600px) {
+          font-size: 1rem;
+        }
         position: absolute;
         display: flex;
         align-items: center;
@@ -67,8 +114,18 @@ $square-size: 4rem;
     height: $square-size;
     transition: .5s;
     z-index: 2;
-
     &:after {
+      @media only screen and (max-width: 767px) {
+        /* smartphone */
+        font-size: 2rem;
+      }
+      @media only screen and (max-width: 767px) and (orientation: portrait) {
+        /* smartphone en mode portait */
+        font-size: 1.5rem;
+      }
+      @media only screen and (max-width: 600px) {
+        font-size: 1rem;
+      }
       position: absolute;
       top: 50%;
       left: 50%;
@@ -81,6 +138,17 @@ $square-size: 4rem;
     }
 
     &:before {
+      @media only screen and (max-width: 767px) {
+        /* smartphone */
+        font-size: 1.5rem;
+      }
+      @media only screen and (max-width: 767px) and (orientation: portrait) {
+        /* smartphone en mode portait */
+        font-size: 1rem;
+      }
+      @media only screen and (max-width: 600px) {
+        font-size: .75rem;
+      }
       position: absolute;
       top: 50%;
       left: 50%;
@@ -118,22 +186,54 @@ $square-size: 4rem;
   }
 
   &__instructions {
+    @media only screen and (max-width: 767px) {
+      bottom: calc(100% + 1rem);
+    }
+    overflow: hidden;
     position: absolute;
     bottom: -.5rem;
     left: 0;
-    width: 50vw;
-    max-height: 100vh;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    overflow: hidden;
     border-radius: 1rem;
-    padding: 0 .5rem;
+    padding: 1rem .5rem 0 .5rem;
     background-color: rgba(lighten($light-green, 40%), .75);
-    transition: .5s;
+    z-index: 100;
 
-    &.-reduced {
+    &__container {
+      @media only screen and (max-width: 767px) {
+        padding-left: 0;
+        width: calc(100% - 2rem);
+        justify-content: center;
+        margin-bottom: 0;
+      }
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0 2rem;
+      padding-left: calc(50vw + 1rem);
+    }
+
+    &__content {
+      @media only screen and (max-width: 767px) {
+        width: 100%;
+      }
+      width: 50vw;
+      max-height: 60vh;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      overflow: scroll;
+      transition: .5s;
+    }
+
+    .dt-button.-disabled {
+      pointer-events: none;
+    }
+
+    &.-reduced .dt-way-out__instructions__content {
+      overflow: hidden;
       max-height: 6rem;
     }
 
@@ -147,10 +247,11 @@ $square-size: 4rem;
       border-left: 2px solid $light-green;
       border-bottom: 2px solid $light-green;
       border-bottom-left-radius: 5px;
-      background: none;
+      background-color: lighten($light-green, 40%);
       color: $light-green;
       font-size: .8rem;
       cursor: pointer;
+      z-index: 1;
       transition: .3s;
 
       &:hover {
@@ -164,14 +265,10 @@ $square-size: 4rem;
       }
     }
 
-    &__container {
-      position: relative;
+    &__buttons {
       display: flex;
-      justify-content: flex-start;
       align-items: center;
-      margin-bottom: 1rem;
-      padding: 0 2rem;
-      padding-left: 50%;
+      justify-content: center;
 
       .dt-button {
         position: relative;
@@ -188,6 +285,7 @@ $square-size: 4rem;
       align-items: center;
       height: 4rem;
       margin: 1rem;
+      padding-bottom: 1rem;
       color: $light-green;
       white-space: nowrap;
       width: 100%;
@@ -202,6 +300,7 @@ $square-size: 4rem;
       cursor: move;
       height: 4rem;
       width: auto;
+      overflow: hidden;
       border: 2px solid $white;
 
       &.-text {
@@ -232,6 +331,7 @@ $square-size: 4rem;
       color: $white;
       border: none;
       border-bottom-left-radius: 5px;
+      border-top-right-radius: 13px;
       cursor: pointer!important;
       z-index: 1;
       transition: .3s;

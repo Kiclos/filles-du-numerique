@@ -99,6 +99,7 @@
       &.-first:after {
         background-color: $color;
         border-radius: .5rem;
+        font-size: 1.25rem;
       }
 
       &.-last {
@@ -106,6 +107,7 @@
           box-shadow: inset 0 0 0 4px $color;
           color: $color;
           border-radius: .5rem;
+          font-size: 1.25rem;
           transition: .3s;
         }
 
@@ -199,56 +201,57 @@
       @include caseColor($black);
 
       &.-first:after, &.-last:after {
-        content: "N";
+        content: "●";
+        font-size: 1.75rem;
       }
     }
     &.-blue {
       @include caseColor($dark-blue);
 
       &.-first:after, &.-last:after {
-        content: "B";
+        content: "▲";
       }
     }
     &.-red {
       @include caseColor($dark-red);
 
       &.-first:after, &.-last:after {
-        content: "R";
+        content: "♥";
       }
     }
     &.-green {
       @include caseColor($green);
 
       &.-first:after, &.-last:after {
-        content: "Ve";
+        content: "♠";
       }
     }
     &.-yellow {
       @include caseColor($dark-yellow);
 
       &.-first:after, &.-last:after {
-        content: "J";
+        content: "♣";
       }
     }
     &.-purple {
       @include caseColor($purple);
 
       &.-first:after, &.-last:after {
-        content: "Vi";
+        content: "◼";
       }
     }
     &.-pink {
       @include caseColor($pink);
 
       &.-first:after, &.-last:after {
-        content: "Ro";
+        content: "★";
       }
     }
     &.-orange {
       @include caseColor($orange);
 
       &.-first:after, &.-last:after {
-        content: "O";
+        content: "♦";
       }
     }
   }

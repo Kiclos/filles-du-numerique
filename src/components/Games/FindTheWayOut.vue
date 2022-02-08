@@ -1,7 +1,7 @@
 <template>
-  <div class="dt-number-link__content">
+  <div class="dt-way-out__container">
     <PauseMenu color="green"/>
-    <div class="dt-way-out__container">
+    <div class="dt-way-out__content">
       <div class="dt-way-out__pawn" :class="`-${pawn.orientation}`" :style="getPawnStyle"></div>
       <div v-for="i in 10" :key="`row-${i}`" class="dt-way-out__row">
         <div v-for="j in 10" :key="`square-${j}`"
@@ -16,25 +16,27 @@
          <button class="dt-way-out__instructions__reduced" @click="isReduced = !isReduced" v-if="instructions.length > 0">
            {{ isReduced ? 'Agrandir' : 'Réduire' }}
          </button>
-         <div class="dt-way-out__instructions__none" v-if="instructions.length === 0">
-           Cliquez sur une instruction pour commencer
-         </div>
-         <div v-for="(instruction, index) in instructions"
-              :key="instruction"
-              class="dt-button -green"
-              :class="[ { '-text': index < executionIndex }, { '-outlined': index > executionIndex }]">
-           <template v-if="instruction === 0">↑</template>
-           <template v-if="instruction === 1">⟲</template>
-           <template v-if="instruction === 2">⟳</template>
-           <button class="dt-way-out__instructions__delete-button"
-                   aria-label="delete"
-                   @click.stop="instructions.splice(index, 1)" v-if="(index > executionIndex) && !executing">✕</button>
+         <div class="dt-way-out__instructions__content">
+           <div class="dt-way-out__instructions__none" v-if="instructions.length === 0">
+             Cliquez sur une instruction pour commencer
+           </div>
+           <div v-for="(instruction, index) in instructions"
+                :key="instruction"
+                class="dt-button -green"
+                :class="[ { '-text': index < executionIndex }, { '-outlined': index > executionIndex }, { '-disabled': executing }]">
+             <template v-if="instruction === 0">↑</template>
+             <template v-if="instruction === 1">⟲</template>
+             <template v-if="instruction === 2">⟳</template>
+             <button class="dt-way-out__instructions__delete-button"
+                     aria-label="delete"
+                     @click.stop="instructions.splice(index, 1)" v-if="(index > executionIndex) && !executing">✕</button>
+           </div>
          </div>
        </div>
-       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.splice(0)">✕</button>
-       <button class="dt-button -green" :disabled="instructions.length === 0 || executing" @click="executeInstructions()">➥</button>
-     </div>
-     <div class="dt-way-out__commands">
+       <div class="dt-way-out__instructions__buttons">
+         <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.splice(0)">✕</button>
+         <button class="dt-button -green" :disabled="instructions.length === 0 || executing" @click="executeInstructions()">➥</button>
+       </div>
      </div>
      <div class="dt-way-out__commands">
        <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(1)">⟲</button>
@@ -54,7 +56,7 @@ export default defineComponent({
   name: 'NumberLink',
   components: { PauseMenu },
   events: { endGame: () => null },
-  setup() {
+  setup(_, { emit }) {
     // eslint-disable-next-line no-shadow
     enum PawnOrientation {
       top = 'top',
@@ -78,7 +80,7 @@ export default defineComponent({
     const executing = ref<boolean>(false);
     const isReduced = ref<boolean>(false);
 
-    const getPawnStyle = computed(() => ({ top: `${pawn.y * 4}rem`, left: `${pawn.x * 4}rem` }));
+    const getPawnStyle = computed(() => ({ top: `${pawn.y * 10}%`, left: `${pawn.x * 10}%` }));
 
     function goForward(): void {
       // eslint-disable-next-line default-case
@@ -140,6 +142,13 @@ export default defineComponent({
       pawn.orientation = PawnOrientation.right;
     }
 
+    function isGameOver(): void {
+      if (pawn.x + 1 === 9 && pawn.y + 1 === 9) {
+        console.log('the game is over');
+        emit('endGame');
+      }
+    }
+
     function executeInstruction(instruction: PawnInstruction): void {
       // eslint-disable-next-line default-case
       switch (instruction) {
@@ -162,6 +171,7 @@ export default defineComponent({
         if (executionIndex.value === instructions.length - 1) {
           executing.value = false;
           clearInterval(execution);
+          isGameOver();
           executionIndex.value = -2;
         }
         executionIndex.value += 1;
