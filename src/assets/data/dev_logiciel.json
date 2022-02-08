@@ -1,15 +1,20 @@
 {
-    "islandName": "Robotix",
-    "field": "Robotique",
-    "presentation": " Visiter Robotix, c'est plonger dans l'histoire ! Ce n'est pas pour rien que cette île regorge de monuments et de touristes ! Va faire un tour à l'Office de tourisme pour en savoir plus !",
-    "guideline": "L’Office de tourisme est un lieu exceptionnel pour commencer son exploration. En plus, ils ont mis en place un petit quizz ! On tente notre chance ?",
+    "islandName": "Logicias",
+    "field": "Développement logiciel",
+    "maincolor": "#CDDB90",
+    "lightcolor":"#FBDA61",
+    "darkcolor":"#16A04D",
+    "presentation": "Aaaaah, Logicias… Ce labyrinthe à ciel ouvert… C’est le quartier principal de résidence de l’archipel. Tout le monde y habite et pourtant, qu’importe l’heure, tu pourras toujours y trouver quelqu’un de complètement perdu. Tu veux y jeter un œil ?",
+    "guideline": "Bah tiens, qu’est-ce que j’avais dit ! Un Otomatien égaré ! Redonne lui son chemin, mais attention ! tu ne peux pas le suivre ! ",
     "results": {
-        "summary": "Il s'agit d'un terme facile à définir, mais dont la réelle portée est souvent difficile à appréhender. La robotique désigne l'ensemble des techniques mises au point et exécutées pour fabriquer des robots. Derrière cette signification se cachent des possibilités infinies et un grand, un très grand éventail de champs d'application.",
-        "teamWork": 0.8,
-        "shifts": 0.8,
+        "summary": "Les logiciels sont tous autour de nous. Des jeux vidéos aux créneaux horaires de la SNCF en passant par cette application, il est presque impossible d'y échapper. Le développement logiciel, c'est étudier, concevoir, construire, transformer, mettre au point, maintenir et améliorer ces logiciels.",
+        "didYouKnow":"Le secteur du développement logiciel est dynamique depuis plusieurs années et les évolutions sont permanentes. La création d'applications est le coeur de l'activité au sein d'équipes \"agiles\", c'est à dire qui travaillent ensemble, chacun étant responsable de sa partie, et tous responsables de la réussite collective. Beaucoup de télétravail et d'utilisation des messageries instantanées.",
+        "teamWork": 1,
+        "shifts": 0.5,
         "specificJob": {
-            "generalInfos": "Spécialiste des systèmes automatisés, le roboticien, toujours à la pointe du progrès, crée des robots qui effectueront différents types de tâches, en fonction des besoins des utilisateurs.",
-            "salary": 30000,
+            "jobName": "Scrum Master",
+            "generalInfos": "'En étant à la frontière entre le métier et l’IT, il.elle permet de créer des passerelles qui favorisent un dynamique de co-construction entre ces deux équipes. Il.elle est aussi souvent vecteur de nouveaux clients et de nouveaux marchés. Comme le souligne sa comparaison régulière avec un chef d’orchestre, le Product Owner lie les clients et les équipes techniques (développement, marketing et design).",
+            "salary": 40000,
             "studies" : "BAC + 5"   
         }
     }
