@@ -7,6 +7,10 @@
   background: $white;
   z-index: 2;
 
+  section {
+    margin: 3rem auto;
+  }
+
   &-header {
     background: rgba($light-grey, 30%);  
     
@@ -19,6 +23,7 @@
 
   &--statistics {
     &-container {
+      margin: 1rem auto;
       width: 100%;
       padding: 0;
       display: flex;
@@ -51,9 +56,9 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-
-    .island-name {
-      font-weight: 900;
+    
+    .dt-results-h4 {
+      margin: 0;
     }
   }  
 
@@ -61,6 +66,18 @@
     color: desaturate(darken($blue, 15%), 15%);
   }
 
+  &-h3 {
+    font-family: 'arial';
+    color: $grey;
+    font-weight: 800;
+  }
+
+  &-h4 {
+    font-family: 'arial';
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  
   &-sliderscontainer {
     width: 100%;
     margin: 3rem 0;
@@ -69,6 +86,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin: 1rem 0;
       width: 100%;
     }
   
@@ -107,6 +125,10 @@
       cursor: pointer;
     }
     
+  }
+
+  &-video {
+    border-radius: 1rem;
   }
   
 }

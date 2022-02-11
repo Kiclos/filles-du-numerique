@@ -18,7 +18,10 @@
             "jobName": "Concepteur.rice robot",
             "generalInfos": "Spécialiste des systèmes automatisés, le roboticien, toujours à la pointe du progrès, crée des robots qui effectueront différents types de tâches, en fonction des besoins des utilisateurs.",
             "salary": 30000,
-            "studies" : "BAC + 5"   
+            "studies" : "BAC + 5",
+            "moreInfo": "https://futures-numeriques.fr/",
+            "moreJobs": "https://www.onisep.fr/Ressources/Univers-Metier/Metiers/roboticien-roboticienne",
+            "videoUrl": "https://www.youtube.com/embed/O8ouH41S2fs"
         }
     }
 }
