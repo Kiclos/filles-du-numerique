@@ -1,5 +1,4 @@
 export default interface Dialog {
-  id: number,
-  isRebecca: boolean;
+  isRebecca: boolean | null;
   content: string;
 };

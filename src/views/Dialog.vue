@@ -1,7 +1,7 @@
 <template>
   <div class="dt-dialog" @click="nextMessage">
     <text-container v-for="dialog in dialogsToDisplay" :key="dialog.id"
-                    :class="dialog.isRebecca ? 'dt-textcontainer--neutral' : 'dt-textcontainer--default'">
+                    :class="dialog.isRebecca ? 'dt-textcontainer--neutral' : (dialog.isRebecca === null ? 'dt-textcontainer--none' : 'dt-textcontainer--default')">
       {{ dialog.content }}
     </text-container>
     <TapToContinue/>
@@ -9,9 +9,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent, reactive, ref, onMounted, PropType,
-} from 'vue';
+import { defineComponent, reactive, ref, onMounted, PropType } from 'vue';
 import Dialog from '../Model/Dialog';
 import TapToContinue from '../components/TapToContinue/TapToContinue.vue';
 import TextContainer from '../components/TextContainer/TextContainer.vue';
@@ -28,9 +26,7 @@ export default defineComponent({
       required: true,
     },
   },
-  events: {
-    close: () => null,
-  },
+  events: { close: () => null },
   setup(props, { emit }) {
     const index = ref<number>(0);
 
