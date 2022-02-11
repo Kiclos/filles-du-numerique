@@ -9,8 +9,9 @@
     "results": {
         "summary": "Les réseaux et infrastructures sont une brique essentielle de l'informatique. C'est grâce aux professionnels des systèmes, des réseaux et de la sécurité que l'information peut circuler et être traitée efficacement.",
         "didYouKnow":"",
-        "teamWork": 0.3,
-        "shifts": 0.5,
+        "teamWork": 30,
+        "shifts": 50,
+        "virtual": 30,
         "specificJob": {
             "jobName": "Ingénieur.e Réseaux",
             "generalInfos": "'L'ingénieur / l'ingénieure réseau allie des compétences dans deux domaines : l'informatique et les télécommunications. Il identifie et résout les problèmes des utilisateurs. Il est responsable de l'installation et de la sécurité sur le réseau.",

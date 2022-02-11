@@ -9,8 +9,9 @@
     "results": {
         "summary": "",
         "didYouKnow":"",
-        "teamWork": 0.5,
-        "shifts": 1,
+        "teamWork": 50,
+        "shifts": 90,
+        "virtual": 75,
         "specificJob": {
             "jobName": "Domoticien.ne",
             "generalInfos":"Le domoticien installe des équipements de domotique (\"domus\" : maison en latin + robotique) rendant nos habitats plus intelligents, plus écologiques et plus confortables.",
