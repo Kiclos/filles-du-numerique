@@ -1,4 +1,5 @@
 <template>
+  <GamePresentation :content="devLogiciel" v-if="true"/>
   <NumberLink v-if="false"/>
   <FindTheWayOut v-if="false"/>
   <WinScreen v-if="false" reward="arm-right"/>
@@ -26,16 +27,19 @@ import { Island } from '@/Model/Island';
 import NumberLink from '@/components/Games/NumberLink.vue';
 import FindTheWayOut from '@/components/Games/FindTheWayOut.vue';
 import WinScreen from '@/components/Islands/WinScreen.vue';
+import GamePresentation from '@/components/Games/GamePresentation/GamePresentation.vue';
+import devLogiciel from '@/assets/data/dev_logiciel.json';
 
 export default defineComponent({
   name: 'app',
   components: {
     DialogView,
-    WelcomeView,
-    ResultsView,
-    IslandsView,
-    NumberLink,
     FindTheWayOut,
+    GamePresentation,
+    IslandsView,
+    ResultsView,
+    NumberLink,
+    WelcomeView,
     WinScreen,
   },
   setup() {
@@ -74,6 +78,7 @@ export default defineComponent({
       handleGameStart,
       handleIslandSelection,
       handleDialogClose,
+      devLogiciel,
     };
   },
 });

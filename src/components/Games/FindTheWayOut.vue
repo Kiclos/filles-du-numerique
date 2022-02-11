@@ -50,7 +50,7 @@
 <script lang="ts">
 /* eslint-disable object-curly-newline */
 import { computed, defineComponent, onMounted, reactive, ref } from 'vue';
-import PauseMenu from '@/components/GamesUI/PauseMenu/PauseMenu.vue';
+import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue';
 
 import { Pawn, PawnInstruction, PawnOrientation } from '@/Model/FindTheWayOut';
 

@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Islands from '@/components/Islands/Islands.vue';
-import IslandsUI from '@/components/IslandsUI/IslandsUI.vue';
+import IslandsUI from '@/components/Islands/IslandsUI/IslandsUI.vue';
 import { Island } from '@/Model/Island';
 
 export default defineComponent({

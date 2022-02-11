@@ -1,0 +1,185 @@
+@mixin setGamePresentationColor($color1, $color2, $text-color) {
+  background: linear-gradient(100deg, $color1 -6.84%, $color2 124.14%);
+
+  .dt-game-presentation__header__back-button, .dt-game-presentation__header__skip-button {
+    &:hover, &:active {
+      color: $text-color;
+    }
+  }
+
+  .dt-island__title {
+    color: $text-color;
+  }
+}
+
+.dt-game-presentation {
+
+  @include setGamePresentationColor($yellow, $pink, $orange);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 0 calc((100vw - 500px) / 2);
+  padding-top: 2rem;
+  z-index: 1;
+
+  &__header, &__content, &__footer {
+    width: 100%;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+
+    &__back-button, &__skip-button {
+      color: $white;
+      background: none;
+      border: 1px solid $white;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: .3s;
+
+      &:hover {
+        background-color: $white;
+      }
+
+      &:active {
+        background-color: darken($white, 10%);
+        border-color: darken($white, 10%);
+        color: $orange;
+      }
+    }
+
+    &__back-button [class^="icon-"] {
+      font-size: 2rem;
+    }
+
+    &__skip-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: right;
+      font-size: .8rem;
+      font-weight: 600;
+      padding-left: .5rem;
+
+      [class^="icon-"] {
+        margin-left: .25rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 2rem;
+    text-align: justify;
+    color: $white;
+    overflow: hidden;
+    font-weight: 300;
+    line-height: 1.5rem;
+    height: 100%;
+
+    &__island-icon {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      height: 10rem;
+      width: 10rem;
+      background-color: rgba($white, .25);
+      border-radius: 5rem;
+
+      &:after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .dt-island__title {
+      font-size: 1.5rem;
+      border-radius: 1.25rem;
+      margin-bottom: 2rem;
+      padding: .25rem 1rem;
+    }
+
+    &__text {
+      overflow: scroll;
+    }
+  }
+
+  &__footer {
+    margin: 1rem 2rem 0 2rem;
+    padding: .75rem 1.5rem 1.5rem 1.5rem;
+    background-color: $white;
+    border-radius: 1.5rem 1.5rem 0 0;
+  }
+
+  &.-blue {
+    @include setGamePresentationColor($dark-blue, $very-light-green, $dark-blue);
+    .dt-game-presentation__content__island-icon:after {
+      background: url('../img/icon/shield.png') center center no-repeat;
+      background-size: 60%;
+    }
+  }
+
+  &.-green {
+    @include setGamePresentationColor($green, $yellow, $light-green);
+    .dt-game-presentation__content__island-icon:after {
+      background: url('../img/icon/software.png') center center no-repeat;
+      background-size: 60%;
+    }
+  }
+
+  &.-purple {
+    @include setGamePresentationColor($light-purple, $dark-purple, $purple);
+    .dt-game-presentation__content__island-icon:after {
+      background: url('../img/icon/planet.png') center center no-repeat;
+      background-size: 60%;
+    }
+  }
+
+  &.-purple-blue {
+    @include setGamePresentationColor($blue, $purple, $blue2);
+    .dt-game-presentation__content__island-icon:after {
+      background: url('../img/icon/calculator.png') center center no-repeat;
+      background-size: 60%;
+    }
+  }
+
+  &.-red {
+    @include setGamePresentationColor(
+                    lighten($red, 5%),
+                    darken($dark-red, 10%),
+                    lighten($dark-red, 10%));
+    .dt-game-presentation__content__island-icon:after {
+      background: url('../img/icon/robot.png') center center no-repeat;
+      background-size: 60%;
+    }
+  }
+
+  &.-yellow {
+    @include setGamePresentationColor($yellow, darken($dark-yellow, 10%), $dark-yellow);
+    .dt-game-presentation__content__island-icon:after {
+      background: url('../img/icon/tools.png') center center no-repeat;
+      background-size: 60%;
+    }
+  }
+}
