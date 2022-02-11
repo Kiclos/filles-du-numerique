@@ -1,6 +1,6 @@
 <template>
   <NumberLink v-if="false"/>
-  <FindTheWayOut v-if="true"/>
+  <FindTheWayOut v-if="false"/>
   <transition name="zoom-fade">
     <DialogView :dialogs="dialogs" @close="handleDialogClose()" v-if="dialogIsOpened"/>
   </transition>
@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
+import dialogData from '@/assets/data/storyline.json';
 import DialogView from '@/views/Dialog.vue';
 import WelcomeView from '@/views/Welcome.vue';
 import ResultsView from '@/views/Results.vue';
@@ -40,10 +41,7 @@ export default defineComponent({
     const mapIsOpened = ref<boolean>(false);
     const dialogIsOpened = ref<boolean>(false);
     const resultIsOpened = ref<boolean>(false);
-    const dialogs = reactive<Dialog []>([
-      { id: 0, isRebecca: true, content: 'Bonjour' },
-      { id: 1, isRebecca: false, content: 'Bonjour à toi aussi' },
-    ]);
+    const dialogs = reactive<Dialog []>(dialogData.dialogs.separation);
 
     function handleGameStart(): void {
       welcomeIsOpened.value = false;

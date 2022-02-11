@@ -1,0 +1,21 @@
+{
+    "islandName": "Segura",
+    "field": "Cybersécurité",
+    "maincolor": "#76C9D8",
+    "lightcolor":"#80D0C7",
+    "darkcolor":"#0093E9",
+    "presentation": "En cas de problème, c'est Segura qu'on appelle ! Véritable forteresse, c'est cette île qui assure la protection de tout l'archipel. Envie d'en savoir plus sur les gardiens de la paix à Otomatik ?",
+    "guideline": "Jeu à définir + clairement",
+    "results": {
+        "summary": "La cybersécurité consiste en la protection informatique dans sa globalité. Un mélange de droit, de technique, de gestion de données, de gestion des risques. En bref, un savant mélange de nombreux domaines essentiel dans le monde connecté dans lequel nous vivons aujourd'hui.",
+        "didYouKnow":"Un secteur en pleine expansion et en grande recherche de talents. La vie étudiante est dynamique, elle s'appuie sur des simulations d'attaques entre clubs de cybersécurité.",
+        "teamWork": 0.8,
+        "shifts": 0.6,
+        "specificJob": {
+            "jobName": "Pentester",
+            "generalInfos": "'Un pirate bienveillant ! Le·la pentester réalise des tests d'intrusion pour tester la sécurité informatique des entreprises et leur proposer des solutions pour réduire leur degré de vulnérabilité.",
+            "salary": 37000,
+            "studies" : "BAC + 3 à 5"   
+        }
+    }
+}

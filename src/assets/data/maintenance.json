@@ -1,0 +1,21 @@
+{
+    "islandName": "Caramban",
+    "field": "Maintenance",
+    "maincolor": "#FBDA61",
+    "lightcolor":"#FBDA61",
+    "darkcolor":"#F8B34B",
+    "presentation": "Pas la plus belle île, mais sans aucun doute l'une des plus utiles ! Caramban contrôle toute l'infrastructure électrique d'Otomatik. En d'autres termes, si tu tombes en panne, c'est vers eux qu'ils faut râler ! Mais ses habitants sont les plus patients et bienveillants de tout l'archipel.",
+    "guideline": "Oulah, on dirait que la centrale de Caramban fonctionne au ralenti ce matin ! Aide-les en reconnectant les bons fils aux bons endroits !",
+    "results": {
+        "summary": "La maintenance informatique consiste à assurer le bon fonctionnement d’un système d’information et d’un parc informatique d’une entreprise. Les personnes travaillant dans ce domaine sont de véritables urgentistes, travaillant au bon fonctionnement physique et technique des machines.",
+        "didYouKnow":"",
+        "teamWork": 0.3,
+        "shifts": 0.5,
+        "specificJob": {
+            "jobName": "Technicien.ne support",
+            "generalInfos": "Besoin d'aide ? On arrive à la recousse ! Le.la Technicien.ne helpdesk a pour rôle d’effectuer le dépannage et la maintenance d’équipements informatiques tels que le matériel utilisé mais aussi les logiciels mis à disposition et les réseaux.",
+            "salary": 20000,
+            "studies" : "BAC + 2"   
+        }
+    }
+}
