@@ -17,14 +17,13 @@
       </p>
     </div>
     <div class="dt-game-presentation__footer">
-      <Button class="dt-button" :class="`-${content.color}`" @click="handleStartGame()">Commencer</Button>
+      <button class="dt-button" :class="`-${content.color}`" @click="handleStartGame()">Commencer</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import Button from '../../Button/Button.vue';
+import { defineComponent, onMounted, PropType } from 'vue';
 import IslandTitle from '@/components/Islands/IslandTitle.vue';
 import { IslandInfo } from '@/Model/Island/IslandInfo';
 
@@ -36,10 +35,7 @@ export default defineComponent({
       required: true,
     },
   },
-  components: {
-    Button,
-    IslandTitle,
-  },
+  components: { IslandTitle },
   events: {
     startGame: () => null,
     backToMap: () => null,
@@ -51,11 +47,11 @@ export default defineComponent({
     }
 
     function handleBackTopMap(): void {
-      emit('startGame');
+      emit('backToMap');
     }
 
     function handleSkipGame(): void {
-      emit('startGame');
+      emit('skipGame');
     }
 
     return {

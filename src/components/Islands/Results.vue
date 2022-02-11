@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import Button from '../components/Button/Button.vue';
+import Button from '../Button/Button.vue';
 import TextContainer from '@/components/TextContainer/TextContainer.vue';
 
 export default defineComponent({

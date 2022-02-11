@@ -22,12 +22,14 @@ export default defineStore('game', {
   actions: {
     setGameStatus(status: GameStatus): void {
       this.status = status;
+      localStorage.setItem('gameStatus', JSON.stringify(this.status));
     },
     setIslandStatus(name: IslandName, status: IslandStatus): void {
       const island = this.islands.find(x => x.name === name);
       if (island !== undefined) {
         island.status = status;
       }
+      localStorage.setItem('islands', JSON.stringify(this.islands));
     },
   },
 });

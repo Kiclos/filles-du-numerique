@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive } from 'vue';
 
 import useGameStore from '@/stores/game';
 import { Island } from '@/Model/Island/Island';
