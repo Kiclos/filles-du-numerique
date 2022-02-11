@@ -1,5 +1,6 @@
 import { IslandStatus } from '@/Model/GameStatus';
 
+// eslint-disable-next-line no-shadow
 export enum IslandName {
   CARAMBAN= 'Caramban',
   IAIE = 'IAïe',

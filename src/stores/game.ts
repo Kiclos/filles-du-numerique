@@ -24,7 +24,7 @@ export default defineStore('game', {
       this.status = status;
     },
     setIslandStatus(name: IslandName, status: IslandStatus): void {
-      const island = this.islands.find((x) => x.name === name);
+      const island = this.islands.find(x => x.name === name);
       if (island !== undefined) {
         island.status = status;
       }

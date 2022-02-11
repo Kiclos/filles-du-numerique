@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-shadow
 export enum GameStatus {
   INIITAL_STATE,
   POST_INTRO,
@@ -5,6 +6,7 @@ export enum GameStatus {
   POST_OUTRO,
 }
 
+// eslint-disable-next-line no-shadow
 export enum IslandStatus {
   NOT_DISCOVERED,
   OPENED,
