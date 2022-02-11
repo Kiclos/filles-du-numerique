@@ -6,7 +6,7 @@
       <div v-for="i in 10" :key="`row-${i}`" class="dt-way-out__row">
         <div v-for="j in 10" :key="`square-${j}`"
              class="dt-way-out__square"
-             :class="{ '-flagged': i === 9 && j === 9 }">
+             :class="{ '-flagged': i === goal.x && goal.y === 9 }">
         </div>
       </div>
     </div>
@@ -52,33 +52,20 @@
 import { computed, defineComponent, reactive, ref } from 'vue';
 import PauseMenu from '@/components/GamesUI/PauseMenu/PauseMenu.vue';
 
+import { Pawn, PawnInstruction, PawnOrientation } from '@/Model/FinTheWayOut';
+
 export default defineComponent({
   name: 'NumberLink',
   components: { PauseMenu },
   events: { endGame: () => null },
   setup(_, { emit }) {
-    // eslint-disable-next-line no-shadow
-    enum PawnOrientation {
-      top = 'top',
-      left = 'left',
-      right = 'right',
-      bottom = 'bottom',
-    }
-
-    interface Pawn {
-      x: number,
-      y: number,
-      orientation: PawnOrientation,
-    }
-
-    // eslint-disable-next-line no-shadow
-    enum PawnInstruction { moveForward, rotateLeft, rotateRight }
-
     const pawn: Pawn = reactive<Pawn>({ x: 0, y: 0, orientation: PawnOrientation.right });
     const instructions: PawnInstruction [] = reactive<PawnInstruction []>([]);
     const executionIndex = ref<number>(-1);
     const executing = ref<boolean>(false);
     const isReduced = ref<boolean>(false);
+    const start = reactive<{ x: number, y: number }>({ x: 0, y: 0 });
+    const goal = reactive<{ x: number, y: number }>({ x: 9, y: 9 });
 
     const getPawnStyle = computed(() => ({ top: `${pawn.y * 10}%`, left: `${pawn.x * 10}%` }));
 
@@ -137,13 +124,13 @@ export default defineComponent({
     }
 
     function reset(): void {
-      pawn.x = 0;
-      pawn.y = 0;
+      pawn.x = start.x;
+      pawn.y = start.y;
       pawn.orientation = PawnOrientation.right;
     }
 
     function isGameOver(): void {
-      if (pawn.x + 1 === 9 && pawn.y + 1 === 9) {
+      if (pawn.x + 1 === goal.x && pawn.y + 1 === goal.y) {
         console.log('the game is over');
         emit('endGame');
       }
@@ -184,6 +171,7 @@ export default defineComponent({
       instructions,
       executionIndex,
       getPawnStyle,
+      goal,
       executeInstructions,
       executing,
       isReduced,
