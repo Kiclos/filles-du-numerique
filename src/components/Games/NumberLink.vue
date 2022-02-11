@@ -207,7 +207,6 @@ export default defineComponent({
     return {
       game,
       handleSelect,
-      getClass,
     };
   },
 });
