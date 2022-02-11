@@ -83,7 +83,7 @@
 import { defineComponent, PropType } from 'vue';
 import Button from '../components/Button/Button.vue';
 import TextContainer from '@/components/TextContainer/TextContainer.vue';
-import IslandData from '@/Model/IslandData';
+import IslandData from '@/Model/Island/IslandData';
 
 export default defineComponent({
   name: 'game-results',
