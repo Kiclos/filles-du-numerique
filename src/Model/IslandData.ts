@@ -1,4 +1,4 @@
-import { IslandName } from "./Island";
+import { IslandName } from './Island';
 
 export interface IslandData {
     id: number,
