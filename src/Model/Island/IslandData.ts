@@ -1,6 +1,6 @@
 import { IslandName } from './Island';
 
-export interface IslandData {
+interface IslandData {
     id: number,
     islandName: IslandName,
     field: string,

@@ -1,5 +1,5 @@
 <template>
-  <div class="dt-p16-center dt-h100">
+  <div class="dt-p16 dt-flex-align-text--center dt-h100">
     <img class="dt-img-w75" src="@/assets/departile.svg" alt="">
     <h1 class="dt-h1">DigitTales</h1>
     <br>
@@ -14,8 +14,6 @@ import Button from '../components/Button/Button.vue';
 
 export default defineComponent({
   name: 'welcome',
-  components: {
-    Button,
-  },
+  components: { Button },
 });
 </script>
