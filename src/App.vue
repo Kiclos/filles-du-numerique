@@ -23,7 +23,7 @@ import ResultsView from '@/views/Results.vue';
 import Dialog from '@/Model/Dialog';
 import IslandsView from '@/views/IslandsView.vue';
 import useGameStore from './stores/game';
-import { Island } from '@/Model/Island';
+import { Island } from '@/Model/Island/Island';
 import NumberLink from '@/components/Games/NumberLink.vue';
 import FindTheWayOut from '@/components/Games/FindTheWayOut.vue';
 import WinScreen from '@/components/Islands/WinScreen.vue';

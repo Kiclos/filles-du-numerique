@@ -21,7 +21,7 @@
 import { defineComponent } from 'vue';
 
 import useGameStore from '@/stores/game';
-import { Island } from '@/Model/Island';
+import { Island } from '@/Model/Island/Island';
 import IslandsComponent from '@/components/Islands/Island.vue';
 
 export default defineComponent({

@@ -16,7 +16,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
 import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue';
-import { Grid, Case, PathColor, Path, Row } from '@/Model/NumberLink';
+import { Grid, Case, PathColor, Path, Row } from '@/Model/Game/NumberLink';
 
 export default defineComponent({
   name: 'NumberLink',

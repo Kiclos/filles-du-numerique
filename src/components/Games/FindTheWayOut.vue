@@ -52,7 +52,7 @@
 import { computed, defineComponent, onMounted, reactive, ref } from 'vue';
 import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue';
 
-import { Pawn, PawnInstruction, PawnOrientation } from '@/Model/FindTheWayOut';
+import { Pawn, PawnInstruction, PawnOrientation } from '@/Model/Game/FindTheWayOut';
 
 export default defineComponent({
   name: 'NumberLink',

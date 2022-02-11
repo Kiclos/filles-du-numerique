@@ -1,4 +1,4 @@
-export interface GamePresentation {
+export interface IslandInfo {
   islandName: string
   field: string,
   color: string,
@@ -8,8 +8,7 @@ export interface GamePresentation {
   results: {
     summary: string,
     didYouKnow: string,
-    teamWork: number,
-    shifts: number,
+    caracteristics: { iconLeft: string, iconRight: string, labelLeft: string, labelRight: string, value: number } [],
     specificJob: {
       jobName: string,
       generalInfos: string,

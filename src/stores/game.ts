@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { GameStatus, IslandStatus } from '@/Model/GameStatus';
-import { Island, IslandName } from '@/Model/Island';
+import { Island, IslandName } from '@/Model/Island/Island';
 
 interface GameState {
   status: GameStatus,

@@ -7,7 +7,7 @@
 import { defineComponent } from 'vue';
 import Islands from '@/components/Islands/Islands.vue';
 import IslandsUI from '@/components/Islands/IslandsUI/IslandsUI.vue';
-import { Island } from '@/Model/Island';
+import { Island } from '@/Model/Island/Island';
 
 export default defineComponent({
   name: 'IslandsView',

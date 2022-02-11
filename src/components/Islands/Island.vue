@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import IslandTitle from '@/components/Islands/IslandTitle.vue';
-import { Island } from '@/Model/Island';
+import { Island } from '@/Model/Island/Island';
 
 export default defineComponent({
   name: 'island',

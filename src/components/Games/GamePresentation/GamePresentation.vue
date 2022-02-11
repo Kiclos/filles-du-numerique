@@ -26,13 +26,13 @@
 import { defineComponent, PropType } from 'vue';
 import Button from '../../Button/Button.vue';
 import IslandTitle from '@/components/Islands/IslandTitle.vue';
-import { GamePresentation } from '@/Model/GamePresentation';
+import { IslandInfo } from '@/Model/Island/IslandInfo';
 
 export default defineComponent({
   name: 'game-results',
   props: {
     content: {
-      type: Object as PropType<GamePresentation>,
+      type: Object as PropType<IslandInfo>,
       required: true,
     },
   },
