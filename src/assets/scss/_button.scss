@@ -128,4 +128,41 @@
     }
   }
 
+
+  &.-purple-blue {
+    @include setDefaultButtonColor($blue, $purple, $white);
+
+    &.-outlined {
+      @include setOutlineButtonColor($blue2);
+    }
+
+    &.-text {
+      @include setTextButtonColor($blue, $purple, $blue2)
+    }
+  }
+
+  &.-red {
+    @include setDefaultButtonColor($red, $dark-red, $white);
+
+    &.-outlined {
+      @include setOutlineButtonColor($red);
+    }
+
+    &.-text {
+      @include setTextButtonColor($red, $dark-red, $dark-red)
+    }
+  }
+
+  &.-yellow {
+    @include setDefaultButtonColor(darken($yellow, 10%), darken($dark-yellow, 10%), $white);
+
+    &.-outlined {
+      @include setOutlineButtonColor($dark-yellow);
+    }
+
+    &.-text {
+      @include setTextButtonColor($yellow, $dark-yellow, $dark-yellow)
+    }
+  }
+
 }

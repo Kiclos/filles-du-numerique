@@ -28,7 +28,7 @@ export default defineComponent({
   components: { TextContainer },
   setup() {
     const gameStore = useGameStore();
-    const itemCollectedSize: number = gameStore.islands.filter((x) => x.status === IslandStatus.COMPLETE).length;
+    const itemCollectedSize: number = gameStore.islands.filter(x => x.status === IslandStatus.COMPLETE).length;
 
     return { itemCollectedSize };
   },

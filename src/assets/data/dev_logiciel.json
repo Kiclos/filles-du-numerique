@@ -1,9 +1,8 @@
 {
     "islandName": "Logicias",
     "field": "Développement logiciel",
-    "maincolor": "#CDDB90",
-    "lightcolor":"#FBDA61",
-    "darkcolor":"#16A04D",
+    "color": "green",
+    "img": "software.png",
     "presentation": "Aaaaah, Logicias… Ce labyrinthe à ciel ouvert… C’est le quartier principal de résidence de l’archipel. Tout le monde y habite et pourtant, qu’importe l’heure, tu pourras toujours y trouver quelqu’un de complètement perdu. Tu veux y jeter un œil ?",
     "guideline": "Bah tiens, qu’est-ce que j’avais dit ! Un Otomatien égaré ! Redonne lui son chemin, mais attention ! tu ne peux pas le suivre ! ",
     "results": {
@@ -15,7 +14,7 @@
             "jobName": "Scrum Master",
             "generalInfos": "'En étant à la frontière entre le métier et l’IT, il.elle permet de créer des passerelles qui favorisent un dynamique de co-construction entre ces deux équipes. Il.elle est aussi souvent vecteur de nouveaux clients et de nouveaux marchés. Comme le souligne sa comparaison régulière avec un chef d’orchestre, le Product Owner lie les clients et les équipes techniques (développement, marketing et design).",
             "salary": 40000,
-            "studies" : "BAC + 5"   
+            "studies" : "BAC + 5"
         }
     }
 }

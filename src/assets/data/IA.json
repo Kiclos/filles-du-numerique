@@ -1,9 +1,8 @@
 {
     "islandName": "IAie",
     "field": "Intelligence Artificielle",
-    "maincolor": "#6495F7",
-    "lightcolor":"#4FCCF3",
-    "darkcolor":"#7E52FC",
+    "color": "purple-blue",
+    "img": "IA.png",
     "presentation": "Qui n'a jamais rêvé de traîner sur les plages de matière grise d'IAïe ? Mais c'est aussi une île très en avance économiquement et c'est donc très logiquement que toutes les usines de l'archipel se sont tournées vers elle pour s'implanter.",
     "guideline": "C'est bientôt Noël ! Aide IAie à préparer ses stocks en prévoyant les commandes par rapport à celles des années précédentes !",
     "results": {
@@ -15,7 +14,7 @@
             "jobName": "Domoticien.ne",
             "generalInfos":"Le domoticien installe des équipements de domotique (\"domus\" : maison en latin + robotique) rendant nos habitats plus intelligents, plus écologiques et plus confortables.",
             "salary": 20000,
-            "studies" : "BAC + 2 à 5"   
+            "studies" : "BAC + 2 à 5"
         }
     }
 }

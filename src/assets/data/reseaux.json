@@ -1,9 +1,8 @@
 {
     "islandName": "Nethosa",
     "field": "Reseaux et infrastructures",
-    "maincolor": "#7E52FC",
-    "lightcolor":"#915EE5",
-    "darkcolor":"#4A12C2",
+    "color": "purple",
+    "img": "network.png",
     "presentation": "Nethosa, c’est à la fois une île et l’entreprise qui s’y trouve. Une entreprise très importante pour l’archipel, puisqu’elle s’occupe de faire transiter les habitants entre chaque île.",
     "guideline": "Ca alors, il semble que les réseaux et routes de l’archipel soient encombrés. Un énorme bouchon ! J’irai bien voir si on peut les aider. Tu m’accompagnes ?",
     "results": {

@@ -1,9 +1,8 @@
 {
     "islandName": "Robotix",
     "field": "Robotique",
-    "maincolor": "#C12050",
-    "lightcolor":"#FF2525",
-    "darkcolor":"#841C79",
+    "color": "red",
+    "img": "robot.png",
     "presentation": " Visiter Robotix, c'est plonger dans l'histoire ! Ce n'est pas pour rien que cette île regorge de monuments et de touristes ! Va faire un tour à l'Office de tourisme pour en savoir plus !",
     "guideline": "L’Office de tourisme est un lieu exceptionnel pour commencer son exploration. En plus, ils ont mis en place un petit quizz ! On tente notre chance ?",
     "results": {
@@ -15,7 +14,7 @@
             "jobName": "Concepteur.rice robot",
             "generalInfos": "Spécialiste des systèmes automatisés, le roboticien, toujours à la pointe du progrès, crée des robots qui effectueront différents types de tâches, en fonction des besoins des utilisateurs.",
             "salary": 30000,
-            "studies" : "BAC + 5"   
+            "studies" : "BAC + 5"
         }
     }
 }
