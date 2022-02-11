@@ -6,7 +6,7 @@
       <div v-for="i in 10" :key="`row-${i}`" class="dt-way-out__row">
         <div v-for="j in 10" :key="`square-${j}`"
              class="dt-way-out__square"
-             :class="{ '-flagged': i === goal.x && goal.y === 9 }">
+             :class="{ '-flagged': i === goal.x && j === goal.y }">
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
 
 <script lang="ts">
 /* eslint-disable object-curly-newline */
-import { computed, defineComponent, reactive, ref } from 'vue';
+import { computed, defineComponent, onMounted, reactive, ref } from 'vue';
 import PauseMenu from '@/components/GamesUI/PauseMenu/PauseMenu.vue';
 
 import { Pawn, PawnInstruction, PawnOrientation } from '@/Model/FinTheWayOut';
@@ -64,8 +64,8 @@ export default defineComponent({
     const executionIndex = ref<number>(-1);
     const executing = ref<boolean>(false);
     const isReduced = ref<boolean>(false);
-    const start = reactive<{ x: number, y: number }>({ x: 0, y: 0 });
-    const goal = reactive<{ x: number, y: number }>({ x: 9, y: 9 });
+    const start = reactive<Pawn>({ x: 0, y: 0, orientation: PawnOrientation.right });
+    const goal = reactive<{ x: number, y: number }>({ x: 10, y: 10 });
 
     const getPawnStyle = computed(() => ({ top: `${pawn.y * 10}%`, left: `${pawn.x * 10}%` }));
 
@@ -124,9 +124,7 @@ export default defineComponent({
     }
 
     function reset(): void {
-      pawn.x = start.x;
-      pawn.y = start.y;
-      pawn.orientation = PawnOrientation.right;
+      Object.assign(pawn, start);
     }
 
     function isGameOver(): void {
@@ -165,6 +163,27 @@ export default defineComponent({
         executeInstruction(instructions[executionIndex.value]);
       }, 500);
     }
+
+    function generateRandomGame(): void {
+      const startX = Math.round(Math.random() * 9);
+      const startY = Math.round(Math.random() * 9);
+      const startOrientation = Object.values(PawnOrientation)[Math.round(Math.random() * 3)];
+      let goalX;
+      let goalY;
+      let distance = 0;
+      do {
+        goalX = Math.round(Math.random() * 9) + 1;
+        goalY = Math.round(Math.random() * 9) + 1;
+        distance = Math.sqrt((goalX - (startX + 1)) ** 2 + (goalY - (startY + 1)) ** 2);
+      } while (distance < 7);
+      Object.assign(start, { x: startX, y: startY, orientation: startOrientation });
+      Object.assign(goal, { x: goalX, y: goalY });
+      reset();
+    }
+
+    onMounted(() => {
+      generateRandomGame();
+    });
 
     return {
       pawn,
