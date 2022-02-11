@@ -18,6 +18,10 @@
     background: linear-gradient(118.32deg, #0093E9 -50.13%, #80D0C7 113.71%);
     color: #FFFFFF;
   }
+  &--outlined--blue {
+    border: 1px solid $blue;
+    border-radius: 15px;
+  }
 
   &--none {
     color: rgba($grey, 1);

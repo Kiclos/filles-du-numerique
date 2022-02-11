@@ -6,7 +6,7 @@
     <DialogView :dialogs="dialogs" @close="handleDialogClose()" v-if="dialogIsOpened"/>
   </transition>
   <transition name="zoom-fade">
-    <ResultsView name="dialogs" @close="resultIsOpened = false" v-if="resultIsOpened"/>
+    <ResultsView :jobData="robotiqueData" @close="resultIsOpened = false" v-if="resultIsOpened"/>
   </transition>
   <WelcomeView @play="handleGameStart()" v-if="welcomeIsOpened"/>
   <IslandsView @selectIsland="handleIslandSelection($event)" v-if="mapIsOpened"/>
@@ -15,6 +15,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
 import dialogData from '@/assets/data/storyline.json';
+import jobData from '@/assets/data/robotique.json';
 import DialogView from '@/views/Dialog.vue';
 import WelcomeView from '@/views/Welcome.vue';
 import ResultsView from '@/views/Results.vue';
@@ -45,6 +46,7 @@ export default defineComponent({
     const dialogIsOpened = ref<boolean>(false);
     const resultIsOpened = ref<boolean>(false);
     const dialogs = reactive<Dialog []>(dialogData.dialogs.separation);
+    const robotiqueData = reactive<any>(jobData);
 
     function handleGameStart(): void {
       welcomeIsOpened.value = false;
@@ -67,6 +69,7 @@ export default defineComponent({
       dialogIsOpened,
       resultIsOpened,
       dialogs,
+      robotiqueData,
       gameStore,
       handleGameStart,
       handleIslandSelection,

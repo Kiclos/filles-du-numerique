@@ -7,24 +7,34 @@
   background: $white;
   z-index: 2;
 
-    &--statistics {
-      &-container {
-        width: 100%;
-        padding: 0;
-        display: flex;
-        align-items: center;
-      }
-      &-content {
-        width: 100%;
-        border-right: 1px solid white;
-        padding: 0.5rem 1rem;
-        text-align: center;
-        font-weight: 700;
-        font-family: 'open sans', sans-serif;
-        font-size: 16px;
-        strong {
-          font-size: 28px;
-        }
+  &-header {
+    background: rgba($light-grey, 30%);  
+  }
+
+  &--statistics {
+    &-container {
+      width: 100%;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+    &-content {
+      width: 100%;
+      border-right: 1px solid white;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-weight: 700;
+      font-family: 'open sans', sans-serif;
+      font-size: 16px;
+      strong {
+        font-size: 28px;
       }
     }
   }
+}
+
+.dt-trophy {
+  &--yellow{
+    color: $yellow;
+  }
+}
