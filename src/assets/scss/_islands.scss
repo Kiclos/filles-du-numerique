@@ -82,6 +82,7 @@
     position: relative;
     margin-bottom: .5rem;
     padding: .25rem .75rem;
+    padding-left: 1.8rem;
     color: $black;
     font-weight: bold;
     border: none;
@@ -91,6 +92,7 @@
     transition: .3s;
 
     [class^="icon-"] {
+      font-family: 'Open Sans', sans-serif!important;
       position: absolute;
       top: .3rem;
       left: .4rem;
@@ -105,7 +107,6 @@
       font-weight: bold;
       font-size: .8rem;
       color: $white;
-      transform: scale(0);
       transition: .3s;
 
       &:before {
@@ -113,12 +114,8 @@
       }
     }
 
-    &.-checked {
-      padding-left: 1.8rem;
-
-      [class^="icon-"] {
-        transform: scale(1);
-      }
+    &.-checked [class^="icon-"] {
+      font-family: 'icon' !important;
     }
   }
 

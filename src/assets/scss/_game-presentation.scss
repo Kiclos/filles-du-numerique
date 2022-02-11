@@ -9,6 +9,10 @@
 
   .dt-island__title {
     color: $text-color;
+
+    [class^="icon-"] {
+      background-color: $text-color;
+    }
   }
 }
 
@@ -118,6 +122,14 @@
       border-radius: 1.25rem;
       margin-bottom: 2rem;
       padding: .25rem 1rem;
+      padding-left: 2.5rem;
+
+      [class^="icon-"] {
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: .75rem;
+        font-size: 1rem;
+      }
     }
 
     &__text {

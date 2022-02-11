@@ -1,6 +1,7 @@
 <template>
   <button class="dt-island__title" :class="{ '-checked': checked }">
-    <span class="icon-done"></span>
+    <span class="icon-done" v-if="checked"></span>
+    <span class="icon-" v-else>!</span>
     <slot></slot>
   </button>
 </template>
