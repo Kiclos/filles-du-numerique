@@ -49,7 +49,7 @@
             {"isRebecca":true, "content":"Quant à toi, j'espère que ce voyage t'aura fait grandir et t'aura appris maintes et maintes choses."},
             {"isRebecca":true, "content":"Il est temps pour moi de te renvoyer auprès des tiens !"},
             {"isRebecca":true, "content":"Tiens, d'ailleurs ! Pour te remercier !"},
-            {"isRebecca":null, "content":"VOUS AVEZ REÇU : COLLIER ÉCROU !"},
+            {"isRebecca":null, "content":"Vous avez reçu : COLLIER ÉCROU !"},
             {"isRebecca":true, "content":"De cette manière, tu te souviendras de moi !"},
             {"isRebecca":true, "content":"Allez, zoup ! Brlezzrloupvelspp..."}
         ],
@@ -65,6 +65,6 @@
             {"isRebecca":false, "content":"Mes yeux s'écarquillent"},
             {"isRebecca":null, "content":"Le collier de Rebecca se trouve dans ta main."},
             {"isRebecca":null, "content":"Bravo, tu as terminé Digitales !"}
-        ]            
+        ]
     }
 }

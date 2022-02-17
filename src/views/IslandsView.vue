@@ -15,6 +15,7 @@ export default defineComponent({
     Islands,
     IslandsUI,
   },
+  emits: ['selectIsland'],
   events: { selectIsland: (island: Island) => island },
   setup(_, { emit }) {
     function handleIslandSelection(island: Island): void {

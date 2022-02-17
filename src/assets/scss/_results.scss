@@ -1,4 +1,19 @@
+@mixin setResultColor($color) {
+  .dt-slider-label {
+    color: desaturate(darken($color, 15%), 15%);
+  }
+
+  .dt-results-h2 {
+    color: desaturate(darken($color, 15%), 15%);
+  }
+
+  .slider::-webkit-slider-thumb {
+    background: desaturate(darken($color, 15%), 15%);;
+  }
+}
+
 .dt-results {
+  @include setResultColor($orange);
   position: absolute;
   top: 0;
   left: 0;
@@ -66,10 +81,6 @@
     }
   }
 
-  &-h2 {
-    color: desaturate(darken($blue, 15%), 15%);
-  }
-
   &-h3 {
     font-family: 'arial';
     color: $grey;
@@ -97,7 +108,6 @@
     .dt-slider-label {
       white-space: nowrap;
       font-size: small;
-      color: desaturate(darken($blue, 15%), 15%);
       text-align: center;
       width: 10rem;
       &:first-child {
@@ -125,14 +135,36 @@
       appearance: none;
       width: 4px;
       height: 8px;
-      background: $very-light-green;
-      cursor: pointer;
     }
 
   }
 
   &-video {
     border-radius: 1rem;
+  }
+
+  &.-blue {
+    @include setResultColor($blue);
+  }
+
+  &.-green {
+    @include setResultColor(saturate($light-green, 25%));
+  }
+
+  &.-purple {
+    @include setResultColor($light-purple);
+  }
+
+  &.-purple-blue {
+    @include setResultColor(lighten($blue2, 10%));
+  }
+
+  &.-red {
+    @include setResultColor($red);
+  }
+
+  &.-yellow {
+    @include setResultColor($yellow);
   }
 
 }

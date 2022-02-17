@@ -10,20 +10,22 @@
     </div>
     <div class="dt-game-presentation__content">
       <div class="dt-game-presentation__content__island-icon" :aria-label="content.img"></div>
-      <IslandTitle>Île {{ content.islandName }}</IslandTitle>
+      <IslandTitle :checked="status > 1">Île {{ content.islandName }}</IslandTitle>
       <p class="dt-game-presentation__content__text">
         {{ content.presentation }}<br><br>
         {{ content.guideline }}
       </p>
     </div>
     <div class="dt-game-presentation__footer">
-      <button class="dt-button" :class="`-${content.color}`" @click="handleStartGame()">Commencer</button>
+      <button class="dt-button" :class="`-${content.color}`" @click="handleStartGame()">
+        {{ content.hasGame ? 'Commencer' : 'Collecter la pièce' }}
+      </button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import IslandTitle from '@/components/Islands/IslandTitle.vue';
 import { IslandInfo } from '@/Model/Island/IslandInfo';
 
@@ -34,8 +36,13 @@ export default defineComponent({
       type: Object as PropType<IslandInfo>,
       required: true,
     },
+    status: {
+      type: String,
+      required: true,
+    },
   },
   components: { IslandTitle },
+  emits: ['startGame', 'backToMap', 'skipGame'],
   events: {
     startGame: () => null,
     backToMap: () => null,

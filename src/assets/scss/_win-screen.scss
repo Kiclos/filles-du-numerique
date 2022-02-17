@@ -20,7 +20,7 @@
     left: 0;
     height: 100vh;
     width: 100vw;
-    z-index: 1;
+    z-index: 2;
 
     &:before, &:after {
       position: absolute;
@@ -49,6 +49,21 @@
 
     &.-green {
       @include setWinScreenColor($green, $yellow);
+    }
+
+    &.-purple {
+      @include setWinScreenColor($light-purple, $dark-purple);
+    }
+
+    &.-purple-blue {
+      @include setWinScreenColor($blue, $purple);
+    }
+    &.-red {
+      @include setWinScreenColor(desaturate($red, 25%), desaturate($dark-pink, 10%));
+    }
+
+    &.-yellow {
+      @include setWinScreenColor($yellow, $dark-yellow);
     }
   }
 

@@ -1,12 +1,12 @@
 <template>
   <div class="dt-way-out__container">
-    <PauseMenu color="green"/>
+    <PauseMenu @skip="handleSkipGame()" @quit="handleQuitGame()" color="green"/>
     <div class="dt-way-out__content">
       <div class="dt-way-out__pawn" :class="`-${pawn.orientation}`" :style="getPawnStyle"></div>
       <div v-for="i in 10" :key="`row-${i}`" class="dt-way-out__row">
         <div v-for="j in 10" :key="`square-${j}`"
              class="dt-way-out__square"
-             :class="{ '-flagged': i === goal.x && j === goal.y }">
+             :class="{ '-flagged': j === goal.x && i === goal.y }">
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
          </div>
        </div>
        <div class="dt-way-out__instructions__buttons">
-         <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.splice(0)">✕</button>
+         <button class="dt-button -outlined -green" :disabled="executing" @click="clear()">✕</button>
          <button class="dt-button -green" :disabled="instructions.length === 0 || executing" @click="executeInstructions()">➥</button>
        </div>
      </div>
@@ -57,7 +57,12 @@ import { Pawn, PawnInstruction, PawnOrientation } from '@/Model/Game/FindTheWayO
 export default defineComponent({
   name: 'NumberLink',
   components: { PauseMenu },
-  events: { endGame: () => null },
+  emits: ['skipGame', 'quitGame', 'endGame'],
+  events: {
+    skipGame: () => null,
+    quitGame: () => null,
+    endGame: () => null,
+  },
   setup(_, { emit }) {
     const pawn: Pawn = reactive<Pawn>({ x: 0, y: 0, orientation: PawnOrientation.right });
     const instructions: PawnInstruction [] = reactive<PawnInstruction []>([]);
@@ -127,7 +132,13 @@ export default defineComponent({
       Object.assign(pawn, start);
     }
 
+    function clear(): void {
+      reset();
+      instructions.splice(0);
+    }
+
     function isGameOver(): void {
+      console.log(pawn, goal);
       if (pawn.x + 1 === goal.x && pawn.y + 1 === goal.y) {
         console.log('the game is over');
         emit('endGame');
@@ -181,6 +192,14 @@ export default defineComponent({
       reset();
     }
 
+    function handleSkipGame(): void {
+      emit('skipGame');
+    }
+
+    function handleQuitGame(): void {
+      emit('quitGame');
+    }
+
     onMounted(() => {
       generateRandomGame();
     });
@@ -192,6 +211,9 @@ export default defineComponent({
       getPawnStyle,
       goal,
       executeInstructions,
+      handleSkipGame,
+      handleQuitGame,
+      clear,
       executing,
       isReduced,
     };

@@ -5,17 +5,24 @@
     "img": "IA.png",
     "presentation": "Qui n'a jamais rêvé de traîner sur les plages de matière grise d'IAïe ? Mais c'est aussi une île très en avance économiquement et c'est donc très logiquement que toutes les usines de l'archipel se sont tournées vers elle pour s'implanter.",
     "guideline": "C'est bientôt Noël ! Aide IAie à préparer ses stocks en prévoyant les commandes par rapport à celles des années précédentes !",
+    "hasGame": false,
+    "reward": "arm-left",
     "results": {
         "summary": "",
         "didYouKnow":"",
-        "teamWork": 50,
-        "shifts": 90,
-        "virtual": 75,
+        "caracteristics" : [
+            {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 50},
+            {"iconLeft": "home", "iconRight": "hiking", "labelLeft": "Casanier", "labelRight": "Routard", "value": 90},
+            {"iconLeft": "tools", "iconRight": "code", "labelLeft": "Matériel", "labelRight": "Virtuel", "value": 75}
+        ],
         "specificJob": {
             "jobName": "Domoticien.ne",
             "generalInfos":"Le domoticien installe des équipements de domotique (\"domus\" : maison en latin + robotique) rendant nos habitats plus intelligents, plus écologiques et plus confortables.",
             "salary": 20000,
-            "studies" : "BAC + 2 à 5"
+            "studies" : "BAC + 2 à 5",
+            "moreInfo": "",
+            "moreJobs": "",
+            "videos": []
         }
     }
 }

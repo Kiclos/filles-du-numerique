@@ -4,7 +4,7 @@
   </transition>
   <transition name="zoom-fade">
     <IslandView :island="currentIsland" @backToMap="handleBackToMap()"  v-if="islandViewIsOpened"/>
-  </transition>>
+  </transition>
   <WelcomeView @play="handleGameStart()" v-if="welcomeIsOpened"/>
   <IslandsView @selectIsland="handleIslandSelection($event)" v-if="mapIsOpened"/>
 </template>
@@ -20,7 +20,7 @@ import IslandView from '@/views/IslandView.vue';
 import IslandsView from '@/views/IslandsView.vue';
 import useGameStore from './stores/game';
 import { Island } from '@/Model/Island/Island';
-import { GameStatus } from '@/Model/GameStatus';
+import { GameStatus, IslandStatus } from '@/Model/GameStatus';
 
 export default defineComponent({
   name: 'app',
@@ -38,7 +38,7 @@ export default defineComponent({
     const dialogIsOpened = ref<boolean>(false);
     const resultIsOpened = ref<boolean>(false);
     const islandViewIsOpened = ref<boolean>(false);
-    const dialogs = reactive<Dialog []>(dialogData.dialogs.separation);
+    const dialogs = reactive<Dialog []>(dialogData.dialogs.intro);
 
     const currentIsland: Island = reactive<Island>({} as Island);
 
@@ -57,14 +57,45 @@ export default defineComponent({
     }
 
     function handleDialogClose(): void {
-      gameStore.setGameStatus(GameStatus.POST_INTRO);
-      mapIsOpened.value = true;
-      dialogIsOpened.value = false;
+      switch (gameStore.status) {
+        case GameStatus.INIITAL_STATE:
+          gameStore.setGameStatus(GameStatus.POST_INTRO);
+          dialogIsOpened.value = false;
+          setTimeout(() => {
+            Object.assign(dialogs, dialogData.dialogs.meeting);
+            dialogIsOpened.value = true;
+          });
+          break;
+        case GameStatus.POST_INTRO:
+          dialogIsOpened.value = false;
+          mapIsOpened.value = true;
+          break;
+        case GameStatus.ALL_GAMES_COMPLETE:
+          gameStore.setGameStatus(GameStatus.POST_OUTRO);
+          dialogIsOpened.value = false;
+          setTimeout(() => {
+            Object.assign(dialogs, dialogData.dialogs.ending);
+            dialogIsOpened.value = true;
+          });
+          break;
+        case GameStatus.POST_OUTRO:
+          dialogIsOpened.value = false;
+          welcomeIsOpened.value = true;
+          break;
+        default:
+          break;
+      }
     }
 
     function handleBackToMap(): void {
       islandViewIsOpened.value = false;
-      console.log('here 2');
+      const nbPieces = gameStore.islands.filter(x => x.status === IslandStatus.COMPLETE).length;
+      if (nbPieces === 6 && gameStore.status === GameStatus.POST_INTRO) {
+        gameStore.setGameStatus(GameStatus.ALL_GAMES_COMPLETE);
+        Object.assign(dialogs, dialogData.dialogs.separation);
+        dialogIsOpened.value = true;
+        mapIsOpened.value = false;
+      }
     }
 
     onMounted(() => {

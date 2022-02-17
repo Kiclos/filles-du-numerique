@@ -1,31 +1,84 @@
-.dt-textcontainer {
+@mixin setTextContainerColor($color1, $color2, $text-color) {
+  background: linear-gradient(95.43deg, lighten($color1, 5%) -37.4%, lighten($color2, 5%) 172.16%);
+  color: $text-color;
+}
 
+@mixin setOutlinedTextContainerColor($color) {
+  border: 1px solid $color;
+  border-radius: 15px;
+}
+
+.dt-textcontainer {
+  @include setTextContainerColor($yellow, $pink, $white);
   display: inline-block;
   border-radius: 15px;
   margin: .5rem 0;
 
-  &--default {
-    background: linear-gradient(95.43deg, #FBDA61 -37.4%, #FF5ACD 172.16%);
-    color: #FFF;
-  }
-
-  &--neutral {
+  &.-neutral {
     background: #E1E8EC;
     color: #364B5F;
   }
 
-  &--blue {
-    background: linear-gradient(118.32deg, #0093E9 -50.13%, #80D0C7 113.71%);
-    color: #FFFFFF;
-  }
-  &--outlined--blue {
-    border: 1px solid $blue;
+  &.-outlined {
+    @include setOutlinedTextContainerColor($orange);
+    background: none!important;
+    color: $black!important;
     border-radius: 15px;
   }
 
-  &--none {
+  &.-none {
+    background: none;
+    font-weight: 500;
     color: rgba($grey, 1);
     text-align: center;
     font-size: small;
+  }
+
+  &.-blue {
+    @include setTextContainerColor($blue, $dark-blue, $white);
+
+    &.-outlined {
+      @include setOutlinedTextContainerColor($blue);
+    }
+  }
+
+  &.-green {
+    @include setTextContainerColor($light-green, $yellow, $white);
+
+    &.-outlined {
+      @include setOutlinedTextContainerColor($light-green);
+    }
+  }
+
+  &.-purple {
+    @include setTextContainerColor($light-purple, $dark-purple, $white);
+
+    &.-outlined {
+      @include setOutlinedTextContainerColor($purple);
+    }
+  }
+
+  &.-purple-blue {
+    @include setTextContainerColor($blue, $purple, $white);
+
+    &.-outlined {
+      @include setOutlinedTextContainerColor($blue2);
+    }
+  }
+
+  &.-red {
+    @include setTextContainerColor(desaturate($red, 15%), desaturate($dark-pink, 10%), $white);
+
+    &.-outlined {
+      @include setOutlinedTextContainerColor($dark-red);
+    }
+  }
+
+  &.-yellow {
+    @include setTextContainerColor(desaturate(darken($yellow, 5%), 10%), desaturate(darken($dark-yellow, 5%), 10%), $white);
+
+    &.-outlined {
+      @include setOutlinedTextContainerColor($dark-yellow);
+    }
   }
 }

@@ -146,14 +146,14 @@
   }
 
   &.-red {
-    @include setDefaultButtonColor($red, $dark-red, $white);
+    @include setDefaultButtonColor($red, $dark-pink, $white);
 
     &.-outlined {
       @include setOutlineButtonColor($red);
     }
 
     &.-text {
-      @include setTextButtonColor($red, $dark-red, $dark-red)
+      @include setTextButtonColor($red, $dark-pink, $dark-red)
     }
   }
 

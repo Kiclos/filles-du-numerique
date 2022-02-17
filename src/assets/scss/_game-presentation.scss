@@ -133,7 +133,7 @@
     }
 
     &__text {
-      overflow: scroll;
+      overflow-y: scroll;
     }
   }
 
@@ -177,10 +177,7 @@
   }
 
   &.-red {
-    @include setGamePresentationColor(
-                    lighten($red, 5%),
-                    darken($dark-red, 10%),
-                    lighten($dark-red, 10%));
+    @include setGamePresentationColor(desaturate($red, 25%), desaturate($dark-pink, 10%), $dark-red);
     .dt-game-presentation__content__island-icon:after {
       background: url('../img/icon/robot.png') center center no-repeat;
       background-size: 60%;

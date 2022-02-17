@@ -1,6 +1,6 @@
 <template>
   <div class="dt-number-link__content">
-    <PauseMenu color="purple"/>
+    <PauseMenu @skip="handleSkipGame()" @quit="handleQuitGame()" color="purple"/>
     <div class="dt-number-link">
       <div class="dt-number-link__row" v-for="(row, i) in game.rows" :key="'row' + i">
         <div v-for="(c, j) in row.cases" :key="'case' + j"
@@ -21,7 +21,12 @@ import { Grid, Case, PathColor, Path, Row } from '@/Model/Game/NumberLink';
 export default defineComponent({
   name: 'NumberLink',
   components: { PauseMenu },
-  events: { endGame: () => null },
+  emits: ['skipGame', 'quitGame', 'endGame'],
+  events: {
+    skipGame: () => null,
+    quitGame: () => null,
+    endGame: () => null,
+  },
   setup(_, { emit }) {
     const game: Grid = reactive<Grid>({ rows: [] });
     let paths: Path [] = reactive<Path []>([]);
@@ -190,6 +195,14 @@ export default defineComponent({
       paths = newPaths;
     }
 
+    function handleSkipGame(): void {
+      emit('skipGame');
+    }
+
+    function handleQuitGame(): void {
+      emit('quitGame');
+    }
+
     onMounted(() => {
       for (let i = 0; i < 9; i += 1) {
         const row: Row = { cases: [] };
@@ -207,6 +220,8 @@ export default defineComponent({
     return {
       game,
       handleSelect,
+      handleSkipGame,
+      handleQuitGame,
     };
   },
 });

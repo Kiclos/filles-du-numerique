@@ -4,7 +4,7 @@ import { IslandStatus } from '@/Model/GameStatus';
 export enum IslandName {
   CARAMBAN= 'Caramban',
   IAIE = 'IAïe',
-  LOGICAS = 'Logicas',
+  LOGICIAS = 'Logicias',
   NETHOSA = 'Nethosa',
   ROBOTIX = 'Robotix',
   SEGURA = 'Segura',

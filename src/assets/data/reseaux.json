@@ -5,17 +5,24 @@
     "img": "network.png",
     "presentation": "Nethosa, c’est à la fois une île et l’entreprise qui s’y trouve. Une entreprise très importante pour l’archipel, puisqu’elle s’occupe de faire transiter les habitants entre chaque île.",
     "guideline": "Ca alors, il semble que les réseaux et routes de l’archipel soient encombrés. Un énorme bouchon ! J’irai bien voir si on peut les aider. Tu m’accompagnes ?",
+    "hasGame": true,
+    "reward": "leg-left",
     "results": {
         "summary": "Les réseaux et infrastructures sont une brique essentielle de l'informatique. C'est grâce aux professionnels des systèmes, des réseaux et de la sécurité que l'information peut circuler et être traitée efficacement.",
         "didYouKnow":"",
-        "teamWork": 30,
-        "shifts": 50,
-        "virtual": 30,
+        "caracteristics" : [
+            {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 30},
+            {"iconLeft": "home", "iconRight": "hiking", "labelLeft": "Casanier", "labelRight": "Routard", "value": 50},
+            {"iconLeft": "tools", "iconRight": "code", "labelLeft": "Matériel", "labelRight": "Virtuel", "value": 30}
+        ],
         "specificJob": {
             "jobName": "Ingénieur.e Réseaux",
             "generalInfos": "'L'ingénieur / l'ingénieure réseau allie des compétences dans deux domaines : l'informatique et les télécommunications. Il identifie et résout les problèmes des utilisateurs. Il est responsable de l'installation et de la sécurité sur le réseau.",
             "salary": 40000,
-            "studies" : "BAC + 5"
+            "studies" : "BAC + 5",
+            "moreInfo": "",
+            "moreJobs": "",
+            "videos": []
         }
     }
 }

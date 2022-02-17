@@ -5,6 +5,8 @@ export interface IslandInfo {
   img: string,
   presentation: string,
   guideline: string,
+  hasGame: boolean,
+  reward: string,
   results: {
     summary: string,
     didYouKnow: string,
@@ -14,6 +16,9 @@ export interface IslandInfo {
       generalInfos: string,
       salary: number,
       studies: string,
+      moreInfo: string,
+      moreJobs: string,
+      videos: { title: string, url: string } []
     },
   }
 }

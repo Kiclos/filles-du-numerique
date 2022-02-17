@@ -5,7 +5,7 @@
       <div class="dt-win-screen__icon__container">
         <div class="dt-win-screen__icon__content" :class="`-${reward}`"></div>
       </div>
-      <h2 class="dt-win-screen__subtitle">Vous avez obtenus <br>une nouvelle pièce de Rebecca !</h2>
+      <h2 class="dt-win-screen__subtitle">Vous avez obtenu <br>une nouvelle pièce de Rebecca !</h2>
     </template>
     <template v-else>
       <h1 class="dt-win-screen__title">Victoire !</h1>
@@ -30,6 +30,7 @@ export default defineComponent({
       default: '',
     },
   },
+  emits: ['close'],
   events: { close: () => null },
   setup(_, { emit }) {
     function handleClick(): void {

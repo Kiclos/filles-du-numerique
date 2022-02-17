@@ -31,6 +31,7 @@ export default defineComponent({
       default: '',
     },
   },
+  emits: ['skip', 'quit'],
   events: {
     skip: () => null,
     quit: () => null,

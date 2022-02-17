@@ -1,7 +1,8 @@
 <template>
   <div class="dt-dialog" @click="nextMessage">
     <text-container v-for="dialog in dialogsToDisplay" :key="dialog.id"
-                    :class="dialog.isRebecca ? 'dt-textcontainer--neutral' : (dialog.isRebecca === null ? 'dt-textcontainer--none' : 'dt-textcontainer--default')">
+                    class="dt-textcontainer"
+                    :class="dialog.isRebecca ? '-neutral' : (dialog.isRebecca === null ? '-none' : '')">
       {{ dialog.content }}
     </text-container>
     <TapToContinue/>
