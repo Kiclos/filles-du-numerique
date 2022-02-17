@@ -42,7 +42,7 @@
           <p>{{jobData.results.specificJob.generalInfos}}</p>
           <TextContainer class="dt-textcontainer dt-results--statistics-container" :class="`-${color}`">
             <div class="dt-results--statistics-content">
-              <strong>{{jobData.results.specificJob.salary / 12}}</strong>
+              <strong>{{ Math.floor(jobData.results.specificJob.salary / 12) }}</strong>
               <br>
               € brut / mois
             </div>
