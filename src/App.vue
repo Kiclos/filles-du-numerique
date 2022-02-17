@@ -1,5 +1,7 @@
 <template>
-  <GamePresentation :content="devLogiciel" v-if="true"/>
+  <v-btn @click="install">Install</v-btn>
+
+  <GamePresentation :content="devLogiciel" v-if="false"/>
   <NumberLink v-if="false"/>
   <FindTheWayOut v-if="false"/>
   <WinScreen v-if="false" reward="arm-right"/>
@@ -11,9 +13,6 @@
   </transition>
   <WelcomeView @play="handleGameStart()" v-if="welcomeIsOpened"/>
   <IslandsView @selectIsland="handleIslandSelection($event)" v-if="mapIsOpened"/>
-
-  <v-btn text @click="install">Install</v-btn>
-
 </template>
 
 <script lang="ts">
