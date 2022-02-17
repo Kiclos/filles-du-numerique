@@ -13,12 +13,20 @@
   z-index: 2;
   transition: .3s;
 
+  &__content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    max-width: 500px;
+    width: 100%;
+  }
+
   & .dt-textcontainer {
     width: 100%;
     margin: .5rem 0;
     animation: forwards .3s dialog-zoom;
     transition: .3s;
-    max-width: 500px;
   }
 
   & .dt-taptocontinue {
@@ -28,7 +36,7 @@
     font-weight: bold;
     font-size: .7rem;
     animation: 2s clignote infinite;
-    max-width: 500px;
+    padding-bottom: 1rem;
   }
 }
 

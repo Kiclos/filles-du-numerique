@@ -1,8 +1,8 @@
 <template>
   <div class="dt-results" :class="`-${color}`">
-    <header class="dt-results-header dt-p16 dt-flex-align-text--center">
-      <nav class="dt-w100 dt-h16">
-        <div class="icon-close dt-floatR dt-grey" @click="$emit('close')"></div>
+    <header class="dt-results-header dt-flex-align-text--center">
+      <nav>
+        <button class="icon-close dt-grey" @click="$emit('close')"></button>
       </nav>
       <div class="dt-flex-center">
         <span class="icon-trophy dt-p16 dt-trophy--yellow dt-font-xxxl"></span>

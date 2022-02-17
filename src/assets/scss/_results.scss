@@ -22,16 +22,43 @@
   background: $white;
   z-index: 2;
 
+  .dt-textcontainer {
+    width: 100%;
+  }
+
   section {
     margin: 3rem auto;
   }
 
   &-header {
     background: rgba($light-grey, 30%);
+    padding-bottom: 1rem;
 
     nav {
+      width: 100%;
       display: flex;
+      align-items: center;
       justify-content: end;
+      padding: 0 calc((100vw - 500px) / 2);
+
+      button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 1rem;
+        font-size: 1.25rem;
+        transition: .3s;
+
+        &:hover {
+          background-color: rgba($black, .1);
+        }
+
+        &:active {
+          background-color: rgba($black, .2);
+        }
+      }
     }
   }
 

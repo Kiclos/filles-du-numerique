@@ -34,6 +34,18 @@
     font-size: small;
   }
 
+  &.-rebecca {
+    //margin-left: calc((100vw - 500px) / 2)!important;
+    width: auto!important;
+    align-self: flex-start;
+  }
+
+  &.-me {
+    //margin-right: calc((100vw - 500px) / 2)!important;
+    width: auto!important;
+    align-self: flex-end;
+  }
+
   &.-blue {
     @include setTextContainerColor($blue, $dark-blue, $white);
 

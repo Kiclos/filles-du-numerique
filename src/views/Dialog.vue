@@ -1,11 +1,13 @@
 <template>
-  <div class="dt-dialog" @click="nextMessage">
-    <text-container v-for="dialog in dialogsToDisplay" :key="dialog.id"
-                    class="dt-textcontainer"
-                    :class="dialog.isRebecca ? '-neutral' : (dialog.isRebecca === null ? '-none' : '')">
-      {{ dialog.content }}
-    </text-container>
-    <TapToContinue/>
+  <div id="dt-dialog-container" class="dt-dialog" @click="nextMessage()">
+    <div class="dt-dialog__content">
+      <text-container v-for="dialog in dialogsToDisplay" :key="dialog.id"
+                      class="dt-textcontainer"
+                      :class="dialog.isRebecca ? '-neutral -rebecca' : (dialog.isRebecca === null ? '-none' : '-me')">
+        {{ dialog.content }}
+      </text-container>
+      <TapToContinue/>
+    </div>
   </div>
 </template>
 
@@ -34,9 +36,15 @@ export default defineComponent({
     const dialogsToDisplay: Dialog [] = reactive([]);
 
     function nextMessage(): void {
+      const container = document.getElementById('dt-dialog-container');
       if (dialogsToDisplay.length < props.dialogs.length) {
         dialogsToDisplay.push(props.dialogs[index.value]);
         index.value += 1;
+        if (container !== null) {
+          setTimeout(() => {
+            window.scrollTo({ left: 0, top: container.offsetHeight, behavior: 'smooth' });
+          });
+        }
       } else if (dialogsToDisplay.length === props.dialogs.length) {
         emit('close');
       }
