@@ -18,7 +18,11 @@
       display: flex;
       justify-content: end;
     }
-  
+  }
+
+  &-article {
+    margin: auto;
+    max-width: 500px;
   }
 
   &--statistics {
