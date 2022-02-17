@@ -1,5 +1,5 @@
 <template>
-  <div class="dt-home-screen  dt-p16-center dt-h100">
+  <div class="dt-p16-center dt-h100">
     <img class="dt-img-w75" src="@/assets/departile.svg" alt="">
     <h1 class="dt-h1">DigitTales</h1>
     <br>

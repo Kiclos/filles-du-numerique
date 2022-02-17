@@ -92,6 +92,10 @@
     background: rgba($black, 0.15);
   }
 
+  &.-detail {
+    padding: 0.5rem 0;
+  }
+
   &.-blue {
     @include setDefaultButtonColor($dark-blue, $very-light-green, $white);
 

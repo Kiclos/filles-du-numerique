@@ -7,12 +7,27 @@
   background: $white;
   z-index: 2;
 
+  section {
+    margin: 3rem auto;
+  }
+
   &-header {
     background: rgba($light-grey, 30%);
+
+    nav {
+      display: flex;
+      justify-content: end;
+    }
+  }
+
+  &-article {
+    margin: auto;
+    max-width: 500px;
   }
 
   &--statistics {
     &-container {
+      margin: 1rem auto;
       width: 100%;
       padding: 0;
       display: flex;
@@ -31,6 +46,95 @@
       }
     }
   }
+
+  &-separator {
+    border: none;
+    height: 1px;
+    margin: 16px auto;
+    width: 55%;
+    background-color: $light-grey;
+  }
+
+  &-titlecontainer {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+
+    .dt-results-h4 {
+      margin: 0;
+    }
+  }
+
+  &-h2 {
+    color: desaturate(darken($blue, 15%), 15%);
+  }
+
+  &-h3 {
+    font-family: 'arial';
+    color: $grey;
+    font-weight: 800;
+  }
+
+  &-h4 {
+    font-family: 'arial';
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  &-sliderscontainer {
+    width: 100%;
+    margin: 3rem 0;
+
+    .dt-results-oneslidercontainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1rem 0;
+      width: 100%;
+    }
+
+    .dt-slider-label {
+      white-space: nowrap;
+      font-size: small;
+      color: desaturate(darken($blue, 15%), 15%);
+      text-align: center;
+      width: 10rem;
+      &:first-child {
+        margin-right: 1rem;
+      }
+
+      &:last-child {
+        margin-left: 1rem;
+      }
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 4px;
+      height: 8px;
+      background: $very-light-green;
+      cursor: pointer;
+    }
+
+  }
+
+  &-video {
+    border-radius: 1rem;
+  }
+
 }
 
 .dt-trophy {
