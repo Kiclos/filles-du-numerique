@@ -7,7 +7,5 @@
 <script>
 import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'TapToContinue',
-});
+export default defineComponent({ name: 'TapToContinue' });
 </script>

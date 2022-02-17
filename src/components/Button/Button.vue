@@ -7,7 +7,5 @@
 <script>
 import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'Button',
-});
+export default defineComponent({ name: 'Button' });
 </script>

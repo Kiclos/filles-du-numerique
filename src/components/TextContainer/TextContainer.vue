@@ -7,7 +7,5 @@
 <script>
 import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'TextContainer',
-});
+export default defineComponent({ name: 'TextContainer' });
 </script>
