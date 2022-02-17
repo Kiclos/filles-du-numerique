@@ -1,6 +1,4 @@
 <template>
-  <v-btn @click="install">Install</v-btn>
-
   <GamePresentation :content="devLogiciel" v-if="false"/>
   <NumberLink v-if="false"/>
   <FindTheWayOut v-if="false"/>
@@ -82,21 +80,6 @@ export default defineComponent({
       handleDialogClose,
       devLogiciel,
     };
-  },
-  data() {
-    return { deferredPrompt: null as any };
-  },
-  created() {
-    window.addEventListener('beforeinstallprompt', e => {
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      this.deferredPrompt = e;
-    });
-  },
-  methods: {
-    async install() {
-      this.deferredPrompt.prompt();
-    },
   },
 });
 </script>
