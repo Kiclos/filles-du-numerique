@@ -68,9 +68,11 @@
   }
   &-h100 {
     height: 100vh;
+     height: calc(var(--vh, 1vh) * 100);
   }
   &-h50 {
     height: 50vh;
+    height: calc(var(--vh, 1vh) * 50);
   }
   &-h16 {
     height: 16px;

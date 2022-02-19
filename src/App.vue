@@ -98,7 +98,17 @@ export default defineComponent({
       }
     }
 
+    function getJavascriptViewPort(): void {
+      // We listen to the resize event
+      window.addEventListener('resize', () => {
+        // We execute the same script as before
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      });
+    }
+
     onMounted(() => {
+      getJavascriptViewPort();
       const gameStatus = localStorage.getItem('gameStatus');
       if (gameStatus !== null) {
         gameStore.setGameStatus(JSON.parse(gameStatus));

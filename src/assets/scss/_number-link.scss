@@ -9,7 +9,9 @@
 
   @media screen and (orientation:landscape) {
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vh;
+    width: calc(var(--vh, 1vh) * 100);
   }
 
 
@@ -22,6 +24,7 @@
      top: 0;
      left: 0;
      height: 100vh;
+     height: calc(var(--vh, 1vh) * 100);
      width: 100vw;
      background: $white;
      z-index: 2;

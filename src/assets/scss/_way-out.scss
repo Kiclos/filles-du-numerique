@@ -6,6 +6,7 @@ $square-size: 10%;
     top: 0;
     left: 0;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
     overflow: hidden;
     display: flex;
@@ -195,7 +196,6 @@ $square-size: 10%;
     border-radius: 1rem;
     padding: 1rem .5rem 0 .5rem;
     background-color: rgba(lighten($light-green, 40%), .75);
-    z-index: 100;
 
     &__container {
       @media only screen and (max-width: 767px) {
@@ -211,6 +211,7 @@ $square-size: 10%;
       margin-bottom: 1rem;
       padding: 0 2rem;
       padding-left: calc(50vw + 1rem);
+      z-index: 100!important;
     }
 
     &__content {
@@ -219,6 +220,7 @@ $square-size: 10%;
       }
       width: 50vw;
       max-height: 60vh;
+      max-height: calc(var(--vh, 1vh) * 60);
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;

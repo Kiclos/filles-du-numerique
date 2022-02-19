@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  touch-action: manipulation;
+}
+
 html, body, form, fieldset, table, tr, td, img {
   font-family: 'Open Sans', sans-serif;
 }

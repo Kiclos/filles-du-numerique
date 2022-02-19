@@ -97,6 +97,7 @@
     top: 0;
     left: 0;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
     padding: 2rem 2rem 3rem 2rem;
     background-color: rgba($white, .75);
