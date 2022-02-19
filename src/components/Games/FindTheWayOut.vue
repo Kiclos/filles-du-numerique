@@ -24,9 +24,15 @@
                 :key="instruction"
                 class="dt-button -green"
                 :class="[ { '-text': index < executionIndex }, { '-outlined': index > executionIndex }, { '-disabled': executing }]">
-             <template v-if="instruction === 0">↑</template>
-             <template v-if="instruction === 1">⟲</template>
-             <template v-if="instruction === 2">⟳</template>
+             <template v-if="instruction === 0">
+               <span class="icon-north"></span>
+             </template>
+             <template v-if="instruction === 1">
+               <span class="icon-rotate_left"></span>
+             </template>
+             <template v-if="instruction === 2">
+               <span class="icon-rotate_right"></span>
+             </template>
              <button class="dt-way-out__instructions__delete-button"
                      aria-label="delete"
                      @click.stop="instructions.splice(index, 1)" v-if="(index > executionIndex) && !executing">✕</button>
@@ -34,14 +40,24 @@
          </div>
        </div>
        <div class="dt-way-out__instructions__buttons">
-         <button class="dt-button -outlined -green" :disabled="executing" @click="clear()">✕</button>
-         <button class="dt-button -green" :disabled="instructions.length === 0 || executing" @click="executeInstructions()">➥</button>
+         <button class="dt-button -outlined -green" :disabled="executing" @click="clear()">
+           <span class="icon-close"></span>
+         </button>
+         <button class="dt-button -green" :disabled="instructions.length === 0 || executing" @click="executeInstructions()">
+           <span class="icon-play_arrow"></span>
+         </button>
        </div>
      </div>
      <div class="dt-way-out__commands">
-       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(1)">⟲</button>
-       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(0)">↑</button>
-       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(2)">⟳</button>
+       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(1)">
+         <span class="icon-rotate_left"></span>
+       </button>
+       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(0)">
+         <span class="icon-north"></span>
+       </button>
+       <button class="dt-button -outlined -green" :disabled="executing" @click="instructions.push(2)">
+         <span class="icon-rotate_right"></span>
+       </button>
      </div>
    </div>
    </div>
