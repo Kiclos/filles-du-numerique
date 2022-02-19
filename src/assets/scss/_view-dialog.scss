@@ -18,16 +18,16 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
     max-width: 500px;
+    height: 100%;
     width: 100%;
+    //overflow: scroll;
   }
 
   & .dt-textcontainer {
     width: 100%;
     margin: .5rem 0;
-    animation: forwards .3s dialog-zoom;
-    transition: .3s;
   }
 
   & .dt-taptocontinue {
