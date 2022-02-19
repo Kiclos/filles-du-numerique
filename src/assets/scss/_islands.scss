@@ -9,6 +9,10 @@
 }
 
 .dt-island {
+  @supports (-webkit-touch-callout: none) {
+    /* CSS specific to iOS devices */
+    color: red!important;
+  }
   position: absolute;
   top: 0;
   left: 0;
@@ -19,6 +23,20 @@
   align-items: center;
   justify-content: center;
 
+  &.-iphone {
+    flex-wrap: wrap;
+    background: url("../img/lines.png");
+    background-size: 100%;
+    height: 80%;
+
+    .dt-island__content {
+      height: 100px;
+      width: 150px;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+  }
+
    svg {
      width: 100vw;
      height: 100vh;
@@ -26,7 +44,10 @@
    }
 
   &__container {
+    height: 100px;
+    width: 120px;
     position: relative;
+    justify-content: center;
     align-items: center;
   }
 

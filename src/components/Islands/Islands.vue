@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable -->
-  <div class="dt-island">
+  <div class="dt-island" v-if="!isIphone">
     <svg viewBox="0 0 450 700" fill="none">
       <svg viewBox="0 0 900 1400" x="0" y="0" width="450" height="700">
         <foreignObject x="0" y="0" width="900" height="1400">
@@ -12,15 +12,16 @@
           <img src="@/assets/img/Robotix.png" alt="map">
         </foreignObject>
       </svg>
-      <svg viewBox="0 0 450 700"  x="0" y="0" width="450" height="700">
-        <IslandsComponent v-for="island in islands" :key="island.id" :island="island" @click="handleIslandSelection(island)"/>
-      </svg>
-  </svg>
-</div>
+      <IslandsComponent v-for="island in islands" :key="island.id" :island="island" @click="handleIslandSelection(island)"/>
+    </svg>
+  </div>
+  <div class="dt-island -iphone" v-else>
+    <IslandsComponent v-for="island in islands" :key="island.id" :island="island" @click="handleIslandSelection(island)"/>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 import useGameStore from '@/stores/game';
 import { Island } from '@/Model/Island/Island';
@@ -34,6 +35,15 @@ export default defineComponent({
     const gameStore = useGameStore();
     const islands: Island [] = gameStore.islands;
 
+    const isIphone = computed(() => [
+      'iPad Simulator',
+      'iPhone Simulator',
+      'iPod Simulator',
+      'iPad',
+      'iPhone',
+      'iPod',
+    ].includes(navigator.platform));
+
     function handleIslandSelection(island: Island): void {
       emit('selectIsland', island);
     }
@@ -41,6 +51,7 @@ export default defineComponent({
     return {
       islands,
       handleIslandSelection,
+      isIphone,
     };
   },
 });

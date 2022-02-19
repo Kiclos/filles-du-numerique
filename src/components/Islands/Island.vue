@@ -1,7 +1,7 @@
 <template>
   <!-- eslint-disable -->
   <g :class="'dt-' + island.name.toLowerCase()" v-if="island">
-    <foreignObject class="dt-island__container" :x="island.coord.x" :y="island.coord.y" width="120px" height="100">
+    <foreignObject class="dt-island__container" :x="island.coord.x" :y="island.coord.y" width="120px" height="100px">
       <div class="dt-island__content" :class="[{'-not-discovered': island.status === 0}, { '-complete': island.status === 3}]">
         <div class="dt-island__icon" style="padding: .5rem">
           <template v-if="island.status === 0"> ? </template>
