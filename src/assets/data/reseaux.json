@@ -4,7 +4,7 @@
     "color": "purple",
     "img": "network.png",
     "presentation": "Nethosa, c’est à la fois une île et l’entreprise qui s’y trouve. Une entreprise très importante pour l’archipel, puisqu’elle s’occupe de faire transiter les habitants entre chaque île.",
-    "guideline": "Ca alors, il semble que les réseaux et routes de l’archipel soient encombrés. Un énorme bouchon ! J’irai bien voir si on peut les aider. Tu m’accompagnes ?",
+    "guideline": "Ca alors, il semble que les réseaux et routes de l’archipel soient encombrés. Un énorme bouchon ! Aide-moi à relier les cases, des pleines vers les vides, en cliquant sur les cases les unes après les autres !",
     "hasGame": true,
     "reward": "leg-left",
     "results": {
