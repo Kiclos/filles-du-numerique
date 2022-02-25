@@ -154,9 +154,7 @@ export default defineComponent({
     }
 
     function isGameOver(): void {
-      console.log(pawn, goal);
       if (pawn.x + 1 === goal.x && pawn.y + 1 === goal.y) {
-        console.log('the game is over');
         emit('endGame');
       }
     }

@@ -141,7 +141,6 @@ export default defineComponent({
         }
       }
       if (isGameOver()) {
-        console.log('The game is over');
         emit('endGame');
       }
     }

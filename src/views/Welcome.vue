@@ -38,7 +38,6 @@ export default defineComponent({
   },
   created() {
     window.addEventListener('beforeinstallprompt', e => {
-      console.log('in before');
       e.preventDefault();
       // Stash the event so it can be triggered later.
       this.deferredPrompt = e;
@@ -46,7 +45,6 @@ export default defineComponent({
   },
   methods: {
     async install() {
-      console.log('in install', this.deferredPrompt);
       this.deferredPrompt.prompt();
     },
   },
