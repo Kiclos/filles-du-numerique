@@ -178,6 +178,7 @@ export default defineComponent({
 
     function executeInstructions(): void {
       reset();
+      isReduced.value = true;
       executing.value = true;
       const execution = setInterval(() => {
         if (executionIndex.value === instructions.length - 1) {
