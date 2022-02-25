@@ -205,7 +205,7 @@
 
       &.-first:after, &.-last:after {
         content: "●";
-        font-size: 1.75rem;
+        font-size: 2rem;
       }
     }
     &.-blue {
@@ -219,21 +219,23 @@
       @include caseColor($dark-red);
 
       &.-first:after, &.-last:after {
-        content: "♥";
+        content: "❤";
+
       }
     }
     &.-green {
       @include caseColor($green);
 
       &.-first:after, &.-last:after {
-        content: "♠";
+        content: "✿";
+        font-size: 1.25rem;
       }
     }
     &.-yellow {
       @include caseColor($dark-yellow);
 
       &.-first:after, &.-last:after {
-        content: "♣";
+        content: "✖";
       }
     }
     &.-purple {
@@ -241,6 +243,7 @@
 
       &.-first:after, &.-last:after {
         content: "◼";
+        font-size: 1.25rem;
       }
     }
     &.-pink {
@@ -254,7 +257,8 @@
       @include caseColor($orange);
 
       &.-first:after, &.-last:after {
-        content: "♦";
+        content: "◆";
+        font-size: 1.75rem;
       }
     }
   }
