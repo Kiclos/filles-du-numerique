@@ -22,7 +22,12 @@
             "studies" : "BAC + 5",
             "moreInfo": "",
             "moreJobs": "",
-            "videos": []
+            "videos": [
+                {
+                    "title": "Interview d'une pro",
+                    "url": "https://www.youtube.com/embed/O8ouH41S2fs"
+                }
+            ]
         }
     }
 }
