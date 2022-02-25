@@ -10,7 +10,7 @@
       <h2 class="dt-credit__subtitle">
         <span class="dt-credit__subtitle__label">Partenaires</span>
         FACET <br>
-        Femmes du numérique
+        FR CIDFF NA
       </h2>
 
     </div>

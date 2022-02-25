@@ -132,6 +132,7 @@ export default defineComponent({
         });
         if (pathNeighbors.length > 0) {
           const path: Path | undefined = getCasePath(pathNeighbors[0]);
+          console.log(path, path?.goal);
           if (path && c !== path.goal) {
             path.cases.push(c);
             // eslint-disable-next-line no-param-reassign
