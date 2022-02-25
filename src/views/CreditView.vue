@@ -9,8 +9,13 @@
       </h2>
       <h2 class="dt-credit__subtitle">
         <span class="dt-credit__subtitle__label">Partenaires</span>
-        FACET <br>
-        FR CIDFF NA
+        <div class="dt-credit__facet">
+          <img class="dt-credit__logo" src="/img/Partners/FACET.png" alt="logo_FACET"/>
+          <span class="dt-credit__logo__label">Femmes Au <br>Coeur <debr></debr> l'EnTreprise</span>
+        </div>
+        <br>
+        <img class="dt-credit__logo" src="/img/Partners/FR-CIDFF.png" alt="logo_FR-CIDFF"/><br>
+        <img class="dt-credit__logo" src="/img/Partners/Aquitaine.png" alt="logo_IESF"/>
       </h2>
 
     </div>

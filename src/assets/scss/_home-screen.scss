@@ -61,4 +61,21 @@
     }
   }
 
+  &__logo {
+    height: 100px;
+    width: 175px;
+    object-fit: contain;
+
+    &__label {
+      display: inline-block;
+      font-size: 1rem;
+      color: $black;
+    }
+  }
+
+  &__facet {
+    display: flex;
+    align-items: center;
+  }
+
 }
