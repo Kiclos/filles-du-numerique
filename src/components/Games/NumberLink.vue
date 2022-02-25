@@ -53,7 +53,7 @@ export default defineComponent({
     }
 
     function isGameOver(): boolean {
-      return paths.every(p => isNeighbors(p.goal, p.cases[p.cases.length - 1]) && p.cases.length > 1);
+      return paths.every(p => isNeighbors(p.goal, p.cases[p.cases.length - 1]) && p.cases.length > 0);
     }
 
     function getCasePath(c: Case): Path | undefined {
@@ -92,7 +92,7 @@ export default defineComponent({
       if (pathGoal) {
         res.push(`-${pathGoal.color}`);
         res.push('-last');
-        if (isNeighbors(pathGoal.goal, pathGoal.cases[pathGoal.cases.length - 1]) && pathGoal.cases.length > 1) {
+        if (isNeighbors(pathGoal.goal, pathGoal.cases[pathGoal.cases.length - 1]) && pathGoal.cases.length > 0) {
           res.push('-complete');
         }
       }
@@ -132,8 +132,7 @@ export default defineComponent({
         });
         if (pathNeighbors.length > 0) {
           const path: Path | undefined = getCasePath(pathNeighbors[0]);
-          console.log(path, path?.goal);
-          if (path && c !== path.goal) {
+          if (path && paths.every(p => p.goal !== c)) {
             path.cases.push(c);
             // eslint-disable-next-line no-param-reassign
             c.classes = getClass(c);
@@ -183,7 +182,6 @@ export default defineComponent({
         const path: Case [] = generateRandomPath(usedCases, undefined, 10);
         if (path.length > 1) {
           usedCases.push(...path);
-          console.log(JSON.parse(JSON.stringify(usedCases)));
           const first = path[0];
           const last = path[path.length - 1];
           newPaths.push({
