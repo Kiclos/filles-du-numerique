@@ -18,14 +18,14 @@
     </div>
     <div class="dt-game-presentation__footer">
       <button class="dt-button" :class="`-${content.color}`" @click="handleStartGame()">
-        {{ content.hasGame ? 'Commencer' : 'Collecter la pièce' }}
+        {{ getButtonText }}
       </button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 import IslandTitle from '@/components/Islands/IslandTitle.vue';
 import { IslandInfo } from '@/Model/Island/IslandInfo';
 
@@ -37,7 +37,7 @@ export default defineComponent({
       required: true,
     },
     status: {
-      type: String,
+      type: Number,
       required: true,
     },
   },
@@ -48,7 +48,17 @@ export default defineComponent({
     backToMap: () => null,
     skipGame: () => null,
   },
-  setup(_, { emit }) {
+  setup(props, { emit }) {
+    const getButtonText = computed(() => {
+      if (props.content.hasGame) {
+        return 'Commencer le jeu';
+      }
+      if (props.status === 3) {
+        return 'Consulter la ficher métier';
+      }
+      return 'Collecter la pièce';
+    });
+
     function handleStartGame(): void {
       emit('startGame');
     }
@@ -62,6 +72,7 @@ export default defineComponent({
     }
 
     return {
+      getButtonText,
       handleStartGame,
       handleBackTopMap,
       handleSkipGame,
