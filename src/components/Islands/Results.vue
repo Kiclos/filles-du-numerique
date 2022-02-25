@@ -50,10 +50,10 @@
               <strong>{{jobData.results.specificJob.studies}}</strong>
             </div>
           </TextContainer>
-          <h4 class="dt-results-h4">Quel impact ?</h4>
-          <p>Etre toi a de nombreux impacts positifs sur blabla... Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
-            illum, quaerat iure eius animi ratione alias omnis consequatur cum voluptas error eveniet,
-            ipsum possimus dignissimos facilis asperiores amet vel quae.</p>
+          <template v-if="jobData.results.specificJob.impact">
+            <h4 class="dt-results-h4">Quel impact ?</h4>
+            <p>{{jobData.results.specificJob.impact}}</p>
+          </template>
           <a v-if="jobData.results.specificJob.moreInfo" :href="jobData.results.specificJob.moreInfo">
             <Button class="dt-button -detail" :class="`-${color}`">En savoir plus</Button>
           </a>
