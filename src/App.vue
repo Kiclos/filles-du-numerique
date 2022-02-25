@@ -1,6 +1,6 @@
 <template>
   <transition name="zoom-fade">
-    <DialogView :dialogs="dialogs" @close="handleDialogClose()" v-if="dialogIsOpened"/>
+    <DialogView :dialogs="dialogs.current" @close="handleDialogClose()" v-if="dialogIsOpened"/>
   </transition>
   <transition name="zoom-fade">
     <IslandView :island="currentIsland" @backToMap="handleBackToMap()"  v-if="islandViewIsOpened"/>
@@ -15,7 +15,6 @@ import { defineComponent, onMounted, reactive, ref } from 'vue';
 import dialogData from '@/assets/data/storyline.json';
 import DialogView from '@/views/Dialog.vue';
 import WelcomeView from '@/views/Welcome.vue';
-import Dialog from '@/Model/Dialog';
 import IslandView from '@/views/IslandView.vue';
 import IslandsView from '@/views/IslandsView.vue';
 import useGameStore from './stores/game';
@@ -38,7 +37,10 @@ export default defineComponent({
     const dialogIsOpened = ref<boolean>(false);
     const resultIsOpened = ref<boolean>(false);
     const islandViewIsOpened = ref<boolean>(false);
-    const dialogs = reactive<Dialog []>(dialogData.dialogs.intro);
+    const dialogs = reactive({
+      current: dialogData.dialogs.intro,
+      ...dialogData.dialogs,
+    });
 
     const currentIsland: Island = reactive<Island>({} as Island);
 
@@ -62,7 +64,8 @@ export default defineComponent({
           gameStore.setGameStatus(GameStatus.POST_INTRO);
           dialogIsOpened.value = false;
           setTimeout(() => {
-            Object.assign(dialogs, dialogData.dialogs.meeting);
+            // Object.assign(dialogs, dialogData.dialogs.meeting);
+            dialogs.current = JSON.parse(JSON.stringify(dialogs.meeting));
             dialogIsOpened.value = true;
           });
           break;
@@ -74,7 +77,8 @@ export default defineComponent({
           gameStore.setGameStatus(GameStatus.POST_OUTRO);
           dialogIsOpened.value = false;
           setTimeout(() => {
-            Object.assign(dialogs, dialogData.dialogs.ending);
+            // Object.assign(dialogs, dialogData.dialogs.ending);
+            dialogs.current = JSON.parse(JSON.stringify(dialogs.ending));
             dialogIsOpened.value = true;
           });
           break;
@@ -92,7 +96,8 @@ export default defineComponent({
       const nbPieces = gameStore.islands.filter(x => x.status === IslandStatus.COMPLETE).length;
       if (nbPieces === 6 && gameStore.status === GameStatus.POST_INTRO) {
         gameStore.setGameStatus(GameStatus.ALL_GAMES_COMPLETE);
-        Object.assign(dialogs, dialogData.dialogs.separation);
+        // Object.assign(dialogs, dialogData.dialogs.separation);
+        dialogs.current = JSON.parse(JSON.stringify(dialogs.separation));
         dialogIsOpened.value = true;
         mapIsOpened.value = false;
       }

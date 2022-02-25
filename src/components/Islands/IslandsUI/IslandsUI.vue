@@ -12,7 +12,7 @@
       <template v-if="itemCollectedSize === 3">Et un demi robot de reconstruit ! Nous sommes à mi-chemin !</template>
       <template v-if="itemCollectedSize === 4">Quelle aventure ! Même démantelée, je m'amuse beaucoup !</template>
       <template v-if="itemCollectedSize === 5">C'est la dernière ligne droite ! Plus qu'une !</template>
-      <template v-if="itemCollectedSize === 6">Quel île veux-tu visiter aujourd'hui ?</template>
+      <template v-if="itemCollectedSize === 6">Quelle île veux-tu visiter aujourd'hui ?</template>
     </text-container>
   </div>
 </template>
