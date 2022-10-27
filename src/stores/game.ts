@@ -1,10 +1,11 @@
-import { defineStore } from 'pinia';
-import { GameStatus, IslandStatus } from '@/Model/GameStatus';
-import { Island, IslandName } from '@/Model/Island/Island';
+import { defineStore } from 'pinia'
+import { GameStatus, IslandStatus } from '@/Model/GameStatus'
+import type { Island } from '@/Model/Island/Island'
+import { IslandName } from '@/Model/Island/Island'
 
 interface GameState {
-  status: GameStatus,
-  islands: Island [],
+  status: GameStatus
+  islands: Island []
 }
 
 export default defineStore('game', {
@@ -21,15 +22,15 @@ export default defineStore('game', {
   } as GameState),
   actions: {
     setGameStatus(status: GameStatus): void {
-      this.status = status;
-      localStorage.setItem('gameStatus', JSON.stringify(this.status));
+      this.status = status
+      localStorage.setItem('gameStatus', JSON.stringify(this.status))
     },
     setIslandStatus(name: IslandName, status: IslandStatus): void {
-      const island = this.islands.find(x => x.name === name);
-      if (island !== undefined) {
-        island.status = status;
-      }
-      localStorage.setItem('islands', JSON.stringify(this.islands));
+      const island = this.islands.find(x => x.name === name)
+      if (island !== undefined)
+        island.status = status
+
+      localStorage.setItem('islands', JSON.stringify(this.islands))
     },
   },
-});
+})
