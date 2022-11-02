@@ -17,11 +17,13 @@ import Results from '@/components/Islands/Results.vue'
 import robotique from '@/assets/data/robotique.json'
 import useGameStore from '@/stores/game'
 import WinScreen from '@/components/Islands/WinScreen.vue'
+import PasswordCracker from "@/components/Games/PasswordCracker.vue";
 
 export default defineComponent({
   name: 'IslandView',
   components: {
     FindTheWayOut,
+    PasswordCracker,
     GamePresentation,
     NumberLink,
     Results,
@@ -125,6 +127,12 @@ export default defineComponent({
   />
   <NumberLink
     v-if="step === 1 && islandInfos.islandName === 'Nethosa'"
+    @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()"
+    @endGame="handleEndGame()"
+  />
+  <PasswordCracker
+    v-if="step === 1 && islandInfos.islandName === 'Segura'"
     @skipGame="handleSkipGame()"
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"

@@ -127,4 +127,8 @@
   &.-green {
     @include setPauseColor($light-green);
   }
+
+  &.-blue {
+    @include setPauseColor($blue);
+  }
 }
