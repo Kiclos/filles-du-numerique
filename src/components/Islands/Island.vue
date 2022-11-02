@@ -1,3 +1,21 @@
+<script lang="ts">
+import type { PropType } from 'vue'
+import { defineComponent } from 'vue'
+import IslandTitle from '@/components/Islands/IslandTitle.vue'
+import type { Island } from '@/Model/Island/Island'
+
+export default defineComponent({
+  name: 'Island',
+  components: { IslandTitle },
+  props: {
+    island: {
+      type: Object as PropType<Island>,
+      required: true,
+    },
+  },
+})
+</script>
+
 <template>
   <!-- eslint-disable -->
   <g :class="'dt-' + island.name.toLowerCase()" v-if="island">
@@ -12,19 +30,3 @@
     </foreignObject>
   </g>
 </template>
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import IslandTitle from '@/components/Islands/IslandTitle.vue';
-import { Island } from '@/Model/Island/Island';
-
-export default defineComponent({
-  name: 'island',
-  components: { IslandTitle },
-  props: {
-    island: {
-      type: Object as PropType<Island>,
-      required: true,
-    },
-  },
-});
-</script>

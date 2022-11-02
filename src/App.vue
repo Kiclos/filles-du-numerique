@@ -5,7 +5,6 @@ import dialogData from '@/assets/data/storyline.json'
 import DialogView from '@/views/Dialog.vue'
 import WelcomeView from '@/views/Welcome.vue'
 import IslandView from '@/views/IslandView.vue'
-import IslandsView from '@/views/IslandsView.vue'
 import type { Island } from '@/Model/Island/Island'
 import { GameStatus, IslandStatus } from '@/Model/GameStatus'
 
@@ -14,7 +13,6 @@ export default defineComponent({
   components: {
     DialogView,
     IslandView,
-    IslandsView,
     WelcomeView,
   },
   setup() {
