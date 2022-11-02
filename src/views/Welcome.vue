@@ -47,6 +47,8 @@ export default defineComponent({
     <h1 class="dt-h1">
       DigitTales
     </h1>
+    <i-carbon-accessibility />
+
     <button class="dt-button" @click="$emit('play')">
       Jouer
     </button>
