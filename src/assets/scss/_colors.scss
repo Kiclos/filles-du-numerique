@@ -19,3 +19,60 @@ $red: #FF2525;
 $dark-red: #C12050;
 $yellow: #FBDA61;
 $dark-yellow: #F8B34B;
+
+.bg-default {
+  background: linear-gradient(100deg, $yellow -6.84%, $pink 124.14%);
+}
+
+.text-default {
+  color: $orange
+}
+
+.bg-blue {
+  background: linear-gradient(100deg, $dark-blue -6.84%, $very-light-green 124.14%);
+}
+
+.text-blue {
+  color: $dark-blue;
+}
+
+.bg-green {
+  background: linear-gradient(100deg, $green -6.84%, $yellow 124.14%);
+}
+
+.text-green {
+  color: $light-green;
+}
+
+.bg-purple {
+  background: linear-gradient(100deg, $light-purple -6.84%, $dark-purple 124.14%);
+}
+
+.text-purple {
+  color: $purple;
+}
+
+.bg-purple-blue {
+  background: linear-gradient(100deg, $blue -6.84%, $purple 124.14%);
+}
+
+.text-purple-blue {
+  color: $blue2;
+}
+
+.bg-red {
+  background: linear-gradient(100deg, desaturate($red, 25%) -6.84%, desaturate($dark-pink, 10%) 124.14%);
+}
+
+.text-red {
+  color: $dark-red;
+}
+
+.bg-yellow {
+  background: linear-gradient(100deg, $yellow -6.84%, darken($dark-yellow, 10%) 124.14%);
+
+}
+
+.text-yellow {
+  color: $dark-yellow;
+}

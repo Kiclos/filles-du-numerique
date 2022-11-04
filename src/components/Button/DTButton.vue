@@ -1,3 +1,40 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'DTButton',
+  props: {
+    text: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    outlined: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    color: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    detail: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
+})
+</script>
+
+<template>
+  <button class="dt-button" :class="[{ '-text': text, '-outlined': outlined, '-detail': detail }, color === '' ? '' : `-${color}`]">
+    <slot />
+  </button>
+</template>
+
+<style lang="scss">
 @mixin setDefaultButtonColor($color1, $color2, $text-color) {
   background: linear-gradient(95.43deg, $color1 -6.84%, $color2 124.14%);
   color: $text-color;
@@ -132,7 +169,6 @@
     }
   }
 
-
   &.-purple-blue {
     @include setDefaultButtonColor($blue, $purple, $white);
 
@@ -170,3 +206,4 @@
   }
 
 }
+</style>

@@ -7,11 +7,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Button: typeof import('./components/Button/Button.vue')['default']
     CreditView: typeof import('./views/CreditView.vue')['default']
     Dialog: typeof import('./views/Dialog.vue')['default']
+    DTButton: typeof import('./components/Button/DTButton.vue')['default']
     FindTheWayOut: typeof import('./components/Games/FindTheWayOut.vue')['default']
+    Game: typeof import('./components/Games/GamesUI/Game.vue')['default']
+    GameContent: typeof import('./components/Games/GamesUI/GameView/GameContent.vue')['default']
+    GameFooter: typeof import('./components/Games/GamesUI/GameView/GameFooter.vue')['default']
+    GameHeader: typeof import('./components/Games/GamesUI/GameView/GameHeader.vue')['default']
     GamePresentation: typeof import('./components/Games/GamePresentation/GamePresentation.vue')['default']
+    GameView: typeof import('./components/Games/GamesUI/GameView/GameView.vue')['default']
     Home: typeof import('./views/Home.vue')['default']
     Island: typeof import('./components/Islands/Island.vue')['default']
     Islands: typeof import('./components/Islands/Islands.vue')['default']
@@ -22,6 +27,7 @@ declare module '@vue/runtime-core' {
     NumberLink: typeof import('./components/Games/NumberLink.vue')['default']
     PauseMenu: typeof import('./components/Games/GamesUI/PauseMenu/PauseMenu.vue')['default']
     Results: typeof import('./components/Islands/Results.vue')['default']
+    StepButton: typeof import('./components/Button/StepButton.vue')['default']
     TapToContinue: typeof import('./components/TapToContinue/TapToContinue.vue')['default']
     TextContainer: typeof import('./components/TextContainer/TextContainer.vue')['default']
     Welcome: typeof import('./views/Welcome.vue')['default']
