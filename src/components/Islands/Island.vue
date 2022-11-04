@@ -61,7 +61,7 @@ export default defineComponent({
           <template v-if="island.status === 0"> ? </template>
           <img src="@/assets/img/icon/software.png" alt="robot.png" v-else>
         </div>
-        <island-title :checked="island.status >= 2" v-if="island.status !== 0" :color="islandInfos.color" small>{{ island.name }}</island-title>
+        <island-title :checked="island.status >= 2" v-if="island.status !== 0" :color="islandInfos.color" small :name="island.name">{{ island.name }}</island-title>
       </div>
     </foreignObject>
   </g>

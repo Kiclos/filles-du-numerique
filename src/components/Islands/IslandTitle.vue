@@ -18,23 +18,41 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    name: {
+      type: String,
+      required: true,
+    },
   },
 })
 </script>
 
 <template>
   <div class="dt-island__title" :class="[{ '-checked': checked, '-small': small }, `-${color}`]">
-    <slot />
+    <i-ic-outline-check-circle v-if="checked" />
+    <div v-if="!checked">
+      <i-ic-outline-mark-unread-chat-alt v-if="name === 'Caramban'" />
+      <i-ic-outline-lightbulb v-if="name === 'IAïe'" />
+      <i-ic-baseline-draw v-if="name === 'Logicias'" />
+      <i-ic-baseline-network-check v-if="name === 'Nethosa'" />
+      <i-ic-twotone-settings v-if="name === 'Robotix'" />
+      <i-ic-baseline-security v-if="name === 'Segura'" />
+    </div>
+    <div>
+      <slot />
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 .dt-island__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   font-size: 1.5rem;
   border-radius: 1.25rem;
   margin-bottom: 2rem;
   padding: .25rem 1rem;
-  padding-left: 2.5rem;
   color: $orange;
   background: #fff;
   position: relative;
@@ -46,72 +64,36 @@ export default defineComponent({
 
   &.-small {
     font-size: unset;
-  }
+    gap: 5px;
 
-  [class$="-icon"] {
-    height: 1.5rem;
-    width: 1.5rem;
-    border-radius: .75rem;
-    font-size: 1rem;
-    background-color: $orange;
-    font-family: 'icon' !important;
-    position: absolute;
-    left: 0.4rem;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 0.4rem;
-    font-weight: 700;
-    color: #fff;
-    transition: .3s;
+    svg {
+      width: 1.2em;
+      height: 1.2em;
+    }
   }
 
   &.-blue {
     color: $blue;
-
-    [class$="-icon"] {
-      background-color: $blue;
-    }
   }
 
   &.-green {
     color: $light-green;
-
-    [class$="-icon"] {
-      background-color: $light-green;
-    }
   }
 
   &.-purple {
     color: $purple;
-
-    [class$="-icon"] {
-      background-color: $purple;
-    }
   }
 
   &.-purple-blue {
     color: $blue2;
-
-    [class$="-icon"] {
-      background-color: $blue2;
-    }
   }
 
   &.-red {
     color: $dark-red;
-
-    [class$="-icon"] {
-      background-color: $dark-red;
-    }
   }
 
   &.-yellow {
     color: $dark-yellow;
-
-    [class$="-icon"] {
-      background-color: $dark-yellow;
-    }
   }
 }
 </style>

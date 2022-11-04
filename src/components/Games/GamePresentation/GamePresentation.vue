@@ -66,7 +66,7 @@ export default defineComponent({
     </template>
     <template #content>
       <div :class="`island-icon island-icon-${content.color}`" :aria-label="content.img" />
-      <IslandTitle :checked="status > 1" :color="content.color">
+      <IslandTitle :checked="status > 1" :color="content.color" :name="content.islandName">
         Île {{ content.islandName }}
       </IslandTitle>
       <p class="island-description">
