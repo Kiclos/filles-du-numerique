@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AmstramgramPost: typeof import('./components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue')['default']
     Button: typeof import('./components/Button/Button.vue')['default']
     CreditView: typeof import('./views/CreditView.vue')['default']
     Dialog: typeof import('./views/Dialog.vue')['default']
@@ -15,6 +16,10 @@ declare module '@vue/runtime-core' {
     GamePresentation: typeof import('./components/Games/GamePresentation/GamePresentation.vue')['default']
     Home: typeof import('./views/Home.vue')['default']
     ICarbonAccessibility: typeof import('~icons/carbon/accessibility')['default']
+    ICarbonHeart: typeof import('~icons/carbon/heart')['default']
+    IFa6RegularCircleCheck: typeof import('~icons/fa6-regular/circle-check')['default']
+    IFa6RegularComment: typeof import('~icons/fa6-regular/comment')['default']
+    IFa6RegularHeart: typeof import('~icons/fa6-regular/heart')['default']
     Island: typeof import('./components/Islands/Island.vue')['default']
     Islands: typeof import('./components/Islands/Islands.vue')['default']
     IslandsUI: typeof import('./components/Islands/IslandsUI/IslandsUI.vue')['default']
@@ -22,6 +27,7 @@ declare module '@vue/runtime-core' {
     IslandTitle: typeof import('./components/Islands/IslandTitle.vue')['default']
     IslandView: typeof import('./views/IslandView.vue')['default']
     NumberLink: typeof import('./components/Games/NumberLink.vue')['default']
+    PasswordCracker: typeof import('./components/Games/PasswordCracker.vue')['default']
     PauseMenu: typeof import('./components/Games/GamesUI/PauseMenu/PauseMenu.vue')['default']
     Results: typeof import('./components/Islands/Results.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

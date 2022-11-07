@@ -48,7 +48,11 @@ export default defineComponent({
           <div><span>Clyde, un habitant de l’île a oublié son mot de passe, il est très simple. Tu devrais pouvoir le retrouver grâce à son profil instagram.</span></div>
         </div>
         <div class="amstramgram-container">
-          <AmstramgramPost />
+          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
+          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
+          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
+          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
+          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
         </div>
         <div class="password-container">
           <button class="dt-button -blue">
@@ -67,6 +71,7 @@ export default defineComponent({
   flex-direction: column;
   text-align: center;
   gap: 22px;
+  padding-top: 30px;
 }
 .main-container {
   display: grid;
@@ -76,7 +81,7 @@ export default defineComponent({
   > div {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
   }
 }
 .blue-bg {
