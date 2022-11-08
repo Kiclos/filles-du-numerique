@@ -61,3 +61,70 @@ export default defineComponent({
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.dt-dialog {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  background-color: $white;
+  z-index: 2;
+  transition: .3s;
+
+  &__content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column-reverse;
+    max-width: 500px;
+    height: 100%;
+    width: 100%;
+    //overflow: scroll;
+  }
+
+  & .dt-textcontainer {
+    width: 100%;
+    margin: .5rem 0;
+    pointer-events: none;
+  }
+
+  & .dt-taptocontinue {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    font-size: .7rem;
+    animation: 2s clignote infinite;
+    padding-bottom: 1rem;
+  }
+}
+
+@keyframes dialog-zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes clignote {
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+</style>

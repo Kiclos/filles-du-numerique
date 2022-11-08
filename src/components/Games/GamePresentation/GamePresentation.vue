@@ -57,29 +57,93 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="dt-game-presentation" :class="`-${content.color}`">
-    <div class="dt-game-presentation__header">
-      <button class="dt-game-presentation__header__back-button" @click="handleBackTopMap()">
-        <span class="icon-arrow_back" aria-label="Retour à la carte" />
-      </button>
-      <button class="dt-game-presentation__header__skip-button" @click="handleSkipGame()">
-        Passer <br>le mini jeu <span class="icon-skip_next" />
-      </button>
-    </div>
-    <div class="dt-game-presentation__content">
-      <div class="dt-game-presentation__content__island-icon" :aria-label="content.img" />
-      <IslandTitle :checked="status > 1">
+  <Game :color="content.color">
+    <template #header>
+      <StepButton :color="content.color" back @click="handleBackTopMap()" />
+      <StepButton :color="content.color" next @click="handleSkipGame()">
+        Passer <br>le mini jeu
+      </StepButton>
+    </template>
+    <template #content>
+      <div :class="`island-icon island-icon-${content.color}`" :aria-label="content.img" />
+      <IslandTitle :checked="status > 1" :color="content.color" :name="content.islandName">
         Île {{ content.islandName }}
       </IslandTitle>
-      <p class="dt-game-presentation__content__text">
+      <p class="island-description">
         {{ content.presentation }}<br><br>
         {{ content.guideline }}
       </p>
-    </div>
-    <div class="dt-game-presentation__footer">
-      <button class="dt-button" :class="`-${content.color}`" @click="handleStartGame()">
-        {{ getButtonText }}
-      </button>
-    </div>
-  </div>
+    </template>
+    <template #footer>
+      <div class="island-start-button">
+        <DTButton :color="content.color" @click="handleStartGame()">
+          {{ getButtonText }}
+        </DTButton>
+      </div>
+    </template>
+  </Game>
 </template>
+
+<style lang="scss">
+.island-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  height: 10rem;
+  width: 10rem;
+  background-color: rgba($white, .25);
+  border-radius: 5rem;
+
+  &:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.island-icon-blue:after {
+  background: url('../../../assets/img/icon/shield.png') center center no-repeat;
+  background-size: 60%;
+}
+
+.island-icon-green:after {
+  background: url('../../../assets/img/icon/software.png') center center no-repeat;
+  background-size: 60%;
+}
+
+.island-icon-purple:after {
+  background: url('../../../assets/img/icon/planet.png') center center no-repeat;
+  background-size: 60%;
+}
+
+.island-icon-purple-blue:after {
+  background: url('../../../assets/img/icon/calculator.png') center center no-repeat;
+  background-size: 60%;
+}
+
+.island-icon-red:after {
+  background: url('../../../assets/img/icon/robot.png') center center no-repeat;
+  background-size: 60%;
+}
+
+.island-icon-yellow:after {
+  background: url('../../../assets/img/icon/tools.png') center center no-repeat;
+  background-size: 60%;
+}
+
+.island-description {
+  overflow-y: auto;
+}
+
+.island-start-button {
+  padding: .75rem 1.5rem 1.5rem 1.5rem;
+  background-color: $white;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+</style>

@@ -10,9 +10,9 @@
     <transition name="fade">
       <div class="dt-pause__container" v-if="isOpened">
         <h2 class="dt-pause__title">Pause</h2>
-        <button class="dt-button" :class="`-${color}`" @click="isOpened = false">Reprendre</button>
-        <button class="dt-button" :class="`-${color}`" @click="handleSkip()">Passer</button>
-        <button class="dt-button" :class="`-${color}`" @click="handleQuit()">Retour à l'écran des îles</button>
+        <DTButton :color="color" @click="isOpened = false">Reprendre</DTButton>
+        <DTButton :color="color" @click="handleSkip()">Passer</DTButton>
+        <DTButton :color="color" @click="handleQuit()">Retour à l'écran des îles</DTButton>
       </div>
     </transition>
   </div>
