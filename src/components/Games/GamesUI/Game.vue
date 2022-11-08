@@ -70,9 +70,6 @@ export default defineComponent({
 
   &__footer {
     margin: 1rem 2rem 0 2rem;
-    padding: .75rem 1.5rem 1.5rem 1.5rem;
-    background-color: $white;
-    border-radius: 1.5rem 1.5rem 0 0;
   }
 }
 </style>

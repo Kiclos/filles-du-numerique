@@ -29,7 +29,7 @@ export default defineComponent({
 <template>
   <div class="dt-island__title" :class="[{ '-checked': checked, '-small': small }, `-${color}`]">
     <i-ic-outline-check-circle v-if="checked" />
-    <div v-if="!checked">
+    <div v-else>
       <i-ic-outline-mark-unread-chat-alt v-if="name === 'Caramban'" />
       <i-ic-outline-lightbulb v-if="name === 'IAïe'" />
       <i-ic-baseline-draw v-if="name === 'Logicias'" />

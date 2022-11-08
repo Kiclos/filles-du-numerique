@@ -75,9 +75,11 @@ export default defineComponent({
       </p>
     </template>
     <template #footer>
-      <DTButton :color="content.color" @click="handleStartGame()">
-        {{ getButtonText }}
-      </DTButton>
+      <div class="island-start-button">
+        <DTButton :color="content.color" @click="handleStartGame()">
+          {{ getButtonText }}
+        </DTButton>
+      </div>
     </template>
   </Game>
 </template>
@@ -137,5 +139,11 @@ export default defineComponent({
 
 .island-description {
   overflow-y: auto;
+}
+
+.island-start-button {
+  padding: .75rem 1.5rem 1.5rem 1.5rem;
+  background-color: $white;
+  border-radius: 1.5rem 1.5rem 0 0;
 }
 </style>
