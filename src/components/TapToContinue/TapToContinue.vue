@@ -9,3 +9,9 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({ name: 'TapToContinue' });
 </script>
+
+<style lang="scss">
+.dt-taptocontinue {
+  color: #A6B8C1;
+}
+</style>

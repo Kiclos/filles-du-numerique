@@ -1,12 +1,17 @@
 <script lang="ts">
+import type { PropType } from 'vue'
+
+export interface Post {
+  username: string
+  description: string
+  date: string
+  profilePicUrl: string
+  imageUrl: string
+  numberOfLikes: number
+}
 export default {
   props: {
-    imageUrl: String,
-    username: String,
-    profilePicUrl: String,
-    numberOfLikes: Number,
-    description: String,
-    date: String,
+    post: Object as PropType<Post>,
   },
 }
 </script>
@@ -16,16 +21,16 @@ export default {
     <div class="amstramgram-bar amstramgram-header">
       <div class="amstramgram-icon">
         <div class="circle-picture">
-          <img :src="profilePicUrl" :alt="`${username} profile picture`">
+          <img :src="post.profilePicUrl" :alt="`${post.username} profile picture`">
         </div>
       </div>
       <div class="amstramgram-username">
-        <strong>{{ username }}</strong>
+        <strong>{{ post.username }}</strong>
       </div>
       <div />
     </div>
     <div class="amstramgram-picture">
-      <img :src="imageUrl" :alt="`${username} image post`">
+      <img :src="post.imageUrl" :alt="`${post.username} image post`">
     </div>
 
     <div class="amstramgram-bar amstramgram-footer">
@@ -37,13 +42,13 @@ export default {
       </div>
     </div>
     <div class="amstramgram-like-bar">
-      <span>{{ numberOfLikes }} J'aime</span>
+      <span>{{ post.numberOfLikes }} J'aime</span>
     </div>
     <div class="amstramgram-description">
-      <span>{{ description }}</span>
+      <span>{{ post.description }}</span>
     </div>
     <div class="amstramgram-date amstramgram-description">
-      <span>{{ date }}</span>
+      <span>{{ post.date }}</span>
     </div>
   </div>
 </template>
@@ -68,6 +73,7 @@ export default {
   }
   .amstramgram-footer {
     grid-template-columns: 60px 60px auto;
+    height: 40px;
   }
   .circle-picture {
     width: 50px;
@@ -95,10 +101,11 @@ export default {
   }
   .amstramgram-description {
     font-size: 12px;
-    padding: 10px 15px;
+    padding: 4px 15px;
   }
   .amstramgram-date {
-    color: #cacaca;
+    color: #9f9f9f;
+    border: #cacaca;
     text-transform: uppercase;
     margin-top: -7px;
   }

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
+import type { Post } from '@/components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue'
 import AmstramgramPost from '@/components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue'
 import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue'
 
@@ -13,6 +14,21 @@ export default defineComponent({
     endGame: () => null,
   },
   setup(_, { emit }) {
+    const ROOT_ASSETS = '/src/assets/img/PasswordCracker/'
+    const defaultUser: Partial<Post> & { username: string; profilePicUrl: string } = {
+      username: 'clyde.le.goat',
+      profilePicUrl: `${ROOT_ASSETS}pessi.jpg`,
+    }
+    const posts: Post[] = [
+      {
+        ...defaultUser,
+        description: 'Ace, mon âme soeur ❤',
+        imageUrl: `${ROOT_ASSETS}dog-g9104dfa66_1280.jpg`,
+        numberOfLikes: 3602,
+        date: 'Il y a 8 heures',
+      },
+    ]
+
     function isGameOver(): void {
       if (false)
         emit('endGame')
@@ -33,35 +49,41 @@ export default defineComponent({
     return {
       handleSkipGame,
       handleQuitGame,
+      posts,
     }
   },
 })
 </script>
 
 <template>
-  <div class="dt-password-cracker__container blue-bg">
-    <PauseMenu color="blue" @skip="handleSkipGame()" @quit="handleQuitGame()" />
-    <div class="dt-password-cracker__interface">
-      <div class="main-container">
-        <div class="segura-header">
-          <span class="dt-island__title"><span class="icon-">!</span>Île Segura</span>
-          <div><span>Clyde, un habitant de l’île a oublié son mot de passe, il est très simple. Tu devrais pouvoir le retrouver grâce à son profil instagram.</span></div>
+  <PauseMenu color="blue" @skip="handleSkipGame()" @quit="handleQuitGame()" />
+  <Game color="blue">
+    <template #header>
+      <div class="segura-header">
+        <div class="segura-title">
+          <IslandTitle color="blue" name="Segura">
+            Île Segura
+          </IslandTitle>
         </div>
-        <div class="amstramgram-container">
-          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
-          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
-          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
-          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
-          <AmstramgramPost username="julien.carquois" description="UwU mon Ace" date="Il y a 12 heures" profile-pic-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3UO3MyHiEr1m7WxPDjONOPxXxp5WELC6am9-S1AD3bw&s" image-url="https://photos.tf1.fr/1200/720/qui-sont-les-pessi-les-auto-proclames-justiciers-de-twitter-79430-77a0e6-d39812-0@1x.webp" number-of-likes="3602" />
-        </div>
-        <div class="password-container">
-          <button class="dt-button -blue">
-            Essayer un mot de passe
-          </button>
-        </div>
+        <div><span>Clyde, un habitant de l’île a oublié son mot de passe, il est très simple. Tu devrais pouvoir le retrouver grâce à son profil instagram.</span></div>
       </div>
+    </template>
+    <template #content>
+      <div class="amstramgram-container">
+        <AmstramgramPost v-for="(post, index) in posts" :key="index" :post="post" />
+      </div>
+    </template>
+    <template #footer>
+      <div class="password-container">
+        <button class="dt-button -blue">
+          Essayer un mot de passe
+        </button>
+      </div>
+    </template>
+    <div class="dt-password-cracker__container blue-bg">
+      <div class="dt-password-cracker__interface" />
     </div>
-  </div>
+  </Game>
 </template>
 
 <style lang="scss">
@@ -73,17 +95,10 @@ export default defineComponent({
   gap: 22px;
   padding-top: 30px;
 }
-.main-container {
-  display: grid;
-  grid-template-rows: 180px auto 80px;
-  width: 100%;
-  height: 100vh;
-  > div {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-  }
+.segura-title {
+  display: inline-block;
 }
+
 .blue-bg {
   background: linear-gradient(100deg, #0093E9 -6.84%, #80D0C7 124.14%);
 }
@@ -94,7 +109,12 @@ export default defineComponent({
   height: 100%;
   background-color: black;
   overflow-y: scroll;
+  border-radius: 15px;
+  color: black;
 
+}
+strong {
+  font-weight: bold;
 }
 .dt-password-cracker {
   &__container {
