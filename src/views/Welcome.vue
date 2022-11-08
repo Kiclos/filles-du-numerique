@@ -47,7 +47,7 @@ export default defineComponent({
     <h1 class="dt-h1">
       DigitTales
     </h1>
-    <DTButton @click="$emit('play')">
+    <DTButton class="dt-button" @click="$emit('play')">
       Jouer
     </DTButton>
     <DTButton v-if="!isIphone" outlined @click="install">

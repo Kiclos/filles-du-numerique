@@ -25,11 +25,11 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const getButtonText = computed(() => {
-      if (props.content.hasGame)
-        return 'Commencer le jeu'
-
       if (props.status === 3)
         return 'Consulter la ficher métier'
+
+      if (props.content.hasGame)
+        return 'Commencer le jeu'
 
       return 'Collecter la pièce'
     })

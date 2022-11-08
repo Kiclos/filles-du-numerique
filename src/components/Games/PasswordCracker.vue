@@ -27,11 +27,44 @@ export default defineComponent({
         numberOfLikes: 3602,
         date: 'Il y a 8 heures',
       },
+      {
+        ...defaultUser,
+        description: 'Au concert de Dua Lipa à Stockholm 🇸🇪',
+        imageUrl: `${ROOT_ASSETS}dua-lipa-gf9a9ff077_1280.jpg`,
+        numberOfLikes: 1856,
+        date: 'Il y a 4 jours',
+      },
+      {
+        ...defaultUser,
+        description: '❤',
+        imageUrl: `${ROOT_ASSETS}dog-ge146353c0_1280.jpg`,
+        numberOfLikes: 4202,
+        date: 'Il y a 2 semaines',
+      },
+      {
+        ...defaultUser,
+        description: '#Rando #MontBlanc',
+        imageUrl: `${ROOT_ASSETS}snow-gbb3a5897e_1280.jpg`,
+        numberOfLikes: 1925,
+        date: 'Il y a 1 mois',
+      },
+      {
+        ...defaultUser,
+        description: 'Déjà 1 an 12/07/2021 ❤',
+        imageUrl: `${ROOT_ASSETS}dog-g464505e82_1280.jpg`,
+        numberOfLikes: 4523,
+        date: 'Il y a 4 mois',
+      },
+      {
+        ...defaultUser,
+        description: 'De retour dans la meilleure ville 🇫🇷',
+        imageUrl: `${ROOT_ASSETS}1667919328125.jpg`,
+        numberOfLikes: 7899,
+        date: 'Il y a 6 mois',
+      },
     ]
-
-    function isGameOver(): void {
-      if (false)
-        emit('endGame')
+    function handleEndGame(): void {
+      emit('endGame')
     }
 
     function handleSkipGame(): void {
@@ -49,6 +82,7 @@ export default defineComponent({
     return {
       handleSkipGame,
       handleQuitGame,
+      handleEndGame,
       posts,
     }
   },
@@ -74,11 +108,7 @@ export default defineComponent({
       </div>
     </template>
     <template #footer>
-      <div class="password-container">
-        <button class="dt-button -blue">
-          Essayer un mot de passe
-        </button>
-      </div>
+      <PasswordChecker @passwordFound="handleEndGame()" />
     </template>
     <div class="dt-password-cracker__container blue-bg">
       <div class="dt-password-cracker__interface" />
@@ -87,8 +117,6 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-.password-container {
-}
 .segura-header {
   flex-direction: column;
   text-align: center;
