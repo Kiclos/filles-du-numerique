@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     FindTheWayOut: typeof import('./components/Games/FindTheWayOut.vue')['default']
     Game: typeof import('./components/Games/GamesUI/Game.vue')['default']
     GamePresentation: typeof import('./components/Games/GamePresentation/GamePresentation.vue')['default']
+    Home: typeof import('./views/Home.vue')['default']
     IIcBaselineDraw: typeof import('~icons/ic/baseline-draw')['default']
     IIcBaselineNetworkCheck: typeof import('~icons/ic/baseline-network-check')['default']
     IIcBaselineSecurity: typeof import('~icons/ic/baseline-security')['default']
@@ -34,6 +35,7 @@ declare module '@vue/runtime-core' {
     StepButton: typeof import('./components/Button/StepButton.vue')['default']
     TapToContinue: typeof import('./components/TapToContinue/TapToContinue.vue')['default']
     TextContainer: typeof import('./components/TextContainer/TextContainer.vue')['default']
+    Undefined: typeof import('./views/index.vue')['default']
     Welcome: typeof import('./views/Welcome.vue')['default']
     WinScreen: typeof import('./components/Islands/WinScreen.vue')['default']
   }

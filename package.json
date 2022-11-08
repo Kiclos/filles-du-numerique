@@ -1,5 +1,6 @@
 {
   "name": "digitales",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -20,7 +21,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.27.0",
     "@iconify/json": "^2.1.132",
-    "@types/node": "^18.11.7",
+    "@types/node": "^18.11.9",
     "eslint": "^8.26.0",
     "sass": "^1.26.5",
     "typescript": "^4.8.4",
