@@ -18,12 +18,7 @@ export default defineConfig({
   build: {
     cssCodeSplit: false,
   },
-  server: {
-    port: 3000,
-    hmr: {
-      clientPort: 3000,
-    },
-  },
+
   resolve: { alias: { '@': `${path.resolve(__dirname, 'src')}/` } },
   optimizeDeps: {
     include: [
@@ -40,7 +35,9 @@ export default defineConfig({
       ],
       extensions: ['vue'],
       syncIndex: true,
-    }), Layouts(), vue(), Components({
+    }),
+    Layouts(),
+    Components({
       resolvers: [
         IconsResolver(),
       ],
@@ -51,5 +48,6 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
     }),
+    vue(),
   ],
 })

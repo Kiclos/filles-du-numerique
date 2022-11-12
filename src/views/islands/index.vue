@@ -22,5 +22,5 @@ export default defineComponent({
 
 <template>
   <IslandsUI />
-  <Islands @selectIsland="handleIslandSelection($event)" />
+  <IslandsItems @selectIsland="handleIslandSelection($event)" />
 </template>

@@ -22,7 +22,7 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props, { emit }) {
+  setup(props) {
     const islandInfos = reactive<IslandInfo>({} as IslandInfo)
 
     function getIslandInfos(name: IslandName): IslandInfo {
@@ -63,7 +63,6 @@ export default defineComponent({
         </div>
         <island-title :checked="island.status >= 2" v-if="island.status !== 0" :color="islandInfos.color" small :name="island.name">{{ island.name }}</island-title>
       </div>
-
     </foreignObject>
   </g>
 </template>
