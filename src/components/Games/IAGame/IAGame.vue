@@ -197,6 +197,7 @@ export default defineComponent({
     function selectAnswer(index: number, isCat: boolean): void {
       selectedAnswerIndex.value = index
       isNotCatError.value = false
+      isNotAnswerError.value = false
       selectedAnswerIsCat = isCat
     }
 
@@ -209,6 +210,7 @@ export default defineComponent({
       selectAnswer,
       selectedAnswerIndex,
       isNotCatError,
+      isNotAnswerError,
     }
   },
 })
@@ -238,8 +240,17 @@ export default defineComponent({
           :src="animal.img" alt="animal" width="200" @click="selectAnswer(index, animal.isCat)"
         >
       </div>
-      <div v-if="isNotCatError" class="dt-ia-error-cat">
-        Je reconnais, ce n'est pas un chat !
+      <div v-if="isNotCatError || isNotAnswerError" class="dt-ia-gustave-bubble">
+        <img class="dt-ia-gustave" src="@/assets/img/Gustave/gustave_head.png">
+        <div class="dt-ia-bubble">
+          <template v-if="isNotCatError">
+            Je reconnais, ce n'est pas un chat !
+          </template>
+          <template v-if="isNotAnswerError">
+            Tu ne veux pas m'aider en sélectionnant le chat ?
+          </template>
+          <div class="dt-ia-bubble-left" />
+        </div>
       </div>
     </template>
     <template #footer>
@@ -298,8 +309,42 @@ export default defineComponent({
     border-color: #dc3838;
   }
 
-  &-error-cat {
+  &-gustave {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  &-gustave-bubble {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 40px 10px;
+  }
+
+  &-bubble {
+    height: 100px;
+    width: 250px;
+    background-color: white;
+    position: relative;
+    border-radius: 20px;
+    margin-left: 30px;
+    padding: 20px;
+    font-weight: bold;
     color: #dc3838;
+  }
+
+  &-bubble-left {
+    width: 0;
+    height: 0;
+    border-left: 2vh solid transparent;
+    border-right: 2vh solid transparent;
+    border-top: 10vh solid white;
+    position: absolute;
+    top: 20px;
+    left: -5px;
+    transform: rotate(90deg);
+    z-index: -1;
   }
 }
 </style>
