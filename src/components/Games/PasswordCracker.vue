@@ -1,4 +1,5 @@
 <script lang="ts">
+import HintArea from "@/components/Games/GamesUI/PasswordCracker/HintArea.vue";
 import { defineComponent, onMounted } from 'vue'
 import type { Post } from '@/components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue'
 import AmstramgramPost from '@/components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue'
@@ -6,7 +7,7 @@ import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue'
 
 export default defineComponent({
   name: 'PasswordCracker',
-  components: { AmstramgramPost, PauseMenu },
+  components: {HintArea, AmstramgramPost, PauseMenu },
   emits: ['skipGame', 'quitGame', 'endGame'],
   events: {
     skipGame: () => null,
@@ -16,8 +17,8 @@ export default defineComponent({
   setup(_, { emit }) {
     const ROOT_ASSETS = '/src/assets/img/PasswordCracker/'
     const defaultUser: Partial<Post> & { username: string; profilePicUrl: string } = {
-      username: 'clyde.le.goat',
-      profilePicUrl: `${ROOT_ASSETS}pessi.jpg`,
+      username: 'fiona.the.queen',
+      profilePicUrl: `${ROOT_ASSETS}smile-gc59efb47f_1280.jpg`,
     }
     const posts: Post[] = [
       {
@@ -99,13 +100,14 @@ export default defineComponent({
             Île Segura
           </IslandTitle>
         </div>
-        <div><span>Clyde, un habitant de l’île a oublié son mot de passe, il est très simple. Tu devrais pouvoir le retrouver grâce à son profil instagram.</span></div>
+        <div><span>Fiona, une habitante de l’île a oublié le mot de passe de son ordinateur. Il est très simple donc tu devrais pouvoir le retrouver grâce à son profil Amstramgram.</span></div>
       </div>
     </template>
     <template #content>
       <div class="amstramgram-container">
         <AmstramgramPost v-for="(post, index) in posts" :key="index" :post="post" />
       </div>
+      <HintArea />
     </template>
     <template #footer>
       <PasswordChecker @passwordFound="handleEndGame()" />
@@ -139,6 +141,7 @@ export default defineComponent({
   overflow-y: scroll;
   border-radius: 15px;
   color: black;
+  position: relative;
 
 }
 strong {
