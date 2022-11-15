@@ -129,6 +129,13 @@ export default defineComponent({
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
   />
+  <IAGame
+    v-if="step === 1 && islandInfos.islandName === 'IAïe'"
+    :island-infos="islandInfos"
+    @skip-game="handleSkipGame()"
+    @quit-game="handleBackToMap()"
+    @end-game="handleEndGame()"
+  />
   <GamePresentation
     v-if="step === 0 && islandInfos.islandName" :color="islandInfos.color" :content="islandInfos"
     :status="island.status"

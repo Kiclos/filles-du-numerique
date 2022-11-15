@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     Game: typeof import('./components/Games/GamesUI/Game.vue')['default']
     GamePresentation: typeof import('./components/Games/GamePresentation/GamePresentation.vue')['default']
     Home: typeof import('./views/Home.vue')['default']
+    IAGame: typeof import('./components/Games/IAGame/IAGame.vue')['default']
     IIcBaselineDraw: typeof import('~icons/ic/baseline-draw')['default']
     IIcBaselineNetworkCheck: typeof import('~icons/ic/baseline-network-check')['default']
     IIcBaselineSecurity: typeof import('~icons/ic/baseline-security')['default']

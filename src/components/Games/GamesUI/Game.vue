@@ -48,7 +48,8 @@ export default defineComponent({
 
   &__header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: 2rem;
     padding: 0 2rem;
   }
