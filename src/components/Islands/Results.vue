@@ -1,19 +1,17 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
-import Button from '../Button/DTButton.vue'
 import TextContainer from '@/components/TextContainer/TextContainer.vue'
-import type IslandData from '@/Model/Island/IslandData'
+import type { IslandInfo } from '@/Model/Island/IslandInfo'
 
 export default defineComponent({
   name: 'GameResults',
   components: {
     TextContainer,
-    Button,
   },
   props: {
     jobData: {
-      type: Object as PropType<IslandData>,
+      type: Object as PropType<IslandInfo>,
       required: true,
     },
     color: {
@@ -28,7 +26,7 @@ export default defineComponent({
   <div class="dt-results" :class="`-${color}`">
     <header class="dt-results-header dt-flex-align-text--center">
       <nav>
-        <button class="icon-close dt-grey" @click="$emit('close')" />
+        <DTButton class="icon-close dt-grey" @click="$emit('close')" />
       </nav>
       <div class="dt-flex-center">
         <span class="icon-trophy dt-p16 dt-trophy--yellow dt-font-xxxl" />
@@ -123,9 +121,11 @@ export default defineComponent({
       </section>
 
       <footer>
-        <DTButton :color="color" @click="$emit('close')">
-          Retour à la carte
-        </DTButton>
+        <router-link to="/islands">
+          <DTButton :color="color" @click="$emit('close')">
+            Retour à la carte
+          </DTButton>
+        </router-link>
       </footer>
     </article>
   </div>

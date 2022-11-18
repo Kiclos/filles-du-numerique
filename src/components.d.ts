@@ -7,6 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    _Island: typeof import('./views/_Island.vue')['default']
+    '[island]': typeof import('./views/islands/[island].vue')['default']
+    '[Island]': typeof import('./views/islands/[Island].vue')['default']
     CreditView: typeof import('./views/CreditView.vue')['default']
     Dialog: typeof import('./views/Dialog.vue')['default']
     DTButton: typeof import('./components/Button/DTButton.vue')['default']
@@ -22,7 +25,8 @@ declare module '@vue/runtime-core' {
     IIcOutlineMarkUnreadChatAlt: typeof import('~icons/ic/outline-mark-unread-chat-alt')['default']
     IIcTwotoneSettings: typeof import('~icons/ic/twotone-settings')['default']
     Island: typeof import('./components/Islands/Island.vue')['default']
-    Islands: typeof import('./components/Islands/Islands.vue')['default']
+    Islands: typeof import('./views/islands/index.vue')['default']
+    IslandsItems: typeof import('./components/Islands/IslandsItems.vue')['default']
     IslandsUI: typeof import('./components/Islands/IslandsUI/IslandsUI.vue')['default']
     IslandsView: typeof import('./views/IslandsView.vue')['default']
     IslandTitle: typeof import('./components/Islands/IslandTitle.vue')['default']

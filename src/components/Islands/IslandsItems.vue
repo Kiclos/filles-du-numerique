@@ -34,24 +34,25 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- eslint-disable -->
-  <div class="dt-island" v-if="!isIphone">
+  <div v-if="!isIphone" class="dt-island">
     <svg viewBox="0 0 450 700" fill="none">
       <svg viewBox="0 0 900 1400" x="0" y="0" width="450" height="700">
         <foreignObject x="0" y="0" width="900" height="1400">
           <img src="@/assets/img/lines.png" alt="map">
         </foreignObject>
       </svg>
-      <svg viewBox="0 0 900 1400"  x="0" y="0" width="450" height="700">
+      <svg viewBox="0 0 900 1400" x="0" y="0" width="450" height="700">
         <foreignObject x="0" y="0" width="900" height="1400">
           <img src="@/assets/img/Robotix.png" alt="map">
         </foreignObject>
       </svg>
-      <Island v-for="island in islands" :key="island.id" :island="island" @click="handleIslandSelection(island)"/>
+      <router-link v-for="island in islands" :key="island.id" :to="`/islands/${island.name}`"><Island :island="island" /></router-link>
     </svg>
   </div>
-  <div class="dt-island -iphone" v-else>
-    <Island v-for="island in islands" :key="island.id" :island="island" @click="handleIslandSelection(island)"/>
+  <div v-else class="dt-island -iphone">
+    <router-link v-for="island in islands" :key="island.id" :to="`/islands/${island.name}`">
+      <Island :island="island" />
+    </router-link>
   </div>
 </template>
 
