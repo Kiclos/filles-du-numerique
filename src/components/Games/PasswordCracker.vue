@@ -69,7 +69,7 @@ export default defineComponent({
 
     function handlePasswordNotFound(): void {
       if (!showArrow.value)
-        setTimeout(() => showArrow.value = false, 3000)
+        setTimeout(() => showArrow.value = false, 8000)
       if (!showErrorPassword.value)
         setTimeout(() => showErrorPassword.value = false, 8000)
       showArrow.value = true
