@@ -1,5 +1,5 @@
 <script>
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
   name: 'HintArea',
@@ -8,8 +8,19 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+    hint: {
+      type: String,
+      required: true,
+    },
   },
-  setup(_, { emit }) {
+  emits: ['hintClicked'],
+  setup(props, { emit }) {
+    const hintShowed = ref(false)
+    function handleBtnClick() {
+      if (!hintShowed.value)
+        emit('hintClicked')
+      hintShowed.value = true
+    }
     onMounted(() => {
       setTimeout(() => {
         document.querySelectorAll('.hint-button').forEach((element) => {
@@ -17,20 +28,43 @@ export default defineComponent({
         })
       }, 2000)
     })
+    return { handleBtnClick, hintShowed }
   },
 })
 </script>
 
 <template>
   <div class="hint-area">
-    <button class="dt-button -yellow hint-button">
+    <button class="dt-button -yellow hint-button" @click="handleBtnClick()">
       <span class="hint-icon"><i-mdi-lightbulb-on-outline /></span><span class="hint-label"> Indice</span>
     </button>
     <div class="arrow" :class="{ 'hidden-arrow': !showArrow }" />
+    <div style="height: 65px; margin-right: 10000px" />
+    <div class="hint-container" :class="{ 'hint-container-hidden': !hintShowed }">
+      <span>{{ hint }}</span>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
+.hint-container {
+  color: black;
+  transition: opacity 1s, margin-top 1s;
+  opacity: 1;
+  background: #fff;
+  height: 70px;
+  width: 300px;
+  float:right;
+  border-radius: 15px;
+  padding: 8px;
+  text-align: center;
+  margin-top: 0;
+  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.05), 0 4px 4px rgba(0, 0, 0, 0.1), inset 30px 30px 60px rgba(255, 255, 255, 0.25), inset 10px 10px 20px rgba(255, 255, 255, 0.25);
+}
+.hint-container-hidden {
+  opacity: 0;
+  margin-top: -150px;
+}
 .hint-area {
   position: absolute;
   width: 100%;

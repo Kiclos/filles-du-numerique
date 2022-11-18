@@ -34,6 +34,13 @@ export default defineComponent({
       else
         return 'Malheureusement, ce n\'est pas la bonne réponse. Si tu souhaites avoir la réponse, tu peux cliquer sur le bouton en haut à droite.'
     }
+    function checkKey(e: { which: number }) {
+      if (e.which === 13) {
+        const btn = document.getElementById('test-password-btn')
+        if (btn !== null)
+          btn.click()
+      }
+    }
     onMounted(() => {
 
     })
@@ -43,6 +50,7 @@ export default defineComponent({
       testPassword,
       providedPassword,
       getSentence,
+      checkKey,
     }
   },
 })
@@ -57,8 +65,8 @@ export default defineComponent({
       Essayer un mot de passe
     </button>
     <div v-else class="checker-textzone">
-      <input placeholder="Entrez le mot de passe ici..." class="checker-text" type="text" @change="providedPassword = $event.target.value">
-      <button class="dt-button -blue" @click="testPassword()">
+      <input placeholder="Entrez le mot de passe ici..." class="checker-text" type="text" @keyup="checkKey($event)" @change="providedPassword = $event.target.value">
+      <button id="test-password-btn" class="dt-button -blue" @click="testPassword()">
         OK
       </button>
     </div>
