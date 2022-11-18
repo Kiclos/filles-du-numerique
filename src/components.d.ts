@@ -7,9 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    _Island: typeof import('./views/_Island.vue')['default']
     '[island]': typeof import('./views/islands/[island].vue')['default']
-    '[Island]': typeof import('./views/islands/[Island].vue')['default']
+    Card: typeof import('./components/Common/Card.vue')['default']
     CreditView: typeof import('./views/CreditView.vue')['default']
     DesignGame: typeof import('./components/Games/DesignGame/DesignGame.vue')['default']
     Dialog: typeof import('./views/Dialog.vue')['default']
@@ -29,9 +28,7 @@ declare module '@vue/runtime-core' {
     Islands: typeof import('./views/islands/index.vue')['default']
     IslandsItems: typeof import('./components/Islands/IslandsItems.vue')['default']
     IslandsUI: typeof import('./components/Islands/IslandsUI/IslandsUI.vue')['default']
-    IslandsView: typeof import('./views/IslandsView.vue')['default']
     IslandTitle: typeof import('./components/Islands/IslandTitle.vue')['default']
-    IslandView: typeof import('./views/IslandView.vue')['default']
     NumberLink: typeof import('./components/Games/NumberLink.vue')['default']
     PauseMenu: typeof import('./components/Games/GamesUI/PauseMenu/PauseMenu.vue')['default']
     Results: typeof import('./components/Islands/Results.vue')['default']

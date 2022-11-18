@@ -1,10 +1,13 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 
 // get some typed props
 const { islandInfos } = defineProps<{
   islandInfos: IslandInfo
 }>()
+
+const counter = ref(1)
 </script>
 
 <template>
@@ -17,7 +20,7 @@ const { islandInfos } = defineProps<{
     <template #content>
       <div class="card">
         <p class="loginTitle">
-          Connexion
+          Connexion {{ counter }}
         </p>
       </div>
     </template>

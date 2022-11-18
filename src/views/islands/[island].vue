@@ -61,7 +61,7 @@ export default defineComponent({
     }
 
     function handleBackToMap(): void {
-      router.push('/')
+      router.push('/islands')
     }
 
     function handleSkipGame(): void {
@@ -114,8 +114,9 @@ export default defineComponent({
     :reward="islandInfos.reward"
     @close="handleSkipGame()"
   />
-  <FindTheWayOut
+  <DesignGame
     v-if="step === 1 && islandInfos.islandName === 'Logicias'"
+    :island-infos="islandInfos"
     @skipGame="handleSkipGame()"
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
