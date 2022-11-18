@@ -52,7 +52,10 @@ export default defineConfig({
     vue(),
     VitePluginFonts({
       google: {
-        families: ['Open Sans'],
+        families: [{
+          name: 'Open Sans',
+          styles: 'wght@100;200;300;400;500;600;700;800',
+        }],
       },
     }),
   ],
