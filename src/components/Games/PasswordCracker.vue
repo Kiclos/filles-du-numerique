@@ -1,13 +1,13 @@
 <script lang="ts">
-import HintArea from "@/components/Games/GamesUI/PasswordCracker/HintArea.vue";
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import HintArea from '@/components/Games/GamesUI/PasswordCracker/HintArea.vue'
 import type { Post } from '@/components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue'
 import AmstramgramPost from '@/components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue'
 import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue'
 
 export default defineComponent({
   name: 'PasswordCracker',
-  components: {HintArea, AmstramgramPost, PauseMenu },
+  components: { HintArea, AmstramgramPost, PauseMenu },
   emits: ['skipGame', 'quitGame', 'endGame'],
   events: {
     skipGame: () => null,
@@ -64,6 +64,17 @@ export default defineComponent({
         date: 'Il y a 6 mois',
       },
     ]
+    const showArrow = ref(false)
+    const showErrorPassword = ref(false)
+
+    function handlePasswordNotFound(): void {
+      if (!showArrow.value)
+        setTimeout(() => showArrow.value = false, 3000)
+      if (!showErrorPassword.value)
+        setTimeout(() => showErrorPassword.value = false, 8000)
+      showArrow.value = true
+      showErrorPassword.value = true
+    }
     function handleEndGame(): void {
       emit('endGame')
     }
@@ -84,7 +95,10 @@ export default defineComponent({
       handleSkipGame,
       handleQuitGame,
       handleEndGame,
+      handlePasswordNotFound,
       posts,
+      showArrow,
+      showErrorPassword,
     }
   },
 })
@@ -107,10 +121,10 @@ export default defineComponent({
       <div class="amstramgram-container">
         <AmstramgramPost v-for="(post, index) in posts" :key="index" :post="post" />
       </div>
-      <HintArea />
+      <HintArea :show-arrow="showArrow" />
     </template>
     <template #footer>
-      <PasswordChecker @passwordFound="handleEndGame()" />
+      <PasswordChecker :hints-remaining="4" :show-error-message="showErrorPassword" @passwordNotFound="handlePasswordNotFound()" @passwordFound="handleEndGame()" />
     </template>
     <div class="dt-password-cracker__container blue-bg">
       <div class="dt-password-cracker__interface" />
