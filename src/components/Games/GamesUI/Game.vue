@@ -8,19 +8,23 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    withoutMargin: {
+      type: Boolean,
+      required: false,
+    },
   },
 })
 </script>
 
 <template>
   <div class="dt-game" :class="`bg-${color}`">
-    <div class="dt-game__header">
+    <div class="dt-game__header" :class="{ 'dt-game__header-margin': !withoutMargin }">
       <slot name="header" />
     </div>
-    <div class="dt-game__content">
+    <div class="dt-game__content" :class="{ 'dt-game__content-margin': !withoutMargin }">
       <slot name="content" />
     </div>
-    <div class="dt-game__footer">
+    <div class="dt-game__footer" :class="{ 'dt-game__footer-margin': !withoutMargin }">
       <slot name="footer" />
     </div>
   </div>
@@ -50,6 +54,9 @@ export default defineComponent({
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
+  }
+
+  &__header-margin {
     padding: 0 2rem;
   }
 
@@ -59,7 +66,6 @@ export default defineComponent({
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 2rem;
     text-align: justify;
     color: $white;
     overflow: hidden;
@@ -68,7 +74,11 @@ export default defineComponent({
     height: 100%;
   }
 
-  &__footer {
+  &__content-margin {
+    padding: 0 2rem;
+  }
+
+  &__footer-margin {
     margin: 1rem 2rem 0 2rem;
   }
 }
