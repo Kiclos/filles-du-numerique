@@ -79,17 +79,19 @@ export default defineComponent({
       </GustaveBubble>
     </template>
     <template #footer>
-      <DTButton v-if="!isLastResult" class="dt-ia-button" :color="islandInfos.color" @click="nextResult()">
-        Suivant
-      </DTButton>
-      <DTButton v-else class="dt-ia-button" :color="islandInfos.color" @click="collectGift()">
-        Récupérer le cadeau
-      </DTButton>
+      <div class="dt-ia-action-container">
+        <DTButton v-if="!isLastResult" class="dt-ia-button" :color="islandInfos.color" @click="nextResult()">
+          Suivant
+        </DTButton>
+        <DTButton v-else class="dt-ia-button" :color="islandInfos.color" @click="collectGift()">
+          Récupérer le cadeau
+        </DTButton>
+      </div>
     </template>
   </Game>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dt-ia {
   &-header-title {
     display: flex;
@@ -100,15 +102,19 @@ export default defineComponent({
   &-text {
     color: white;
     text-align: center;
-    font-size: 20px;
     margin: 10px;
     font-weight: bold;
+    font-size: 1.1rem;
   }
 
   &-img {
     border: solid white 6px;
     border-radius: 20px;
     width: 90%;
+  }
+
+  &-action-container {
+    margin: 0 10px;
   }
 
   &-button {

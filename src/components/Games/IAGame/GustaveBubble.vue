@@ -25,8 +25,9 @@ export default defineComponent({
 <style lang="scss">
 .dt-ia {
   &-gustave {
-    width: 100px;
-    height: 100px;
+    max-width: 100px;
+    width: 30%;
+    aspect-ratio: 1;
     border-radius: 50%;
   }
 
@@ -34,17 +35,18 @@ export default defineComponent({
     display: flex;
     align-items: center;
     gap: 20px;
-    margin: 25px;
+    margin: 15px 0;
+    width: 100%;
   }
 
   &-bubble {
     height: 100px;
-    width: 250px;
+    width: 70%;
     background-color: white;
     position: relative;
     border-radius: 20px;
-    margin-left: 30px;
-    padding: 20px;
+    margin-left: 10px;
+    padding: 15px;
     text-align: initial;
     color: black;
     line-height: initial;
@@ -63,7 +65,7 @@ export default defineComponent({
     border-top: 10vh solid white;
     position: absolute;
     top: 20px;
-    left: -5px;
+    left: -1px;
     transform: rotate(90deg);
     z-index: -1;
   }

@@ -239,14 +239,16 @@ export default defineComponent({
       </GustaveBubble>
     </template>
     <template #footer>
-      <DTButton class="dt-ia-confirm-button" :color="islandInfos.color" @click="nextQuestion()">
-        Valider
-      </DTButton>
+      <div class="dt-ia-action-container">
+        <DTButton class="dt-ia-confirm-button" :color="islandInfos.color" @click="nextQuestion()">
+          Valider
+        </DTButton>
+      </div>
     </template>
   </Game>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dt-ia {
   &-header-title {
     display: flex;
@@ -260,11 +262,15 @@ export default defineComponent({
   }
 
   &-subtitle {
-    font-size: 18px;
+    font-size: 1.1rem;
   }
 
   &-question {
-    margin-top: 35px;
+    margin-top: 1.1rem;
+  }
+
+  &-action-container {
+    margin: 0 10px;
   }
 
   &-confirm-button {
