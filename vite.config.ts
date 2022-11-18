@@ -6,6 +6,7 @@ import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { VitePluginFonts } from 'vite-plugin-fonts'
 
 export default defineConfig({
   css: {
@@ -49,5 +50,10 @@ export default defineConfig({
       dts: 'src/components.d.ts',
     }),
     vue(),
+    VitePluginFonts({
+      google: {
+        families: ['Open Sans'],
+      },
+    }),
   ],
 })

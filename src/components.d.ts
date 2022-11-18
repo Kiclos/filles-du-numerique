@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     '[island]': typeof import('./views/islands/[island].vue')['default']
     '[Island]': typeof import('./views/islands/[Island].vue')['default']
     CreditView: typeof import('./views/CreditView.vue')['default']
+    DesignGame: typeof import('./components/Games/DesignGame/DesignGame.vue')['default']
     Dialog: typeof import('./views/Dialog.vue')['default']
     DTButton: typeof import('./components/Button/DTButton.vue')['default']
     FindTheWayOut: typeof import('./components/Games/FindTheWayOut.vue')['default']
