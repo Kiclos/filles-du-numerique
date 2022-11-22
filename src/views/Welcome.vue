@@ -5,6 +5,7 @@ import CreditView from '@/views/CreditView.vue'
 export default defineComponent({
   name: 'Welcome',
   components: { CreditView },
+  emits: ['play'],
   data() {
     return {
       deferredPrompt: null as any,
@@ -47,9 +48,12 @@ export default defineComponent({
     <h1 class="dt-h1">
       DigitTales
     </h1>
-    <DTButton class="dt-button" @click="$emit('play')">
-      Jouer
-    </DTButton>
+    <router-link class="welcomeLink" to="/islands">
+      <DTButton @click="$emit('play')">
+        Jouer
+      </DTButton>
+    </router-link>
+
     <DTButton v-if="!isIphone" outlined @click="install">
       Installer l'application
     </DTButton>
@@ -58,3 +62,10 @@ export default defineComponent({
     </DTButton>
   </div>
 </template>
+
+<style>
+.welcomeLink {
+  width: 100%;
+  text-align:center;
+}
+</style>

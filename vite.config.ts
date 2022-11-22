@@ -6,6 +6,7 @@ import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { VitePluginFonts } from 'vite-plugin-fonts'
 
 export default defineConfig({
   css: {
@@ -18,12 +19,7 @@ export default defineConfig({
   build: {
     cssCodeSplit: false,
   },
-  server: {
-    port: 3000,
-    hmr: {
-      clientPort: 3000,
-    },
-  },
+
   resolve: { alias: { '@': `${path.resolve(__dirname, 'src')}/` } },
   optimizeDeps: {
     include: [
@@ -40,7 +36,9 @@ export default defineConfig({
       ],
       extensions: ['vue'],
       syncIndex: true,
-    }), Layouts(), vue(), Components({
+    }),
+    Layouts(),
+    Components({
       resolvers: [
         IconsResolver(),
       ],
@@ -50,6 +48,15 @@ export default defineConfig({
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
+    }),
+    vue(),
+    VitePluginFonts({
+      google: {
+        families: [{
+          name: 'Open Sans',
+          styles: 'wght@100;200;300;400;500;600;700;800',
+        }],
+      },
     }),
   ],
 })
