@@ -22,7 +22,7 @@ export default defineComponent({
     const providedPassword = ref('')
     const password = 'ace12072021'
     function testPassword() {
-      if (password === providedPassword.value)
+      if (password === providedPassword.value.toLowerCase())
         emit('passwordFound')
 
       else
