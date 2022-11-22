@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { PropType, Ref } from 'vue'
+import type { PropType } from 'vue'
 import { defineComponent, ref } from 'vue'
 import IAGameTrainingStep from '@/components/Games/IAGame/IAGameTrainingStep.vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
@@ -14,13 +14,8 @@ export default defineComponent({
     },
   },
   emits: ['skipGame', 'quitGame', 'endGame'],
-  events: {
-    skipGame: () => null,
-    quitGame: () => null,
-    endGame: () => null,
-  },
   setup(_, { emit }) {
-    const currentStep: Ref<number> = ref(1)
+    const currentStep = ref(1)
 
     function nextStep(): void {
       currentStep.value += 1

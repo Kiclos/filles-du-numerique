@@ -1,6 +1,7 @@
 <script lang="ts">
-import type { PropType, Ref } from 'vue'
-import { defineComponent, ref } from 'vue'
+import type { PropType } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
+import type { Result } from '@/Model/Game/IAGame'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import GustaveBubble from '@/components/Games/IAGame/GustaveBubble.vue'
 
@@ -14,32 +15,26 @@ export default defineComponent({
     },
   },
   emits: ['endGame'],
-  events: {
-    endGame: () => null,
-  },
   setup(_, { emit }) {
-    const currentResult: Ref<number> = ref(0)
-    const isLastResult: Ref<boolean> = ref(false)
-
-    const results = [
+    const currentResult = ref(0)
+    const results: Result[] = [
       {
         title: 'Felix au concours de pêche 2018',
-        img: './img/IAGame/results/cat_1.png',
+        img: '/img/IAGame/results/cat_1.png',
       },
       {
         title: 'Mimi à la finale de basket 2019',
-        img: './img/IAGame/results/cat_2.png',
+        img: '/img/IAGame/results/cat_2.png',
       },
       {
         title: 'Sami en cuisine pour la fête de l\'île',
-        img: './img/IAGame/results/cat_3.png',
+        img: '/img/IAGame/results/cat_3.png',
       },
     ]
+    const isLastResult = computed(() => currentResult.value + 1 === results.length)
 
     function nextResult(): void {
       currentResult.value += 1
-      if (currentResult.value + 1 === results.length)
-        isLastResult.value = true
     }
 
     function collectGift(): void {
@@ -50,8 +45,8 @@ export default defineComponent({
       results,
       nextResult,
       currentResult,
-      isLastResult,
       collectGift,
+      isLastResult,
     }
   },
 })

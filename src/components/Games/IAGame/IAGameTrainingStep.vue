@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { PropType, Ref } from 'vue'
 import { defineComponent, ref } from 'vue'
+import questions from '@/components/Games/IAGame/questions'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import GustaveBubble from '@/components/Games/IAGame/GustaveBubble.vue'
 
@@ -18,158 +19,11 @@ export default defineComponent({
     nextStep: () => null,
   },
   setup(_, { emit }) {
-    const currentQuestion: Ref<number> = ref(0)
+    const currentQuestion = ref(0)
     const selectedAnswerIndex: Ref<number | null> = ref(null)
     let selectedAnswerIsCat: boolean | null = null
-    const isNotCatError: Ref<boolean> = ref(false)
-    const isNotAnswerError: Ref<boolean> = ref(false)
-
-    const questions = [
-      [
-        {
-          isCat: false,
-          img: './img/IAGame/question1/bird.jpg',
-        },
-        {
-          isCat: true,
-          img: './img/IAGame/question1/cat.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question1/dog.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question1/fox.jpg',
-        },
-      ],
-      [
-        {
-          isCat: true,
-          img: './img/IAGame/question2/cat.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question2/deer.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question2/dolphin.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question2/hedgehog.jpg',
-        },
-      ],
-      [
-        {
-          isCat: false,
-          img: './img/IAGame/question3/elephant.jpg',
-        },
-        {
-          isCat: true,
-          img: './img/IAGame/question3/cat.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question3/rabbit.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question3/tiger.jpg',
-        },
-      ],
-      [
-        {
-          isCat: false,
-          img: './img/IAGame/question4/giraffe.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question4/sheep.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question4/squirrel.jpg',
-        },
-        {
-          isCat: true,
-          img: './img/IAGame/question4/cat.jpg',
-        },
-      ],
-      [
-        {
-          isCat: false,
-          img: './img/IAGame/question5/ape.jpg',
-        },
-        {
-          isCat: true,
-          img: './img/IAGame/question5/cat.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question5/owl.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question5/rooster.jpg',
-        },
-      ],
-      [
-        {
-          isCat: false,
-          img: './img/IAGame/question6/gecko.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question6/horse.jpg',
-        },
-        {
-          isCat: true,
-          img: './img/IAGame/question6/cat.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question6/kingfisher.jpg',
-        },
-      ],
-      [
-        {
-          isCat: true,
-          img: './img/IAGame/question7/cat.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question7/cow.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question7/frog.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question7/lemurs.jpg',
-        },
-      ],
-      [
-        {
-          isCat: false,
-          img: './img/IAGame/question8/otter.jpg',
-        },
-        {
-          isCat: true,
-          img: './img/IAGame/question8/cat.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question8/pelican.jpg',
-        },
-        {
-          isCat: false,
-          img: './img/IAGame/question8/pig.jpg',
-        },
-      ],
-    ]
+    const isNotCatError = ref(false)
+    const isNotAnswerError = ref(false)
 
     function nextQuestion(): void {
       if (selectedAnswerIndex.value === null) {
@@ -188,11 +42,11 @@ export default defineComponent({
       }
     }
 
-    function selectAnswer(index: number, isCat: boolean): void {
+    function selectAnswer(index: number): void {
       selectedAnswerIndex.value = index
       isNotCatError.value = false
       isNotAnswerError.value = false
-      selectedAnswerIsCat = isCat
+      selectedAnswerIsCat = questions[currentQuestion.value][index].isCat
     }
 
     return {
