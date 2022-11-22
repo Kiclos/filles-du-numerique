@@ -1,0 +1,51 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
+
+export interface ChoixType {
+  content: string[]
+  goodChoice: number
+}
+
+export default defineComponent({
+  name: 'Choix',
+  props: {
+    choixList: {
+      type: Object as PropType<ChoixType | undefined>,
+      required: true,
+    },
+  },
+  emits: ['handleChoix'],
+})
+</script>
+
+<template>
+  <div v-if="choixList" class="choiceContent">
+    <div v-for="(choix, index) in choixList.content" :key="index" :message="choix" class="message"
+      @click="$emit('handleChoix', index)">
+      {{ choix }}
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.choiceContent {
+  background: white;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  width: 80%;
+  background: #FDCB6A;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+</style>

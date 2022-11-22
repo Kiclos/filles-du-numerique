@@ -46,18 +46,20 @@ export default defineComponent({
   padding-top: 2rem;
   z-index: 2;
 
-  &__header, &__content, &__footer {
+  &__header,
+  &__content,
+  &__footer {
     width: 100%;
   }
 
   &__header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2rem;
   }
 
   &__header-margin {
     padding: 0 2rem;
+    margin-bottom: 2rem;
   }
 
   &__content {
@@ -68,7 +70,7 @@ export default defineComponent({
     align-items: center;
     text-align: justify;
     color: $white;
-    overflow: hidden;
+    overflow: auto;
     font-weight: 300;
     line-height: 1.5rem;
     height: 100%;

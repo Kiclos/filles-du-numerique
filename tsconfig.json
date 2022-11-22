@@ -4,13 +4,13 @@
     "types": [
       "vite-plugin-vue-layouts/client",
       "vite-plugin-pages/client",
-      "vite/client"
+      "vite/client",
+      "node"
     ],
     "baseUrl": "src",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "noPropertyAccessFromIndexSignature": false,
     "lib": [
       "DOM",
       "ESNext"
@@ -24,7 +24,6 @@
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "build",

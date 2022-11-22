@@ -17,6 +17,7 @@ import Results from '@/components/Islands/Results.vue'
 import robotique from '@/assets/data/robotique.json'
 import useGameStore from '@/stores/game'
 import WinScreen from '@/components/Islands/WinScreen.vue'
+import MaintenanceGame from '@/components/Games/MaintenanceGame.vue'
 
 export default defineComponent({
   name: 'Island',
@@ -26,7 +27,10 @@ export default defineComponent({
     NumberLink,
     Results,
     WinScreen,
+    MaintenanceGame,
   },
+  emits: ['backToMap'],
+  events: { backToMap: () => null },
   setup() {
     const step = ref<number>(0)
     const { params } = useRoute()
@@ -109,33 +113,17 @@ export default defineComponent({
 </script>
 
 <template>
-  <WinScreen
-    v-if="step === 2 && islandInfos.islandName" :color="islandInfos.color"
-    :reward="islandInfos.reward"
-    @close="handleSkipGame()"
-  />
-  <FindTheWayOut
-    v-if="step === 1 && islandInfos.islandName === 'Logicias'"
-    @skipGame="handleSkipGame()"
-    @quitGame="handleBackToMap()"
-    @endGame="handleEndGame()"
-  />
-  <NumberLink
-    v-if="step === 1 && islandInfos.islandName === 'Nethosa'"
-    @skipGame="handleSkipGame()"
-    @quitGame="handleBackToMap()"
-    @endGame="handleEndGame()"
-  />
-  <GamePresentation
-    v-if="step === 0 && islandInfos.islandName" :color="islandInfos.color" :content="islandInfos"
-    :status="island.status"
-    @startGame="handleStartGame()"
-    @skipGame="handleSkipGame()"
-    @backToMap="handleBackToMap()"
-  />
-  <Results
-    v-if="step === 3 && islandInfos.islandName" :job-data="islandInfos"
-    :color="islandInfos.color"
-    @close="handleBackToMap()"
-  />
+  <WinScreen v-if="step === 2 && islandInfos.islandName" :color="islandInfos.color" :reward="islandInfos.reward"
+    @close="handleSkipGame()" />
+  <FindTheWayOut v-if="step === 1 && islandInfos.islandName === 'Logicias'" @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()" @endGame="handleEndGame()" />
+  <NumberLink v-if="step === 1 && islandInfos.islandName === 'Nethosa'" @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()" @endGame="handleEndGame()" />
+  <MaintenanceGame v-if="step === 1 && islandInfos.islandName === 'Caramban'" @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()" @endGame="handleEndGame()" :islandInfos="islandInfos" />
+  <GamePresentation v-if="step === 0 && islandInfos.islandName" :color="islandInfos.color" :content="islandInfos"
+    :status="island.status" @startGame="handleStartGame()" @skipGame="handleSkipGame()"
+    @backToMap="handleBackToMap()" />
+  <Results v-if="step === 3 && islandInfos.islandName" :job-data="islandInfos" :color="islandInfos.color"
+    @close="handleBackToMap()" />
 </template>
