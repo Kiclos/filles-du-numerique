@@ -17,7 +17,7 @@ export default defineComponent({
   events: {
     endGame: () => null,
   },
-  setup(props, { emit }) {
+  setup(_, { emit }) {
     const hasTried = ref(false)
     const providedPassword = ref('')
     const password = 'ace12072021'
@@ -27,12 +27,6 @@ export default defineComponent({
 
       else
         emit('passwordNotFound')
-    }
-    function getSentence() {
-      if (props.hintsRemaining > 0)
-        return `Le mot de passe est incorrect. Tu devrais peut-être demander un indice pour te guider. Tu en as encore ${props.hintsRemaining} à ta disposition.`
-      else
-        return 'Malheureusement, ce n\'est pas la bonne réponse. Si tu souhaites avoir la réponse, tu peux cliquer sur le bouton en haut à droite.'
     }
     function checkKey(e: { which: number }) {
       if (e.which === 13) {
@@ -49,9 +43,16 @@ export default defineComponent({
       hasTried,
       testPassword,
       providedPassword,
-      getSentence,
       checkKey,
     }
+  },
+  computed: {
+    getSentence() {
+      if (this.hintsRemaining > 1)
+        return `Le mot de passe est incorrect. Tu devrais peut-être demander un indice pour te guider. Tu en as encore ${this.hintsRemaining - 1} à ta disposition.`
+      else
+        return 'Malheureusement, ce n\'est pas la bonne réponse. Si tu souhaites avoir la réponse, tu peux cliquer sur le bouton en haut à droite.'
+    },
   },
 })
 </script>
@@ -59,7 +60,7 @@ export default defineComponent({
 <template>
   <div class="password-container">
     <div class="error-container" :class="{ 'error-hidden': !showErrorMessage }">
-      <span>{{ getSentence() }}</span>
+      <span>{{ getSentence }}</span>
     </div>
     <button v-if="!hasTried" class="dt-button -blue" @click="hasTried = true">
       Essayer un mot de passe

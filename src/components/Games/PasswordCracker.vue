@@ -79,23 +79,6 @@ export default defineComponent({
       emit('endGame')
     }
 
-    const currentHintIndex = ref(-1)
-    const hints = [
-      'Les humains ont tendance à utiliser comme mot de passe des informations sur leurs proches faciles à retenir.',
-      'Fiona a quelque chose qui compte beaucoup pour elle. Tu devrais regarder de ce côté',
-      'Les noms et dates de naissance sont souvent utilisés comme combinaison.',
-      'Je connais quelqu\'un qui a comme mot de passe <strong>patrick06011978</strong>. Fiona a peut-être un mot de passe du même style.',
-      'La réponse était <strong>ace12072021</strong>, Ace étant le prénom de son chien, et 12072021 sa date de naissance.',
-    ]
-
-    function getHint() {
-      if (currentHintIndex.value < 0)
-        return 'No hint'
-      if (currentHintIndex.value >= hints.length)
-        return hints[hints.length - 1]
-      return hints[currentHintIndex.value]
-    }
-
     function handleSkipGame(): void {
       emit('skipGame')
     }
@@ -116,8 +99,32 @@ export default defineComponent({
       posts,
       showArrow,
       showErrorPassword,
-      getHint,
     }
+  },
+  data() {
+    return {
+      currentHintIndex: ref(-1),
+      hints: [
+        'Les humains ont tendance à utiliser comme mot de passe des informations sur leurs proches faciles à retenir.',
+        'Fiona a quelque chose qui compte beaucoup pour elle. Tu devrais regarder de ce côté',
+        'Les noms et dates de naissance sont souvent utilisés comme combinaison.',
+        'Je connais quelqu\'un qui a comme mot de passe <strong>patrick06011978</strong>. Fiona a peut-être un mot de passe du même style.',
+        'La réponse était <strong>ace12072021</strong>, Ace étant le prénom de son chien, et 12072021 sa date de naissance.',
+      ],
+    }
+  },
+  computed: {
+    getHint() {
+      if (this.currentHintIndex < 0)
+        return 'No hint'
+      if (this.currentHintIndex >= this.hints.length)
+        return this.hints[this.hints.length - 1]
+      return this.hints[this.currentHintIndex]
+    },
+
+    getHintsRemaining() {
+      return this.hints.length - 1 - this.currentHintIndex
+    },
   },
 })
 </script>
@@ -139,10 +146,10 @@ export default defineComponent({
       <div class="amstramgram-container">
         <AmstramgramPost v-for="(post, index) in posts" :key="index" :post="post" />
       </div>
-      <HintArea :show-arrow="showArrow" :hint="getHint()" />
+      <HintArea :show-arrow="showArrow" :hints-remaining="getHintsRemaining" :hint="getHint" @hintClicked="currentHintIndex++" />
     </template>
     <template #footer>
-      <PasswordChecker :hints-remaining="4" :show-error-message="showErrorPassword" @passwordNotFound="handlePasswordNotFound()" @passwordFound="handleEndGame()" />
+      <PasswordChecker :hints-remaining="getHintsRemaining" :show-error-message="showErrorPassword" @passwordNotFound="handlePasswordNotFound()" @passwordFound="handleEndGame()" />
     </template>
     <div class="dt-password-cracker__container blue-bg">
       <div class="dt-password-cracker__interface" />

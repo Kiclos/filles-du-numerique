@@ -12,48 +12,62 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    hintsRemaining: {
+      type: Number,
+      required: true,
+    },
   },
   emits: ['hintClicked'],
   setup(props, { emit }) {
     const hintShowed = ref(false)
+    const hiddenBtn = ref(false)
     function handleBtnClick() {
       if (!hintShowed.value)
         emit('hintClicked')
       hintShowed.value = true
     }
+    function handleClose() {
+      hintShowed.value = false
+    }
     onMounted(() => {
-      setTimeout(() => {
-        document.querySelectorAll('.hint-button').forEach((element) => {
-          element.classList.add('hint-hidden')
-        })
-      }, 2000)
+      setTimeout(() => hiddenBtn.value = true
+        , 2000)
     })
-    return { handleBtnClick, hintShowed }
+    return { handleBtnClick, handleClose, hintShowed, hiddenBtn }
   },
 })
 </script>
 
 <template>
   <div class="hint-area">
-    <button class="dt-button -yellow hint-button" @click="handleBtnClick()">
-      <span class="hint-icon"><i-mdi-lightbulb-on-outline /></span><span class="hint-label"> Indice</span>
+    <button class="dt-button -yellow hint-button" :class="{ 'hint-solve': hintsRemaining <= 1, 'hint-hidden': hiddenBtn }" @click="handleBtnClick()">
+      <span class="hint-icon"><i-mdi-lightbulb-on-outline v-if="hintsRemaining > 1" /><i-mdi-puzzle-check v-else /></span><span v-if="hintsRemaining > 1" class="hint-label"> Indice</span><span v-else class="hint-label"> Réponse</span>
     </button>
     <div class="arrow" :class="{ 'hidden-arrow': !showArrow }" />
     <div style="height: 65px; margin-right: 10000px" />
     <div class="hint-container" :class="{ 'hint-container-hidden': !hintShowed }">
-      <span>{{ hint }}</span>
+      <span class="close-btn" @click="handleClose()"><i-carbon-close-filled /></span>
+      <span v-html="hint" />
     </div>
   </div>
 </template>
 
 <style lang="scss">
+.close-btn {
+  float: right;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  color: black;
+}
 .hint-container {
   color: black;
-  transition: opacity 1s, margin-top 1s;
+  position: relative;
+  transition: opacity 1s, margin-top 1s, max-height 1s;
   opacity: 1;
   background: #fff;
-  height: 70px;
   width: 300px;
+  max-height: 500px;
   float:right;
   border-radius: 15px;
   padding: 8px;
@@ -64,6 +78,7 @@ export default defineComponent({
 .hint-container-hidden {
   opacity: 0;
   margin-top: -150px;
+  max-height: 70px;
 }
 .hint-area {
   position: absolute;
@@ -98,6 +113,11 @@ export default defineComponent({
     .hint-label {
       opacity: 1;
     }
+  }
+}
+.hint-solve {
+  &:hover {
+    width: 150px;
   }
 }
 .arrow {
