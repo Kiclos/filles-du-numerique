@@ -89,6 +89,8 @@ export default defineComponent({
     const cpt = ref(0)
     ajouterNouveauMessages()
 
+    const modaleOpen = ref(false)
+
     const handleChoix = (choixNumber: number): void => {
       if (histoire[etapeIndex.value]?.choixList.goodChoice === choixNumber) {
         if (etapeIndex.value + 1 < histoire.length) {
@@ -100,28 +102,12 @@ export default defineComponent({
         }
       }
       else {
-        // eslint-disable-next-line no-console
-        console.log('Mauvais choix')
+        toggleModaleBadAnswer()
       }
     }
     // Appeler aussi au ref de messageList
     async function ajouterNouveauMessages() {
-      if (cpt.value < histoire[etapeIndex.value].messagesList.length) {
-        messageList.value = [histoire[etapeIndex.value].messagesList[cpt.value], ...messageList.value]
-        cpt.value += 1
-      }
-      else {
-        cpt.value = 0
-      }
-      await new Promise(r => setTimeout(r, 2000));
-      if (cpt.value < histoire[etapeIndex.value].messagesList.length) {
-        messageList.value = [histoire[etapeIndex.value].messagesList[cpt.value], ...messageList.value]
-        cpt.value += 1
-      }
-      else {
-        cpt.value = 0
-      }
-      /*const interval = setInterval(() => {
+      const interval = setInterval(() => {
         if (cpt.value < histoire[etapeIndex.value].messagesList.length) {
           messageList.value = [histoire[etapeIndex.value].messagesList[cpt.value], ...messageList.value]
           cpt.value += 1
@@ -130,7 +116,7 @@ export default defineComponent({
           cpt.value = 0
           clearInterval(interval)
         }
-      }, 1000)*/
+      }, 1000)
     }
     const countdownEnd = (): void => {
       // eslint-disable-next-line no-console
@@ -139,17 +125,20 @@ export default defineComponent({
     function handleSkipGame(): void {
       emit('skipGame')
     }
-
     function handleQuitGame(): void {
       emit('quitGame')
     }
-
-    console.log(histoire[etapeIndex.value])
+    function toggleModaleBadAnswer(): void {
+      modaleOpen.value = !modaleOpen.value
+      console.log(modaleOpen.value)
+    }
 
     return {
       etapeIndex,
       histoire,
       messageList,
+      modaleOpen,
+      toggleModaleBadAnswer,
       handleCountdown,
       handleSkipGame,
       handleQuitGame,
@@ -163,6 +152,12 @@ export default defineComponent({
 <template>
   <Game v-if="histoire !== undefined && histoire[etapeIndex] !== undefined" :color="islandInfos.color" withoutMargin>
     <template #header>
+      <div v-if="modaleOpen" class="modal">
+        <div class="modal-content">
+          <p>Mauvaise réponse !</p>
+          <button @click="toggleModaleBadAnswer">Close</button>
+        </div>
+      </div>
       <div class="intermediateHeader">
         <IslandTitle :color="islandInfos.color" :name="islandInfos.islandName">
           Île {{ islandInfos.islandName }}
@@ -206,5 +201,25 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   padding: 0 -2rem;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 25%;
 }
 </style>

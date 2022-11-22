@@ -12,11 +12,6 @@ export default defineComponent({
     },
   },
   setup(props) {
-    // eslint-disable-next-line no-console
-    console.log(props.message.content)
-    // eslint-disable-next-line no-console
-    console.log(props.message.isImage)
-
     const imageUrl = props.message.isImage ? new URL(`../../../assets/img/${props.message.content}`, import.meta.url).href : null
     return {
       imageUrl,

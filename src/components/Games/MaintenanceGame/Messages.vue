@@ -26,7 +26,7 @@ export default defineComponent({
     <div class="yourMessage">
       Que lui réponds-tu ?
     </div>
-    <Message v-for="(message, index) in messages" :key="index" :message="message" />
+    <Message v-for="(message) in messages" :key="message.content" :message="message" />
   </div>
 </template>
 
