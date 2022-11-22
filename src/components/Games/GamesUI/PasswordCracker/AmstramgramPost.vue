@@ -1,4 +1,5 @@
 <script lang="ts">
+import {defineComponent} from "vue";
 import type { PropType } from 'vue'
 
 export interface Post {
@@ -9,11 +10,11 @@ export interface Post {
   imageUrl: string
   numberOfLikes: number
 }
-export default {
+export default defineComponent({
   props: {
     post: Object as PropType<Post>,
   },
-}
+})
 </script>
 
 <template>
