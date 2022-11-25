@@ -3,12 +3,12 @@
     "field": "Intelligence Artificielle",
     "color": "purple-blue",
     "img": "IA.png",
-    "presentation": "Qui n'a jamais rêvé de traîner sur les plages de matière grise d'IAïe ? Mais c'est aussi une île très en avance économiquement et c'est donc très logiquement que toutes les usines de l'archipel se sont tournées vers elle pour s'implanter.",
-    "guideline": "C'est bientôt Noël ! Aide IAie à préparer ses stocks en prévoyant les commandes par rapport à celles des années précédentes !",
-    "hasGame": false,
+    "presentation": "L'île IAïe c'est l'île de la connaissance. C'est ici que l'on retrouve les plus grandes archives et collections de l'archipel. Parmi eux, se trouve Gustave, l'un des plus grands collecteurs de photos d'animaux du monde. Il possède plus de 200 000 photos de tous les animaux présents sur l'archipel.",
+    "guideline": "Suite à un accident, Gustave a complètement perdu la mémoire et il est incapable de reconnaitre les photos de sa collection. Aide-le à retrouver la mémoire pour qu'il puisse te montrer les plus belles pièces de sa collection !",
+    "hasGame": true,
     "reward": "arm-left",
     "results": {
-        "summary": "Entrer dans le monde de l'Intelligence Artificielle, c'est travailler avec des programmes informatiques capable de traiter un grand volume de données et ce très rapidement. Ces programmes deviennent au fil du temps plus efficace que l’Homme sur des applications spécifiques, ce qui permet de nombreuses automatisations et optimisations.",
+        "summary": "En aidant Gustave, tu viens d'expérimenter l'entrainement d'une intelligence artificielle. Entrer dans le monde de l'Intelligence Artificielle, c'est travailler avec des programmes informatiques capable de traiter un grand volume de données et ce très rapidement. Ces programmes deviennent au fil du temps plus efficaces que l’Homme et peuvent même aller jusqu'à générer des images. Les plus belles photos de la collection de Gustave sont des images générées par une intelligence artificielle appellée DALL-E.",
         "didYouKnow":"Les métiers à base d'intelligence artificielle se répandent dans tous les secteurs d'activité et les utilisateurs sont nationaux avec des interactions au niveau de la recherche et de l'innovation à l'international. L'IA est en plein essor et aide à prédire des comportements de machines ou d'humains. Elle permet également des applications sur les dimensions environnementales.",
         "caracteristics" : [
             {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 50},

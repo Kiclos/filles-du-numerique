@@ -59,10 +59,12 @@ export default defineComponent({
 <template>
   <Game :color="content.color">
     <template #header>
-      <StepButton :color="content.color" back @click="handleBackTopMap()" />
-      <StepButton :color="content.color" next @click="handleSkipGame()">
-        Passer <br>le mini jeu
-      </StepButton>
+      <div class="island-presentation-header">
+        <StepButton :color="content.color" back @click="handleBackTopMap()" />
+        <StepButton :color="content.color" next @click="handleSkipGame()">
+          Passer <br>le mini jeu
+        </StepButton>
+      </div>
     </template>
     <template #content>
       <div :class="`island-icon island-icon-${content.color}`" :aria-label="content.img" />
@@ -145,5 +147,10 @@ export default defineComponent({
   padding: .75rem 1.5rem 1.5rem 1.5rem;
   background-color: $white;
   border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.island-presentation-header {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
