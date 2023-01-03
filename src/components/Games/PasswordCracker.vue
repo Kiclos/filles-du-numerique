@@ -9,11 +9,6 @@ export default defineComponent({
   name: 'PasswordCracker',
   components: { HintArea, AmstramgramPost, PauseMenu },
   emits: ['skipGame', 'quitGame', 'endGame'],
-  events: {
-    skipGame: () => null,
-    quitGame: () => null,
-    endGame: () => null,
-  },
   setup(_, { emit }) {
     const ROOT_ASSETS = '/src/assets/img/PasswordCracker/'
     const defaultUser: Partial<Post> & { username: string; profilePicUrl: string } = {
@@ -87,10 +82,6 @@ export default defineComponent({
       emit('quitGame')
     }
 
-    onMounted(() => {
-
-    })
-
     return {
       handleSkipGame,
       handleQuitGame,
@@ -144,12 +135,12 @@ export default defineComponent({
     </template>
     <template #content>
       <div class="amstramgram-container">
-        <AmstramgramPost v-for="(post, index) in posts" :key="index" :post="post" />
+        <AmstramgramPost v-for="post in posts" :key="post.id" :post="post" />
       </div>
-      <HintArea :show-arrow="showArrow" :hints-remaining="getHintsRemaining" :hint="getHint" @hintClicked="currentHintIndex++" />
+      <HintArea :show-arrow="showArrow" :hints-remaining="getHintsRemaining" :hint="getHint" @hint-clicked="currentHintIndex++" />
     </template>
     <template #footer>
-      <PasswordChecker :hints-remaining="getHintsRemaining" :show-error-message="showErrorPassword" @passwordNotFound="handlePasswordNotFound()" @passwordFound="handleEndGame()" />
+      <PasswordChecker :hints-remaining="getHintsRemaining" :show-error-message="showErrorPassword" @password-found="(n) => n ? handleEndGame() : handlePasswordNotFound()" />
     </template>
     <div class="dt-password-cracker__container blue-bg">
       <div class="dt-password-cracker__interface" />

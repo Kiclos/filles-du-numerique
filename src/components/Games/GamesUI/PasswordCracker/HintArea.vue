@@ -44,7 +44,7 @@ export default defineComponent({
       <span class="hint-icon"><i-mdi-lightbulb-on-outline v-if="hintsRemaining > 1" /><i-mdi-puzzle-check v-else /></span><span v-if="hintsRemaining > 1" class="hint-label"> Indice</span><span v-else class="hint-label"> Réponse</span>
     </button>
     <div class="arrow" :class="{ 'hidden-arrow': !showArrow }" />
-    <div style="height: 65px; margin-right: 10000px" />
+    <div class="separator" />
     <div class="hint-container" :class="{ 'hint-container-hidden': !hintShowed }">
       <span class="close-btn" @click="handleClose()"><i-carbon-close-filled /></span>
       <span v-html="hint" />
@@ -53,6 +53,10 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
+.separator {
+  height: 65px;
+  margin-right: 10000px
+}
 .close-btn {
   float: right;
   right: 10px;

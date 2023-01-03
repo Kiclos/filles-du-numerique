@@ -13,31 +13,18 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ['passwordFound', 'passwordNotFound'],
-  events: {
-    endGame: () => null,
-  },
+  emits: ['passwordFound'],
   setup(_, { emit }) {
     const hasTried = ref(false)
     const providedPassword = ref('')
     const password = 'ace12072021'
     function testPassword() {
-      if (password === providedPassword.value.toLowerCase())
-        emit('passwordFound')
-
-      else
-        emit('passwordNotFound')
+      emit('passwordFound', password === providedPassword.value.toLowerCase())
     }
     function checkKey(e: { which: number }) {
-      if (e.which === 13) {
-        const btn = document.getElementById('test-password-btn')
-        if (btn !== null)
-          btn.click()
-      }
+      if (e.which === 13)
+        testPassword()
     }
-    onMounted(() => {
-
-    })
 
     return {
       hasTried,
