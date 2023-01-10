@@ -1,8 +1,7 @@
-import { IslandStatus } from '@/Model/GameStatus';
+import type { IslandStatus } from '@/Model/GameStatus'
 
-// eslint-disable-next-line no-shadow
 export enum IslandName {
-  CARAMBAN= 'Caramban',
+  CARAMBAN = 'Caramban',
   IAIE = 'IAïe',
   LOGICIAS = 'Logicias',
   NETHOSA = 'Nethosa',
@@ -11,8 +10,8 @@ export enum IslandName {
 }
 
 export interface Island {
-  id: number,
-  name: IslandName,
-  status: IslandStatus,
-  coord: { x: number, y: number },
+  id: number
+  name: IslandName
+  status: IslandStatus
+  coord: { x: number; y: number }
 }

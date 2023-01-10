@@ -1,0 +1,129 @@
+<script lang="ts">
+import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import cybersecurite from '@/assets/data/cybersecurite.json'
+import devLogiciel from '@/assets/data/dev_logiciel.json'
+import FindTheWayOut from '@/components/Games/FindTheWayOut.vue'
+import GamePresentation from '@/components/Games/GamePresentation/GamePresentation.vue'
+import IA from '@/assets/data/IA.json'
+import type { Island } from '@/Model/Island/Island'
+import { IslandName } from '@/Model/Island/Island'
+import type { IslandInfo } from '@/Model/Island/IslandInfo'
+import { IslandStatus } from '@/Model/GameStatus'
+import maintenance from '@/assets/data/maintenance.json'
+import NumberLink from '@/components/Games/NumberLink.vue'
+import reseaux from '@/assets/data/reseaux.json'
+import Results from '@/components/Islands/Results.vue'
+import robotique from '@/assets/data/robotique.json'
+import useGameStore from '@/stores/game'
+import WinScreen from '@/components/Islands/WinScreen.vue'
+import MaintenanceGame from '@/components/Games/MaintenanceGame.vue'
+
+export default defineComponent({
+  name: 'Island',
+  components: {
+    FindTheWayOut,
+    GamePresentation,
+    NumberLink,
+    Results,
+    WinScreen,
+    MaintenanceGame,
+  },
+  emits: ['backToMap'],
+  events: { backToMap: () => null },
+  setup() {
+    const step = ref<number>(0)
+    const { params } = useRoute()
+    const gameStore = useGameStore()
+    const router = useRouter()
+    const island = gameStore.islands.find(island => island.name === params.island as IslandName) as Island
+    if (!island)
+      throw new Error('Island not found')
+    const islandInfos = reactive<IslandInfo>({} as IslandInfo)
+
+    function handleStartGame(): void {
+      if (islandInfos.hasGame) {
+        step.value = 1
+      }
+      else if (island?.status === IslandStatus.COMPLETE) {
+        step.value = 3
+      }
+      else {
+        gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
+        step.value = 2
+      }
+    }
+
+    function handleEndGame(): void {
+      if (island?.status === IslandStatus.COMPLETE) {
+        step.value = 3
+      }
+      else {
+        gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
+        step.value = 2
+      }
+    }
+
+    function handleBackToMap(): void {
+      router.push('/')
+    }
+
+    function handleSkipGame(): void {
+      if (island.status === IslandStatus.OPENED)
+        gameStore.setIslandStatus(island.name, IslandStatus.DISCOVERED)
+
+      step.value = 3
+    }
+
+    function getIslandInfos(name: IslandName): IslandInfo {
+      switch (name) {
+        case IslandName.CARAMBAN:
+          return maintenance
+        case IslandName.IAIE:
+          return IA
+        case IslandName.LOGICIAS:
+          return devLogiciel
+        case IslandName.NETHOSA:
+          return reseaux
+        case IslandName.ROBOTIX:
+          return robotique
+        case IslandName.SEGURA:
+          return cybersecurite
+      }
+    }
+
+    onMounted(() => {
+      if (island.status === IslandStatus.NOT_DISCOVERED)
+        gameStore.setIslandStatus(island.name, IslandStatus.OPENED)
+
+      Object.assign(islandInfos, getIslandInfos(island.name))
+    })
+
+    return {
+      step,
+      island,
+      islandInfos,
+      handleStartGame,
+      handleEndGame,
+      handleSkipGame,
+      handleBackToMap,
+    }
+  },
+})
+</script>
+
+<template>
+  <WinScreen v-if="step === 2 && islandInfos.islandName" :color="islandInfos.color" :reward="islandInfos.reward"
+    @close="handleSkipGame()" />
+  <FindTheWayOut v-if="step === 1 && islandInfos.islandName === 'Logicias'" @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()" @endGame="handleEndGame()" />
+  <NumberLink v-if="step === 1 && islandInfos.islandName === 'Nethosa'" @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()" @endGame="handleEndGame()" />
+  <MaintenanceGame v-if="step === 1 && islandInfos.islandName === 'Caramban'" @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()" @endGame="handleEndGame()" :islandInfos="islandInfos" />
+  <GamePresentation v-if="step === 0 && islandInfos.islandName" :color="islandInfos.color" :content="islandInfos"
+    :status="island.status" @startGame="handleStartGame()" @skipGame="handleSkipGame()"
+    @backToMap="handleBackToMap()" />
+  <Results v-if="step === 3 && islandInfos.islandName" :job-data="islandInfos" :color="islandInfos.color"
+    @close="handleBackToMap()" />
+</template>

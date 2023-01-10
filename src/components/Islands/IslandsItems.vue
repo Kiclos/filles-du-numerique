@@ -1,11 +1,66 @@
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+
+import useGameStore from '@/stores/game'
+import type { Island } from '@/Model/Island/Island'
+
+export default defineComponent({
+  name: 'Islands',
+  events: { selectIsland: (island: Island) => island },
+  setup(_, { emit }) {
+    const gameStore = useGameStore()
+    const islands: Island [] = gameStore.islands
+
+    const isIphone = computed(() => [
+      'iPad Simulator',
+      'iPhone Simulator',
+      'iPod Simulator',
+      'iPad',
+      'iPhone',
+      'iPod',
+    ].includes(navigator.platform))
+
+    function handleIslandSelection(island: Island): void {
+      emit('selectIsland', island)
+    }
+
+    return {
+      islands,
+      handleIslandSelection,
+      isIphone,
+    }
+  },
+})
+</script>
+
+<template>
+  <div v-if="!isIphone" class="dt-island">
+    <svg viewBox="0 0 450 700" fill="none">
+      <svg viewBox="0 0 900 1400" x="0" y="0" width="450" height="700">
+        <foreignObject x="0" y="0" width="900" height="1400">
+          <img src="@/assets/img/lines.png" alt="map">
+        </foreignObject>
+      </svg>
+      <svg viewBox="0 0 900 1400" x="0" y="0" width="450" height="700">
+        <foreignObject x="0" y="0" width="900" height="1400">
+          <img src="@/assets/img/Robotix.png" alt="map">
+        </foreignObject>
+      </svg>
+      <router-link v-for="island in islands" :key="island.id" :to="`/islands/${island.name}`"><Island :island="island" /></router-link>
+    </svg>
+  </div>
+  <div v-else class="dt-island -iphone">
+    <router-link v-for="island in islands" :key="island.id" :to="`/islands/${island.name}`">
+      <Island :island="island" />
+    </router-link>
+  </div>
+</template>
+
+<style lang="scss">
 @mixin setTitleColor($text, $bg, $iconText) {
   background: $bg;
   color: $text;
 
-  [class^="icon-"] {
-    background: $text;
-    color: $iconText;
-  }
 }
 
 .dt-island {
@@ -37,11 +92,11 @@
     }
   }
 
-   svg {
-     width: 100vw;
-     height: 100vh;
-     height: calc(var(--vh, 1vh) * 100);
-   }
+  svg {
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+  }
 
   &__container {
     height: 100px;
@@ -109,48 +164,6 @@
     }
   }
 
-  &__title {
-    @include setTitleColor($black, $white, $white);
-    position: relative;
-    margin-bottom: .5rem;
-    padding: .25rem .75rem;
-    padding-left: 1.8rem;
-    color: $black;
-    font-weight: bold;
-    border: none;
-    border-radius: 1rem;
-    outline: none;
-    box-shadow: 0 2px 2px rgba($black, .1), 2px 0 2px rgba($black, .05);
-    transition: .3s;
-
-    [class^="icon-"] {
-      font-family: 'Open Sans', sans-serif!important;
-      position: absolute;
-      top: .3rem;
-      left: .4rem;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      height: 1rem;
-      width: 1rem;
-      margin-right: .4rem;
-      background: $black;
-      border-radius: .5rem;
-      font-weight: bold;
-      font-size: .8rem;
-      color: $white;
-      transition: .3s;
-
-      &:before {
-        transform: translateY(1px);
-      }
-    }
-
-    &.-checked [class^="icon-"] {
-      font-family: 'icon' !important;
-    }
-  }
-
 }
 
 @mixin setIslandStyle($color1, $color2, $middleColor) {
@@ -193,33 +206,33 @@
 
 .dt-robotix {
   @include setIslandStyle(
-                  desaturate(lighten($red, 20%), 10%),
-                  desaturate(lighten($dark-pink, 10%), 10%),
-                  desaturate(lighten($dark-red, 20%), 10%),
+      desaturate(lighten($red, 20%), 10%),
+      desaturate(lighten($dark-pink, 10%), 10%),
+      desaturate(lighten($dark-red, 20%), 10%),
   );
 }
 
 .dt-logicias {
   @include setIslandStyle(
-                  desaturate(lighten($yellow, 5%), 10%),
-                  desaturate(lighten($green, 10%), 10%),
-                  lighten($light-green, 5%),
+      desaturate(lighten($yellow, 5%), 10%),
+      desaturate(lighten($green, 10%), 10%),
+      lighten($light-green, 5%),
   );
 }
 
 .dt-nethosa {
   @include setIslandStyle(
-                  desaturate(lighten($light-purple, 10%), 10%),
-                  desaturate(lighten($dark-purple, 20%), 10%),
-                  desaturate($light-purple, 10%),
+      desaturate(lighten($light-purple, 10%), 10%),
+      desaturate(lighten($dark-purple, 20%), 10%),
+      desaturate($light-purple, 10%),
   );
 }
 
 .dt-iaïe {
   @include setIslandStyle(
-                  desaturate($blue, 10%),
-                  desaturate(lighten($purple, 5%), 10%),
-                  desaturate($blue2, 5%),
+      desaturate($blue, 10%),
+      desaturate(lighten($purple, 5%), 10%),
+      desaturate($blue2, 5%),
   );
 }
 
@@ -229,8 +242,9 @@
 
 .dt-caramban {
   @include setIslandStyle(
-                  desaturate(lighten($yellow, 3%), 0%),
-                  desaturate(lighten($dark-yellow, 3%), 0%),
-                  lighten($dark-yellow, 3%),
+      desaturate(lighten($yellow, 3%), 0%),
+      desaturate(lighten($dark-yellow, 3%), 0%),
+      lighten($dark-yellow, 3%),
   );
 }
+</style>
