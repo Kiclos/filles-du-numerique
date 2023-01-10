@@ -17,11 +17,13 @@ import Results from '@/components/Islands/Results.vue'
 import robotique from '@/assets/data/robotique.json'
 import useGameStore from '@/stores/game'
 import WinScreen from '@/components/Islands/WinScreen.vue'
+import PasswordCracker from '@/components/Games/PasswordCracker.vue'
 
 export default defineComponent({
   name: 'Island',
   components: {
     FindTheWayOut,
+    PasswordCracker,
     GamePresentation,
     NetworkGame,
     Results,
@@ -38,11 +40,11 @@ export default defineComponent({
     const islandInfos = reactive<IslandInfo>({} as IslandInfo)
 
     function handleStartGame(): void {
-      if (islandInfos.hasGame) {
-        step.value = 1
-      }
-      else if (island?.status === IslandStatus.COMPLETE) {
+      if (island.status === IslandStatus.COMPLETE) {
         step.value = 3
+      }
+      else if (islandInfos.hasGame) {
+        step.value = 1
       }
       else {
         gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
@@ -127,6 +129,12 @@ export default defineComponent({
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
   />
+  <PasswordCracker
+    v-if="step === 1 && islandInfos.islandName === 'Segura'"
+    @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()"
+    @endGame="handleEndGame()"
+    />
   <IAGame
     v-if="step === 1 && islandInfos.islandName === 'IAïe'"
     :island-infos="islandInfos"
