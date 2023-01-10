@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import type { PropType } from 'vue'
 import Message from './Message.vue'
 
@@ -22,7 +22,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="messagesBox">
+  <div class="messagesBox" ref="messagesBox">
     <div class="yourMessage">
       Que lui réponds-tu ?
     </div>

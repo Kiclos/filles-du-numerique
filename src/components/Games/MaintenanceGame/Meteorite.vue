@@ -8,11 +8,11 @@ export default defineComponent({
     const marginRightValue = ref(5)
     const meteoriteStyle = computed(() => `${marginRightValue.value}%`)
     const dynamicMargin = () => {
-      if (marginRightValue.value >= 80) {
+      if (marginRightValue.value >= 65) {
         emit('countdownEnd')
       }
       else {
-        marginRightValue.value += 0.1
+        marginRightValue.value += 0.2
         setTimeout(() => {
           dynamicMargin()
         }, 500)
