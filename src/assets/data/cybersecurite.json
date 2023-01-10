@@ -8,7 +8,7 @@
     "hasGame": true,
     "reward": "body",
     "results": {
-        "summary": "La cybersécurité consiste en la protection informatique dans sa globalité. Un mélange de droit, de technique, de gestion de données, de gestion des risques. En bref, un savant mélange de nombreux domaines essentiel dans le monde connecté dans lequel nous vivons aujourd'hui.",
+        "summary": "En aidant Fiona à retrouver son mot de passe, tu as trouvé une des nombreuses méthodes utilisées par les hackeurs pour accéder à nos informations personnelles. La cybersécurité consiste à sensibiliser la protection des données informatiques dans sa globalité. Un mélange de droit, de technique, de gestion de données, de gestion des risques. En bref, un savant mélange de nombreux domaines essentiel dans le monde connecté dans lequel nous vivons aujourd'hui.",
         "didYouKnow":"Un secteur en pleine expansion et en grande recherche de talents. La vie étudiante est dynamique, elle s'appuie sur des simulations d'attaques entre clubs de cybersécurité.",
         "caracteristics" : [
             {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 80},
