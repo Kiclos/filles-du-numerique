@@ -5,7 +5,6 @@ import type { IslandInfo } from '@/Model/Island/IslandInfo'
 
 export default defineComponent({
   name: 'NetworkGame',
-  components: { },
   props: {
     islandInfos: {
       type: Object as PropType<IslandInfo>,
