@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'PasswordChecker',
@@ -81,6 +81,7 @@ export default defineComponent({
 }
 .password-container {
   position: relative;
+  margin: 0 10px;
 }
 .checker-textzone {
   display: grid;
