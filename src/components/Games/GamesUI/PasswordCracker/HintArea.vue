@@ -86,7 +86,6 @@ export default defineComponent({
 }
 .hint-area {
   position: absolute;
-  width: 100%;
   padding: 0 10px;
   right: 2rem;
 }
