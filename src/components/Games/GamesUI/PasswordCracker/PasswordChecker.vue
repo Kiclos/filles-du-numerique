@@ -67,10 +67,10 @@ export default defineComponent({
   transition: opacity 1s, top 1s;
   opacity: 1;
   background: #fff;
-  height: 70px;
+  height: 80px;
   width: 100%;
   border-radius: 15px;
-  top: -70px;
+  top: -80px;
   padding: 8px;
   text-align: center;
   box-shadow: 4px 0 4px rgba(0, 0, 0, 0.05), 0 4px 4px rgba(0, 0, 0, 0.1), inset 30px 30px 60px rgba(255, 255, 255, 0.25), inset 10px 10px 20px rgba(255, 255, 255, 0.25);
@@ -85,7 +85,7 @@ export default defineComponent({
 }
 .checker-textzone {
   display: grid;
-  grid-template-columns: auto 120px;
+  grid-template-columns: auto 80px;
   gap: 10px;
 }
 .checker-text {

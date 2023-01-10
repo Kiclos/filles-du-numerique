@@ -129,7 +129,9 @@ export default defineComponent({
             Île Segura
           </IslandTitle>
         </div>
-        <div><span>Fiona, une habitante de l’île a oublié le mot de passe de son ordinateur. Il est très simple donc tu devrais pouvoir le retrouver grâce à son profil Amstramgram.</span></div>
+        <p class="segura-subtitle">
+          Fiona, une habitante de l’île a oublié le mot de passe de son ordinateur. Il est très simple donc tu devrais pouvoir le retrouver grâce à son profil Amstramgram.
+        </p>
       </div>
     </template>
     <template #content>
@@ -148,7 +150,6 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-
 .disable-scroll {
   overflow: hidden;
 }
@@ -161,6 +162,10 @@ export default defineComponent({
 }
 .segura-title {
   display: inline-block;
+}
+
+.segura-subtitle {
+  color: white;
 }
 
 .blue-bg {
