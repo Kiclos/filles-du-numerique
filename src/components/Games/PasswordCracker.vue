@@ -4,6 +4,7 @@ import HintArea from '@/components/Games/GamesUI/PasswordCracker/HintArea.vue'
 import type { Post } from '@/components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue'
 import AmstramgramPost from '@/components/Games/GamesUI/PasswordCracker/AmstramgramPost.vue'
 import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue'
+import { computed } from "vue";
 
 export default defineComponent({
   name: 'PasswordCracker',
@@ -61,6 +62,27 @@ export default defineComponent({
     ]
     const showArrow = ref(false)
     const showErrorPassword = ref(false)
+    const currentHintIndex = ref(-1)
+    const hints = [
+        'Les humains ont tendance à utiliser comme mot de passe des informations sur leurs proches faciles à retenir.',
+        'Fiona a quelque chose qui compte beaucoup pour elle. Tu devrais regarder de ce côté',
+        'Les noms et dates de naissance sont souvent utilisés comme combinaison.',
+        'Je connais quelqu\'un qui a comme mot de passe <strong>patrick06011978</strong>. Fiona a peut-être un mot de passe du même style.',
+        'La réponse était <strong>ace12072021</strong>, Ace étant le prénom de son chien, et 12072021 sa date de naissance.',
+      ]
+
+    const getHint = computed(() => {
+      if (currentHintIndex.value < 0)
+        return 'No hint'
+      if (currentHintIndex.value >= hints.length)
+        return hints[hints.length - 1]
+      return hints[currentHintIndex.value]
+    })
+
+    const getHintsRemaining = computed(() => {
+      return hints.length - 1 - currentHintIndex.value
+    })
+
 
     function handlePasswordNotFound(): void {
       if (!showArrow.value)
@@ -90,33 +112,12 @@ export default defineComponent({
       posts,
       showArrow,
       showErrorPassword,
+      getHint,
+      getHintsRemaining,
+      currentHintIndex,
+      hints
     }
-  },
-  data() {
-    return {
-      currentHintIndex: ref(-1),
-      hints: [
-        'Les humains ont tendance à utiliser comme mot de passe des informations sur leurs proches faciles à retenir.',
-        'Fiona a quelque chose qui compte beaucoup pour elle. Tu devrais regarder de ce côté',
-        'Les noms et dates de naissance sont souvent utilisés comme combinaison.',
-        'Je connais quelqu\'un qui a comme mot de passe <strong>patrick06011978</strong>. Fiona a peut-être un mot de passe du même style.',
-        'La réponse était <strong>ace12072021</strong>, Ace étant le prénom de son chien, et 12072021 sa date de naissance.',
-      ],
-    }
-  },
-  computed: {
-    getHint() {
-      if (this.currentHintIndex < 0)
-        return 'No hint'
-      if (this.currentHintIndex >= this.hints.length)
-        return this.hints[this.hints.length - 1]
-      return this.hints[this.currentHintIndex]
-    },
-
-    getHintsRemaining() {
-      return this.hints.length - 1 - this.currentHintIndex
-    },
-  },
+  }
 })
 </script>
 
