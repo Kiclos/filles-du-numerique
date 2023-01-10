@@ -10,7 +10,7 @@ export default defineComponent({
   components: { HintArea, AmstramgramPost, PauseMenu },
   emits: ['skipGame', 'quitGame', 'endGame'],
   setup(_, { emit }) {
-    const ROOT_ASSETS = '/src/assets/img/PasswordCracker/'
+    const ROOT_ASSETS = '/img/PasswordCracker/'
     const defaultUser: Partial<Post> & { username: string; profilePicUrl: string } = {
       username: 'fiona.the.queen',
       profilePicUrl: `${ROOT_ASSETS}smile-gc59efb47f_1280.jpg`,
