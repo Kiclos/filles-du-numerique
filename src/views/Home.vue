@@ -1,30 +1,30 @@
 <template>
   <div class="dt-p16">
-    <Button class="dt-button">
+    <DTButton class="dt-DTButton">
       bonjour
-    </Button>
+    </DTButton>
     <TapToContinue />
-    <Button class="dt-button--default">
+    <DTButton class="dt-DTButton--default">
       Commencer le jeu
-    </Button>
-    <Button class="dt-button--text">
+    </DTButton>
+    <DTButton class="dt-DTButton--text">
       Commencer le jeu
-    </Button>
-    <Button class="dt-button--reversed-text">
+    </DTButton>
+    <DTButton class="dt-DTButton--reversed-text">
       Commencer le jeu
-    </Button>
-    <Button class="dt-button--outlined">
+    </DTButton>
+    <DTButton class="dt-DTButton--outlined">
       Commencer le jeu
-    </Button>
-    <Button class="dt-button--reversed-outlined">
+    </DTButton>
+    <DTButton class="dt-DTButton--reversed-outlined">
       Commencer le jeu
-    </Button>
-    <Button class="dt-button--reversed">
+    </DTButton>
+    <DTButton class="dt-DTButton--reversed">
       Commencer le jeu
-    </Button>
-    <Button class="dt-button--blue">
+    </DTButton>
+    <DTButton class="dt-DTButton--blue">
       Commencer le jeu
-    </Button>
+    </DTButton>
     <TextContainer class="dt-textcontainer--default">
       <p>Quoi qu’il est peut être juste éteint...</p>
     </TextContainer>

@@ -2,19 +2,13 @@
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import useGameStore from '@/stores/game'
 import dialogData from '@/assets/data/storyline.json'
-import DialogView from '@/views/Dialog.vue'
-import WelcomeView from '@/views/Welcome.vue'
-import IslandView from '@/views/IslandView.vue'
+
 import type { Island } from '@/Model/Island/Island'
 import { GameStatus, IslandStatus } from '@/Model/GameStatus'
 
 export default defineComponent({
   name: 'App',
-  components: {
-    DialogView,
-    IslandView,
-    WelcomeView,
-  },
+
   setup() {
     const gameStore = useGameStore()
 
@@ -131,6 +125,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!--
   <transition name="zoom-fade">
     <DialogView
       v-if="dialogIsOpened"
@@ -145,9 +140,12 @@ export default defineComponent({
       @backToMap="handleBackToMap()"
     />
   </transition>
-  <WelcomeView v-if="welcomeIsOpened" @play="handleGameStart()" />
+  -->
+  <Welcome v-if="welcomeIsOpened" @play="handleGameStart()" />
+  <!--
   <IslandsView
     v-if="mapIsOpened"
     @selectIsland="handleIslandSelection($event)"
   />
+  -->
 </template>

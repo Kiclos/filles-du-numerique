@@ -1,13 +1,20 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "types": ["vite-plugin-vue-layouts/client", "vite-plugin-pages/client", "vite/client"],
+    "types": [
+      "vite-plugin-vue-layouts/client",
+      "vite-plugin-pages/client",
+      "vite/client"
+    ],
     "baseUrl": "src",
     "esModuleInterop": true,
     "moduleResolution": "node",
-
     "forceConsistentCasingInFileNames": true,
-    "lib": ["DOM", "ESNext"],
+    "noPropertyAccessFromIndexSignature": false,
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
     "importsNotUsedAsValues": "error",
     "inlineSourceMap": true,
     "inlineSources": true,
@@ -17,20 +24,23 @@
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "build",
     "paths": {
-      "@/*": ["*"]
+      "@/*": [
+        "*"
+      ]
     },
     "plugins": [],
     "removeComments": true,
     "rootDir": "src",
     "strict": true,
     "target": "ESNext",
-    "useUnknownInCatchVariables": true
+    "useUnknownInCatchVariables": true,
+    "resolveJsonModule": true
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

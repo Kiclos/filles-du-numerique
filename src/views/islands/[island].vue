@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { PropType } from 'vue'
 import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import cybersecurite from '@/assets/data/cybersecurite.json'
 import devLogiciel from '@/assets/data/dev_logiciel.json'
 import FindTheWayOut from '@/components/Games/FindTheWayOut.vue'
@@ -20,7 +20,7 @@ import WinScreen from '@/components/Islands/WinScreen.vue'
 import PasswordCracker from '@/components/Games/PasswordCracker.vue'
 
 export default defineComponent({
-  name: 'IslandView',
+  name: 'Island',
   components: {
     FindTheWayOut,
     PasswordCracker,
@@ -29,18 +29,14 @@ export default defineComponent({
     Results,
     WinScreen,
   },
-  props: {
-    island: {
-      type: Object as PropType<Island>,
-      required: true,
-    },
-  },
-  emits: ['backToMap'],
-  events: { backToMap: () => null },
-  setup(props, { emit }) {
+  setup() {
     const step = ref<number>(0)
-
+    const { params } = useRoute()
     const gameStore = useGameStore()
+    const router = useRouter()
+    const island = gameStore.islands.find(island => island.name === params.island as IslandName) as Island
+    if (!island)
+      throw new Error('Island not found')
     const islandInfos = reactive<IslandInfo>({} as IslandInfo)
 
     function handleStartGame(): void {
@@ -51,28 +47,28 @@ export default defineComponent({
         step.value = 1
       }
       else {
-        gameStore.setIslandStatus(props.island.name, IslandStatus.COMPLETE)
+        gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
         step.value = 2
       }
     }
 
     function handleEndGame(): void {
-      if (props.island.status === IslandStatus.COMPLETE) {
+      if (island?.status === IslandStatus.COMPLETE) {
         step.value = 3
       }
       else {
-        gameStore.setIslandStatus(props.island.name, IslandStatus.COMPLETE)
+        gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
         step.value = 2
       }
     }
 
     function handleBackToMap(): void {
-      emit('backToMap')
+      router.push('/')
     }
 
     function handleSkipGame(): void {
-      if (props.island.status === IslandStatus.OPENED)
-        gameStore.setIslandStatus(props.island.name, IslandStatus.DISCOVERED)
+      if (island.status === IslandStatus.OPENED)
+        gameStore.setIslandStatus(island.name, IslandStatus.DISCOVERED)
 
       step.value = 3
     }
@@ -95,14 +91,15 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      if (props.island.status === IslandStatus.NOT_DISCOVERED)
-        gameStore.setIslandStatus(props.island.name, IslandStatus.OPENED)
+      if (island.status === IslandStatus.NOT_DISCOVERED)
+        gameStore.setIslandStatus(island.name, IslandStatus.OPENED)
 
-      Object.assign(islandInfos, getIslandInfos(props.island.name))
+      Object.assign(islandInfos, getIslandInfos(island.name))
     })
 
     return {
       step,
+      island,
       islandInfos,
       handleStartGame,
       handleEndGame,
@@ -136,6 +133,13 @@ export default defineComponent({
     @skipGame="handleSkipGame()"
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
+    />
+  <IAGame
+    v-if="step === 1 && islandInfos.islandName === 'IAïe'"
+    :island-infos="islandInfos"
+    @skip-game="handleSkipGame()"
+    @quit-game="handleBackToMap()"
+    @end-game="handleEndGame()"
   />
   <GamePresentation
     v-if="step === 0 && islandInfos.islandName" :color="islandInfos.color" :content="islandInfos"

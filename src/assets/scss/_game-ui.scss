@@ -129,6 +129,18 @@
   }
 
   &.-blue {
-    @include setPauseColor($blue);
+    @include setPauseColor($dark-blue);
+  }
+
+  &.-purple-blue {
+    @include setPauseColor($blue2);
+  }
+
+  &.-red {
+    @include setPauseColor($dark-red);
+  }
+
+  &.-yellow {
+    @include setPauseColor($dark-yellow);
   }
 }
