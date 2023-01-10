@@ -11,7 +11,7 @@ import { IslandName } from '@/Model/Island/Island'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import { IslandStatus } from '@/Model/GameStatus'
 import maintenance from '@/assets/data/maintenance.json'
-import NumberLink from '@/components/Games/NumberLink.vue'
+import NetworkGame from '@/components/Games/NetworkGame/NetworkGameStep.vue'
 import reseaux from '@/assets/data/reseaux.json'
 import Results from '@/components/Islands/Results.vue'
 import robotique from '@/assets/data/robotique.json'
@@ -23,7 +23,7 @@ export default defineComponent({
   components: {
     FindTheWayOut,
     GamePresentation,
-    NumberLink,
+    NetworkGame,
     Results,
     WinScreen,
   },
@@ -120,8 +120,9 @@ export default defineComponent({
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
   />
-  <NumberLink
+  <NetworkGame
     v-if="step === 1 && islandInfos.islandName === 'Nethosa'"
+    :island-infos="islandInfos"
     @skipGame="handleSkipGame()"
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"

@@ -22,7 +22,7 @@ export default defineComponent({
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dt-ia {
   &-gustave {
     max-width: 100px;
