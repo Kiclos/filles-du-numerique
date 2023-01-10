@@ -40,7 +40,7 @@ export default defineComponent({
     const islandInfos = reactive<IslandInfo>({} as IslandInfo)
 
     function handleStartGame(): void {
-      if (props.island.status === IslandStatus.COMPLETE) {
+      if (island.status === IslandStatus.COMPLETE) {
         step.value = 3
       }
       else if (islandInfos.hasGame) {
