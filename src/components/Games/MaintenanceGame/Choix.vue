@@ -14,28 +14,48 @@ export default defineComponent({
       type: Object as PropType<ChoixType | undefined>,
       required: true,
     },
+    choixAvailable: {
+      type: Boolean,
+      required: true,
+    },
   },
   emits: ['handleChoix'],
+  setup(props, { emit }) {
+    function handleChoix(index: number) {
+      if (props.choixAvailable)
+        emit('handleChoix', index)
+    }
+
+    return {
+      handleChoix,
+    }
+  }
 })
 </script>
 
 <template>
-  <div v-if="choixList" class="choiceContent">
-    <div v-for="(choix, index) in choixList.content" :key="index" :message="choix" class="message"
-      @click="$emit('handleChoix', index)">
-      {{ choix }}
+  <div class="choiceContentWrapper">
+    <div class="choiceContent" v-if="choixList">
+      <div v-for="(choix, index) in choixList.content" :key="index" :message="choix" class="message"
+        @click="() => handleChoix(index)">
+        {{ choix }}
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.choiceContent {
+.choiceContentWrapper {
   background: white;
   height: 200px;
+}
+
+.choiceContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .message {
