@@ -17,13 +17,17 @@ export default defineComponent({
       type: Array as PropType<MessageType[]>,
       required: true,
     },
+    choixAvailable: {
+      type: Boolean,
+      required: true,
+    },
   },
 })
 </script>
 
 <template>
   <div ref="messagesBox" class="messagesBox">
-    <div class="yourMessage">
+    <div v-if="choixAvailable" class="yourMessage">
       Que lui réponds-tu ?
     </div>
     <Message v-for="(message) in messages" :key="message.content" :message="message" />

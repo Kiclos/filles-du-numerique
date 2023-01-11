@@ -147,7 +147,7 @@ export default defineComponent({
       </div>
     </template>
     <template #content>
-      <Messages :messages="messageList" />
+      <Messages :messages="messageList" :choix-available="choixAvailable" />
     </template>
     <template #footer>
       <Choix :choix-list="choixList" :choix-available="choixAvailable" @handle-choix="handleChoix" />
@@ -190,6 +190,7 @@ export default defineComponent({
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 .modal-content {
@@ -197,6 +198,21 @@ export default defineComponent({
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 25%;
+  width: 20%;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.modal-content button {
+  margin-top: 5px;
+  background-color: #FBDA61;
+  border-style: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 400;
+  margin-top: 18px;
+  cursor: pointer;
+  font-size: 16px;
 }
 </style>
