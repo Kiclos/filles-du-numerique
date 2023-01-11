@@ -71,7 +71,7 @@ export default defineComponent({
           const messagesBox = document.querySelector('.messagesBox')
           if (!messagesBox)
             return
-          messagesBox.scrollTop = messagesBox.scrollHeight
+          messagesBox.scroll({ top: 0, behavior: 'smooth' });
         }
         else {
           choixList.value = histoire[etapeIndex.value].choixList

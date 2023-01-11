@@ -12,7 +12,7 @@ export default defineComponent({
   props: {
     choixList: {
       type: Object as PropType<ChoixType | undefined>,
-      required: true,
+      required: false,
     },
     choixAvailable: {
       type: Boolean,
