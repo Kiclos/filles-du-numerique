@@ -1,16 +1,17 @@
 <script lang="ts">
-import { PropType, ref } from 'vue'
-import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent, ref } from 'vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import type { ChoixType } from '@/components/Games/MaintenanceGame/Choix.vue'
 import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue'
 import Meteorite from '@/components/Games/MaintenanceGame/Meteorite.vue'
-import Messages, { MessageType } from '@/components/Games/MaintenanceGame/Messages.vue'
+import type { MessageType } from '@/components/Games/MaintenanceGame/Messages.vue'
+import Messages from '@/components/Games/MaintenanceGame/Messages.vue'
 import Choix from '@/components/Games/MaintenanceGame/Choix.vue'
 import { histoire } from '@/Model/Game/MaintenanceScenario'
 
-export type EtapeHistoireType = {
-  messagesList: MessageType[],
+export interface EtapeHistoireType {
+  messagesList: MessageType[]
   choixList: ChoixType
 }
 
@@ -34,9 +35,9 @@ export default defineComponent({
     function handleCountdown(): number {
       return countdown
     }
-    // const histoire: EtapeHistoireType[] = 
+    // const histoire: EtapeHistoireType[] =
     const etapeIndex = ref(0)
-    const choixList = ref<ChoixType | null>()
+    const choixList = ref<ChoixType>()
     const choixAvailable = ref(false)
     const messageList = ref<MessageType[]>([])
     const cpt = ref(0)
@@ -48,7 +49,7 @@ export default defineComponent({
     const handleChoix = (choixNumber: number): void => {
       if (histoire[etapeIndex.value]?.choixList.goodChoice === choixNumber) {
         if (etapeIndex.value + 1 < histoire.length) {
-          choixList.value = null
+          choixList.value = undefined
           choixAvailable.value = false
           etapeIndex.value += 1
           ajouterNouveauMessages()
@@ -116,18 +117,22 @@ export default defineComponent({
 </script>
 
 <template>
-  <Game v-if="histoire !== undefined && histoire[etapeIndex] !== undefined" :color="islandInfos.color" withoutMargin>
+  <Game v-if="histoire !== undefined && histoire[etapeIndex] !== undefined" :color="islandInfos.color" without-margin>
     <template #header>
       <div v-if="modaleOpen" class="modal">
         <div class="modal-content">
           <p>Mauvaise réponse !</p>
-          <button @click="toggleModaleBadAnswer">Close</button>
+          <button @click="toggleModaleBadAnswer">
+            Close
+          </button>
         </div>
       </div>
       <div v-if="modaleLoseGame" class="modal">
         <div class="modal-content">
           <p>Vous avez perdu ...</p>
-          <button @click="handleQuitGame()">Recommencer</button>
+          <button @click="handleQuitGame()">
+            Recommencer
+          </button>
         </div>
       </div>
       <div class="intermediateHeader">

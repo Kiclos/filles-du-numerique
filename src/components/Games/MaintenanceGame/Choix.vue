@@ -29,13 +29,13 @@ export default defineComponent({
     return {
       handleChoix,
     }
-  }
+  },
 })
 </script>
 
 <template>
   <div class="choiceContentWrapper">
-    <div class="choiceContent" v-if="choixList">
+    <div v-if="choixList" class="choiceContent">
       <div v-for="(choix, index) in choixList.content" :key="index" :message="choix" class="message"
         @click="() => handleChoix(index)">
         {{ choix }}
