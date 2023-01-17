@@ -8,7 +8,7 @@ import Meteorite from '@/components/Games/MaintenanceGame/Meteorite.vue'
 import type { MessageType } from '@/components/Games/MaintenanceGame/Messages.vue'
 import Messages from '@/components/Games/MaintenanceGame/Messages.vue'
 import Choix from '@/components/Games/MaintenanceGame/Choix.vue'
-import { histoire } from '@/Model/Game/MaintenanceScenario'
+import { badMessages, histoire } from '@/Model/Game/MaintenanceScenario'
 
 export interface EtapeHistoireType {
   messagesList: MessageType[]
@@ -59,10 +59,21 @@ export default defineComponent({
         }
       }
       else {
-        toggleModaleBadAnswer()
+        showMessagesBadAnswer(choixNumber)
+        // toggleModaleBadAnswer()
       }
     }
-    // Appeler aussi au ref de messageList
+    async function showMessagesBadAnswer(choixNumber: number) {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      choixAvailable.value = false
+      messageList.value = [{ content: histoire[etapeIndex.value]?.choixList.content[choixNumber], isImage: false, isMine: true }, ...messageList.value]
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      for (let cpt = 0; cpt < 2; cpt++) {
+        messageList.value = [{ content: badMessages[cpt], isImage: false, isMine: false }, ...messageList.value]
+        await new Promise(resolve => setTimeout(resolve, 1000))
+      }
+      choixAvailable.value = true
+    }
     async function ajouterNouveauMessages() {
       const interval = setInterval(() => {
         if (cpt.value < histoire[etapeIndex.value].messagesList.length) {
