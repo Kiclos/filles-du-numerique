@@ -26,7 +26,7 @@ export default defineComponent({
 
     function handleGameStart(): void {
       welcomeIsOpened.value = false
-      if (gameStore.status === GameStatus.INIITAL_STATE)
+      if (gameStore.status === GameStatus.INITIAL_STATE)
         dialogIsOpened.value = true
       else
         mapIsOpened.value = true
@@ -39,7 +39,7 @@ export default defineComponent({
 
     function handleDialogClose(): void {
       switch (gameStore.status) {
-        case GameStatus.INIITAL_STATE:
+        case GameStatus.INITIAL_STATE:
           gameStore.setGameStatus(GameStatus.POST_INTRO)
           dialogIsOpened.value = false
           setTimeout(() => {
