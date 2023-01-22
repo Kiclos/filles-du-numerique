@@ -3,7 +3,6 @@ import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import cybersecurite from '@/assets/data/cybersecurite.json'
 import devLogiciel from '@/assets/data/dev_logiciel.json'
-import FindTheWayOut from '@/components/Games/FindTheWayOut.vue'
 import GamePresentation from '@/components/Games/GamePresentation/GamePresentation.vue'
 import IA from '@/assets/data/IA.json'
 import type { Island } from '@/Model/Island/Island'
@@ -18,16 +17,17 @@ import robotique from '@/assets/data/robotique.json'
 import useGameStore from '@/stores/game'
 import WinScreen from '@/components/Islands/WinScreen.vue'
 import PasswordCracker from '@/components/Games/PasswordCracker.vue'
+import RoboticGame from '@/components/Games/RoboticGame/RoboticGame.vue'
 
 export default defineComponent({
   name: 'Island',
   components: {
-    FindTheWayOut,
     PasswordCracker,
     GamePresentation,
     NetworkGame,
     Results,
     WinScreen,
+    RoboticGame,
   },
   setup() {
     const step = ref<number>(0)
@@ -116,8 +116,9 @@ export default defineComponent({
     :reward="islandInfos.reward"
     @close="handleSkipGame()"
   />
-  <FindTheWayOut
-    v-if="step === 1 && islandInfos.islandName === 'Logicias'"
+  <RoboticGame
+    v-if="step === 1 && islandInfos.islandName === 'Robotix'"
+    :island-infos="islandInfos"
     @skipGame="handleSkipGame()"
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
@@ -131,6 +132,7 @@ export default defineComponent({
   />
   <PasswordCracker
     v-if="step === 1 && islandInfos.islandName === 'Segura'"
+    :island-infos="islandInfos"
     @skipGame="handleSkipGame()"
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"

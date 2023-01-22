@@ -62,6 +62,14 @@ export default defineComponent({
   box-shadow: 0 2px 2px rgb(54 75 95 / 10%), 2px 0 2px rgb(54 75 95 / 5%);
   transition: .3s;
 
+  @media (max-width: 1024px) { /* TABLET */
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 767px) { /* Mobile */
+    font-size: 1.2rem;
+  }
+
   &.-small {
     font-size: unset;
     gap: 5px;
