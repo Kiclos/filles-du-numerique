@@ -45,7 +45,13 @@ export default defineComponent({
 <template>
   <PauseMenu :color="islandInfos.color" @skip="handleSkipGame()" @quit="handleQuitGame()" />
   <RoboticGameStep v-if="currentStep === 1" :island-infos="islandInfos" @next-step="nextStep()" />
-  <NetworkResultStep v-if="currentStep === 2" :island-infos="islandInfos" @end-game="handleEndGame()" />
+  <ThankYouStep
+    v-if="currentStep === 2"
+    :island-infos="islandInfos"
+    img-url="/img/RoboticGame/pauline.png"
+    bubble-text="Merci de m'avoir guidé ! Pour te remercier, voici un objet que j'ai trouvé dans le labyrinthe."
+    @end-game="handleEndGame()"
+  />
 </template>
 
 <style lang="scss">

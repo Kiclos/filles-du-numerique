@@ -148,13 +148,15 @@ export default defineComponent({
         }
         else {
           executionIndex.value += 1
+          const executedAction = document.querySelector(`#instruction${executionIndex.value}`)
+          executedAction?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' })
           stopExecution = !executeInstruction(instructions[executionIndex.value])
         }
       }, 500)
     }
 
     function generateRandomGame(): void {
-      const maze = mazes[Math.round(Math.random() * 5)]
+      const maze = mazes[Math.floor(Math.random() * 5)]
       Object.assign(start, {
         x: maze.start[0],
         y: maze.start[1],
@@ -206,8 +208,7 @@ export default defineComponent({
         </IslandTitle>
       </div>
       <p class="dt-way-out-text dt-way-out-subtitle">
-        Aide Julie, la responsable du CDI à brancher les nouveaux câbles en cliquant sur les cases
-        les unes après les autres.
+        Aide Pauline à trouver la sortie du labyrinthe en lui donnant les bonnes instructions !
       </p>
     </template>
     <template #content>
@@ -232,6 +233,7 @@ export default defineComponent({
           </div>
           <DTButton
             v-for="(instruction, index) in instructions"
+            :id="`instruction${index}`"
             :key="instruction"
             :color="islandInfos.color"
             :disabled="executing"
