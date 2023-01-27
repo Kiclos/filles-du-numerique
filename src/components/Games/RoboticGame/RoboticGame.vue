@@ -19,38 +19,24 @@ export default defineComponent({
       currentStep.value += 1
     }
 
-    function handleSkipGame(): void {
-      emit('skipGame')
-    }
-
-    function handleQuitGame(): void {
-      emit('quitGame')
-    }
-
-    function handleEndGame(): void {
-      emit('endGame')
-    }
-
     return {
-      handleSkipGame,
-      handleQuitGame,
       nextStep,
       currentStep,
-      handleEndGame,
+      emit,
     }
   },
 })
 </script>
 
 <template>
-  <PauseMenu :color="islandInfos.color" @skip="handleSkipGame()" @quit="handleQuitGame()" />
+  <PauseMenu :color="islandInfos.color" @skip="emit('skipGame')" @quit="emit('quitGame')" />
   <RoboticGameStep v-if="currentStep === 1" :island-infos="islandInfos" @next-step="nextStep()" />
   <ThankYouStep
-    v-if="currentStep === 2"
+    v-else-if="currentStep === 2"
     :island-infos="islandInfos"
     img-url="/img/RoboticGame/pauline.png"
     bubble-text="Merci de m'avoir guidé ! Pour te remercier, voici un objet que j'ai trouvé dans le labyrinthe."
-    @end-game="handleEndGame()"
+    @end-game="emit('endGame')"
   />
 </template>
 

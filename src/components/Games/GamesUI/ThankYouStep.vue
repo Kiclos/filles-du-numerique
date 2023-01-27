@@ -21,12 +21,8 @@ export default defineComponent({
   },
   emits: ['endGame'],
   setup(_, { emit }) {
-    function collectGift(): void {
-      emit('endGame')
-    }
-
     return {
-      collectGift,
+      emit,
     }
   },
 })
@@ -51,7 +47,7 @@ export default defineComponent({
     </template>
     <template #footer>
       <div class="dt-ty-action-container">
-        <DTButton class="dt-ty-button" :color="islandInfos.color" @click="collectGift()">
+        <DTButton class="dt-ty-button" :color="islandInfos.color" @click="emit('endGame')">
           Récupérer le cadeau
         </DTButton>
       </div>
@@ -90,7 +86,7 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     box-shadow: 0 0 20px rgb(0 0 0 / 25%);
-    animation: showBubble .5s;
+    animation: showBubble .6s;
   }
 
   &-header-title {
@@ -109,10 +105,13 @@ export default defineComponent({
 }
 
 @keyframes showBubble {
-  from {
+  0% {
     transform: scale(0);
   }
-  to {
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
     transform: scale(1);
   }
 }
