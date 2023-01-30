@@ -12,7 +12,7 @@ export default defineComponent({
     },
   },
   emits: ['skipGame', 'quitGame', 'endGame'],
-  setup(_, { emit }) {
+  setup() {
     const currentStep = ref(1)
 
     function nextStep(): void {
@@ -22,21 +22,20 @@ export default defineComponent({
     return {
       nextStep,
       currentStep,
-      emit,
     }
   },
 })
 </script>
 
 <template>
-  <PauseMenu :color="islandInfos.color" @skip="emit('skipGame')" @quit="emit('quitGame')" />
+  <PauseMenu :color="islandInfos.color" @skip="$emit('skipGame')" @quit="$emit('quitGame')" />
   <RoboticGameStep v-if="currentStep === 1" :island-infos="islandInfos" @next-step="nextStep()" />
   <ThankYouStep
     v-else-if="currentStep === 2"
     :island-infos="islandInfos"
     img-url="/img/RoboticGame/pauline.png"
     bubble-text="Merci de m'avoir guidé ! Pour te remercier, voici un objet que j'ai trouvé dans le labyrinthe."
-    @end-game="emit('endGame')"
+    @end-game="$emit('endGame')"
   />
 </template>
 

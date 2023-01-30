@@ -20,11 +20,6 @@ export default defineComponent({
     },
   },
   emits: ['endGame'],
-  setup(_, { emit }) {
-    return {
-      emit,
-    }
-  },
 })
 </script>
 
@@ -47,7 +42,7 @@ export default defineComponent({
     </template>
     <template #footer>
       <div class="dt-ty-action-container">
-        <DTButton class="dt-ty-button" :color="islandInfos.color" @click="emit('endGame')">
+        <DTButton class="dt-ty-button" :color="islandInfos.color" @click="$emit('endGame')">
           Récupérer le cadeau
         </DTButton>
       </div>
