@@ -3,11 +3,11 @@ import type { PropType } from 'vue'
 import { computed, defineComponent, ref } from 'vue'
 import type { Result } from '@/Model/Game/IAGame'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
-import GustaveBubble from '@/components/Games/IAGame/GustaveBubble.vue'
+import GustaveAlert from '@/components/Games/IAGame/GustaveAlert.vue'
 
 export default defineComponent({
   name: 'IAGameResultStep',
-  components: { GustaveBubble },
+  components: { GustaveAlert },
   props: {
     islandInfos: {
       type: Object as PropType<IslandInfo>,
@@ -60,18 +60,18 @@ export default defineComponent({
           Île {{ islandInfos.islandName }}
         </IslandTitle>
       </div>
-      <GustaveBubble>
-        Merci pour ton aide, voici les plus belles photos de ma collection !
-      </GustaveBubble>
     </template>
     <template #content>
       <p class="dt-ia-text">
         {{ results[currentResult].title }}
       </p>
       <img :src="results[currentResult].img" alt="photo d'un chat en action" class="dt-ia-img">
-      <GustaveBubble v-if="isLastResult" class="dt-ia-gustave-gift">
+      <GustaveAlert v-if="isLastResult" without-animation>
         Pour te remercier, voici un objet étrange que j'ai trouvé sur l'île
-      </GustaveBubble>
+      </GustaveAlert>
+      <GustaveAlert v-else without-animation>
+        Merci pour ton aide, voici les plus belles photos de ma collection !
+      </GustaveAlert>
     </template>
     <template #footer>
       <div class="dt-ia-action-container">
@@ -105,7 +105,9 @@ export default defineComponent({
   &-img {
     border: solid white 6px;
     border-radius: 20px;
-    width: 90%;
+    max-width: 90%;
+    aspect-ratio: 1;
+    object-fit: cover;
   }
 
   &-action-container {
