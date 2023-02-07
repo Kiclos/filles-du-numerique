@@ -67,12 +67,12 @@ const onUndo = () => {
       </IslandTitle>
     </template>
     <template #content>
-      <div ref="designResult" class="card">
+      <div ref="designResult" class="card flex flex-col">
         <p class="loginTitle">Connexion</p>
         <Container
           ref="designPreview"
           group-name="myDrop"
-          class="h-full w-full"
+          class="w-full flex-grow"
           :should-animate-drop="() => false"
           @on-drop="onDrop"
         >
