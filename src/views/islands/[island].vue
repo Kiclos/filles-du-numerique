@@ -39,8 +39,8 @@ export default defineComponent({
       throw new Error('Island not found')
     const islandInfos = reactive<IslandInfo>({} as IslandInfo)
 
-    function handleStartGame(): void {
-      if (island.status === IslandStatus.COMPLETE) {
+    function handleStartGame(replay: boolean): void {
+      if (island.status === IslandStatus.COMPLETE && !replay) {
         step.value = 3
       }
       else if (islandInfos.hasGame) {
@@ -147,7 +147,7 @@ export default defineComponent({
   <GamePresentation
     v-if="step === 0 && islandInfos.islandName" :color="islandInfos.color" :content="islandInfos"
     :status="island.status"
-    @startGame="handleStartGame()"
+    @startGame="(replay) => handleStartGame(replay)"
     @skipGame="handleSkipGame()"
     @backToMap="handleBackToMap()"
   />
