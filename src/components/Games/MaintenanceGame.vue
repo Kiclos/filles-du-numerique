@@ -70,9 +70,21 @@ export default defineComponent({
       await new Promise(resolve => setTimeout(resolve, 1000))
       for (let cpt = 0; cpt < 2; cpt++) {
         messageList.value = [{ content: badMessages[cpt], isImage: false, isMine: false }, ...messageList.value]
+        nextTick(() => {
+          const messagesBox = document.querySelector('.messagesBox')?.querySelector('p')
+          if (!messagesBox)
+            return
+          messagesBox.scrollIntoView({ behavior: 'smooth' })
+        })
         await new Promise(resolve => setTimeout(resolve, 1000))
       }
       choixAvailable.value = true
+      nextTick(() => {
+        const lastMessage = document.querySelector('.yourMessage')
+        if (!lastMessage)
+          return
+        lastMessage.scrollIntoView({ behavior: 'smooth' })
+      })
     }
     async function ajouterNouveauMessages() {
       const interval = setInterval(() => {
@@ -83,7 +95,7 @@ export default defineComponent({
             const messagesBox = document.querySelector('.messagesBox')?.querySelector('p')
             if (!messagesBox)
               return
-            messagesBox.scrollIntoView()
+            messagesBox.scrollIntoView({ behavior: 'smooth' })
           })
         }
         else {
@@ -95,7 +107,7 @@ export default defineComponent({
             const lastMessage = document.querySelector('.yourMessage')
             if (!lastMessage)
               return
-            lastMessage.scrollIntoView()
+            lastMessage.scrollIntoView({ behavior: 'smooth' })
           })
         }
       }, 1000)
