@@ -155,9 +155,11 @@ export default defineComponent({
         </div>
       </div>
       <div class="intermediateHeader">
-        <IslandTitle :color="islandInfos.color" :name="islandInfos.islandName">
-          Île {{ islandInfos.islandName }}
-        </IslandTitle>
+        <div class="header-title">
+          <IslandTitle :color="islandInfos.color" :name="islandInfos.islandName">
+            Île {{ islandInfos.islandName }}
+          </IslandTitle>
+        </div>
         <PauseMenu :color="islandInfos.color" @skip="handleSkipGame()" @quit="handleQuitGame()" />
         <p class="instructionTitle">
           Aide rapidement l'habitant !
@@ -181,6 +183,12 @@ export default defineComponent({
   text-align: center;
 
   color: #2F2F2F;
+}
+
+.header-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .gamePanel {
