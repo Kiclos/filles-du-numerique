@@ -185,7 +185,7 @@ export default defineComponent({
     @include setDefaultButtonColor($red, $dark-pink, $white);
 
     &.-outlined {
-      @include setOutlineButtonColor($red);
+      @include setOutlineButtonColor($dark-red);
     }
 
     &.-text {

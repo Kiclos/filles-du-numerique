@@ -3,7 +3,6 @@ import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import cybersecurite from '@/assets/data/cybersecurite.json'
 import devLogiciel from '@/assets/data/dev_logiciel.json'
-import FindTheWayOut from '@/components/Games/FindTheWayOut.vue'
 import GamePresentation from '@/components/Games/GamePresentation/GamePresentation.vue'
 import IA from '@/assets/data/IA.json'
 import type { Island } from '@/Model/Island/Island'
@@ -11,20 +10,24 @@ import { IslandName } from '@/Model/Island/Island'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import { IslandStatus } from '@/Model/GameStatus'
 import maintenance from '@/assets/data/maintenance.json'
-import NumberLink from '@/components/Games/NumberLink.vue'
+import NetworkGame from '@/components/Games/NetworkGame/NetworkGameStep.vue'
 import reseaux from '@/assets/data/reseaux.json'
 import Results from '@/components/Islands/Results.vue'
 import robotique from '@/assets/data/robotique.json'
 import useGameStore from '@/stores/game'
 import WinScreen from '@/components/Islands/WinScreen.vue'
+import PasswordCracker from '@/components/Games/PasswordCracker.vue'
+import RoboticGame from '@/components/Games/RoboticGame/RoboticGame.vue'
 
 export default defineComponent({
   name: 'Island',
   components: {
+    PasswordCracker,
     GamePresentation,
-    NumberLink,
+    NetworkGame,
     Results,
     WinScreen,
+    RoboticGame,
   },
   setup() {
     const step = ref<number>(0)
@@ -34,14 +37,16 @@ export default defineComponent({
     const island = gameStore.islands.find(
       (island) => island.name === (params.island as IslandName)
     ) as Island
-    if (!island) throw new Error('Island not found')
+    if (!island) {
+      throw new Error('Island not found')
+    }
     const islandInfos = reactive<IslandInfo>({} as IslandInfo)
 
     function handleStartGame(): void {
-      if (islandInfos.hasGame) {
-        step.value = 1
-      } else if (island?.status === IslandStatus.COMPLETE) {
+      if (island.status === IslandStatus.COMPLETE) {
         step.value = 3
+      } else if (islandInfos.hasGame) {
+        step.value = 1
       } else {
         gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
         step.value = 2
@@ -119,11 +124,33 @@ export default defineComponent({
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
   />
-  <NumberLink
-    v-if="step === 1 && islandInfos.islandName === 'Nethosa'"
+  <RoboticGame
+    v-if="step === 1 && islandInfos.islandName === 'Robotix'"
+    :island-infos="islandInfos"
     @skipGame="handleSkipGame()"
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
+  />
+  <NetworkGame
+    v-if="step === 1 && islandInfos.islandName === 'Nethosa'"
+    :island-infos="islandInfos"
+    @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()"
+    @endGame="handleEndGame()"
+  />
+  <PasswordCracker
+    v-if="step === 1 && islandInfos.islandName === 'Segura'"
+    :island-infos="islandInfos"
+    @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()"
+    @endGame="handleEndGame()"
+  />
+  <IAGame
+    v-if="step === 1 && islandInfos.islandName === 'IAïe'"
+    :island-infos="islandInfos"
+    @skip-game="handleSkipGame()"
+    @quit-game="handleBackToMap()"
+    @end-game="handleEndGame()"
   />
   <GamePresentation
     v-if="step === 0 && islandInfos.islandName"

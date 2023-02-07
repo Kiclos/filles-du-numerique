@@ -52,7 +52,8 @@ export default defineComponent({
 
   &__header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: 2rem;
   }
 
@@ -68,7 +69,7 @@ export default defineComponent({
     align-items: center;
     text-align: justify;
     color: $white;
-    overflow: hidden;
+    overflow: auto;
     font-weight: 300;
     line-height: 1.5rem;
     height: 100%;
