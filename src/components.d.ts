@@ -8,9 +8,11 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     '[island]': typeof import('./views/islands/[island].vue')['default']
-    BottomSheet: typeof import('./components/Common/BottomSheet.vue')['default']
+    BottomSheet: typeof import('./components/Basics/BottomSheet.vue')['default']
+    Button: typeof import('./components/Games/DesignGame/Button.vue')['default']
     Card: typeof import('./components/Common/Card.vue')['default']
     CreditView: typeof import('./views/CreditView.vue')['default']
+    DesignDraggableItem: typeof import('./components/Games/DesignGame/DesignDraggableItem.vue')['default']
     DesignGame: typeof import('./components/Games/DesignGame/DesignGame.vue')['default']
     Dialog: typeof import('./views/Dialog.vue')['default']
     DTButton: typeof import('./components/Button/DTButton.vue')['default']
@@ -25,6 +27,7 @@ declare module '@vue/runtime-core' {
     IIcOutlineLightbulb: typeof import('~icons/ic/outline-lightbulb')['default']
     IIcOutlineMarkUnreadChatAlt: typeof import('~icons/ic/outline-mark-unread-chat-alt')['default']
     IIcTwotoneSettings: typeof import('~icons/ic/twotone-settings')['default']
+    InputFied: typeof import('./components/Games/DesignGame/InputFied.vue')['default']
     Island: typeof import('./components/Islands/Island.vue')['default']
     Islands: typeof import('./views/islands/index.vue')['default']
     IslandsItems: typeof import('./components/Islands/IslandsItems.vue')['default']
@@ -40,6 +43,7 @@ declare module '@vue/runtime-core' {
     TapToContinue: typeof import('./components/TapToContinue/TapToContinue.vue')['default']
     TextContainer: typeof import('./components/TextContainer/TextContainer.vue')['default']
     Undefined: typeof import('./views/index.vue')['default']
+    Views: typeof import('./views/index.vue')['default']
     Welcome: typeof import('./views/Welcome.vue')['default']
     WinScreen: typeof import('./components/Islands/WinScreen.vue')['default']
   }
