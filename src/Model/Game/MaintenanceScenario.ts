@@ -25,7 +25,7 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'Cependant depuis ce matin il ne fonctione plus...',
+        content: 'Cependant depuis ce matin il ne fonctionne plus...',
         isImage: false,
         isMine: false,
       },
