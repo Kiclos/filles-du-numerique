@@ -25,25 +25,25 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'Cependent depuis ce matin il ne fonctione plus...',
+        content: 'Cependant depuis ce matin il ne fonctione plus...',
         isImage: false,
         isMine: false,
       },
       {
-        content: 'Si je n\'arrive pas a le faire marcher, le volcan va entrer en éruption et des débris risquent de détruie l\'île !',
+        content: 'Si je n\'arrive pas à le faire réparer, le volcan va entrer en éruption et des débris risquent de détruire l\'île !',
         isImage: false,
         isMine: false,
       },
     ],
     choixList: {
-      content: ['Avez vous essayer de le redémarrer ?', 'Avez vous essayer de taper dessus ?'],
+      content: ['Avez-vous essayé de le redémarrer ?', 'Avez-vous essayé de taper dessus ?'],
       goodChoice: 0,
     },
   },
   {
     messagesList: [
       {
-        content: 'Avez vous essayer de le redémarrer ?',
+        content: 'Avez-vous essayé de le redémarrer ?',
         isImage: false,
         isMine: true,
       },
@@ -58,20 +58,20 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'meteorite.png',
+        content: 'imagemaintenance1.jpg',
         isImage: true,
         isMine: false,
       },
     ],
     choixList: {
-      content: ['Votre cable est débranché', 'Essayez de mettre votre ordinateur dans du riz'],
+      content: ['Votre câble est débranché', 'Essayez de mettre votre ordinateur dans du riz'],
       goodChoice: 0,
     },
   },
   {
     messagesList: [
       {
-        content: 'Votre cable est débranché',
+        content: 'Votre câble est débranché',
         isImage: false,
         isMine: true,
       },
@@ -91,7 +91,7 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'meteorite.png',
+        content: 'imagemaintenance2.jpg',
         isImage: true,
         isMine: false,
       },
@@ -109,7 +109,7 @@ export const histoire: EtapeHistoireType[] = [
         isMine: true,
       },
       {
-        content: 'Ah oui c\'est vrai j\'avais changé le mot de passe',
+        content: 'Ah oui c\'est vrai j\'avais changé le mot de passe hier',
         isImage: false,
         isMine: false,
       },
@@ -124,13 +124,13 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'meteorite.png',
+        content: 'imagemaintenance3.jpg',
         isImage: true,
         isMine: false,
       },
     ],
     choixList: {
-      content: ['Installez un antivirus', 'Mettez une etiquette stop pub sur votre ordinateur', 'Achetez les produits des pubs'],
+      content: ['Installez un antivirus', 'Collez une étiquette stop pub sur votre ordinateur', 'Achetez les produits des pubs'],
       goodChoice: 0,
     },
   },
@@ -147,7 +147,12 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'Vous avez sauver mon île, merci beaucoup !',
+        content: 'Vous avez sauver l\'île, merci beaucoup !',
+        isImage: false,
+        isMine: false,
+      },
+      {
+        content: 'Pour vous remercier voici une pièce de robot que j\'avais dans mon garage',
         isImage: false,
         isMine: false,
       },

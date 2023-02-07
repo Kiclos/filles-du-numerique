@@ -3,8 +3,8 @@
     "field": "Maintenance",
     "color": "yellow",
     "img": "tools.png",
-    "presentation": "Pas la plus belle île, mais sans aucun doute l'une des plus utiles ! Caramban contrôle toute l'infrastructure électrique d'Otomatik. En d'autres termes, si tu tombes en panne, c'est vers eux qu'ils faut râler ! Mais ses habitants sont les plus patients et bienveillants de tout l'archipel.",
-    "guideline": "Oulah, on dirait que la centrale de Caramban fonctionne au ralenti ce matin ! Aide-les en reconnectant les bons fils aux bons endroits !",
+    "presentation": "Pas la plus belle île, mais sans aucun doute l'une des plus utiles ! Caramban contrôle toute l'infrastructure liée au volcan de l'île. En d'autres termes, si le volcan entre en éruption, c'est vers eux qu'il faut râler !",
+    "guideline": "Oulah, on dirait que la personne en charge de la maintenance de l'infrastructure à besoin d'aide ! Aide-le à résoudre ses problèmes informatiques pour empêcher l'éruption !",
     "hasGame": true,
     "reward": "arm-right",
     "results": {
