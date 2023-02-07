@@ -11,12 +11,14 @@ import InputField from './InputFied.vue'
 import UndoIcon from '~icons/carbon/undo'
 import BackIcon from '~icons/carbon/arrow-left'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
+
 interface DesignComponent {
   y: number
   tag: string
   props: any
   id: number
 }
+
 // get some typed props
 const { islandInfos } = defineProps<{
   islandInfos: IslandInfo
