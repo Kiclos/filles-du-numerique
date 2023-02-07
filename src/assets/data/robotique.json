@@ -3,13 +3,13 @@
     "field": "Robotique",
     "color": "red",
     "img": "robot.png",
-    "presentation": " Visiter Robotix, c'est plonger dans l'histoire ! Ce n'est pas pour rien que cette île regorge de monuments et de touristes ! Va faire un tour à l'Office de tourisme pour en savoir plus !",
-    "guideline": "L’Office de tourisme est un lieu exceptionnel pour commencer son exploration. En plus, ils ont mis en place un petit quizz ! On tente notre chance ?",
-    "hasGame": false,
+    "presentation": " Visiter Robotix, c'est plonger dans le célèbre labyrinthe de l'archipel ! C'est ici que s'affrontent les habitants à travers la fameuse épreuve du labyrinthe.",
+    "guideline": "Pauline a voulu tenter sa chance mais malheureusement elle est perdue ! Tu pourrais l'aider à s'orienter ?",
+    "hasGame": true,
     "videos": [],
     "reward": "leg-right",
     "results": {
-        "summary": "Il s'agit d'un terme facile à définir, mais dont la réelle portée est souvent difficile à appréhender. La robotique désigne l'ensemble des techniques mises au point et exécutées pour fabriquer des robots. Derrière cette signification se cachent des possibilités infinies et un grand, un très grand éventail de champs d'application.",
+        "summary": "En aidant Pauline, tu as pu simuler la programmation des robots. Ils sont aujourd'hui de plus en plus présents dans les usines et il est donc nécessaire de les programmer. Ils peuvent même parfois se déplacer comme les humains ! La robotique est donc l'ensemble des techniques mises au point et exécutées pour fabriquer et contrôler ces robots. Il existe des possibilités infinies et un très grand éventail de champs d'application.",
         "didYouKnow":"'Beaucoup de clubs robotique dans les asso étudiantes, de compétitions de robots (foot ou autre), secteur en pleine innovation en France comme à l'international",
         "caracteristics" : [
             {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value":80},

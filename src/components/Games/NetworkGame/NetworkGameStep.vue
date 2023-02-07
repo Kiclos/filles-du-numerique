@@ -241,7 +241,7 @@ export default defineComponent({
   </Game>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dt-ng {
   &-header-title {
     display: flex;

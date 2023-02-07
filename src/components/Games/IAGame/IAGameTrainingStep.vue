@@ -1,13 +1,13 @@
 <script lang="ts">
 import type { PropType, Ref } from 'vue'
 import { defineComponent, ref } from 'vue'
+import GustaveAlert from '@/components/Games/IAGame/GustaveAlert.vue'
 import questions from '@/components/Games/IAGame/questions'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
-import GustaveBubble from '@/components/Games/IAGame/GustaveBubble.vue'
 
 export default defineComponent({
   name: 'IAGameTrainingStep',
-  components: { GustaveBubble },
+  components: { GustaveAlert },
   props: {
     islandInfos: {
       type: Object as PropType<IslandInfo>,
@@ -73,24 +73,25 @@ export default defineComponent({
       <p class="dt-ia-text dt-ia-subtitle">
         Aide Gustave à reconnaitre ses photos en répondant à la question suivante :
       </p>
-      <h2 class="dt-ia-text dt-ia-question">
+      <p class="dt-ia-text dt-ia-question">
         Quelle image correspond à un chat ?
-      </h2>
+      </p>
     </template>
     <template #content>
       <div class="dt-ia-img-container">
         <img
-          v-for="(animal, index) in questions[currentQuestion]" :key="index" class="dt-ia-img"
+          v-for="(animal, index) in questions[currentQuestion]" :key="index"
+          class="dt-ia-img"
           :class="{ 'dt-ia-img-selected': index === selectedAnswerIndex && !isNotCatError, 'dt-ia-img-error': index === selectedAnswerIndex && isNotCatError }"
           :src="animal.img" alt="animal" @click="selectAnswer(index, animal.isCat)"
         >
       </div>
-      <GustaveBubble v-if="isNotCatError" error>
+      <GustaveAlert v-if="isNotCatError" error>
         Es-tu sûr que c'est une photo d'un chat ?
-      </GustaveBubble>
-      <GustaveBubble v-if="isNotAnswerError" error>
+      </GustaveAlert>
+      <GustaveAlert v-if="isNotAnswerError">
         Tu ne veux pas m'aider en sélectionnant le chat ?
-      </GustaveBubble>
+      </GustaveAlert>
     </template>
     <template #footer>
       <div class="dt-ia-action-container">
@@ -117,10 +118,20 @@ export default defineComponent({
 
   &-subtitle {
     font-size: 1.1rem;
+
+    @media (max-width: 1024px) { /* TABLET */
+      font-size: 1rem;
+    }
   }
 
   &-question {
+    font-weight: bold;
     margin-top: 1.1rem;
+    font-size: 1.3rem;
+
+    @media (max-width: 1024px) { /* TABLET */
+      font-size: 1.2rem;
+    }
   }
 
   &-action-container {
@@ -133,9 +144,10 @@ export default defineComponent({
 
   &-img-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
     gap: 20px;
+    max-height: 100%;
   }
 
   &-img {
@@ -144,7 +156,9 @@ export default defineComponent({
     aspect-ratio: 1;
     object-fit: cover;
     cursor: pointer;
-    width: 100%;
+    height: 100%;
+    margin: auto;
+    max-width: 100%;
   }
 
   &-img-selected {

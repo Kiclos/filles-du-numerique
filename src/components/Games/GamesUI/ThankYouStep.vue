@@ -4,47 +4,45 @@ import { defineComponent } from 'vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 
 export default defineComponent({
-  name: 'NetworkResultStep',
+  name: 'ThankYouStep',
   props: {
     islandInfos: {
       type: Object as PropType<IslandInfo>,
       required: true,
     },
+    imgUrl: {
+      type: String,
+      required: true,
+    },
+    bubbleText: {
+      type: String,
+      required: true,
+    },
   },
   emits: ['endGame'],
-  setup(_, { emit }) {
-    function collectGift(): void {
-      emit('endGame')
-    }
-
-    return {
-      collectGift,
-    }
-  },
 })
 </script>
 
 <template>
   <Game :color="islandInfos.color">
     <template #header>
-      <div class="dt-ng-header-title">
+      <div class="dt-ty-header-title">
         <IslandTitle :color="islandInfos.color" :name="islandInfos.islandName">
           Île {{ islandInfos.islandName }}
         </IslandTitle>
       </div>
     </template>
     <template #content>
-      <div class="dt-ng-content">
-        <img class="dt-ng-julie" src="@/assets/img/Julie/julie_head.png" alt="tête de julie">
-        <div class="dt-ng-bubble">
-          Merci pour ton aide ! Voici un objet que l'on conservait au CDI pour te remercier.
-          <div class="dt-ng-bubble-left" />
+      <div class="dt-ty-content">
+        <img class="dt-ty-img" :src="imgUrl">
+        <div class="dt-ty-bubble">
+          {{ bubbleText }}
         </div>
       </div>
     </template>
     <template #footer>
-      <div class="dt-ng-action-container">
-        <DTButton class="dt-ng-button" :color="islandInfos.color" @click="collectGift()">
+      <div class="dt-ty-action-container">
+        <DTButton class="dt-ty-button" :color="islandInfos.color" @click="$emit('endGame')">
           Récupérer le cadeau
         </DTButton>
       </div>
@@ -53,7 +51,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.dt-ng {
+.dt-ty {
   &-content {
     display: flex;
     height: inherit;
@@ -62,7 +60,7 @@ export default defineComponent({
     align-items: center;
   }
 
-  &-julie {
+  &-img {
     max-width: 300px;
     width: 60%;
     aspect-ratio: 1;
@@ -71,7 +69,7 @@ export default defineComponent({
   }
 
   &-bubble {
-    width: 80%;
+    width: 90%;
     background-color: white;
     position: relative;
     border-radius: 20px;
@@ -82,18 +80,8 @@ export default defineComponent({
     line-height: initial;
     display: flex;
     justify-content: center;
-  }
-
-  &-bubble-left {
-    width: 0;
-    height: 0;
-    border-left: 2vh solid transparent;
-    border-right: 2vh solid transparent;
-    border-top: 10vh solid white;
-    position: absolute;
-    top: -15px;
-    transform: rotate(180deg);
-    z-index: -1;
+    box-shadow: 0 0 20px rgb(0 0 0 / 25%);
+    animation: showBubble .6s;
   }
 
   &-header-title {
@@ -108,6 +96,18 @@ export default defineComponent({
 
   &-button {
     margin-bottom: 1.5rem;
+  }
+}
+
+@keyframes showBubble {
+  0% {
+    transform: scale(0);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>
