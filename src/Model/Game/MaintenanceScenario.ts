@@ -147,7 +147,7 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'Vous avez sauver l\'île, merci beaucoup !',
+        content: 'Vous avez sauvé l\'île, merci beaucoup !',
         isImage: false,
         isMine: false,
       },

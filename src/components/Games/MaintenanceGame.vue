@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { PropType } from 'vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, nextTick, ref } from 'vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import type { ChoixType } from '@/components/Games/MaintenanceGame/Choix.vue'
 import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue'
@@ -79,16 +79,24 @@ export default defineComponent({
         if (cpt.value < histoire[etapeIndex.value].messagesList.length) {
           messageList.value = [histoire[etapeIndex.value].messagesList[cpt.value], ...messageList.value]
           cpt.value += 1
-          const messagesBox = document.querySelector('.messagesBox')
-          if (!messagesBox)
-            return
-          messagesBox.scroll({ top: 0, behavior: 'smooth' });
+          nextTick(() => {
+            const messagesBox = document.querySelector('.messagesBox')?.querySelector('p')
+            if (!messagesBox)
+              return
+            messagesBox.scrollIntoView()
+          })
         }
         else {
           choixList.value = histoire[etapeIndex.value].choixList
           choixAvailable.value = true
           cpt.value = 0
           clearInterval(interval)
+          nextTick(() => {
+            const lastMessage = document.querySelector('.yourMessage')
+            if (!lastMessage)
+              return
+            lastMessage.scrollIntoView()
+          })
         }
       }, 1000)
     }
