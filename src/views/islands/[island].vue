@@ -63,7 +63,7 @@ export default defineComponent({
     }
 
     function handleBackToMap(): void {
-      router.push('/')
+      router.push('/islands')
     }
 
     function handleSkipGame(): void {

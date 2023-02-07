@@ -177,6 +177,10 @@ export default defineComponent({
       padding: 0 calc((100vw - 500px) / 2);
 
       button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
         border: none;
         background: none;
         cursor: pointer;
