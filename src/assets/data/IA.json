@@ -16,12 +16,13 @@
             {"iconLeft": "tools", "iconRight": "code", "labelLeft": "Matériel", "labelRight": "Virtuel", "value": 75}
         ],
         "specificJob": {
-            "jobName": "Domoticien.ne",
-            "generalInfos":"Le domoticien installe des équipements de domotique (\"domus\" : maison en latin + robotique) rendant nos habitats plus intelligents, plus écologiques et plus confortables.",
-            "salary": 20000,
-            "studies" : "BAC + 2 à 5",
+            "jobName": "Ingénieur.e en Machine Learning",
+            "generalInfos":"Un.e ingénieur.e en Machine Learning est un programmeur informatique. Il aide à créer des algorithmes pour traiter de très grandes quantités de données.",
+            "salary": 62000,
+            "studies" : "BAC + 5",
             "moreInfo": "",
             "moreJobs": "",
+            "formations": "https://www.cmaformation-na.fr/formations/search?quoi=intelligence+artificielle&ou=&numero_departement=",
             "videos": []
         }
     }

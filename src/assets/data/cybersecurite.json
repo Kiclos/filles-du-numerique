@@ -3,12 +3,12 @@
     "field": "Cybersécurité",
     "color": "blue",
     "img": "shield.png",
-    "presentation": "En cas de problème, c'est Segura qu'on appelle ! Véritable forteresse, c'est cette île qui assure la protection de tout l'archipel. Envie d'en savoir plus sur les gardiens de la paix à Otomatik ?",
+    "presentation": "En cas de problème, c'est Segura qu'on appelle ! Véritable forteresse, c'est cette île qui assure la protection de tout l'archipel.",
     "guideline": "Fiona, une habitante de l’île a oublié le mot de passe de son ordinateur. Il est très simple donc tu devrais pouvoir le retrouver grâce à son profil Amstramgram.",
     "hasGame": true,
     "reward": "body",
     "results": {
-        "summary": "En aidant Fiona à retrouver son mot de passe, tu as trouvé une des nombreuses méthodes utilisées par les hackeurs pour accéder à nos informations personnelles. La cybersécurité consiste à sensibiliser la protection des données informatiques dans sa globalité. Un mélange de droit, de technique, de gestion de données, de gestion des risques. En bref, un savant mélange de nombreux domaines essentiel dans le monde connecté dans lequel nous vivons aujourd'hui.",
+        "summary": "En aidant Fiona à retrouver son mot de passe, tu as trouvé une des nombreuses méthodes utilisées par les hackeurs et hackeuses pour accéder à nos informations personnelles. La cybersécurité consiste à sensibiliser la protection des données informatiques dans sa globalité. Un mélange de droit, de technique, de gestion de données, de gestion des risques. En bref, un savant mélange de nombreux domaines essentiel dans le monde connecté dans lequel nous vivons aujourd'hui.",
         "didYouKnow":"Un secteur en pleine expansion et en grande recherche de talents. La vie étudiante est dynamique, elle s'appuie sur des simulations d'attaques entre clubs de cybersécurité.",
         "caracteristics" : [
             {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 80},
@@ -22,7 +22,11 @@
             "studies" : "BAC + 3 à 5",
             "moreInfo": "",
             "moreJobs": "",
-            "videos": []
+            "formations": "https://www.cmaformation-na.fr/formations/search?quoi=cybers%C3%A9curit%C3%A9&ou=&numero_departement=",
+            "videos": [{
+                "title": "Interview d'une pro",
+                "url": "https://www.youtube.com/embed/mcbazdEohcQ"
+            }]
         }
     }
 }
