@@ -140,7 +140,7 @@ const onUndo = () => {
           </div>
           <div class="w-full px-6 mb-6 items-start flex flex-col items-start">
             <p class="text-gray-800 mb-3">
-              Bravo, vous avez fais votre première page de connexion, vous pouvez revenir en arrière
+              Bravo, vous avez fait votre première page de connexion, vous pouvez revenir en arrière
               pour la modifier ou partir sur une autre île pour découvrir un autre métier
             </p>
             <button
