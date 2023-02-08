@@ -54,11 +54,11 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 2rem;
   }
 
   &__header-margin {
     padding: 0 2rem;
+    margin-bottom: 2rem;
   }
 
   &__content {

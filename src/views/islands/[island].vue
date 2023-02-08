@@ -18,6 +18,7 @@ import useGameStore from '@/stores/game'
 import WinScreen from '@/components/Islands/WinScreen.vue'
 import PasswordCracker from '@/components/Games/PasswordCracker.vue'
 import RoboticGame from '@/components/Games/RoboticGame/RoboticGame.vue'
+import MaintenanceGame from '@/components/Games/MaintenanceGame.vue'
 
 export default defineComponent({
   name: 'Island',
@@ -28,6 +29,7 @@ export default defineComponent({
     Results,
     WinScreen,
     RoboticGame,
+    MaintenanceGame,
   },
   setup() {
     const step = ref<number>(0)
@@ -143,6 +145,13 @@ export default defineComponent({
     @skip-game="handleSkipGame()"
     @quit-game="handleBackToMap()"
     @end-game="handleEndGame()"
+  />
+  <MaintenanceGame
+    v-if="step === 1 && islandInfos.islandName === 'Caramban'"
+    :islandInfos="islandInfos"
+    @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()"
+    @endGame="handleEndGame()"
   />
   <GamePresentation
     v-if="step === 0 && islandInfos.islandName" :color="islandInfos.color" :content="islandInfos"
