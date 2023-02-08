@@ -1,18 +1,19 @@
 <script lang="ts">
+import type { PropType } from 'vue'
 import { defineComponent, onMounted, reactive } from 'vue'
-import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue'
 import type { Case, Grid, Path, Row } from '@/Model/Game/NumberLink'
 import { PathColor } from '@/Model/Game/NumberLink'
+import type { IslandInfo } from '@/Model/Island/IslandInfo'
 
 export default defineComponent({
-  name: 'NumberLink',
-  components: { PauseMenu },
-  emits: ['skipGame', 'quitGame', 'endGame'],
-  events: {
-    skipGame: () => null,
-    quitGame: () => null,
-    endGame: () => null,
+  name: 'NetworkGameStep',
+  props: {
+    islandInfos: {
+      type: Object as PropType<IslandInfo>,
+      required: true,
+    },
   },
+  emits: ['nextStep'],
   setup(_, { emit }) {
     const game: Grid = reactive<Grid>({ rows: [] })
     let paths: Path [] = reactive<Path []>([])
@@ -125,7 +126,7 @@ export default defineComponent({
         }
       }
       if (isGameOver())
-        emit('endGame')
+        emit('nextStep')
     }
 
     function getRandomCase(boardSize: number, forbiddenCases: Case []): Case {
@@ -149,7 +150,7 @@ export default defineComponent({
         c1 = prev || getRandomCase(9, exploredCases)
         exploredCases.push(c1)
         c2 = getNeighbors(c1).find(n => exploredCases.findIndex(c => c.x === n.x && c.y === n.y) === -1)
-      // eslint-disable-next-line no-unmodified-loop-condition
+        // eslint-disable-next-line no-unmodified-loop-condition
       } while (c2 === undefined && !prev && exploredCases.length < 81)
       if (c2 === undefined)
         return [c1]
@@ -176,12 +177,8 @@ export default defineComponent({
       paths = newPaths
     }
 
-    function handleSkipGame(): void {
-      emit('skipGame')
-    }
-
-    function handleQuitGame(): void {
-      emit('quitGame')
+    function isStartOrEndCase(classes: string[]): boolean {
+      return classes.includes('-first') || classes.includes('-last')
     }
 
     onMounted(() => {
@@ -201,61 +198,76 @@ export default defineComponent({
     return {
       game,
       handleSelect,
-      handleSkipGame,
-      handleQuitGame,
+      isStartOrEndCase,
     }
   },
 })
 </script>
 
 <template>
-  <div class="dt-number-link__content">
-    <PauseMenu color="purple" @skip="handleSkipGame()" @quit="handleQuitGame()" />
-    <div class="dt-number-link">
-      <div v-for="(row, i) in game.rows" :key="`row${i}`" class="dt-number-link__row">
-        <div
-          v-for="(c, j) in row.cases" :key="`case${j}`"
-          class="dt-number-link__case -hoverable"
-          :class="c.classes"
-          @click="handleSelect(c)"
-        />
+  <Game :color="islandInfos.color">
+    <template #header>
+      <div class="dt-ng-header-title">
+        <IslandTitle :color="islandInfos.color" :name="islandInfos.islandName">
+          Île {{ islandInfos.islandName }}
+        </IslandTitle>
       </div>
-    </div>
-  </div>
+      <p class="dt-ng-text dt-ng-subtitle">
+        Aide Julie, la responsable du CDI à brancher les nouveaux câbles en cliquant sur les cases les unes après les autres.
+      </p>
+    </template>
+    <template #content>
+      <div class="dt-number-link">
+        <div v-for="(row, i) in game.rows" :key="`row${i}`" class="dt-number-link__row">
+          <div
+            v-for="(c, j) in row.cases" :key="`case${j}`"
+            class="dt-number-link__case -hoverable"
+            :class="c.classes"
+            @click="handleSelect(c)"
+          >
+            <i-ph-computer-tower-bold v-if="isStartOrEndCase(c.classes) && c.classes.includes('-black')" />
+            <i-mi-computer v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-blue')" />
+            <i-tabler-device-computer-camera v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-red')" />
+            <i-carbon-keyboard v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-green')" />
+            <i-bi-usb-drive v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-yellow')" />
+            <i-ic-baseline-wifi v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-purple')" />
+            <i-bx-speaker v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-pink')" />
+            <i-wpf-mouse v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-orange')" />
+          </div>
+        </div>
+      </div>
+    </template>
+    <template #footer />
+  </Game>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.dt-ng {
+  &-header-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  &-text {
+    color: white;
+    text-align: center;
+  }
+
+  &-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
 .dt-number-link {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 100vw;
-  width: 100vw;
-
-  @media screen and (orientation:landscape) {
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
-    width: 100vh;
-    width: calc(var(--vh, 1vh) * 100);
-  }
-
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
-    width: 100vw;
-    background: $white;
-    z-index: 2;
-  }
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: $purple-secondary;
 
   &__row {
     display: flex;
@@ -326,22 +338,19 @@ export default defineComponent({
 
     @mixin caseColor($color) {
 
-      &.-first:after {
+      &.-first {
         background-color: $color;
-        border-radius: .5rem;
         font-size: 1.25rem;
       }
 
       &.-last {
-        &:after {
-          box-shadow: inset 0 0 0 4px $color;
-          color: $color;
-          border-radius: .5rem;
-          font-size: 1.25rem;
-          transition: .3s;
-        }
+        box-shadow: inset 0 0 0 4px $color;
+        color: $color;
+        background-color: white;
+        font-size: 1.25rem;
+        transition: .3s;
 
-        &.-complete:after {
+        &.-complete {
           background-color: $color;
           color: $white;
         }
@@ -364,7 +373,7 @@ export default defineComponent({
       &.-left-top, &.-top-left  {
 
         &:before {
-          background-color: $white;
+          background-color: $purple-secondary;
           border-radius: 20%;
           top: -40%;
           left: -40%;
@@ -380,7 +389,7 @@ export default defineComponent({
 
       &.-left-bottom, &.-bottom-left  {
         &:before {
-          background-color: $white;
+          background-color: $purple-secondary;
           border-radius: 20%;
           bottom: -40%;
           left: -40%;
@@ -396,7 +405,7 @@ export default defineComponent({
 
       &.-right-top, &.-top-right  {
         &:before {
-          background-color: $white;
+          background-color: $purple-secondary;
           border-radius: 20%;
           top: -40%;
           right: -40%;
@@ -412,7 +421,7 @@ export default defineComponent({
 
       &.-right-bottom, &.-bottom-right  {
         &:before {
-          background-color: $white;
+          background-color: $purple-secondary;
           border-radius: 20%;
           bottom: -40%;
           right: -40%;
@@ -429,64 +438,27 @@ export default defineComponent({
 
     &.-black {
       @include caseColor($black);
-
-      &.-first:after, &.-last:after {
-        content: "●";
-        font-size: 2rem;
-      }
     }
     &.-blue {
       @include caseColor($dark-blue);
-
-      &.-first:after, &.-last:after {
-        content: "▲";
-      }
     }
     &.-red {
       @include caseColor($dark-red);
-
-      &.-first:after, &.-last:after {
-        content: "❤";
-
-      }
     }
     &.-green {
       @include caseColor($green);
-
-      &.-first:after, &.-last:after {
-        content: "✿";
-        font-size: 1.25rem;
-      }
     }
     &.-yellow {
       @include caseColor($dark-yellow);
-
-      &.-first:after, &.-last:after {
-        content: "✖";
-      }
     }
     &.-purple {
       @include caseColor($purple);
-
-      &.-first:after, &.-last:after {
-        content: "◼";
-        font-size: 1.25rem;
-      }
     }
     &.-pink {
       @include caseColor($pink);
-
-      &.-first:after, &.-last:after {
-        content: "★";
-      }
     }
     &.-orange {
       @include caseColor($orange);
-
-      &.-first:after, &.-last:after {
-        content: "◆";
-        font-size: 1.75rem;
-      }
     }
   }
 }

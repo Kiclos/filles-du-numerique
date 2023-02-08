@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-shadow
 export enum PawnOrientation {
   top = 'top',
   left = 'left',
@@ -7,10 +6,16 @@ export enum PawnOrientation {
 }
 
 export interface Pawn {
-  x: number,
-  y: number,
-  orientation: PawnOrientation,
+  x: number
+  y: number
+  orientation: PawnOrientation
 }
 
-// eslint-disable-next-line no-shadow
 export enum PawnInstruction { moveForward, rotateLeft, rotateRight }
+
+export interface Maze {
+  grid: number[][] // 1 = wall / 0 = path
+  start: [number, number]
+  startOrientation: PawnOrientation
+  goal: [number, number]
+}

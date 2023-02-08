@@ -46,15 +46,14 @@ export default defineComponent({
   padding-top: 2rem;
   z-index: 2;
 
-  &__header,
-  &__content,
-  &__footer {
+  &__header, &__content, &__footer {
     width: 100%;
   }
 
   &__header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__header-margin {

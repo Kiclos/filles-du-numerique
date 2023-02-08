@@ -1,6 +1,6 @@
 import type { EtapeHistoireType } from '@/components/Games/MaintenanceGame.vue'
 
-export const badMessages: string[] = ['J\'ai essayé mais ça n\'a pas fonctionné !', 'Comment doit-je faire ?']
+export const badMessages: string[] = ['J\'ai essayé mais ça n\'a pas fonctionné !', 'Comment dois-je faire ?']
 export const histoire: EtapeHistoireType[] = [
   {
     messagesList: [
@@ -25,7 +25,7 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'Cependant depuis ce matin il ne fonctione plus...',
+        content: 'Cependant depuis ce matin il ne fonctionne plus...',
         isImage: false,
         isMine: false,
       },
