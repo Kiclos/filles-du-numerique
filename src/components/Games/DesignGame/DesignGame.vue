@@ -223,9 +223,6 @@ const onUndo = () => {
   font-weight: 600;
   cursor: pointer;
 }
-</style>
-
-<style>
 .dt-game__footer {
   padding: 0 2rem;
 }
