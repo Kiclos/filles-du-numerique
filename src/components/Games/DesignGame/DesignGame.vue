@@ -89,9 +89,14 @@ const onUndo = () => {
         </Container>
 
         <BottomSheet :is-open="openUpdate" @on-close="() => (openUpdate = false)">
-          <div class="mt-8 flex w-full justify-between">
+          <div class="mt-8 flex w-full items-center mb-6 justify-between">
             <p class="text-gray-700 font-semibold">Couleur de fond</p>
-            <input :value="bgColor" type="color" @change="onColorUpdate" />
+            <input
+              :value="bgColor"
+              class="outline-none p-0 w-24 h-9 border-none rounded-md"
+              type="color"
+              @change="onColorUpdate"
+            />
           </div>
 
           <DesignDraggableItem class="mb-16" @on-drag-start="onDragStart"
