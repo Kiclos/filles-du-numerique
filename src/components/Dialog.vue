@@ -2,8 +2,8 @@
 import type { PropType } from 'vue'
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import type Dialog from '../Model/Dialog'
-import TapToContinue from '../components/TapToContinue/TapToContinue.vue'
-import TextContainer from '../components/TextContainer/TextContainer.vue'
+import TapToContinue from '@/components/TapToContinue/TapToContinue.vue'
+import TextContainer from '@/components/TextContainer/TextContainer.vue'
 
 export default defineComponent({
   name: 'DialogComponent',
