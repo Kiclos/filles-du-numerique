@@ -15,7 +15,7 @@ export default defineComponent({
     const router = useRouter()
 
     function handleGameStart(): void {
-      if (gameStore.status === GameStatus.INIITAL_STATE)
+      if (gameStore.status === GameStatus.INITIAL_STATE)
         router.push('/introduction')
       else
         router.push('/islands')
