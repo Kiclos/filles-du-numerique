@@ -48,11 +48,9 @@ export default defineComponent({
     <h1 class="dt-h1">
       DigitTales
     </h1>
-    <router-link class="welcomeLink" to="/islands">
-      <DTButton @click="$emit('play')">
-        Jouer
-      </DTButton>
-    </router-link>
+    <DTButton @click="$emit('play')">
+      Jouer
+    </DTButton>
 
     <DTButton v-if="!isIphone" outlined @click="install">
       Installer l'application
@@ -64,8 +62,4 @@ export default defineComponent({
 </template>
 
 <style>
-.welcomeLink {
-  width: 100%;
-  text-align:center;
-}
 </style>

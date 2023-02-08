@@ -1,6 +1,6 @@
 {
     "islandName": "Nethosa",
-    "field": "Reseaux et infrastructures",
+    "field": "Réseaux et infrastructures",
     "color": "purple",
     "img": "network.png",
     "presentation": "Nethosa, c’est à la fois une île et le nom du lycée qui s’y trouve. C'est un établissement important car c'est ici que tous les adolescents et adolescentes passent afin d'obtenir leur bac.",
@@ -8,7 +8,7 @@
     "hasGame": true,
     "reward": "leg-left",
     "results": {
-        "summary": "Grâce à l'aide que tu as apporté à Julie, tu as pu expérimenter la notion de réseau informatique. Les réseaux et infrastructures sont une brique essentielle de l'informatique. C'est grâce aux professionnels des systèmes, des réseaux et de la sécurité que l'information peut circuler et être traitée efficacement.",
+        "summary": "Grâce à l'aide que tu as apporté à Julie, tu as pu expérimenter la notion de réseau informatique. Les réseaux et infrastructures sont une brique essentielle de l'informatique. C'est grâce aux professionnel.le.s des systèmes, des réseaux et de la sécurité que l'information peut circuler et être traitée efficacement.",
         "didYouKnow":"",
         "caracteristics" : [
             {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 30},
@@ -22,6 +22,7 @@
             "studies" : "BAC + 5",
             "moreInfo": "",
             "moreJobs": "",
+            "formations": "https://www.cmaformation-na.fr/formations/search?quoi=R%C3%A9seaux+et+infrastructure&ou=&numero_departement=",
             "videos": []
         }
     }

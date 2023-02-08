@@ -7,7 +7,7 @@ import type { Island } from '@/Model/Island/Island'
 export default defineComponent({
   name: 'Islands',
   events: { selectIsland: (island: Island) => island },
-  setup(_, { emit }) {
+  setup() {
     const gameStore = useGameStore()
     const islands: Island [] = gameStore.islands
 
@@ -20,13 +20,8 @@ export default defineComponent({
       'iPod',
     ].includes(navigator.platform))
 
-    function handleIslandSelection(island: Island): void {
-      emit('selectIsland', island)
-    }
-
     return {
       islands,
-      handleIslandSelection,
       isIphone,
     }
   },

@@ -34,6 +34,10 @@ export default defineComponent({
       return 'Collecter la pièce'
     })
 
+    function handleReplayGame(): void {
+      emit('startGame', true)
+    }
+
     function handleStartGame(): void {
       emit('startGame')
     }
@@ -51,6 +55,7 @@ export default defineComponent({
       handleStartGame,
       handleBackTopMap,
       handleSkipGame,
+      handleReplayGame,
     }
   },
 })
@@ -61,8 +66,11 @@ export default defineComponent({
     <template #header>
       <div class="island-presentation-header">
         <StepButton :color="content.color" back @click="handleBackTopMap()" />
-        <StepButton :color="content.color" next @click="handleSkipGame()">
+        <StepButton v-if="status !== 3" :color="content.color" next @click="handleSkipGame()">
           Passer <br>le mini jeu
+        </StepButton>
+        <StepButton v-else :color="content.color" next @click="handleReplayGame()">
+          Rejouer
         </StepButton>
       </div>
     </template>

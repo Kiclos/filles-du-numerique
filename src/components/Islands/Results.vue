@@ -1,6 +1,8 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel'
 import TextContainer from '@/components/TextContainer/TextContainer.vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 
@@ -8,6 +10,10 @@ export default defineComponent({
   name: 'GameResults',
   components: {
     TextContainer,
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation,
   },
   props: {
     jobData: {
@@ -18,6 +24,15 @@ export default defineComponent({
       type: String,
       required: true,
     },
+  },
+  setup(_) {
+    function pauseVideo(event: any) {
+      const element = document.querySelectorAll('.dt-results-video')[event.currentSlideIndex]
+      if (element instanceof HTMLIFrameElement)
+        element.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*')
+    }
+
+    return { pauseVideo }
   },
 })
 </script>
@@ -96,27 +111,39 @@ export default defineComponent({
             </h4>
             <p>{{ jobData.results.specificJob.impact }}</p>
           </template>
-          <a v-if="jobData.results.specificJob.moreInfo" :href="jobData.results.specificJob.moreInfo">
+          <a v-if="jobData.results.specificJob.moreInfo" target="_blank" :href="jobData.results.specificJob.moreInfo">
             <DTButton detail :color="color">En savoir plus</DTButton>
           </a>
-          <a v-if="jobData.results.specificJob.moreJobs" :href="jobData.results.specificJob.moreJobs">
+          <a v-if="jobData.results.specificJob.moreJobs" target="_blank" :href="jobData.results.specificJob.moreJobs">
             <DTButton outlined detail :color="color">Voir d'autres métiers</DTButton>
+          </a>
+          <a v-if="jobData.results.specificJob.formations" target="_blank" :href="jobData.results.specificJob.formations">
+            <DTButton outlined detail :color="color">Voir des formations</DTButton>
           </a>
         </TextContainer>
       </section>
 
       <section v-if="jobData.results.specificJob.videos.length > 0" class="dt-flex-align-text--center">
-        <div v-for="video in jobData.results.specificJob.videos" :key="video.title">
-          <hr class="dt-results-separator">
-          <h4 class="dt-results-h4">
-            {{ video.title }}
-          </h4>
-          <iframe
-            :src="video.url" title="YouTube video player"
-            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-            gyroscope; picture-in-picture" allowfullscreen class="dt-results-video"
-          />
-        </div>
+        <Carousel :items-to-show="1" @slide-start="pauseVideo">
+          <Slide v-for="video in jobData.results.specificJob.videos" :key="video.title">
+            <div class="youtube-slide">
+              <hr class="dt-results-separator">
+              <h4 class="dt-results-h4">
+                {{ video.title }}
+              </h4>
+              <iframe
+                :src="`${video.url}?&enablejsapi=1`" title="YouTube video player"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+              gyroscope; picture-in-picture" allowfullscreen class="dt-results-video"
+              />
+            </div>
+          </Slide>
+
+          <template #addons>
+            <Navigation />
+            <Pagination />
+          </template>
+        </Carousel>
         <hr class="dt-results-separator">
       </section>
 
@@ -177,6 +204,10 @@ export default defineComponent({
       padding: 0 calc((100vw - 500px) / 2);
 
       button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
         border: none;
         background: none;
         cursor: pointer;
@@ -334,6 +365,13 @@ export default defineComponent({
 .dt-trophy {
   &--yellow{
     color: $yellow;
+  }
+}
+.youtube-slide {
+  width: 100%;
+  iframe {
+    width: 100%;
+    height: 300px;
   }
 }
 </style>

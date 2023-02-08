@@ -18,6 +18,7 @@ export interface IslandInfo {
       studies: string
       moreInfo: string
       moreJobs: string
+      formations: string
       videos: { title: string; url: string }[]
     }
   }

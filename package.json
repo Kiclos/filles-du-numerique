@@ -23,8 +23,13 @@
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
+<<<<<<< HEAD
     "vue-dndrop": "^1.2.13",
     "vue-router": "^4.1.6"
+=======
+    "vue-router": "^4.1.6",
+    "vue3-carousel": "^0.2.9"
+>>>>>>> dev
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.27.0",

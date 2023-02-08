@@ -8,7 +8,7 @@
     "hasGame": true,
     "reward": "arm-left",
     "results": {
-        "summary": "En aidant Gustave, tu viens d'expérimenter l'entrainement d'une intelligence artificielle. Entrer dans le monde de l'Intelligence Artificielle, c'est travailler avec des programmes informatiques capable de traiter un grand volume de données et ce très rapidement. Ces programmes deviennent au fil du temps plus efficaces que l’Homme et peuvent même aller jusqu'à générer des images. Les plus belles photos de la collection de Gustave sont des images générées par une intelligence artificielle appellée DALL-E.",
+        "summary": "En aidant Gustave, tu viens d'expérimenter l'entrainement d'une intelligence artificielle. Entrer dans le monde de l'Intelligence Artificielle, c'est travailler avec des programmes informatiques capable de traiter un grand volume de données et ce très rapidement. Ces programmes deviennent au fil du temps plus efficaces que l’humain et peuvent même aller jusqu'à générer des images. Les plus belles photos de la collection de Gustave sont des images générées par une intelligence artificielle appellée DALL-E.",
         "didYouKnow":"Les métiers à base d'intelligence artificielle se répandent dans tous les secteurs d'activité et les utilisateurs sont nationaux avec des interactions au niveau de la recherche et de l'innovation à l'international. L'IA est en plein essor et aide à prédire des comportements de machines ou d'humains. Elle permet également des applications sur les dimensions environnementales.",
         "caracteristics" : [
             {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 50},
@@ -16,12 +16,13 @@
             {"iconLeft": "tools", "iconRight": "code", "labelLeft": "Matériel", "labelRight": "Virtuel", "value": 75}
         ],
         "specificJob": {
-            "jobName": "Domoticien.ne",
-            "generalInfos":"Le domoticien installe des équipements de domotique (\"domus\" : maison en latin + robotique) rendant nos habitats plus intelligents, plus écologiques et plus confortables.",
-            "salary": 20000,
-            "studies" : "BAC + 2 à 5",
+            "jobName": "Ingénieur.e en Machine Learning",
+            "generalInfos":"Un.e ingénieur.e en Machine Learning est un programmeur informatique. Il aide à créer des algorithmes pour traiter de très grandes quantités de données.",
+            "salary": 62000,
+            "studies" : "BAC + 5",
             "moreInfo": "",
             "moreJobs": "",
+            "formations": "https://www.cmaformation-na.fr/formations/search?quoi=intelligence+artificielle&ou=&numero_departement=",
             "videos": []
         }
     }

@@ -18,6 +18,7 @@ import useGameStore from '@/stores/game'
 import WinScreen from '@/components/Islands/WinScreen.vue'
 import PasswordCracker from '@/components/Games/PasswordCracker.vue'
 import RoboticGame from '@/components/Games/RoboticGame/RoboticGame.vue'
+import MaintenanceGame from '@/components/Games/MaintenanceGame.vue'
 
 export default defineComponent({
   name: 'Island',
@@ -28,6 +29,7 @@ export default defineComponent({
     Results,
     WinScreen,
     RoboticGame,
+    MaintenanceGame,
   },
   setup() {
     const step = ref<number>(0)
@@ -42,8 +44,8 @@ export default defineComponent({
     }
     const islandInfos = reactive<IslandInfo>({} as IslandInfo)
 
-    function handleStartGame(): void {
-      if (island.status === IslandStatus.COMPLETE) {
+    function handleStartGame(replay: boolean): void {
+      if (island.status === IslandStatus.COMPLETE && !replay) {
         step.value = 3
       } else if (islandInfos.hasGame) {
         step.value = 1
@@ -152,12 +154,19 @@ export default defineComponent({
     @quit-game="handleBackToMap()"
     @end-game="handleEndGame()"
   />
+  <MaintenanceGame
+    v-if="step === 1 && islandInfos.islandName === 'Caramban'"
+    :islandInfos="islandInfos"
+    @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()"
+    @endGame="handleEndGame()"
+  />
   <GamePresentation
     v-if="step === 0 && islandInfos.islandName"
     :color="islandInfos.color"
     :content="islandInfos"
     :status="island.status"
-    @startGame="handleStartGame()"
+    @startGame="(replay) => handleStartGame(replay)"
     @skipGame="handleSkipGame()"
     @backToMap="handleBackToMap()"
   />

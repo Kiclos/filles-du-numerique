@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { PropType } from 'vue'
-import { defineComponent, ref } from 'vue'
+import { onMounted, PropType } from 'vue'
+import { defineComponent, nextTick, ref } from 'vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import type { ChoixType } from '@/components/Games/MaintenanceGame/Choix.vue'
 import PauseMenu from '@/components/Games/GamesUI/PauseMenu/PauseMenu.vue'
@@ -8,6 +8,7 @@ import Meteorite from '@/components/Games/MaintenanceGame/Meteorite.vue'
 import type { MessageType } from '@/components/Games/MaintenanceGame/Messages.vue'
 import Messages from '@/components/Games/MaintenanceGame/Messages.vue'
 import Choix from '@/components/Games/MaintenanceGame/Choix.vue'
+import { badMessages, histoire } from '@/Model/Game/MaintenanceScenario'
 
 export interface EtapeHistoireType {
   messagesList: MessageType[]
@@ -34,62 +35,24 @@ export default defineComponent({
     function handleCountdown(): number {
       return countdown
     }
-    const histoire: EtapeHistoireType[] = [
-      {
-        messagesList: [
-          {
-            content: 'Mdazdzadzadazdazonctionne pas',
-            isImage: false,
-            isMine: true,
-          },
-          {
-            content: 'meteorite.png',
-            isImage: true,
-            isMine: false,
-          },
-          {
-            content: 'Ma souris ne fonctionne pas',
-            isImage: false,
-            isMine: false,
-          },
-        ],
-        choixList: {
-          content: ['bbChoix 1', 'bbChoix 2', 'bbChoix 3'],
-          goodChoice: 2,
-        },
-      },
-      {
-        messagesList: [
-          {
-            content: 'En quoi puis-je vous aider ?',
-            isImage: false,
-            isMine: true,
-          },
-          {
-            content: 'Merci j\'ai besoin d\'aide',
-            isImage: false,
-            isMine: false,
-          },
-          {
-            content: 'Bonjour je vais vous aider',
-            isImage: false,
-            isMine: true,
-          },
-        ],
-        choixList: {
-          content: ['1', '2', '3'],
-          goodChoice: 0,
-        },
-      },
-    ]
     const etapeIndex = ref(0)
+    const choixList = ref<ChoixType>()
+    const choixAvailable = ref(false)
     const messageList = ref<MessageType[]>([])
     const cpt = ref(0)
-    ajouterNouveauMessages()
+
+    const modaleOpen = ref(false)
+    const modaleLoseGame = ref(false)
+
+    onMounted(() => {
+      ajouterNouveauMessages()
+    })
 
     const handleChoix = (choixNumber: number): void => {
       if (histoire[etapeIndex.value]?.choixList.goodChoice === choixNumber) {
         if (etapeIndex.value + 1 < histoire.length) {
+          choixList.value = undefined
+          choixAvailable.value = false
           etapeIndex.value += 1
           ajouterNouveauMessages()
         }
@@ -98,60 +61,81 @@ export default defineComponent({
         }
       }
       else {
-        // eslint-disable-next-line no-console
-        console.log('Mauvais choix')
+        showMessagesBadAnswer(choixNumber)
       }
     }
-    // Appeler aussi au ref de messageList
+    async function showMessagesBadAnswer(choixNumber: number) {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      choixAvailable.value = false
+      messageList.value = [{ content: histoire[etapeIndex.value]?.choixList.content[choixNumber], isImage: false, isMine: true }, ...messageList.value]
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      for (let cpt = 0; cpt < 2; cpt++) {
+        messageList.value = [{ content: badMessages[cpt], isImage: false, isMine: false }, ...messageList.value]
+        nextTick(() => {
+          const messagesBox = document.querySelector('.messagesBox')?.querySelector('p')
+          if (!messagesBox)
+            return
+          messagesBox.scrollIntoView({ behavior: 'smooth' })
+        })
+        await new Promise(resolve => setTimeout(resolve, 1000))
+      }
+      choixAvailable.value = true
+      nextTick(() => {
+        const lastMessage = document.querySelector('.yourMessage')
+        if (!lastMessage)
+          return
+        lastMessage.scrollIntoView({ behavior: 'smooth' })
+      })
+    }
+
     async function ajouterNouveauMessages() {
-      if (!histoire[etapeIndex.value])
-        return
-      // eslint-disable-next-line no-console
-      const b = histoire[etapeIndex.value]
-      if (cpt.value < histoire[etapeIndex.value].messagesList.length) {
-        messageList.value = [histoire[etapeIndex.value].messagesList[cpt.value], ...messageList.value]
-        cpt.value += 1
-      }
-      else {
-        cpt.value = 0
-      }
-      await new Promise(r => setTimeout(r, 2000))
-      if (cpt.value < histoire[etapeIndex.value].messagesList.length) {
-        messageList.value = [histoire[etapeIndex.value].messagesList[cpt.value], ...messageList.value]
-        cpt.value += 1
-      }
-      else {
-        cpt.value = 0
-      }
-      /* const interval = setInterval(() => {
+      const interval = setInterval(() => {
         if (cpt.value < histoire[etapeIndex.value].messagesList.length) {
           messageList.value = [histoire[etapeIndex.value].messagesList[cpt.value], ...messageList.value]
           cpt.value += 1
+          nextTick(() => {
+            const messagesBox = document.querySelector('.messagesBox')?.querySelector('p')
+            if (!messagesBox)
+              return
+            messagesBox.scrollIntoView({ behavior: 'smooth' })
+          })
         }
         else {
+          choixList.value = histoire[etapeIndex.value].choixList
+          choixAvailable.value = true
           cpt.value = 0
           clearInterval(interval)
+          nextTick(() => {
+            const lastMessage = document.querySelector('.yourMessage')
+            if (!lastMessage)
+              return
+            lastMessage.scrollIntoView({ behavior: 'smooth' })
+          })
         }
-      }, 1000) */
+      }, 1000)
     }
     const countdownEnd = (): void => {
-      // eslint-disable-next-line no-console
-      console.log('fin')
+      modaleLoseGame.value = true
     }
     function handleSkipGame(): void {
       emit('skipGame')
     }
-
     function handleQuitGame(): void {
       emit('quitGame')
     }
-
-    console.log(histoire[etapeIndex.value])
+    function toggleModaleBadAnswer(): void {
+      modaleOpen.value = !modaleOpen.value
+    }
 
     return {
       etapeIndex,
       histoire,
       messageList,
+      modaleOpen,
+      modaleLoseGame,
+      choixList,
+      choixAvailable,
+      toggleModaleBadAnswer,
       handleCountdown,
       handleSkipGame,
       handleQuitGame,
@@ -168,22 +152,40 @@ export default defineComponent({
 <template>
   <Game v-if="histoire !== undefined && histoire[etapeIndex] !== undefined" :color="islandInfos.color" without-margin>
     <template #header>
+      <div v-if="modaleOpen" class="modal">
+        <div class="modal-content">
+          <p>Mauvaise réponse !</p>
+          <button @click="toggleModaleBadAnswer">
+            Close
+          </button>
+        </div>
+      </div>
+      <div v-if="modaleLoseGame" class="modal">
+        <div class="modal-content">
+          <p>Vous avez perdu ...</p>
+          <button @click="handleQuitGame()">
+            Recommencer
+          </button>
+        </div>
+      </div>
       <div class="intermediateHeader">
-        <IslandTitle :color="islandInfos.color" :name="islandInfos.islandName">
-          Île {{ islandInfos.islandName }}
-        </IslandTitle>
+        <div class="header-title">
+          <IslandTitle :color="islandInfos.color" :name="islandInfos.islandName">
+            Île {{ islandInfos.islandName }}
+          </IslandTitle>
+        </div>
         <PauseMenu :color="islandInfos.color" @skip="handleSkipGame()" @quit="handleQuitGame()" />
         <p class="instructionTitle">
           Aide rapidement l'habitant !
         </p>
-        <Meteorite />
+        <Meteorite @countdown-end="countdownEnd" />
       </div>
     </template>
     <template #content>
-      <Messages :messages="messageList" @countdown-end="countdownEnd" />
+      <Messages :messages="messageList" :choix-available="choixAvailable" />
     </template>
     <template #footer>
-      <Choix :choix-list="histoire[etapeIndex]?.choixList" @handle-choix="handleChoix" />
+      <Choix :choix-list="choixList" :choix-available="choixAvailable" @handle-choix="handleChoix" />
     </template>
   </Game>
 </template>
@@ -195,6 +197,12 @@ export default defineComponent({
   text-align: center;
 
   color: #2F2F2F;
+}
+
+.header-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .gamePanel {
@@ -211,5 +219,41 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   padding: 0 -2rem;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.modal-content button {
+  margin-top: 5px;
+  background-color: #FBDA61;
+  border-style: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 400;
+  margin-top: 18px;
+  cursor: pointer;
+  font-size: 16px;
 }
 </style>

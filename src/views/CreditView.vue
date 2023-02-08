@@ -24,7 +24,11 @@ export default defineComponent({
       <h2 class="dt-credit__subtitle">
         <span class="dt-credit__subtitle__label">Développeurs</span>
         Clémentine Biais <br>
-        Thomas Gaubert
+        Thomas Gaubert <br>
+        Loïs Gigaud <br>
+        Théo Letouzé <br>
+        Clément Nicolas <br>
+        Julien Raquois <br>
       </h2>
       <h2 class="dt-credit__subtitle">
         <span class="dt-credit__subtitle__label">Partenaires</span>
@@ -33,12 +37,13 @@ export default defineComponent({
           <span class="dt-credit__logo__label">Femmes Au <br>Coeur <debr /> l'EnTreprise</span>
         </div>
         <br>
-        <img class="dt-credit__logo" src="/img/Partners/FR-CIDFF.png" alt="logo_FR-CIDFF"><br>
-        <img class="dt-credit__logo" src="/img/Partners/Aquitaine.png" alt="logo_IESF">
+        <img class="dt-credit__logo" src="/img/Partners/FR-CIDFF.png" alt="logo_FR-CIDFF">
+        <img class="dt-credit__logo" src="/img/Partners/IESF.png" alt="logo_IESF">
+        <img class="dt-credit__logo" src="/img/Partners/logo_imt.png" alt="logo_IMT">
       </h2>
+      <DTButton @click="handleClose()">
+        Retour au menu
+      </DTButton>
     </div>
-    <DTButton @click="handleClose()">
-      Retour au menu
-    </DTButton>
   </div>
 </template>
