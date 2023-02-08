@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-shadow
 export enum GameStatus {
-  INIITAL_STATE,
+  INITIAL_STATE,
   POST_INTRO,
   ALL_GAMES_COMPLETE,
   POST_OUTRO,
