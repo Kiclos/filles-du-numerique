@@ -23,10 +23,19 @@
             "impact" : "Les logiciels sont absolument partout et dans tous les domaines : que ce soit en médecine, communication, aide à la personne ou même automobile ! Les impacts sont également environnementaux, et on trouve de plus en plus de démarches Green IT pour \" développer \" de manière plus respnsable.",
             "moreInfo": "",
             "moreJobs": "",
+            "formations": "https://www.cmaformation-na.fr/formations/search?quoi=developement+logiciel&ou=&numero_departement=",
             "videos": [
                 {
                     "title": "Interview d'une pro",
                     "url": "https://www.youtube.com/embed/O8ouH41S2fs"
+                },
+                {
+                    "title": "Interview d'une étudiante",
+                    "url": "https://www.youtube.com/embed/_WMn-KjHsoM"
+                },
+                {
+                    "title": "Interview d'une freelance",
+                    "url": "https://www.youtube.com/embed/-IW1ew8m1vA"
                 }
             ]
         }

@@ -6,6 +6,7 @@
     "presentation": " Visiter Robotix, c'est plonger dans le célèbre labyrinthe de l'archipel ! C'est ici que s'affrontent les habitants à travers la fameuse épreuve du labyrinthe.",
     "guideline": "Pauline a voulu tenter sa chance mais malheureusement elle est perdue ! Tu pourrais l'aider à s'orienter ?",
     "hasGame": true,
+    "videos": [],
     "reward": "leg-right",
     "results": {
         "summary": "En aidant Pauline, tu as pu simuler la programmation des robots. Ils sont aujourd'hui de plus en plus présents dans les usines et il est donc nécessaire de les programmer. Ils peuvent même parfois se déplacer comme les humains ! La robotique est donc l'ensemble des techniques mises au point et exécutées pour fabriquer et contrôler ces robots. Il existe des possibilités infinies et un très grand éventail de champs d'application.",
@@ -23,6 +24,7 @@
             "impact" : "La robotique consistant en l'automatisation de tâches physiques, ses impacts dans l'industrialisation ne sont plus à prouver. Mais les progrès technologiques permettent aujourd'hui de robotiser des tâches de plus en plus précises, comme des chirurgies critiques, ainsi que de l'aide à la personne en situation de handicap par exemple.",
             "moreInfo": "https://futures-numeriques.fr/",
             "moreJobs": "https://www.onisep.fr/Ressources/Univers-Metier/Metiers/roboticien-roboticienne",
+            "formations": "https://www.cmaformation-na.fr/formations/search?quoi=robotique&ou=&numero_departement=",
             "videos": [
             ]
         }
