@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { PropType } from 'vue'
+import { onMounted, PropType } from 'vue'
 import { defineComponent, nextTick, ref } from 'vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import type { ChoixType } from '@/components/Games/MaintenanceGame/Choix.vue'
@@ -35,16 +35,18 @@ export default defineComponent({
     function handleCountdown(): number {
       return countdown
     }
-    // const histoire: EtapeHistoireType[] =
     const etapeIndex = ref(0)
     const choixList = ref<ChoixType>()
     const choixAvailable = ref(false)
     const messageList = ref<MessageType[]>([])
     const cpt = ref(0)
-    ajouterNouveauMessages()
 
     const modaleOpen = ref(false)
     const modaleLoseGame = ref(false)
+
+    onMounted(() => {
+      ajouterNouveauMessages()
+    })
 
     const handleChoix = (choixNumber: number): void => {
       if (histoire[etapeIndex.value]?.choixList.goodChoice === choixNumber) {
@@ -60,7 +62,6 @@ export default defineComponent({
       }
       else {
         showMessagesBadAnswer(choixNumber)
-        // toggleModaleBadAnswer()
       }
     }
     async function showMessagesBadAnswer(choixNumber: number) {
