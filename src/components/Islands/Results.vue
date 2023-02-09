@@ -149,7 +149,7 @@ export default defineComponent({
 
       <footer>
         <router-link to="/islands">
-          <DTButton :color="color" @click="$emit('close')">
+          <DTButton :color="color">
             Retour à la carte
           </DTButton>
         </router-link>
