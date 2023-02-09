@@ -99,15 +99,15 @@ const onUndo = () => {
             />
           </div>
 
-          <DesignDraggableItem class="mb-16" @on-drag-start="onDragStart"
+          <DesignDraggableItem class="mb-2" @on-drag-start="onDragStart"
             ><InputField class="!cursor-pointer pointer-events-none" label="Email" type="email" />
             <template #displayElement>
               <InputField label="Email" type="email" class="w-full" />
             </template>
           </DesignDraggableItem>
 
-          <DesignDraggableItem class="mb-16" @on-drag-start="onDragStart"
-            ><InputField label="Mot de passe" type="password" />
+          <DesignDraggableItem class="mb-2" @on-drag-start="onDragStart"
+            ><InputField class-name="mb-4" label="Mot de passe" type="password" />
             <template #displayElement
               ><InputField label="Mot de passe" type="password" class="w-full"
             /></template>
@@ -118,18 +118,18 @@ const onUndo = () => {
               text="Connexion"
               class="mx-auto pointer-events-none"
             /><template #displayElement
-              ><DesignButton :style="`background: ${bgColor}`" text="Connexion" class="mx-auto"
+              ><DesignButton :style="`background: ${bgColor}`" text="Connexion" class-name="mb-3"
             /></template>
           </DesignDraggableItem>
 
-          <Container group-name="myDrop" class="h-full w-full" @drop="onDrop">
+          <Container group-name="myDrop" class="w-full" @drop="onDrop">
             <div></div>
           </Container>
         </BottomSheet>
         <BottomSheet
           :mobile-bar="false"
           height="100vh"
-          class-name="pt-6 w-full h-full !px-0"
+          class-name="pt-6 overflow-scroll w-full h-full !px-0"
           :is-open="openResultModal"
           @on-close="() => (openResultModal = false)"
         >
@@ -138,7 +138,7 @@ const onUndo = () => {
             <p class="text-xl font-medium">Beau résultat !</p>
             <div></div>
           </div>
-          <div class="w-full px-6 mb-6 items-start flex flex-col items-start">
+          <div class="w-full px-6 mb-6 items-start flex flex-col">
             <p class="text-gray-800 mb-3">
               Bravo, vous avez fait votre première page de connexion, vous pouvez revenir en arrière
               pour la modifier ou partir sur une autre île pour découvrir un autre métier
@@ -153,8 +153,8 @@ const onUndo = () => {
           </div>
 
           <div
-            class="w-full py-4 h-full flex flex-col items-center justify-center"
             v-if="resCanvas"
+            class="w-full p-4 h-full flex flex-col items-center justify-center"
             :style="`background: ${bgColor}`"
           >
             <img class="rounded-lg" :src="resCanvas" />
@@ -163,14 +163,14 @@ const onUndo = () => {
       </div>
     </template>
     <template #footer>
-      <div class="flex mb-4 items-stretch">
+      <div class="flex mx-8 mb-4 items-stretch">
         <button class="flex-grow updateButton" @click="openUpdate = true">Modifier</button>
         <div class="w-20 flex justify-center items-center cursor-pointer" @click="onUndo">
           <UndoIcon class="text-white text-xl" />
         </div>
       </div>
       <button
-        class="mb-10 flex-grow updateButton"
+        class="mx-8 mb-10 flex-grow updateButton"
         :class="[components.length ? 'opacity-60' : '!opacity-0 pointer-events-none']"
         @click="onSubmit"
       >
@@ -217,7 +217,8 @@ const onUndo = () => {
   border: 0;
   outline: 0;
   padding: 20px 0;
-  width: 100%;
+  width: calc(100% - 4rem);
+
   text-align: center;
   font-size: 1.2rem;
   font-weight: 600;
