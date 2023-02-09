@@ -66,6 +66,8 @@ export default defineComponent({
     }
     async function showMessagesBadAnswer(choixNumber: number) {
       await new Promise(resolve => setTimeout(resolve, 1000))
+      const tmpChoix = choixList.value
+      choixList.value = undefined
       choixAvailable.value = false
       messageList.value = [{ content: histoire[etapeIndex.value]?.choixList.content[choixNumber], isImage: false, isMine: true }, ...messageList.value]
       await new Promise(resolve => setTimeout(resolve, 1000))
@@ -79,6 +81,7 @@ export default defineComponent({
         })
         await new Promise(resolve => setTimeout(resolve, 1000))
       }
+      choixList.value = tmpChoix
       choixAvailable.value = true
       nextTick(() => {
         const lastMessage = document.querySelector('.yourMessage')
@@ -239,7 +242,8 @@ export default defineComponent({
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 20%;
+  width: 80%;
+  max-width: 300px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 20px;
