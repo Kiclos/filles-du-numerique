@@ -65,10 +65,10 @@ export default defineComponent({
       }
     }
     async function showMessagesBadAnswer(choixNumber: number) {
-      await new Promise(resolve => setTimeout(resolve, 1000))
       const tmpChoix = choixList.value
       choixList.value = undefined
       choixAvailable.value = false
+      await new Promise(resolve => setTimeout(resolve, 1000))
       messageList.value = [{ content: histoire[etapeIndex.value]?.choixList.content[choixNumber], isImage: false, isMine: true }, ...messageList.value]
       await new Promise(resolve => setTimeout(resolve, 1000))
       for (let cpt = 0; cpt < 2; cpt++) {
