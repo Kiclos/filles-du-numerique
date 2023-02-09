@@ -49,7 +49,7 @@ const onDrop = (e: any) => {
     {
       y: unref(y) - designPreview.value.containerElement.getBoundingClientRect().top - 40,
       tag: e.payload.tag,
-      props: { ...e.payload.props, color: bgColor },
+      props: { ...e.payload.props },
       id: components.value.length,
     },
   ]
@@ -84,6 +84,7 @@ const onUndo = () => {
               :style="`top: ${component.y}px; position: absolute;`"
               class=""
               v-bind="component.props"
+              :color="bgColor"
             />
           </TransitionGroup>
         </Container>
@@ -118,7 +119,7 @@ const onUndo = () => {
               text="Connexion"
               class="mx-auto pointer-events-none"
             /><template #displayElement
-              ><DesignButton :style="`background: ${bgColor}`" text="Connexion" class-name="mb-3"
+              ><DesignButton text="Connexion" class-name="mb-3"
             /></template>
           </DesignDraggableItem>
 
@@ -154,7 +155,7 @@ const onUndo = () => {
 
           <div
             v-if="resCanvas"
-            class="w-full p-4 h-full flex flex-col items-center justify-center"
+            class="w-full p-4 flex flex-grow flex-col items-center justify-center"
             :style="`background: ${bgColor}`"
           >
             <img class="rounded-lg" :src="resCanvas" />
