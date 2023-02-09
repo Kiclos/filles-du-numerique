@@ -36,19 +36,20 @@ export default defineComponent({
     const { params } = useRoute()
     const gameStore = useGameStore()
     const router = useRouter()
-    const island = gameStore.islands.find(island => island.name === params.island as IslandName) as Island
-    if (!island)
+    const island = gameStore.islands.find(
+      (island) => island.name === (params.island as IslandName)
+    ) as Island
+    if (!island) {
       throw new Error('Island not found')
+    }
     const islandInfos = reactive<IslandInfo>({} as IslandInfo)
 
     function handleStartGame(replay: boolean): void {
       if (island.status === IslandStatus.COMPLETE && !replay) {
         step.value = 3
-      }
-      else if (islandInfos.hasGame) {
+      } else if (islandInfos.hasGame) {
         step.value = 1
-      }
-      else {
+      } else {
         gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
         step.value = 2
       }
@@ -57,8 +58,7 @@ export default defineComponent({
     function handleEndGame(): void {
       if (island?.status === IslandStatus.COMPLETE) {
         step.value = 3
-      }
-      else {
+      } else {
         gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
         step.value = 2
       }
@@ -114,9 +114,17 @@ export default defineComponent({
 
 <template>
   <WinScreen
-    v-if="step === 2 && islandInfos.islandName" :color="islandInfos.color"
+    v-if="step === 2 && islandInfos.islandName"
+    :color="islandInfos.color"
     :reward="islandInfos.reward"
     @close="handleSkipGame()"
+  />
+  <DesignGame
+    v-if="step === 1 && islandInfos.islandName === 'Logicias'"
+    :island-infos="islandInfos"
+    @skipGame="handleSkipGame()"
+    @quitGame="handleBackToMap()"
+    @endGame="handleEndGame()"
   />
   <RoboticGame
     v-if="step === 1 && islandInfos.islandName === 'Robotix'"
@@ -138,7 +146,7 @@ export default defineComponent({
     @skipGame="handleSkipGame()"
     @quitGame="handleBackToMap()"
     @endGame="handleEndGame()"
-    />
+  />
   <IAGame
     v-if="step === 1 && islandInfos.islandName === 'IAïe'"
     :island-infos="islandInfos"
@@ -154,14 +162,17 @@ export default defineComponent({
     @endGame="handleEndGame()"
   />
   <GamePresentation
-    v-if="step === 0 && islandInfos.islandName" :color="islandInfos.color" :content="islandInfos"
+    v-if="step === 0 && islandInfos.islandName"
+    :color="islandInfos.color"
+    :content="islandInfos"
     :status="island.status"
     @startGame="(replay) => handleStartGame(replay)"
     @skipGame="handleSkipGame()"
     @backToMap="handleBackToMap()"
   />
   <Results
-    v-if="step === 3 && islandInfos.islandName" :job-data="islandInfos"
+    v-if="step === 3 && islandInfos.islandName"
+    :job-data="islandInfos"
     :color="islandInfos.color"
     @close="handleBackToMap()"
   />
