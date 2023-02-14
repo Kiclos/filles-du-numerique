@@ -1,11 +1,11 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { event } from 'vue-gtag'
 import useGameStore from '@/stores/game'
 
 import type { Island } from '@/Model/Island/Island'
 import { GameStatus } from '@/Model/GameStatus'
-
 export default defineComponent({
   name: 'App',
 
@@ -22,6 +22,10 @@ export default defineComponent({
     }
 
     onMounted(() => {
+      console.log("Test2")
+      event('login', { method: 'Google' })
+      event('test')
+      console.log("Test3")
       const gameStatus = localStorage.getItem('gameStatus')
       if (gameStatus !== null)
         gameStore.setGameStatus(JSON.parse(gameStatus))
