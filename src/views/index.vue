@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { event } from 'vue-gtag'
 import useGameStore from '@/stores/game'
 
 import type { Island } from '@/Model/Island/Island'
@@ -22,6 +23,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
+      event('acces_au_site')
       const gameStatus = localStorage.getItem('gameStatus')
       if (gameStatus !== null)
         gameStore.setGameStatus(JSON.parse(gameStatus))

@@ -1,5 +1,6 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue';
+import { event } from 'vue-gtag';
 import { useRouter } from 'vue-router'
 import { GameStatus } from '@/Model/GameStatus'
 import useGameStore from '@/stores/game'
@@ -18,6 +19,10 @@ export default defineComponent({
       gameStore.setGameStatus(GameStatus.POST_OUTRO)
       router.push('/islands')
     }
+
+    onMounted(() => {
+      event('fin_scenario')
+    })
 
     return {
       dialogs,

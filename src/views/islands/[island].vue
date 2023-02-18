@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { event } from 'vue-gtag';
 import { useRoute, useRouter } from 'vue-router'
 import cybersecurite from '@/assets/data/cybersecurite.json'
 import devLogiciel from '@/assets/data/dev_logiciel.json'
@@ -47,20 +48,25 @@ export default defineComponent({
     function handleStartGame(replay: boolean): void {
       if (island.status === IslandStatus.COMPLETE && !replay) {
         step.value = 3
+        event(`${island.name.toLowerCase()}_consultation_fiche_metier`)
       } else if (islandInfos.hasGame) {
         step.value = 1
+        event(`${island.name.toLowerCase()}_debut_jeu`)
       } else {
         gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
         step.value = 2
+        event(`${island.name.toLowerCase()}_fin_jeu`)
       }
     }
 
     function handleEndGame(): void {
       if (island?.status === IslandStatus.COMPLETE) {
         step.value = 3
+        event(`${island.name.toLowerCase()}_consultation_fiche_metier`)
       } else {
         gameStore.setIslandStatus(island?.name, IslandStatus.COMPLETE)
         step.value = 2
+        event(`${island.name.toLowerCase()}_fin_jeu`)
       }
     }
 
@@ -73,6 +79,7 @@ export default defineComponent({
         gameStore.setIslandStatus(island.name, IslandStatus.DISCOVERED)
 
       step.value = 3
+      event(`${island.name.toLowerCase()}_consultation_fiche_metier`)
     }
 
     function getIslandInfos(name: IslandName): IslandInfo {

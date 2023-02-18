@@ -1,5 +1,6 @@
 import { setupLayouts } from 'virtual:generated-layouts'
 import { ViteSSG } from 'vite-ssg'
+import VueGtag from 'vue-gtag'
 
 import App from './App.vue'
 import generatedRoutes from '~pages'
@@ -14,5 +15,8 @@ export const createApp = ViteSSG(
   (ctx) => {
     Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true }))
       .forEach(i => i.install?.(ctx))
+    ctx.app.use(VueGtag, {
+      config: { id: "G-S9QDXCEJ2M", debug: true }
+    })
   },
 )
