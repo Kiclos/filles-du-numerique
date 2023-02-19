@@ -16,7 +16,12 @@ export const createApp = ViteSSG(
     Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true }))
       .forEach(i => i.install?.(ctx))
     ctx.app.use(VueGtag, {
-      config: { id: "G-S9QDXCEJ2M", debug: true }
+      config: {
+        id: "G-S9QDXCEJ2M",
+        params: {
+          send_page_view: false
+        }
+      }
     })
   },
 )
