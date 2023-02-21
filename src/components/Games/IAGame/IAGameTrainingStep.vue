@@ -160,7 +160,6 @@ export default defineComponent({
     height: 100%;
     margin: auto;
     max-width: 100%;
-    width: 100%;
   }
 
   &-img-selected {
