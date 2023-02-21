@@ -148,18 +148,17 @@ export default defineComponent({
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
     gap: 20px;
-    max-height: 100%;
+    height: 100%;
   }
 
   &-img {
     border: solid white 6px;
     border-radius: 20px;
-    aspect-ratio: 1;
     object-fit: cover;
     cursor: pointer;
     height: 100%;
     margin: auto;
-    max-width: 100%;
+    width: 100%;
   }
 
   &-img-selected {
