@@ -20,7 +20,7 @@ export const histoire: EtapeHistoireType[] = [
         isMine: true,
       },
       {
-        content: 'Mon ordinateur contrôle et empêche les éruptions du volcan de l\'île',
+        content: 'Mon ordinateur contrôle le système qui empêche les météorites de s\'écraser sur l\'archipel',
         isImage: false,
         isMine: false,
       },
@@ -30,7 +30,7 @@ export const histoire: EtapeHistoireType[] = [
         isMine: false,
       },
       {
-        content: 'Si je n\'arrive pas à le faire réparer, le volcan va entrer en éruption et des débris risquent de détruire l\'île !',
+        content: 'Si je n\'arrive pas à le faire réparer, une météorite risque de détruire l\'île !',
         isImage: false,
         isMine: false,
       },
