@@ -11,25 +11,15 @@ export default defineComponent({
     const gameStore = useGameStore()
     const islands: Island [] = gameStore.islands
 
-    const isIphone = computed(() => [
-      'iPad Simulator',
-      'iPhone Simulator',
-      'iPod Simulator',
-      'iPad',
-      'iPhone',
-      'iPod',
-    ].includes(navigator.platform))
-
     return {
       islands,
-      isIphone,
     }
   },
 })
 </script>
 
 <template>
-  <div v-if="!isIphone" class="dt-island">
+  <div class="dt-island">
     <svg viewBox="0 0 450 700" fill="none">
       <svg viewBox="0 0 900 1400" x="0" y="0" width="450" height="700">
         <foreignObject x="0" y="0" width="900" height="1400">
@@ -43,11 +33,6 @@ export default defineComponent({
       </svg>
       <router-link v-for="island in islands" :key="island.id" :to="`/islands/${island.name}`"><Island :island="island" /></router-link>
     </svg>
-  </div>
-  <div v-else class="dt-island -iphone">
-    <router-link v-for="island in islands" :key="island.id" :to="`/islands/${island.name}`">
-      <Island :island="island" />
-    </router-link>
   </div>
 </template>
 
@@ -72,20 +57,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &.-iphone {
-    flex-wrap: wrap;
-    background: url("../../assets/img/lines.png");
-    background-size: 100%;
-    height: 80%;
-
-    .dt-island__content {
-      height: 100px;
-      width: 150px;
-      justify-content: center;
-      padding: 0 1rem;
-    }
-  }
 
   svg {
     width: 100vw;
