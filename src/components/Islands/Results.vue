@@ -204,7 +204,7 @@ export default defineComponent({
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: end;
+      justify-content: flex-end;
       padding: 0 calc((100vw - 500px) / 2);
 
       button {

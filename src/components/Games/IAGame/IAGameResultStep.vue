@@ -108,6 +108,7 @@ export default defineComponent({
     max-width: 90%;
     aspect-ratio: 1;
     object-fit: cover;
+    max-height: 80%;
   }
 
   &-action-container {
