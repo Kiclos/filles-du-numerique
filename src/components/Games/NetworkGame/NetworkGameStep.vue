@@ -265,6 +265,7 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   position: relative;
+  max-width: 100%;
   width: 100%;
   aspect-ratio: 1;
   background-color: $purple-secondary;
