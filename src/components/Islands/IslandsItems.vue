@@ -66,7 +66,7 @@ export default defineComponent({
 
   &__container {
     height: 100px;
-    width: 120px;
+    width: 140px;
     position: relative;
     justify-content: center;
     align-items: center;
