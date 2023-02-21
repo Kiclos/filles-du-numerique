@@ -1,6 +1,6 @@
 <!-- eslint-disable no-console -->
 <script lang="ts" setup>
-import { ref, unref } from 'vue'
+import { inject, nextTick, onMounted, ref, unref } from 'vue'
 import { Container } from 'vue-dndrop'
 import { useMouse } from '@vueuse/core'
 import html2canvas from 'html2canvas'
@@ -33,6 +33,36 @@ const designPreview = ref()
 const designResult = ref()
 const resCanvas = ref()
 const { y } = useMouse()
+
+const steps = [
+  {
+    target: '#v-step-0', // We're using document.querySelector() under the hood
+    header: {
+      title: 'Crée ta page de connexion',
+    },
+
+    content: `Voici une page de login vierge ! Tu peux la personnaliser en ajoutant des éléments comme des boutons, des champs de texte, des images, etc. Tu peux aussi changer la couleur de fond de la page. `,
+  },
+  {
+    target: '#v-step-1',
+    content: 'An awesome plugin made with Vue.js!',
+    header: {
+      title: 'Ajoute un élément avec la page de configuration',
+    },
+  },
+  {
+    target: '#v-step-2',
+    content:
+      "fais glisser l`'élément sur la page de résultat et place le où tu veux et reviens pour personnaliser ta page en ajoutant des elements ou en changeant la couleur de fond !",
+    header: {
+      title: 'Ajoute ton premier élément',
+    },
+    params: {
+      placement: 'top',
+    },
+  },
+]
+
 const onDragStart = async () => {
   openUpdate.value = false
 }
@@ -57,6 +87,20 @@ const onDrop = (e: any) => {
 const onUndo = () => {
   components.value = components.value.slice(0, components.value.length - 1)
 }
+const tours: any = inject('tours')
+const onUpdateClick = () => {
+  nextTick(() => {
+    openUpdate.value = true
+    setTimeout(() => {
+      if (tours?.myTour?.currentStep.value === 1) {
+        tours?.myTour?.nextStep()
+      }
+    }, 200)
+  })
+}
+onMounted(() => {
+  tours?.myTour?.start()
+})
 </script>
 
 <template>
@@ -68,7 +112,7 @@ const onUndo = () => {
     </template>
     <template #content>
       <div ref="designResult" class="card flex flex-col">
-        <p class="loginTitle">Connexion</p>
+        <p class="loginTitle" id="v-step-0">Connexion</p>
         <Container
           ref="designPreview"
           group-name="myDrop"
@@ -116,6 +160,7 @@ const onUndo = () => {
             ><DesignButton
               :style="`background: ${bgColor}`"
               text="Connexion"
+              id="v-step-2"
               class="mx-auto pointer-events-none"
             /><template #displayElement
               ><DesignButton :style="`background: ${bgColor}`" text="Connexion" class="mx-auto"
@@ -138,7 +183,7 @@ const onUndo = () => {
             <p class="text-xl font-medium">Beau résultat !</p>
             <div></div>
           </div>
-          <div class="w-full px-6 mb-6 items-start flex flex-col items-start">
+          <div class="w-full px-6 mb-6 flex flex-col items-start">
             <p class="text-gray-800 mb-3">
               Bravo, vous avez fait votre première page de connexion, vous pouvez revenir en arrière
               pour la modifier ou partir sur une autre île pour découvrir un autre métier
@@ -153,8 +198,8 @@ const onUndo = () => {
           </div>
 
           <div
-            class="w-full py-4 h-full flex flex-col items-center justify-center"
             v-if="resCanvas"
+            class="w-full py-4 h-full flex flex-col items-center justify-center"
             :style="`background: ${bgColor}`"
           >
             <img class="rounded-lg" :src="resCanvas" />
@@ -163,28 +208,80 @@ const onUndo = () => {
       </div>
     </template>
     <template #footer>
-      <div class="flex mb-4 items-stretch">
-        <button class="flex-grow updateButton" @click="openUpdate = true">Modifier</button>
+      <div class="flex mx-8 mb-4 items-stretch">
+        <button id="v-step-1" class="flex-grow updateButton" @click="onUpdateClick">
+          Modifier
+        </button>
         <div class="w-20 flex justify-center items-center cursor-pointer" @click="onUndo">
           <UndoIcon class="text-white text-xl" />
         </div>
       </div>
-      <button
-        class="mb-10 flex-grow updateButton"
-        :class="[components.length ? 'opacity-60' : '!opacity-0 pointer-events-none']"
-        @click="onSubmit"
-      >
-        Valider
-      </button>
+      <div class="flex mx-8 mb-4 items-stretch">
+        <button
+          class="mb-10 flex-grow updateButton"
+          :class="[components.length ? 'opacity-60' : '!opacity-0 pointer-events-none']"
+          @click="onSubmit"
+        >
+          Valider
+        </button>
+      </div>
+
+      <Teleport to="body">
+        <v-tour name="myTour" :steps="steps">
+          <template #default="tour">
+            <transition name="fade">
+              <v-step
+                class="!bg-gray-200 !text-gray-800 !rounded-md"
+                v-if="tour.steps[tour.currentStep]"
+                :key="tour.currentStep"
+                :step="tour.steps[tour.currentStep]"
+                :previous-step="tour.previousStep"
+                :next-step="tour.nextStep"
+                :stop="tour.stop"
+                :skip="tour.skip"
+                :is-first="tour.isFirst"
+                :is-last="tour.isLast"
+                :labels="tour.labels"
+              >
+                <template v-if="tour.steps[tour.currentStep].header" #header>
+                  <button class="font-semibold">
+                    {{ tour.steps[tour.currentStep].header.title }}
+                  </button>
+                </template>
+                <template #content>
+                  <p class="text-left my-4">{{ tour.steps[tour.currentStep].content }}</p>
+                </template>
+                <template #actions>
+                  <div v-show="tour.currentStep !== 1" class="w-full text-right">
+                    <button
+                      v-if="!tour.isLast"
+                      class="text-right border border-gray-700 px-4 py-2 rounded-md"
+                      @click="tour.nextStep"
+                    >
+                      Suivant
+                    </button>
+                    <button
+                      v-else
+                      class="text-right border border-gray-700 px-4 py-2 rounded-md"
+                      @click="tour.stop"
+                    >
+                      Terminer
+                    </button>
+                  </div>
+                </template>
+              </v-step>
+            </transition>
+          </template>
+        </v-tour>
+      </Teleport>
     </template>
   </Game>
 </template>
 
 <style lang="scss" scoped>
-.upButton {
-  margin: 0 auto;
+.v-step__arrow--dark:before {
+  background-color: rgb(229 231 235) !important;
 }
-
 .card {
   background: white;
   border-radius: 10px;
