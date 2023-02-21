@@ -15,8 +15,8 @@ export default defineStore('game', {
       ? JSON.parse(localStorageIslands)
       : [
           { id: 0, name: IslandName.CARAMBAN, status: IslandStatus.NOT_DISCOVERED, coord: { x: 80, y: 592 } },
-          { id: 1, name: IslandName.IAIE, status: IslandStatus.NOT_DISCOVERED, coord: { x: 290, y: 480 } },
-          { id: 2, name: IslandName.LOGICIAS, status: IslandStatus.NOT_DISCOVERED, coord: { x: 285, y: 265 } },
+          { id: 1, name: IslandName.IAIE, status: IslandStatus.NOT_DISCOVERED, coord: { x: 285, y: 480 } },
+          { id: 2, name: IslandName.LOGICIAS, status: IslandStatus.NOT_DISCOVERED, coord: { x: 280, y: 265 } },
           { id: 3, name: IslandName.NETHOSA, status: IslandStatus.NOT_DISCOVERED, coord: { x: 95, y: 0 } },
           { id: 4, name: IslandName.ROBOTIX, status: IslandStatus.NOT_DISCOVERED, coord: { x: 21, y: 430 } },
           { id: 5, name: IslandName.SEGURA, status: IslandStatus.NOT_DISCOVERED, coord: { x: 38, y: 154 } },

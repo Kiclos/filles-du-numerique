@@ -51,17 +51,15 @@ export default defineComponent({
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  max-height: calc(100vh - 30px);
+  max-height: calc(var(--vh, 1vh) * 100 - 30px);
   width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: 30px;
 
   svg {
     width: 100vw;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    max-height: calc(100vh - 30px);
+    max-height: calc(var(--vh, 1vh) * 100 - 30px);
   }
 
   &__container {
