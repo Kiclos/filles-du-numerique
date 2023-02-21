@@ -2,6 +2,7 @@
 import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import 'vue3-carousel/dist/carousel.css'
+import { event } from 'vue-gtag';
 import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel'
 import TextContainer from '@/components/TextContainer/TextContainer.vue'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
@@ -25,14 +26,17 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(_) {
+  setup(props) {
     function pauseVideo(event: any) {
       const element = document.querySelectorAll('.dt-results-video')[event.currentSlideIndex]
       if (element instanceof HTMLIFrameElement)
         element.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*')
     }
 
-    return { pauseVideo }
+    function sendClickEvent() {
+      event(`${props.jobData.islandName.toLowerCase()}_acces_site_formation`)
+    }
+    return { pauseVideo, sendClickEvent }
   },
 })
 </script>
@@ -117,7 +121,7 @@ export default defineComponent({
           <a v-if="jobData.results.specificJob.moreJobs" target="_blank" :href="jobData.results.specificJob.moreJobs">
             <DTButton outlined detail :color="color">Voir d'autres métiers</DTButton>
           </a>
-          <a v-if="jobData.results.specificJob.formations" target="_blank" :href="jobData.results.specificJob.formations">
+          <a v-if="jobData.results.specificJob.formations" target="_blank" :href="jobData.results.specificJob.formations" @click="sendClickEvent()">
             <DTButton outlined detail :color="color">Voir des formations</DTButton>
           </a>
         </TextContainer>
@@ -149,7 +153,7 @@ export default defineComponent({
 
       <footer>
         <router-link to="/islands">
-          <DTButton :color="color" @click="$emit('close')">
+          <DTButton :color="color">
             Retour à la carte
           </DTButton>
         </router-link>

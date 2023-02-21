@@ -46,7 +46,7 @@ export default defineComponent({
   <div class="dt-home-screen">
     <img class="dt-img-w75" src="@/assets/departile.svg" alt="">
     <h1 class="dt-h1">
-      DigitTales
+      DigiTales
     </h1>
     <DTButton @click="$emit('play')">
       Jouer

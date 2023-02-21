@@ -35,6 +35,7 @@ export default defineComponent({
     :island-infos="islandInfos"
     img-url="/img/RoboticGame/pauline.png"
     bubble-text="Merci de m'avoir guidé ! Pour te remercier, voici un objet que j'ai trouvé dans le labyrinthe."
+    name="Pauline"
     @end-game="$emit('endGame')"
   />
 </template>
