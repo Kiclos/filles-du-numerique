@@ -3,8 +3,8 @@
     "field": "Maintenance",
     "color": "yellow",
     "img": "tools.png",
-    "presentation": "Pas la plus belle île, mais sans aucun doute l'une des plus utiles ! Caramban contrôle toute l'infrastructure liée au volcan de l'île. En d'autres termes, si le volcan entre en éruption, c'est vers eux qu'il faut râler !",
-    "guideline": "Oulah, on dirait que la personne en charge de la maintenance de l'infrastructure à besoin d'aide ! Aide-le à résoudre ses problèmes informatiques pour empêcher l'éruption !",
+    "presentation": "Pas la plus belle île, mais sans aucun doute l'une des plus utiles ! Caramban contrôle toute l'infrastructure de défense contre les météorite de l'archipel. En d'autres termes, si des débris spaciaux attérissent sur votre île, c'est vers eux qu'il faut râler !",
+    "guideline": "Oulah, on dirait que la personne en charge de la maintenance de l'infrastructure à besoin d'aide ! Aide-la à résoudre ses problèmes informatiques pour empêcher la météorite de s'écraser !",
     "hasGame": true,
     "reward": "arm-right",
     "results": {

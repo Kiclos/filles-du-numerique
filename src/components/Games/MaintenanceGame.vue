@@ -24,8 +24,9 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ['skipGame', 'quitGame', 'endGame'],
+  emits: ['restartGame', 'skipGame', 'quitGame', 'endGame'],
   events: {
+    restartGame: () => null,
     skipGame: () => null,
     quitGame: () => null,
     endGame: () => null,
@@ -120,6 +121,9 @@ export default defineComponent({
     const countdownEnd = (): void => {
       modaleLoseGame.value = true
     }
+    function handleRestartGame(): void {
+      emit('restartGame')
+    }
     function handleSkipGame(): void {
       emit('skipGame')
     }
@@ -139,6 +143,7 @@ export default defineComponent({
       choixList,
       choixAvailable,
       toggleModaleBadAnswer,
+      handleRestartGame,
       handleCountdown,
       handleSkipGame,
       handleQuitGame,
@@ -166,7 +171,7 @@ export default defineComponent({
       <div v-if="modaleLoseGame" class="modal">
         <div class="modal-content">
           <p>Vous avez perdu ...</p>
-          <button @click="handleQuitGame()">
+          <button @click="handleRestartGame()">
             Recommencer
           </button>
         </div>
