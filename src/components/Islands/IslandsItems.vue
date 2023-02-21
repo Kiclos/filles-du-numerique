@@ -75,7 +75,7 @@ export default defineComponent({
 
   &.-iphone {
     flex-wrap: wrap;
-    background: url("../img/lines.png");
+    background: url("../../assets/img/lines.png");
     background-size: 100%;
     height: 80%;
 
