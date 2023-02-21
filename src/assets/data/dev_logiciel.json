@@ -26,16 +26,16 @@
             "formations": "https://www.cmaformation-na.fr/formations/search?quoi=developement+logiciel&ou=&numero_departement=",
             "videos": [
                 {
-                    "title": "Interview d'une pro",
-                    "url": "https://www.youtube.com/embed/O8ouH41S2fs"
-                },
-                {
                     "title": "Interview d'une étudiante",
                     "url": "https://www.youtube.com/embed/_WMn-KjHsoM"
                 },
                 {
                     "title": "Interview d'une freelance",
                     "url": "https://www.youtube.com/embed/-IW1ew8m1vA"
+                },
+                {
+                    "title": "Interview d'une pro",
+                    "url": "https://www.youtube.com/embed/O8ouH41S2fs"
                 }
             ]
         }
