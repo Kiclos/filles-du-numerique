@@ -79,7 +79,7 @@ const onDrop = (e: any) => {
     {
       y: unref(y) - designPreview.value.containerElement.getBoundingClientRect().top - 40,
       tag: e.payload.tag,
-      props: { ...e.payload.props, color: bgColor },
+      props: { ...e.payload.props },
       id: components.value.length,
     },
   ]
@@ -128,6 +128,7 @@ onMounted(() => {
               :style="`top: ${component.y}px; position: absolute;`"
               class=""
               v-bind="component.props"
+              :color="bgColor"
             />
           </TransitionGroup>
         </Container>
@@ -143,15 +144,15 @@ onMounted(() => {
             />
           </div>
 
-          <DesignDraggableItem class="mb-16" @on-drag-start="onDragStart"
+          <DesignDraggableItem class="mb-2" @on-drag-start="onDragStart"
             ><InputField class="!cursor-pointer pointer-events-none" label="Email" type="email" />
             <template #displayElement>
               <InputField label="Email" type="email" class="w-full" />
             </template>
           </DesignDraggableItem>
 
-          <DesignDraggableItem class="mb-16" @on-drag-start="onDragStart"
-            ><InputField label="Mot de passe" type="password" />
+          <DesignDraggableItem class="mb-2" @on-drag-start="onDragStart"
+            ><InputField class-name="mb-4" label="Mot de passe" type="password" />
             <template #displayElement
               ><InputField label="Mot de passe" type="password" class="w-full"
             /></template>
@@ -163,18 +164,18 @@ onMounted(() => {
               id="v-step-2"
               class="mx-auto pointer-events-none"
             /><template #displayElement
-              ><DesignButton :style="`background: ${bgColor}`" text="Connexion" class="mx-auto"
+              ><DesignButton text="Connexion" class-name="mb-3"
             /></template>
           </DesignDraggableItem>
 
-          <Container group-name="myDrop" class="h-full w-full" @drop="onDrop">
+          <Container group-name="myDrop" class="w-full" @drop="onDrop">
             <div></div>
           </Container>
         </BottomSheet>
         <BottomSheet
           :mobile-bar="false"
           height="100vh"
-          class-name="pt-6 w-full h-full !px-0"
+          class-name="pt-6 overflow-scroll w-full h-full !px-0"
           :is-open="openResultModal"
           @on-close="() => (openResultModal = false)"
         >
@@ -199,7 +200,7 @@ onMounted(() => {
 
           <div
             v-if="resCanvas"
-            class="w-full py-4 h-full flex flex-col items-center justify-center"
+            class="w-full py-4 flex-grow h-full flex flex-col items-center justify-center"
             :style="`background: ${bgColor}`"
           >
             <img class="rounded-lg" :src="resCanvas" />
@@ -314,7 +315,8 @@ onMounted(() => {
   border: 0;
   outline: 0;
   padding: 20px 0;
-  width: 100%;
+  width: calc(100% - 4rem);
+
   text-align: center;
   font-size: 1.2rem;
   font-weight: 600;
