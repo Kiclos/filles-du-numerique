@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 
 import useGameStore from '@/stores/game'
 import type { Island } from '@/Model/Island/Island'
@@ -65,7 +65,6 @@ export default defineComponent({
   &__container {
     height: 100px;
     width: 140px;
-    position: relative;
     justify-content: center;
     align-items: center;
   }
@@ -80,8 +79,6 @@ export default defineComponent({
     padding-top: 5px;
 
     &.-not-discovered {
-      filter: grayscale(100%);
-
       .dt-island__icon {
         background: linear-gradient(135deg, lighten($grey, 5%), darken($grey, 10%));
       }
@@ -108,7 +105,6 @@ export default defineComponent({
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     height: 3rem;
     width: 3rem;
     margin-bottom: .5rem;
@@ -131,7 +127,6 @@ export default defineComponent({
 }
 
 @mixin setIslandStyle($color1, $color2, $middleColor) {
-  position: relative;
   cursor: pointer;
 
   .dt-island {
@@ -148,8 +143,7 @@ export default defineComponent({
   &:hover {
 
     .dt-island__icon {
-      transform: scale(1.1);
-      box-shadow: 0 6px 8px rgba(darken($color1, 50%), .3);
+      box-shadow: 0 8px 10px rgba(darken($color1, 50%), .3);
     }
 
     .dt-island__title {
