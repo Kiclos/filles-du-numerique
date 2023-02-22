@@ -233,6 +233,7 @@ export default defineComponent({
             <i-ic-baseline-wifi v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-purple')" />
             <i-bx-speaker v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-pink')" />
             <i-wpf-mouse v-else-if="isStartOrEndCase(c.classes) && c.classes.includes('-orange')" />
+            <div v-else />
           </div>
         </div>
       </div>
@@ -267,7 +268,6 @@ export default defineComponent({
   position: relative;
   max-width: 100%;
   width: 100%;
-  aspect-ratio: 1;
   background-color: $purple-secondary;
 
   &__row {
@@ -289,34 +289,50 @@ export default defineComponent({
     box-shadow: inset 1px 1px $light-grey;
     pointer-events: none;
     transition: .3s;
+    aspect-ratio: 1;
+    @supports not (aspect-ratio: 1) {
+      &::before {
+        float: left;
+        padding-top: 100%;
+        content: "";
+      }
+
+      &::after {
+        display: block;
+        content: "";
+        clear: both;
+      }
+    }
 
     &:last-child {
       box-shadow: inset 1px 1px $light-grey,inset -1px 0 $light-grey, ;
     }
 
-    &:before {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      content: "";
-      height: calc(100% - 20%);
-      width: calc(100% - 20%);
-      z-index: 2;
-    }
+    div {
+      &:before {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        content: "";
+        height: calc(100% - 20%);
+        width: calc(100% - 20%);
+        z-index: 2;
+      }
 
-    &:after {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      content: "";
-      height: 100%;
-      width: 100%;
-      z-index: 1;
+      &:after {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        content: "";
+        height: 100%;
+        width: 100%;
+        z-index: 1;
 
-      @media screen and (orientation:landscape) {
-        font-size: 1rem;
+        @media screen and (orientation: landscape) {
+          font-size: 1rem;
+        }
       }
     }
 
@@ -352,87 +368,99 @@ export default defineComponent({
         transition: .3s;
 
         &.-complete {
+          box-shadow: inset 1px 1px $light-grey;
           background-color: $color;
           color: $white;
         }
       }
 
-      &.-left-right:after, &.-right-left:after, &.-right:after, &.-left:after  {
-        background-color: $color;
-        height: 20%;
-        top: calc(50% - 10%);
-        left: 0;
+      &.-left-right, &.-right-left, &.-right, &.-left  {
+        div:after {
+          background-color: $color;
+          height: 20%;
+          top: calc(50% - 10%);
+          left: 0;
+        }
       }
 
-      &.-top-bottom:after, &.-bottom-top:after, &.-top:after, &.-bottom:after  {
-        background-color: $color;
-        width: 20%;
-        top: 0;
-        left: calc(50% - 10%);
+      &.-top-bottom, &.-bottom-top, &.-top, &.-bottom  {
+        div:after {
+          background-color: $color;
+          width: 20%;
+          top: 0;
+          left: calc(50% - 10%);
+        }
       }
 
       &.-left-top, &.-top-left  {
+        div {
+          &:before {
+            background-color: $purple-secondary;
+            border-radius: 20%;
+            top: -40%;
+            left: -40%;
+          }
 
-        &:before {
-          background-color: $purple-secondary;
-          border-radius: 20%;
-          top: -40%;
-          left: -40%;
-        }
-
-        &:after {
-          background-color: $color;
-          border-radius: 30%;
-          top: -40%;
-          left: -40%;
+          &:after {
+            background-color: $color;
+            border-radius: 30%;
+            top: -40%;
+            left: -40%;
+          }
         }
       }
 
       &.-left-bottom, &.-bottom-left  {
-        &:before {
-          background-color: $purple-secondary;
-          border-radius: 20%;
-          bottom: -40%;
-          left: -40%;
-        }
+        div {
+          &:before {
+            background-color: $purple-secondary;
+            border-radius: 20%;
+            bottom: -40%;
+            left: -40%;
+          }
 
-        &:after {
-          background-color: $color;
-          border-radius: 30%;
-          bottom: -40%;
-          left: -40%;
+          &:after {
+            background-color: $color;
+            border-radius: 30%;
+            bottom: -40%;
+            left: -40%;
+          }
         }
       }
 
       &.-right-top, &.-top-right  {
-        &:before {
-          background-color: $purple-secondary;
-          border-radius: 20%;
-          top: -40%;
-          right: -40%;
-        }
+        div {
+          &:before {
+            background-color: $purple-secondary;
+            border-radius: 20%;
+            top: -40%;
+            right: -40%;
+          }
 
-        &:after {
-          background-color: $color;
-          border-radius: 30%;
-          top: -40%;
-          right: -40%;
+          &:after {
+            background-color: $color;
+            border-radius: 30%;
+            top: -40%;
+            right: -40%;
+          }
         }
       }
 
       &.-right-bottom, &.-bottom-right  {
-        &:before {
-          background-color: $purple-secondary;
-          border-radius: 20%;
-          bottom: -40%;
-          right: -40%;
-        }
+        div {
+          &:before {
+            background-color: $purple-secondary;
+            border-radius: 20%;
+            bottom: -40%;
+            right: -40%;
+          }
 
-        &:after {
-          background-color: $color;
-          border-radius: 30%;
-          bottom: -40%;
-          right: -40%;
+          &:after {
+            background-color: $color;
+            border-radius: 30%;
+            bottom: -40%;
+            right: -40%;
+          }
         }
       }
     }
