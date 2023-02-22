@@ -52,14 +52,14 @@ export default defineComponent({
   top: 0;
   left: 0;
   max-height: calc(100vh - 30px);
-  max-height: calc(var(--vh, 1vh) * 100 - 30px);
+  max-height: calc(var(--vh, 1vh) * 100 - 80px);
   width: 100vw;
-  margin-top: 30px;
+  margin: 40px 0;
 
   svg {
     width: 100vw;
     max-height: calc(100vh - 30px);
-    max-height: calc(var(--vh, 1vh) * 100 - 30px);
+    max-height: calc(var(--vh, 1vh) * 100 - 80px);
   }
 
   &__container {

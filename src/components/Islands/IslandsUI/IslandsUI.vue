@@ -43,7 +43,7 @@ export default defineComponent({
         C'est la dernière ligne droite ! Plus qu'une !
       </template>
       <template v-if="itemCollectedSize === 6">
-        Encore merci pour ton aide ! Quelle île veux-tu visiter aujourd'hui ?
+        Quelle île veux-tu visiter aujourd'hui ?
       </template>
     </TextContainer>
   </div>
