@@ -25,3 +25,4 @@ export const createApp = ViteSSG(
     })
   },
 )
+console.log(import.meta.env.VITE_GTAG_ID)
