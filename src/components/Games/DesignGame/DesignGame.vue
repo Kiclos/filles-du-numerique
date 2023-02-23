@@ -50,7 +50,7 @@ const steps = [
   {
     target: '#v-step-2',
     content:
-      "Fais glisser l'élément sur la page de résultat et place le où tu veux et reviens pour personnaliser ta page en ajoutant des elements ou en changeant la couleur de fond !",
+      "Fais glisser l'élément sur la page de résultat et place le où tu veux et reviens pour personnaliser ta page en ajoutant des éléments ou en changeant la couleur de fond !",
     header: {
       title: 'Ajoute ton premier élément',
     },
