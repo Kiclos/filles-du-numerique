@@ -50,7 +50,7 @@ const steps = [
   {
     target: '#v-step-2',
     content:
-      "fais glisser l`'élément sur la page de résultat et place le où tu veux et reviens pour personnaliser ta page en ajoutant des elements ou en changeant la couleur de fond !",
+      "Fais glisser l'élément sur la page de résultat et place le où tu veux et reviens pour personnaliser ta page en ajoutant des elements ou en changeant la couleur de fond !",
     header: {
       title: 'Ajoute ton premier élément',
     },
@@ -209,7 +209,7 @@ onMounted(() => {
                   métier
                 </p>
                 <!-- <p v-if="components." class="text-gray-800 mb-3">
-                
+
                 </p> -->
                 <p class="text-gray-800 mb-3">
                   Une page de connexion doit avoir deux champs de texte afin d'y ecrire l'email et
