@@ -17,7 +17,7 @@ export const createApp = ViteSSG(
       .forEach(i => i.install?.(ctx))
     ctx.app.use(VueGtag, {
       config: {
-        id: "G-S9QDXCEJ2M",
+        id: import.meta.env.VITE_GTAG_ID,
         params: {
           send_page_view: false
         }
