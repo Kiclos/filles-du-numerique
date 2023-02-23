@@ -24,8 +24,9 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ['skipGame', 'quitGame', 'endGame'],
+  emits: ['restartGame', 'skipGame', 'quitGame', 'endGame'],
   events: {
+    restartGame: () => null,
     skipGame: () => null,
     quitGame: () => null,
     endGame: () => null,
@@ -65,8 +66,10 @@ export default defineComponent({
       }
     }
     async function showMessagesBadAnswer(choixNumber: number) {
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const tmpChoix = choixList.value
+      choixList.value = undefined
       choixAvailable.value = false
+      await new Promise(resolve => setTimeout(resolve, 1000))
       messageList.value = [{ content: histoire[etapeIndex.value]?.choixList.content[choixNumber], isImage: false, isMine: true }, ...messageList.value]
       await new Promise(resolve => setTimeout(resolve, 1000))
       for (let cpt = 0; cpt < 2; cpt++) {
@@ -79,6 +82,7 @@ export default defineComponent({
         })
         await new Promise(resolve => setTimeout(resolve, 1000))
       }
+      choixList.value = tmpChoix
       choixAvailable.value = true
       nextTick(() => {
         const lastMessage = document.querySelector('.yourMessage')
@@ -117,6 +121,9 @@ export default defineComponent({
     const countdownEnd = (): void => {
       modaleLoseGame.value = true
     }
+    function handleRestartGame(): void {
+      emit('restartGame')
+    }
     function handleSkipGame(): void {
       emit('skipGame')
     }
@@ -136,6 +143,7 @@ export default defineComponent({
       choixList,
       choixAvailable,
       toggleModaleBadAnswer,
+      handleRestartGame,
       handleCountdown,
       handleSkipGame,
       handleQuitGame,
@@ -163,7 +171,7 @@ export default defineComponent({
       <div v-if="modaleLoseGame" class="modal">
         <div class="modal-content">
           <p>Vous avez perdu ...</p>
-          <button @click="handleQuitGame()">
+          <button @click="handleRestartGame()">
             Recommencer
           </button>
         </div>
@@ -239,7 +247,8 @@ export default defineComponent({
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 20%;
+  width: 80%;
+  max-width: 300px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 20px;

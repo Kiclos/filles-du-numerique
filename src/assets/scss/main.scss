@@ -3,26 +3,22 @@
 @tailwind components;
 @tailwind utilities;
 // reset
-@import "reset";
+@import 'reset';
 
 // utilities
-@import "colors";
-@import "utilities";
-@import "transitions";
-@import "icon";
+@import 'colors';
+@import 'utilities';
+@import 'transitions';
+@import 'icon';
 
 // components
-@import "textcontainer";
+@import 'textcontainer';
 
 // ui
-@import "game-ui";
+@import 'game-ui';
 
 // views
-@import "home-screen";
-
-body {
-  height: 100vh;
-}
+@import 'home-screen';
 
 @layer base {
   h1 {
@@ -32,16 +28,13 @@ body {
   h2 {
     @apply text-2xl;
     font-weight: bold;
-
   }
   h3 {
     @apply text-xl;
     font-weight: 600;
-
   }
   h4 {
     @apply text-lg;
     font-weight: 600;
-
   }
 }

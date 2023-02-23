@@ -50,6 +50,7 @@ export default defineComponent({
     :island-infos="islandInfos"
     img-url="/img/RoboticGame/julie_head.png"
     bubble-text="Merci pour ton aide ! Voici un objet que l'on conservait au CDI pour te remercier."
+    name="Julie"
     @end-game="$emit('endGame')"
   />
 </template>

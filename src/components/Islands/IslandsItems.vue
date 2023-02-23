@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 
 import useGameStore from '@/stores/game'
 import type { Island } from '@/Model/Island/Island'
@@ -11,25 +11,15 @@ export default defineComponent({
     const gameStore = useGameStore()
     const islands: Island [] = gameStore.islands
 
-    const isIphone = computed(() => [
-      'iPad Simulator',
-      'iPhone Simulator',
-      'iPod Simulator',
-      'iPad',
-      'iPhone',
-      'iPod',
-    ].includes(navigator.platform))
-
     return {
       islands,
-      isIphone,
     }
   },
 })
 </script>
 
 <template>
-  <div v-if="!isIphone" class="dt-island">
+  <div class="dt-island">
     <svg viewBox="0 0 450 700" fill="none">
       <svg viewBox="0 0 900 1400" x="0" y="0" width="450" height="700">
         <foreignObject x="0" y="0" width="900" height="1400">
@@ -43,11 +33,6 @@ export default defineComponent({
       </svg>
       <router-link v-for="island in islands" :key="island.id" :to="`/islands/${island.name}`"><Island :island="island" /></router-link>
     </svg>
-  </div>
-  <div v-else class="dt-island -iphone">
-    <router-link v-for="island in islands" :key="island.id" :to="`/islands/${island.name}`">
-      <Island :island="island" />
-    </router-link>
   </div>
 </template>
 
@@ -66,37 +51,20 @@ export default defineComponent({
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  max-height: calc(100vh - 30px);
+  max-height: calc(var(--vh, 1vh) * 100 - 80px);
   width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &.-iphone {
-    flex-wrap: wrap;
-    background: url("../img/lines.png");
-    background-size: 100%;
-    height: 80%;
-
-    .dt-island__content {
-      height: 100px;
-      width: 150px;
-      justify-content: center;
-      padding: 0 1rem;
-    }
-  }
+  margin: 40px 0;
 
   svg {
     width: 100vw;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    max-height: calc(100vh - 30px);
+    max-height: calc(var(--vh, 1vh) * 100 - 80px);
   }
 
   &__container {
     height: 100px;
-    width: 120px;
-    position: relative;
+    width: 140px;
     justify-content: center;
     align-items: center;
   }
@@ -111,8 +79,6 @@ export default defineComponent({
     padding-top: 5px;
 
     &.-not-discovered {
-      filter: grayscale(100%);
-
       .dt-island__icon {
         background: linear-gradient(135deg, lighten($grey, 5%), darken($grey, 10%));
       }
@@ -139,7 +105,6 @@ export default defineComponent({
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     height: 3rem;
     width: 3rem;
     margin-bottom: .5rem;
@@ -162,7 +127,6 @@ export default defineComponent({
 }
 
 @mixin setIslandStyle($color1, $color2, $middleColor) {
-  position: relative;
   cursor: pointer;
 
   .dt-island {
@@ -179,8 +143,7 @@ export default defineComponent({
   &:hover {
 
     .dt-island__icon {
-      transform: scale(1.1);
-      box-shadow: 0 6px 8px rgba(darken($color1, 50%), .3);
+      box-shadow: 0 8px 10px rgba(darken($color1, 50%), .3);
     }
 
     .dt-island__title {

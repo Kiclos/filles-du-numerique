@@ -63,7 +63,6 @@ export default defineComponent({
   padding: 0.25rem 1rem;
   color: $orange;
   background: #fff;
-  position: relative;
   font-weight: 700;
   border: none;
   outline: none;

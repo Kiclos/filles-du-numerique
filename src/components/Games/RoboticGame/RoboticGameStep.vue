@@ -338,6 +338,19 @@ $square-size: 10%;
     display: block;
     width: $square-size;
     aspect-ratio: 1;
+    @supports not (aspect-ratio: 1) {
+      &::before {
+        float: left;
+        padding-top: 100%;
+        content: "";
+      }
+
+      &::after {
+        display: block;
+        content: "";
+        clear: both;
+      }
+    }
     background-color: $light-grey;
     border-top: 2px solid $white;
     border-left: 2px solid $white;
@@ -362,10 +375,15 @@ $square-size: 10%;
         top: 0;
         left: 0;
         width: 100%;
-        aspect-ratio: 1;
+        height: 100%;
         background: linear-gradient(100deg, desaturate($red, 25%) -6.84%, desaturate($dark-pink, 10%) 124.14%);
         box-shadow: 3px 3px rgba($black, .25), 2px 2px rgba($black, .5), 1px 1px rgba($black, .75);
         z-index: 1;
+        font-size: 1rem;
+
+        @media only screen and (max-width: 500px) {
+          font-size: 0.9rem;
+        }
       }
     }
   }
@@ -376,18 +394,8 @@ $square-size: 10%;
     height: $square-size;
     transition: .5s;
     z-index: 2;
-
-    &:after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      content: "⬤";
-      font-size: 2rem;
-      color: lighten($dark-red, 10%);
-      transform: translate(-50%, calc(-50% - 4px));
-      text-shadow: 3px 3px rgba($black, .25), 2px 2px rgba($black, .25), 1px 1px rgba($black, .75);
-      z-index: 1;
-    }
+    background-color: lighten($dark-red, 10%);
+    border-radius: 50%;
 
     &:before {
       position: absolute;

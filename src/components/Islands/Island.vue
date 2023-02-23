@@ -7,7 +7,6 @@ import IA from '@/assets/data/IA.json'
 import maintenance from '@/assets/data/maintenance.json'
 import reseaux from '@/assets/data/reseaux.json'
 import robotique from '@/assets/data/robotique.json'
-import { IslandStatus } from '@/Model/GameStatus'
 import { IslandName } from '@/Model/Island/Island'
 import type { IslandInfo } from '@/Model/Island/IslandInfo'
 import IslandTitle from '@/components/Islands/IslandTitle.vue'
@@ -55,7 +54,7 @@ export default defineComponent({
 <template>
   <!-- eslint-disable -->
   <g :class="'dt-' + island.name.toLowerCase()" v-if="island">
-    <foreignObject class="dt-island__container" :x="island.coord.x" :y="island.coord.y" width="120px" height="100px">
+    <foreignObject class="dt-island__container" :x="island.coord.x" :y="island.coord.y" width="140px" height="100px">
       <div class="dt-island__content" :class="[{'-not-discovered': island.status === 0}]">
         <div class="dt-island__icon" style="padding: .5rem">
           <template v-if="island.status === 0"> ? </template>

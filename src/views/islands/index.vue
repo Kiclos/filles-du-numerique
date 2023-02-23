@@ -17,15 +17,7 @@ export default defineComponent({
     const gameStore = useGameStore()
     const router = useRouter()
 
-    function getJavascriptViewPort(): void {
-      const vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
-    }
     onMounted(() => {
-      getJavascriptViewPort()
-      window.addEventListener('resize', () => {
-        getJavascriptViewPort()
-      })
       const gameStatus = localStorage.getItem('gameStatus')
       if (gameStatus !== null)
         gameStore.setGameStatus(JSON.parse(gameStatus))

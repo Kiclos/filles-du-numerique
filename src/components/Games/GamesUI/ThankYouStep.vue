@@ -14,6 +14,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    name: {
+      type: String,
+      required: true,
+    },
     bubbleText: {
       type: String,
       required: true,
@@ -35,6 +39,9 @@ export default defineComponent({
     <template #content>
       <div class="dt-ty-content">
         <img class="dt-ty-img" :src="imgUrl">
+        <p class="dt-ty-name">
+          {{ name }}
+        </p>
         <div class="dt-ty-bubble">
           {{ bubbleText }}
         </div>
@@ -66,6 +73,10 @@ export default defineComponent({
     aspect-ratio: 1;
     border-radius: 50%;
     margin: 10px;
+  }
+
+  &-name {
+    font-weight: bold;
   }
 
   &-bubble {

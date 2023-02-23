@@ -1,5 +1,17 @@
-<script lang="ts">
+<script lang="ts" setup>
+import { onMounted } from 'vue';
 
+function getJavascriptViewPort(): void {
+  const vh = window.innerHeight * 0.01
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
+}
+
+onMounted(() => {
+  getJavascriptViewPort()
+  window.addEventListener('resize', () => {
+    getJavascriptViewPort()
+  })
+})
 </script>
 
 <template>

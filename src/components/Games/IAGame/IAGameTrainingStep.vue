@@ -79,12 +79,13 @@ export default defineComponent({
     </template>
     <template #content>
       <div class="dt-ia-img-container">
-        <img
-          v-for="(animal, index) in questions[currentQuestion]" :key="index"
-          class="dt-ia-img"
-          :class="{ 'dt-ia-img-selected': index === selectedAnswerIndex && !isNotCatError, 'dt-ia-img-error': index === selectedAnswerIndex && isNotCatError }"
-          :src="animal.img" alt="animal" @click="selectAnswer(index, animal.isCat)"
-        >
+        <div v-for="(animal, index) in questions[currentQuestion]" :key="index">
+          <img
+            class="dt-ia-img"
+            :class="{ 'dt-ia-img-selected': index === selectedAnswerIndex && !isNotCatError, 'dt-ia-img-error': index === selectedAnswerIndex && isNotCatError }"
+            :src="animal.img" alt="animal" @click="selectAnswer(index, animal.isCat)"
+          >
+        </div>
       </div>
       <GustaveAlert v-if="isNotCatError" error>
         Es-tu sûr que c'est une photo d'un chat ?
@@ -147,18 +148,18 @@ export default defineComponent({
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
     gap: 20px;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
   }
 
   &-img {
     border: solid white 6px;
     border-radius: 20px;
-    aspect-ratio: 1;
     object-fit: cover;
     cursor: pointer;
     height: 100%;
     margin: auto;
-    max-width: 100%;
+    width: 100%;
   }
 
   &-img-selected {
