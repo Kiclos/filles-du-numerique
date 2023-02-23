@@ -3,25 +3,44 @@
     "field": "Maintenance",
     "color": "yellow",
     "img": "tools.png",
-    "presentation": "Pas la plus belle île, mais sans aucun doute l'une des plus utiles ! Caramban contrôle toute l'infrastructure électrique d'Otomatik. En d'autres termes, si tu tombes en panne, c'est vers eux qu'ils faut râler ! Mais ses habitants sont les plus patients et bienveillants de tout l'archipel.",
-    "guideline": "Oulah, on dirait que la centrale de Caramban fonctionne au ralenti ce matin ! Aide-les en reconnectant les bons fils aux bons endroits !",
-    "hasGame": false,
+    "presentation": "Pas la plus belle île, mais sans aucun doute l'une des plus utiles ! Caramban contrôle toute l'infrastructure de défense contre les météorite de l'archipel. En d'autres termes, si des débris spaciaux attérissent sur votre île, c'est vers eux qu'il faut râler !",
+    "guideline": "Oulah, on dirait que la personne en charge de la maintenance de l'infrastructure à besoin d'aide ! Aide-la à résoudre ses problèmes informatiques pour empêcher la météorite de s'écraser !",
+    "hasGame": true,
     "reward": "arm-right",
     "results": {
         "summary": "La maintenance informatique consiste à assurer le bon fonctionnement d’un système d’information et d’un parc informatique d’une entreprise. Les personnes travaillant dans ce domaine sont de véritables urgentistes, travaillant au bon fonctionnement physique et technique des machines.",
-        "didYouKnow":"",
-        "caracteristics" : [
-            {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 30},
-            {"iconLeft": "home", "iconRight": "hiking", "labelLeft": "Casanier", "labelRight": "Routard", "value": 50},
-            {"iconLeft": "tools", "iconRight": "code", "labelLeft": "Matériel", "labelRight": "Virtuel", "value": 7}
+        "didYouKnow": "",
+        "caracteristics": [
+            {
+                "iconLeft": "person",
+                "iconRight": "groups",
+                "labelLeft": "Solitaire",
+                "labelRight": "En équipe",
+                "value": 30
+            },
+            {
+                "iconLeft": "home",
+                "iconRight": "hiking",
+                "labelLeft": "Casanier",
+                "labelRight": "Routard",
+                "value": 50
+            },
+            {
+                "iconLeft": "tools",
+                "iconRight": "code",
+                "labelLeft": "Matériel",
+                "labelRight": "Virtuel",
+                "value": 7
+            }
         ],
         "specificJob": {
             "jobName": "Technicien.ne support",
             "generalInfos": "Besoin d'aide ? On arrive à la recousse ! Le.la Technicien.ne helpdesk a pour rôle d’effectuer le dépannage et la maintenance d’équipements informatiques tels que le matériel utilisé mais aussi les logiciels mis à disposition et les réseaux.",
             "salary": 20000,
-            "studies" : "BAC + 2",
+            "studies": "BAC + 2",
             "moreInfo": "",
             "moreJobs": "",
+            "formations": "https://www.cmaformation-na.fr/formations/search?quoi=maintenance+informatique&ou=&numero_departement=",
             "videos": []
         }
     }

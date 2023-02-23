@@ -1,14 +1,14 @@
 {
     "islandName": "Nethosa",
-    "field": "Reseaux et infrastructures",
+    "field": "Réseaux et infrastructures",
     "color": "purple",
     "img": "network.png",
-    "presentation": "Nethosa, c’est à la fois une île et l’entreprise qui s’y trouve. Une entreprise très importante pour l’archipel, puisqu’elle s’occupe de faire transiter les habitants entre chaque île.",
-    "guideline": "Ca alors, il semble que les réseaux et routes de l’archipel soient encombrés. Un énorme bouchon ! Aide-moi à relier les cases, des pleines vers les vides, en cliquant sur les cases les unes après les autres !",
+    "presentation": "Nethosa, c’est à la fois une île et le nom du lycée qui s’y trouve. C'est un établissement important car c'est ici que tous les adolescents et adolescentes passent afin d'obtenir leur bac.",
+    "guideline": "Un groupe de chats s'est introduit dans la salle informatique du CDI. Ils ont mangé tous les câbles. La salle ne peut plus fonctionner ! Aide Julie, la responsable du CDI à brancher tous les nouveaux câbles pour réparer la salle.",
     "hasGame": true,
     "reward": "leg-left",
     "results": {
-        "summary": "Les réseaux et infrastructures sont une brique essentielle de l'informatique. C'est grâce aux professionnels des systèmes, des réseaux et de la sécurité que l'information peut circuler et être traitée efficacement.",
+        "summary": "Grâce à l'aide que tu as apporté à Julie, tu as pu expérimenter la notion de réseau informatique. Les réseaux et infrastructures sont une brique essentielle de l'informatique. C'est grâce aux professionnel.le.s des systèmes, des réseaux et de la sécurité que l'information peut circuler et être traitée efficacement.",
         "didYouKnow":"",
         "caracteristics" : [
             {"iconLeft": "person", "iconRight": "groups", "labelLeft": "Solitaire", "labelRight": "En équipe", "value": 30},
@@ -22,6 +22,7 @@
             "studies" : "BAC + 5",
             "moreInfo": "",
             "moreJobs": "",
+            "formations": "https://www.cmaformation-na.fr/formations/search?quoi=R%C3%A9seaux+et+infrastructure&ou=&numero_departement=",
             "videos": []
         }
     }

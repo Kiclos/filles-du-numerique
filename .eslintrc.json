@@ -1,0 +1,7 @@
+{
+  "extends": ["@antfu", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
+  "plugins": ["prettier"]
+}
