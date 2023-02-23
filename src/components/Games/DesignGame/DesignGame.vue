@@ -69,7 +69,7 @@ const onSubmit = async () => {
   openResultModal.value = true
 }
 const onDrop = (e: any) => {
-  document.body.style.overflow = 'scroll'
+  document.body.style.overflow = 'auto'
   components.value = [
     ...components.value,
     {
