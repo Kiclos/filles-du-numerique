@@ -1,4 +1,3 @@
-<!-- eslint-disable no-console -->
 <script lang="ts" setup>
 import { inject, nextTick, onMounted, ref, unref } from 'vue'
 import { Container } from 'vue-dndrop'
@@ -67,15 +66,10 @@ const onDragStart = async () => {
 }
 
 const onSubmit = async () => {
-  console.log(components.value)
   openResultModal.value = true
-  // const el = designResult.value
-  // resCanvas.value = (await html2canvas(el)).toDataURL()
-  // console.log(resCanvas.value.toDataURL())
 }
 const onDrop = (e: any) => {
   document.body.style.overflow = 'scroll'
-  console.log(designPreview.value)
   components.value = [
     ...components.value,
     {
