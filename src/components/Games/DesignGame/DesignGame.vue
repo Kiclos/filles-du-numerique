@@ -64,6 +64,7 @@ const steps = [
 ]
 
 const onDragStart = async () => {
+  document.body.style.overflow = 'hidden'
   openUpdate.value = false
 }
 
@@ -74,6 +75,7 @@ const onSubmit = async () => {
   console.log(resCanvas.value.toDataURL())
 }
 const onDrop = (e: any) => {
+  document.body.style.overflow = 'scroll'
   components.value = [
     ...components.value,
     {
@@ -112,7 +114,7 @@ onMounted(() => {
     </template>
     <template #content>
       <div ref="designResult" class="card flex flex-col">
-        <p class="loginTitle" id="v-step-0">Connexion</p>
+        <p id="v-step-0" class="loginTitle">Connexion</p>
         <Container
           ref="designPreview"
           group-name="myDrop"
@@ -159,9 +161,9 @@ onMounted(() => {
           </DesignDraggableItem>
           <DesignDraggableItem class="" @on-drag-start="onDragStart"
             ><DesignButton
+              id="v-step-2"
               :style="`background: ${bgColor}`"
               text="Connexion"
-              id="v-step-2"
               class="mx-auto pointer-events-none"
             /><template #displayElement
               ><DesignButton text="Connexion" class-name="mb-3"
@@ -232,9 +234,9 @@ onMounted(() => {
           <template #default="tour">
             <transition name="fade">
               <v-step
-                class="!bg-gray-200 !text-gray-800 !rounded-md"
                 v-if="tour.steps[tour.currentStep]"
                 :key="tour.currentStep"
+                class="!bg-gray-200 !text-gray-800 !rounded-md"
                 :step="tour.steps[tour.currentStep]"
                 :previous-step="tour.previousStep"
                 :next-step="tour.nextStep"
