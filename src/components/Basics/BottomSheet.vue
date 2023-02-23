@@ -15,7 +15,7 @@ const emit = defineEmits(['onClose'])
   <Teleport to="body">
     <div
       :class="[!isOpen ? 'translate-y-full' : 'test', className]"
-      class="bg-white flex px-6 flex-col w-full items-start fixed bottom-0 z-20 transition-all rounded-t-lg h-2/3"
+      class="bg-white overflow-scroll flex px-6 flex-col w-full items-start fixed bottom-0 z-20 transition-all rounded-t-lg h-2/3"
       :style="height ? { height } : {}"
     >
       <div v-if="mobileBar" class="mx-auto mt-6 h-2 w-28 bg-gray-300 rounded-full" />

@@ -3,7 +3,6 @@
 import { inject, nextTick, onMounted, ref, unref } from 'vue'
 import { Container } from 'vue-dndrop'
 import { useMouse } from '@vueuse/core'
-import html2canvas from 'html2canvas'
 
 import DesignButton from './Button.vue'
 import InputField from './InputFied.vue'
@@ -23,15 +22,14 @@ interface DesignComponent {
 const { islandInfos } = defineProps<{
   islandInfos: IslandInfo
 }>()
-defineEmits(['endGame'])
+defineEmits(['endGame', 'quitGame', 'skipGame'])
 const openResultModal = ref(false)
 const openUpdate = ref(false)
 const bgColor = ref('#16A04D')
 const onColorUpdate = (e: any) => (bgColor.value = e.target.value)
 const components = ref<DesignComponent[]>([])
-const designPreview = ref()
-const designResult = ref()
-const resCanvas = ref()
+const designPreview = ref<any | null>(null)
+const designResult = ref<any | null>(null)
 const { y } = useMouse()
 
 const steps = [
@@ -45,7 +43,7 @@ const steps = [
   },
   {
     target: '#v-step-1',
-    content: 'An awesome plugin made with Vue.js!',
+    content: "Clique sur le bouton modifier afin d'accéder à la bibliothèque d'éléments",
     header: {
       title: 'Ajoute un élément avec la page de configuration',
     },
@@ -69,20 +67,21 @@ const onDragStart = async () => {
 }
 
 const onSubmit = async () => {
+  console.log(components.value)
   openResultModal.value = true
-  const el = designResult.value
-  resCanvas.value = (await html2canvas(el)).toDataURL()
-  console.log(resCanvas.value.toDataURL())
+  // const el = designResult.value
+  // resCanvas.value = (await html2canvas(el)).toDataURL()
+  // console.log(resCanvas.value.toDataURL())
 }
 const onDrop = (e: any) => {
   document.body.style.overflow = 'scroll'
-
+  console.log(designPreview.value)
   components.value = [
     ...components.value,
     {
-      y: unref(y) - designPreview.value.containerElement.getBoundingClientRect().top - 40,
+      y: unref(y) - designPreview?.value?.containerElement.getBoundingClientRect().top - 40,
       tag: e.payload.tag,
-      props: { ...e.payload.props },
+      props: { ...e.payload.props, children: e.payload.tag.children },
       id: components.value.length,
     },
   ]
@@ -107,7 +106,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <Game :color="bgColor" :style="`background: ${bgColor}`">
+  <PauseMenu
+    :color="islandInfos.color"
+    @click="() => tours?.myTour?.finish()"
+    @skip="$emit('skipGame')"
+    @quit="$emit('quitGame')"
+  />
+  <Game :color="bgColor" :style="`background: ${bgColor}; overflow: hidden; height: 100%`">
     <template #header>
       <IslandTitle class="upButton" :literal-color="bgColor" :name="islandInfos.islandName">
         Île {{ islandInfos.islandName }}
@@ -132,7 +137,7 @@ onMounted(() => {
               class=""
               v-bind="component.props"
               :color="bgColor"
-            />
+            ></component>
           </TransitionGroup>
         </Container>
 
@@ -146,30 +151,42 @@ onMounted(() => {
               @change="onColorUpdate"
             />
           </div>
+          <div class="grid gap-x-3 gap-y-3 grid-cols-1">
+            <DesignDraggableItem class="" @on-drag-start="onDragStart"
+              ><InputField class="!cursor-pointer pointer-events-none" label="Email" type="email" />
+              <template #displayElement>
+                <InputField label="Email" type="email" class="w-full" />
+              </template>
+            </DesignDraggableItem>
 
-          <DesignDraggableItem class="mb-2" @on-drag-start="onDragStart"
-            ><InputField class="!cursor-pointer pointer-events-none" label="Email" type="email" />
-            <template #displayElement>
-              <InputField label="Email" type="email" class="w-full" />
-            </template>
-          </DesignDraggableItem>
+            <DesignDraggableItem class="" @on-drag-start="onDragStart"
+              ><InputField
+                class="!cursor-pointer pointer-events-none"
+                label="Mot de passe"
+                type="email"
+              />
+              <template #displayElement>
+                <InputField label="Mot de passe" type="password" class="w-full" />
+              </template>
+            </DesignDraggableItem>
+            <DesignDraggableItem class="" @on-drag-start="onDragStart"
+              ><DesignButton
+                id="v-step-2"
+                :style="`background: ${bgColor}`"
+                text="Connexion"
+                class="mx-auto pointer-events-none"
+              /><template #displayElement
+                ><DesignButton text="Connexion" class-name="mb-3"
+              /></template>
+            </DesignDraggableItem>
 
-          <DesignDraggableItem class="mb-2" @on-drag-start="onDragStart"
-            ><InputField class-name="mb-4" label="Mot de passe" type="password" />
-            <template #displayElement
-              ><InputField label="Mot de passe" type="password" class="w-full"
-            /></template>
-          </DesignDraggableItem>
-          <DesignDraggableItem class="" @on-drag-start="onDragStart"
-            ><DesignButton
-              id="v-step-2"
-              :style="`background: ${bgColor}`"
-              text="Connexion"
-              class="mx-auto pointer-events-none"
-            /><template #displayElement
-              ><DesignButton text="Connexion" class-name="mb-3"
-            /></template>
-          </DesignDraggableItem>
+            <DesignDraggableItem class="" @on-drag-start="onDragStart"
+              ><p class="underline text-gray-500">Mot de passe oublié</p>
+              <template #displayElement
+                ><p class="mt-8 underline text-gray-500">Mot de passe oublié</p></template
+              >
+            </DesignDraggableItem>
+          </div>
 
           <Container group-name="myDrop" class="w-full" @drop="onDrop">
             <div></div>
@@ -178,56 +195,79 @@ onMounted(() => {
         <BottomSheet
           :mobile-bar="false"
           height="100vh"
-          class-name="pt-6 overflow-scroll w-full h-full !px-0"
+          class-name="mt-16 overflow-scroll w-full h-full !px-0"
           :is-open="openResultModal"
           @on-close="() => (openResultModal = false)"
         >
-          <div class="w-full px-6 mb-6 items-center flex justify-between">
-            <BackIcon class="cursor-pointer" @click="openResultModal = false" />
-            <p class="text-xl font-medium">Beau résultat !</p>
-            <div></div>
+          <div class="flex h-full justify-center items-center">
+            <div>
+              <div class="w-full px-6 mb-6 items-center flex justify-between">
+                <BackIcon class="cursor-pointer" @click="openResultModal = false" />
+                <p class="text-xl font-medium">Beau résultat !</p>
+                <div></div>
+              </div>
+              <div class="w-full px-6 mb-6 flex flex-col items-start">
+                <p class="text-gray-800 mb-3">
+                  Bravo, vous avez fait votre première page de connexion, vous pouvez revenir en
+                  arrière pour la modifier ou partir sur une autre île pour découvrir un autre
+                  métier
+                </p>
+                <!-- <p v-if="components." class="text-gray-800 mb-3">
+                
+                </p> -->
+                <p class="text-gray-800 mb-3">
+                  Une page de connexion doit avoir deux champs de texte afin d'y ecrire l'email et
+                  le mot de passe, un bouton de connexion et un lien au cas où nous avons oublier le
+                  mot de passe. Attention à bien organiser les éléments ainsi que les espacements !
+                </p>
+                <div class="flex">
+                  <button
+                    class="flex-grow mr-4 flex items-center text-gray-500 py-2 opacity-90 rounded"
+                    @click="openResultModal = false"
+                  >
+                    <BackIcon class="mr-2" /> Revenir à ma page
+                  </button>
+                  <button
+                    class="flex-grow px-4 py-2 opacity-90 rounded !text-white"
+                    :style="`background: ${bgColor}`"
+                    @click="$emit('endGame')"
+                  >
+                    Terminer
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="w-full px-6 mb-6 flex flex-col items-start">
-            <p class="text-gray-800 mb-3">
-              Bravo, vous avez fait votre première page de connexion, vous pouvez revenir en arrière
-              pour la modifier ou partir sur une autre île pour découvrir un autre métier
-            </p>
-            <button
-              class="flex-grow px-4 py-2 opacity-90 rounded !text-white"
-              :style="`background: ${bgColor}`"
-              @click="$emit('endGame')"
-            >
-              Terminer
-            </button>
-          </div>
-
-          <div
+          <!-- <div
             v-if="resCanvas"
             class="w-full py-4 flex-grow h-full flex flex-col items-center justify-center"
             :style="`background: ${bgColor}`"
           >
             <img class="rounded-lg" :src="resCanvas" />
-          </div>
+          </div> -->
         </BottomSheet>
       </div>
     </template>
     <template #footer>
-      <div class="flex mx-8 mb-4 items-stretch">
-        <button id="v-step-1" class="flex-grow updateButton" @click="onUpdateClick">
-          Modifier
-        </button>
-        <div class="w-20 flex justify-center items-center cursor-pointer" @click="onUndo">
+      <div class="flex items-center mx-8 mb-4">
+        <div class="w-16 flex justify-center items-center cursor-pointer" @click="onUndo">
           <UndoIcon class="text-white text-xl" />
         </div>
-      </div>
-      <div class="flex mx-8 mb-4 items-stretch">
-        <button
-          class="mb-10 flex-grow updateButton"
-          :class="[components.length ? 'opacity-60' : '!opacity-0 pointer-events-none']"
-          @click="onSubmit"
-        >
-          Valider
-        </button>
+        <div class="flex flex-grow mr-1 items-stretch">
+          <button id="v-step-1" class="flex-grow updateButton" @click="onUpdateClick">
+            Modifier
+          </button>
+        </div>
+
+        <div v-if="components.length" class="flex flex-grow ml-1 items-stretch">
+          <button
+            class="mb-0 flex-grow updateButton"
+            :class="[components.length ? 'opacity-60' : '!opacity-0 pointer-events-none']"
+            @click="onSubmit"
+          >
+            Valider
+          </button>
+        </div>
       </div>
 
       <Teleport to="body">
