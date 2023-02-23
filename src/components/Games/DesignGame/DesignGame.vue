@@ -108,9 +108,11 @@ onMounted(() => {
   />
   <Game :color="bgColor" :style="`background: ${bgColor}; overflow: hidden; height: 100%`">
     <template #header>
-      <IslandTitle class="upButton" :literal-color="bgColor" :name="islandInfos.islandName">
-        Île {{ islandInfos.islandName }}
-      </IslandTitle>
+      <div class="flex justify-center mt-5 text-xl">
+        <IslandTitle :color="islandInfos.color" :name="islandInfos.islandName">
+          Île {{ islandInfos.islandName }}
+        </IslandTitle>
+      </div>
     </template>
     <template #content>
       <div ref="designResult" class="card flex flex-col">
