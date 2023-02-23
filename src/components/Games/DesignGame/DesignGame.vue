@@ -76,6 +76,7 @@ const onSubmit = async () => {
 }
 const onDrop = (e: any) => {
   document.body.style.overflow = 'scroll'
+
   components.value = [
     ...components.value,
     {
