@@ -26,6 +26,18 @@
             "moreJobs": "",
             "formations": "https://www.cmaformation-na.fr/formations/search?quoi=robotique&ou=&numero_departement=",
             "videos": [
+                {
+                    "title": "Interview d'une pro",
+                    "url": "https://www.youtube.com/embed/RZfF6rWd-MA"
+                },
+                {
+                    "title": "Interview d'une pro - Partie 2",
+                    "url": "https://www.youtube.com/embed/GIWWGsgm3Lc"
+                },
+                {
+                    "title": "Interview d'une pro - Partie 3",
+                    "url": "https://www.youtube.com/embed/RTSsQc-xva8"
+                }
             ]
         }
     }
