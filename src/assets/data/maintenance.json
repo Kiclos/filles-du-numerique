@@ -41,7 +41,12 @@
             "moreInfo": "",
             "moreJobs": "",
             "formations": "https://www.cmaformation-na.fr/formations/search?quoi=maintenance+informatique&ou=&numero_departement=",
-            "videos": []
+            "videos": [
+                {
+                    "title" : "Témoignage de Maryline : \"J'aiOSélaTech\", son parcours en tant que technicienne d'assistance informatique",
+                    "url" : "https://www.youtube.com/embed/MUWm6PRpvnI"
+                }
+            ]
         }
     }
 }
